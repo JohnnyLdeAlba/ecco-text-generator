@@ -7,7 +7,7 @@
 }
 
 .button {
-  transition: filter 0.6s
+  transition: filter 0.4s
 }
 
 .button:hover {
@@ -19,7 +19,7 @@
 }
 
 .menuItem {
-  transition: background-color 0.6s, filter 0.6s
+  transition: background-color 0.6s, filter 0.4s
 }
 
 .menuItem:active {
@@ -30,12 +30,6 @@
   opacity: 50%;
 }
 
-.background-darksea {
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-  background-image: url("/theme/darksea/background.png");
-}
-
 .backdrop {
   transition: opacity 0.5s;
 }
@@ -43,3 +37,16 @@
 .navigation {
   transition: margin-left 0.8s
 }
+
+.background-darksea {
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-image: url("/theme/darksea/background.png");
+}
+
+.background-seaofgreen {
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-image: url("/theme/seaofgreen/background.png");
+}
+
