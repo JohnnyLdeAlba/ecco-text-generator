@@ -1,0 +1,22 @@
+.backdrop-in {
+  display: flex;
+  background: rgba(0,0,0,0.6);
+  transition: display 0.5s, background 0.5s;
+}
+
+@media (min-width: 100px) {
+  .backdrop-in {
+    display: none;
+    background: rgba(0,0,0,0);
+  }
+}
+
+.backdrop-out {
+  display: none;
+  background: rgba(0,0,0,0);
+  transition: display 0.5s, background 0.5s;
+}
+
+.navigation {
+  transition: margin-left 0.8s
+}

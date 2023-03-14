@@ -1,0 +1,45 @@
+.pixelated {
+  image-rendering: pixelated;
+}
+
+.flip-h {
+  transform: scaleX(-1);
+}
+
+.button {
+  transition: filter 0.6s
+}
+
+.button:hover {
+  filter: brightness(200%);
+}
+
+.button:active {
+  filter: brightness(150%);
+}
+
+.menuItem {
+  transition: background-color 0.6s, filter 0.6s
+}
+
+.menuItem:active {
+  filter: brightness(50%);
+}
+
+.disabled {
+  opacity: 50%;
+}
+
+.background-darksea {
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-image: url("/theme/darksea/background.png");
+}
+
+.backdrop {
+  transition: opacity 0.5s;
+}
+
+.navigation {
+  transition: margin-left 0.8s
+}
