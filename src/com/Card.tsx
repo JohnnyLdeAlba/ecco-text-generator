@@ -1,9 +1,5 @@
 import { useContext } from "react";
-
-import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
-
-import { Layout } from "../../com/Layout/Layout";
-import { ThemeContext } from "../../com/theme";
+import { ThemeContext } from "./theme";
 
 export const CardIcon = ({ children }) => {
 
@@ -79,7 +75,7 @@ export const CardHeader = ({
   );
 }
 
-export const Index = ({
+export const Card = ({
   icon,
   title,
   subTitle,
@@ -90,33 +86,20 @@ export const Index = ({
   const theme = useContext(ThemeContext);
 
   return (
-    <Layout>
-
-      <div className={`
-        mx-0 xl:mx-auto 
-        w-full 3xl:w-[1000px]
-        px-0 sm:px-4 3xl:px-0
-        py-0 sm:py-4
-        flex flex-col
-        h-full
-        `}>
-        <div className={`
-          rounded-none sm:rounded-lg
-          h-full sm:h-fit
-          ${ theme.card }        
-        `}>
-          <CardHeader
-            icon={ <MoreHorizIcon /> }
-            title={ "Ecco the Dolphin" }
-            subTitle={ "Description" }
-            menuItems={ menuItems }
-          />
-          { children }  
-        </div>
-      </div>
-
-    </Layout>
+    <div className={`
+      rounded-none sm:rounded-lg
+      flex-1 sm:flex-none
+      ${ theme.card }        
+    `}>
+      <CardHeader
+        icon={ icon }
+        title={ title }
+        subTitle={ subTitle }
+        menuItems={ menuItems }
+      />
+      { children }  
+    </div>
   )
 }
 
-export default Index;
+export default Card;

@@ -49,11 +49,14 @@ export const darkSeaTheme = {
     bg-[rgba(4,6,12,0.92)]
   `,
 
+  toolbar: `bg-[#111a28]`,
+  tooltip: `mui-darksea`,
+
   scrollbars: `
     scrollbar-thin
-    scrollbar-track-[#002a39]
+    scrollbar-track-[#111a28]
     scrollbar-thumb-rounded-full
-    scrollbar-thumb-[#005471]
+    scrollbar-thumb-[#1e355a]
   `
 }
 

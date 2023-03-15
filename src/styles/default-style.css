@@ -7,14 +7,29 @@
 }
 
 .button {
+  cursor: pointer;
   transition: filter 0.4s
 }
 
 .button:hover {
-  filter: brightness(200%);
+  filter: brightness(120%);
 }
 
 .button:active {
+  filter: brightness(80%);
+}
+
+
+
+.button_ {
+  transition: filter 0.4s
+}
+
+.button_:hover {
+  filter: brightness(200%);
+}
+
+.button_:active {
   filter: brightness(150%);
 }
 
@@ -36,6 +51,14 @@
 
 .navigation {
   transition: margin-left 0.8s
+}
+
+.mui-darksea .MuiTooltip-tooltip {
+  background-color: #1e355a;
+}
+
+.mui-darksea .MuiTooltip-arrow {
+  color: #1e355a;
 }
 
 .background-darksea {
