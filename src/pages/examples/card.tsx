@@ -2,6 +2,7 @@ import { useContext } from "react";
 
 import FolderIcon from '@mui/icons-material/Folder';
 
+import { Gallery } from "../../com/Gallery/Gallery";
 import { Card } from "../../com/Card";
 import { Layout } from "../../com/Layout/Layout";
 import { ThemeContext } from "../../com/theme";
@@ -14,7 +15,8 @@ export const Container = ({ children }) => {
       w-full 3xl:w-[1000px]
       px-0 sm:px-4 3xl:px-0
       py-0 sm:py-4
-      flex-1 flex flex-col
+      flex flex-col
+      overflow-y-auto
     `}>
       { children }
     </div>
@@ -32,7 +34,9 @@ export const Index = () => {
           icon={ <FolderIcon /> }
           title="title"
           subTitle="subTitle"
-        />
+        >
+          <Gallery />
+        </Card>
       </Container>
     </Layout>
   )

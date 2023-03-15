@@ -129,6 +129,7 @@ export const Navigation = ({
       <div className={`
         lg:ml-0
         navigation
+        absolute
         z-[9]
         flex flex-col
         w-[280px] h-full

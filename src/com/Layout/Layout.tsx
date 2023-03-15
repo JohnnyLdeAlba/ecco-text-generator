@@ -13,7 +13,7 @@ export const Layout = ({ children }) => {
   return (
     <div className={`
       background
-      flex flex-row
+      flex flex-col
       h-screen
       ${ theme.background }
     `}>
@@ -25,15 +25,14 @@ export const Layout = ({ children }) => {
 
       <div className={`
         ml-0 lg:ml-[280px]
-        w-full lg:w-[calc(100%-280px)]
         absolute
-        flex-1 flex flex-col
-        h-full
+        flex flex-col
+        w-full lg:w-[calc(100%-280px)]
+        h-screen
+        overflow-y-auto
       `}>
         <MenuBar toggleNav={ () => navigation.toggle() } />
-        <div className={`flex-1 flex flex-col`}>
-          { children }
-        </div>
+        { children }
         <Footer />
       </div>
     </div>

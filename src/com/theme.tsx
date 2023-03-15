@@ -50,6 +50,10 @@ export const darkSeaTheme = {
   `,
 
   toolbar: `bg-[#111a28]`,
+  smallButton: `bg-[#1e355a]`,
+  galleryItem: `bg-[#1e355a]`,
+  galleryItemSelected: `border-[5px] border-[#111a28]`,
+
   tooltip: `mui-darksea`,
 
   scrollbars: `

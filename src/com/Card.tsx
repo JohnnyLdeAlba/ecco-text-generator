@@ -88,7 +88,8 @@ export const Card = ({
   return (
     <div className={`
       rounded-none sm:rounded-lg
-      flex-1 sm:flex-none
+      flex-1 flex flex-col
+      overflow-y-auto
       ${ theme.card }        
     `}>
       <CardHeader

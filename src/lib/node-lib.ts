@@ -46,10 +46,9 @@ export class t_node {
   name;
   description;
   details;
-  websiteURL;
   icon;
   banner;
-  fileURI;
+  value;
 
   properties;
   status;
@@ -79,10 +78,9 @@ export class t_node {
     this.name = '';
     this.description = '';
     this.details = '';
-    this.websiteURL = '';
     this.icon = '';
     this.banner = '';
-    this.fileURI = '';
+    this.value = '';
 
     this.properties = {
       mandatory: false,
@@ -96,7 +94,7 @@ export class t_node {
 
     this.status = {
       selected: false,
-      filteredNode: false,
+      filteredAttribute: false,
       filteredPriority: false,
       filteredHidden: false
     }
@@ -127,10 +125,9 @@ export class t_node {
     this.name = empty('', node.name);
     this.description = empty('', node.description);
     this.details = empty('', node.details);
-    this.websiteURL = empty('', node.websiteURL);
     this.icon = empty('', node.icon);
     this.banner = empty('', node.banner);
-    this.fileURI = empty('', node.fileURI);
+    this.value = empty('', node.value);
 
     this.properties = {
       mandatory: empty(node.properties.mandatory, false),
@@ -144,7 +141,7 @@ export class t_node {
 
     this.status = {
       selected: empty(node.status.selected, false),
-      filteredNode: empty(node.status.filteredNode, false),
+      filteredAttribute: empty(node.status.filteredAttribute, false),
       filteredPriority: empty(node.status.filteredPriority, false),
       filteredHidden: empty(node.status.filteredHidden, false)
     }
@@ -164,7 +161,7 @@ export class t_node {
 
     this.status = {
       selected: false,
-      filteredNode: false,
+      filteredAttribute: false,
       filteredPriority: false,
       filteredHidden: false
     }
