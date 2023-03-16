@@ -37,7 +37,7 @@ export const DetailItem = ({ galleryItem }) => {
         <Image
           src={ galleryItem.icon }
           width={ 300 } height={ 300 } alt=''
-          className={`w-[80px] xl:w-[100px] mr-3 sm:mr-4`} />
+          className={`w-[60px] xl:w-[80px] mr-3 sm:mr-4`} />
         <div className={`flex-1 flex flex-col`}>
           <div className={`
             text-sm sm:text-base xl:text-xl
@@ -174,12 +174,12 @@ export const Gallery = ({
   disableToolbar = false,
   disableShowDetails = false,
   forceDetailsVisible = false,
-  onGoBack = true,
+  onGoBack,
   onUnselect,
   onRemoveSelected,
-  onToggleHidden = true,
-  onNextPage = true,
-  onPrevPage = true
+  onToggleHidden,
+  onNextPage,
+  onPrevPage
 
 }) => {
 
@@ -190,6 +190,11 @@ export const Gallery = ({
 
       { disableToolbar ? null :
         <Toolbar
+
+          page={ page }
+          onPrevPage={ onPrevPage }
+          onNextPage={ onNextPage }
+
           showDetailsClosed={ detailsVisible }
 
           onGoBack={ onGoBack }

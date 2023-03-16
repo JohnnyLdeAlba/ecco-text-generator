@@ -33,10 +33,12 @@ export const Toolbar = ({
       ${ theme.toolbar }
     `}>
 
-      { onGoBack ? <SmallTipButton
+      <SmallTipButton
+        disabled={ onGoBack ? false : true }
+        tip={ onGoBack ? "Go Back" : '' }
         icon={ <div className={`ml-2`}><ArrowBackIcon fontSize="small" /></div> }
-        rounded="left" tip="Go Back"
-        onClick={ onGoBack } /> : null }
+        rounded="left"
+        onClick={ onGoBack } />
 
       { onUnselect ? <SmallTipButton
         icon={ <div className={`mr-2`}><UndoIcon fontSize="small" /></div> }
@@ -59,18 +61,24 @@ export const Toolbar = ({
         rounded="right" tip="Toggle Hidden"
         onClick={ onToggleHidden } /> : null }
 
-      { page == -1 || page > 0 ? 
+      { page > 0 ? 
         <div className={`flex-1 flex flex-row justify-end`}>
 
-          { onPrevPage ? <SmallTipButton
+          <SmallTipButton
+            disabled={ onPrevPage ? false : true }
+            tip={ onPrevPage ? "Previous Page" : '' }
             icon={ <div className={`ml-1`}><ArrowLeftIcon fontSize="small" /></div> }
-            rounded="left" tip="Previous Page"
-            onClick={ onPrevPage } /> : null }
+            rounded="left" 
+            onClick={ onPrevPage } /> 
+
           { page == -1 ? null : <SmallButton title={ <div className={`px-2`}>{ page }</div> } /> }
-          { onNextPage ? <SmallTipButton
+
+          <SmallTipButton
+            disabled={ onNextPage ? false : true }
+            tip={ onNextPage ? "Next Page" : '' }
             icon={ <div className={`mr-1`}><ArrowRightIcon fontSize="small" /></div> }
-            rounded="right" tip="Next Page"
-            onClick={ onNextPage } /> : null }
+            rounded="right" 
+            onClick={ onNextPage } />
 
         </div> : null
       }

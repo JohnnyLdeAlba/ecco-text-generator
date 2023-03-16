@@ -24,6 +24,54 @@ export const copy_map = map => {
   return map;
 }
 
+export const sort_name = array => 
+
+  array.sort((x, y) => {
+
+    const u = x.name;
+    const v = y.name;
+
+    if (u < v)
+      return -1;
+    else if (u > v)
+      return 1;
+
+    return 0;
+  });
+
+export const sort_order_id = array => 
+
+  array.sort((x, y) => {
+
+    const u = x.orderId;
+    const v = y.orderId;
+
+    if (u < v)
+      return -1;
+    else if (u > v)
+      return 1;
+
+    return 0;
+  });
+
+export const sort_filtered = array => 
+
+  array.sort((x, y) => {
+
+    let u = x.filteredPriority || x.filteredAttribute || x.filteredHidden;
+    let v = y.filteredPriority || y.filteredAttribute || y.filteredHidden;
+
+    u = u ? 1 : 0;
+    v = v ? 1 : 0;
+
+    if (u < v)
+      return -1;
+    else if (u > v)
+      return 1;
+
+    return 0;
+  });
+
 export class t_node {
 
   serial;
@@ -45,7 +93,7 @@ export class t_node {
 
   name;
   description;
-  details;
+  summary;
   icon;
   banner;
   value;
@@ -77,7 +125,7 @@ export class t_node {
 
     this.name = '';
     this.description = '';
-    this.details = '';
+    this.summary = '';
     this.icon = '';
     this.banner = '';
     this.value = '';
@@ -87,6 +135,7 @@ export class t_node {
       disabled: false,
       locked: false,
       hidden: false,
+      system: false,
       placeholder: false,
       remove: false,
       removeAll: false
@@ -124,7 +173,7 @@ export class t_node {
 
     this.name = empty('', node.name);
     this.description = empty('', node.description);
-    this.details = empty('', node.details);
+    this.summary = empty('', node.summary);
     this.icon = empty('', node.icon);
     this.banner = empty('', node.banner);
     this.value = empty('', node.value);
@@ -134,6 +183,7 @@ export class t_node {
       disabled: empty(node.properties.disabled, false),
       locked: empty(node.properties.locked, false),
       hidden: empty(node.properties.hidden, false),
+      system: empty(node.properties.system, false),
       placeholder: empty(node.properties.placeholder, false),
       remove: empty(node.properties.remove, false),
       removeAll: empty(node.properties.removeAll, false)
@@ -195,5 +245,58 @@ export class t_node {
     node.chain = map_to_array(node.chain);
 
     return node;
+  }
+}
+
+export class t_node_container {
+
+  serial;
+  map;
+  hashMap;
+  array;
+
+  constructor() {
+
+    this.serial = 0;
+    this.map = new Map();
+    this.hashMap = new Map();
+    this.array = [];
+  }
+
+  addNode(
+    hash,
+    parentId = 0,
+    serial = 0
+  ) {
+
+    if (this.hashMap.has(hash))
+      return;
+
+    if (serial == 0)
+      serial = ++this.serial;
+    
+    const node = new t_node();
+
+    node.serial = serial;
+    node.id = serial; 
+    node.hash = hash;
+    node.parentId = parentId;
+
+    this.map.set(node.id, node);
+    this.hashMap.set(node.hash, node);
+    this.array.push(node);
+
+    this.array = sort_name(this.array);
+    this.array = sort_order_id(this.array);
+
+    return node;
+  }
+
+  getNode(id) {
+    return this.map.get(id);
+  }
+
+  getNodeByHash(hash) {
+    return this.hashMap.get(hash);
   }
 }
