@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import Image from "next/image";
 
 import FolderIcon from '@mui/icons-material/Folder';
 
@@ -71,7 +72,7 @@ export const Container = ({ children }) => {
       px-0 sm:px-4 3xl:px-0
       py-0 sm:py-4
       flex-1 flex flex-col
-      overflow-y-auto
+      overflow-y-auto sm:overflow-y-visible
     `}>
       { children }
     </div>
@@ -88,8 +89,8 @@ export const Index = () => {
         <Card 
           icon={ <FolderIcon /> }
           title="Home"
-          subTitle="Where to?"
-        >
+          subTitle="Where to?">
+          <img src="/banners/eccothedolphin.jpg" alt='' />
           <Gallery galleryItems={ items } />
         </Card>
       </Container>

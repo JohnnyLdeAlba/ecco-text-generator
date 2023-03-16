@@ -14,15 +14,15 @@ import { SmallButton, SmallTipButton } from "../Button";
 import { ThemeContext } from "../theme";
 
 export const Toolbar = ({
-  page = 1,
+  page = 0,
   showDetailsClosed = false,
-  onGoBack = true,
-  onUnselect = true,
-  onRemoveSelected = true,
+  onGoBack,
+  onUnselect,
+  onRemoveSelected,
   onShowDetails,
-  onToggleHidden = true,
-  onNextPage = true,
-  onPrevPage = true
+  onToggleHidden,
+  onNextPage,
+  onPrevPage
 }) => {
 
   const theme = useContext(ThemeContext);
@@ -59,7 +59,7 @@ export const Toolbar = ({
         rounded="right" tip="Toggle Hidden"
         onClick={ onToggleHidden } /> : null }
 
-      { page > 0 ? 
+      { page == -1 || page > 0 ? 
         <div className={`flex-1 flex flex-row justify-end`}>
 
           { onPrevPage ? <SmallTipButton

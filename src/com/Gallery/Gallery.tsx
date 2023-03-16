@@ -174,8 +174,8 @@ export const Gallery = ({
   disableShowDetails = false,
   forceDetailsVisible = false,
   onGoBack = true,
-  onUnselect = true,
-  onRemoveSelected = true,
+  onUnselect,
+  onRemoveSelected,
   onToggleHidden = true,
   onNextPage = true,
   onPrevPage = true
@@ -185,12 +185,19 @@ export const Gallery = ({
   const [ detailsVisible, showDetails  ] = useState(false);
 
   return (
-    <div className={`flex-1 flex flex-col overflow-y-auto`}>
+    <div className={`flex-1 flex flex-col`}>
 
       { disableToolbar ? null :
-        <Toolbar showDetailsClosed={ detailsVisible }
+        <Toolbar
+          showDetailsClosed={ detailsVisible }
+
+          onGoBack={ onGoBack }
+
           onShowDetails={ !disableShowDetails && !forceDetailsVisible ?
-            () => showDetails(!detailsVisible) : null } /> }
+            () => showDetails(!detailsVisible) : null }
+
+          onToggleHidden={ onToggleHidden }        
+        /> }
 
       { galleryItems.length == 0 ? <GalleryDisabled /> : null }
       { !forceDetailsVisible && !detailsVisible && galleryItems.length > 0 ? <GalleryGroup galleryItems={ galleryItems } /> : null }

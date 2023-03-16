@@ -89,7 +89,7 @@ export const Card = ({
     <div className={`
       rounded-none sm:rounded-t-lg
       flex-1 flex flex-col
-      overflow-y-auto
+      overflow-y-auto sm:overflow-y-visible
       ${ theme.card }        
     `}>
       <CardHeader
@@ -98,7 +98,13 @@ export const Card = ({
         subTitle={ subTitle }
         menuItems={ menuItems }
       />
-      { children }  
+        <div className={`
+          flex-1 flex flex-col
+          overflow-y-auto
+          ${ theme.scrollbars }
+        `}>
+          { children }  
+        </div>
     </div>
   )
 }
