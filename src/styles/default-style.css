@@ -19,18 +19,17 @@
   filter: brightness(80%);
 }
 
-
-
-.button_ {
+.buttonClosed {
+  cursor: pointer;
   transition: filter 0.4s
 }
 
-.button_:hover {
-  filter: brightness(200%);
+.buttonClosed:hover {
+  filter: brightness(80%);
 }
 
-.button_:active {
-  filter: brightness(150%);
+.buttonClosed:active {
+  filter: brightness(60%);
 }
 
 .menuItem {

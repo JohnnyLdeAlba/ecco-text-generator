@@ -42,7 +42,7 @@ export const darkSeaTheme = {
   `, 
 
   cardHeader: `
-    bg-[#132239]
+    bg-[#162544]
   `,
 
   card: `
@@ -52,6 +52,7 @@ export const darkSeaTheme = {
   toolbar: `bg-[#0e1d35]`,
 
   smallButton: `bg-[#1e355a]`,
+  smallButtonClosed: `bg-[#182a48]`,
   galleryItem: `bg-[#1e355a]`,
   galleryItemSelected: `border-[5px] border-[#111a28]`,
 
@@ -117,6 +118,7 @@ export const seaOfGreenTheme = {
   toolbar: `bg-[#0e1d35]`,
 
   smallButton: `bg-[#1e355a]`,
+  smallButtonClosed: `bg-[#182a48]`,
   galleryItemSelected: `border-[5px] border-[#1e355a]`,
   tooltip: `mui-darksea`,
 

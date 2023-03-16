@@ -8,9 +8,12 @@ export const SmallButton = ({
   icon,
   title,
   rounded,
+  closed = false,
   onClick,
   className
 }) => {
+
+  const theme = useContext(ThemeContext);
 
   switch (rounded) {
 
@@ -42,10 +45,12 @@ export const SmallButton = ({
       bg-[#1e355a]
       font-medium text-xs
       ${ disabled ? "disabled" : '' }
-      ${ !disabled && onClick ? "button" : '' }
+      ${ !disabled && !closed && onClick ? "button" : '' }
+      ${ !disabled && closed && onClick ? "buttonClosed" : '' }
+      ${ closed ? `${ theme.smallButtonClosed }` : `${ theme.smallButton }` }
       ${ rounded }
       ${ className }
-      `}>
+      `} onClick={onClick}>
       { icon ? icon : null }
       { title }
     </div>
@@ -59,6 +64,7 @@ export const WSmallButton = forwardRef((props, ref) => {
     wIcon,
     wTitle,
     wRounded,
+    wClosed,
     wOnClick,
     className,
     ...wProps
@@ -71,6 +77,7 @@ export const WSmallButton = forwardRef((props, ref) => {
         icon={ wIcon }
         title={ wTitle }
         rounded={ wRounded }
+        closed={ wClosed }
         onClick={ wOnClick }
         className={ className } />
     </div>
@@ -83,6 +90,7 @@ export const SmallTipButton = ({
   title,
   tip,
   rounded,
+  closed,
   onClick,
   className
 }) => {
@@ -100,6 +108,7 @@ export const SmallTipButton = ({
         wIcon={ icon }
         wTitle={ title }
         wRounded={ rounded }
+        wClosed={ closed } 
         wOnClick={ onClick }
         className={ className }
       />

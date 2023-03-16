@@ -3,6 +3,7 @@ import { useContext } from "react";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import UndoIcon from '@mui/icons-material/Undo';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
+import ArtTrackIcon from '@mui/icons-material/ArtTrack';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
@@ -14,9 +15,11 @@ import { ThemeContext } from "../theme";
 
 export const Toolbar = ({
   page = 1,
+  showDetailsClosed = false,
   onGoBack = true,
   onUnselect = true,
   onRemoveSelected = true,
+  onShowDetails,
   onToggleHidden = true,
   onNextPage = true,
   onPrevPage = true
@@ -45,6 +48,11 @@ export const Toolbar = ({
         icon={ <div className={`mr-2`}><RemoveCircleIcon fontSize="small" /></div> }
         title="Remove" tip="Remove Selected Items"
         onClick={ onRemoveSelected } /> : null }
+
+      { onShowDetails ? <SmallTipButton
+        icon={ <ArtTrackIcon fontSize="small" /> }
+        tip="Show Details" closed={ showDetailsClosed }
+        onClick={ onShowDetails } /> : null }
 
       { onToggleHidden ? <SmallTipButton
         icon={ <div className={`mr-2`}><VisibilityOffIcon fontSize="small" /></div> }

@@ -1,10 +1,82 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import Image from "next/image";
 
 import { t_node } from "../../lib/node-lib";
 import { Toolbar } from "./Toolbar"; 
 
 import { ThemeContext } from "../../com/theme";
+
+export const DetailItem = ({ galleryItem }) => {
+
+  galleryItem = galleryItem ? galleryItem : new t_node();
+
+  const properties = galleryItem.properties;
+  const status = galleryItem.status;
+  
+  const theme = useContext(ThemeContext);
+
+  return (
+    <div className={`flex flex-col p-2`}>
+      <div className={`
+        flex flex-col
+        rounded-lg
+        ${ status.filteredPriority ? "bg-[#1e3a8a]" : '' }
+        ${ status.filteredAttribute ? "bg-[#a855f7]" : '' }
+        `}
+        onClick={ galleryItem.onClick }>
+      <div className={`
+        text-xs md:text-sm lg:text-xs
+        flex flex-row items-start 
+        overflow-hidden
+        rounded-lg
+        ${ theme.galleryItem }
+        ${ properties.disabled ? "disabled" : "button" }
+        ${ status.selected ? theme.galleryItemSelected : '' }
+      `}>
+        <Image
+          src={ galleryItem.icon }
+          width={ 300 } height={ 300 } alt=''
+          className={`w-[60px] 2xl:w-[80px]`} />
+        <div className={`flex-1 flex flex-col p-2`}>
+          <div className={`
+            text-sm sm:text-base 2xl:text-lg
+            font-medium
+
+            overflow-hidden whitespace-nowrap
+            text-ellipsis
+          `}>
+            { galleryItem.name }
+          </div>
+          <div className={`text-sm sm:text-base`}>
+            { galleryItem.details }
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+  );
+}
+
+export const DetailGroup = ({
+  galleryItems
+}) => {
+
+  const theme = useContext(ThemeContext);
+
+  return (
+    <div className={`
+      flex flex-col
+      overflow-y-auto
+      p-2
+      ${ theme.scrollbars }
+    `}>
+
+      { galleryItems.map(galleryItem =>
+          <DetailItem galleryItem={ galleryItem } />) }
+
+    </div>
+  );
+}
 
 export const GalleryItem = ({ galleryItem }) => {
 
@@ -99,6 +171,8 @@ export const Gallery = ({
   galleryItems = [],
   page = 1,
   disableToolbar = false,
+  disableShowDetails = false,
+  forceDetailsVisible = false,
   onGoBack = true,
   onUnselect = true,
   onRemoveSelected = true,
@@ -108,11 +182,19 @@ export const Gallery = ({
 
 }) => {
 
+  const [ detailsVisible, showDetails  ] = useState(false);
+
   return (
     <div className={`flex-1 flex flex-col overflow-y-auto`}>
-      { disableToolbar ? null : <Toolbar /> }
+
+      { disableToolbar ? null :
+        <Toolbar showDetailsClosed={ detailsVisible }
+          onShowDetails={ !disableShowDetails && !forceDetailsVisible ?
+            () => showDetails(!detailsVisible) : null } /> }
+
       { galleryItems.length == 0 ? <GalleryDisabled /> : null }
-      { galleryItems.length > 0 ? <GalleryGroup galleryItems={ galleryItems } /> : null }
+      { !forceDetailsVisible && !detailsVisible && galleryItems.length > 0 ? <GalleryGroup galleryItems={ galleryItems } /> : null }
+      { (forceDetailsVisible || detailsVisible) && galleryItems.length > 0 ? <DetailGroup galleryItems={ galleryItems } /> : null }
     </div>
   );
 }
