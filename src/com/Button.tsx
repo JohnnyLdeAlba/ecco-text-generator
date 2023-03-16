@@ -15,7 +15,7 @@ export const SmallButton = ({
   switch (rounded) {
 
     case "left": {
-      rounded = "rounded-l-full";
+      rounded = "rounded-l-full mr-[1px]";
       break;
     }
 
@@ -30,7 +30,7 @@ export const SmallButton = ({
     }
 
     default: {
-      rounded = '';
+      rounded = "mr-[1px]";
       break;
     }
   }

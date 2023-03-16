@@ -90,13 +90,13 @@ export const GalleryDisabled = ({
       p-2 h-full
       font-medium
     `}>
-      No Items To Show
+      No items to show
     </div>
   );
 }
 
 export const Gallery = ({
-  _galleryItems = [],
+  galleryItems = [],
   page = 1,
   disableToolbar = false,
   onGoBack = true,
@@ -108,20 +108,8 @@ export const Gallery = ({
 
 }) => {
 
-  const galleryItems = [];
-
-  for (let index = 0; index < 24; index++) {
-
-    const galleryItem = new t_node();
-
-    galleryItem.icon = "/jurassic-beach.png";
-    galleryItem.name = "Title";
-
-    galleryItems.push(galleryItem);
-  }
-
   return (
-    <div className={`flex flex-col overflow-y-auto`}>
+    <div className={`flex-1 flex flex-col overflow-y-auto`}>
       { disableToolbar ? null : <Toolbar /> }
       { galleryItems.length == 0 ? <GalleryDisabled /> : null }
       { galleryItems.length > 0 ? <GalleryGroup galleryItems={ galleryItems } /> : null }

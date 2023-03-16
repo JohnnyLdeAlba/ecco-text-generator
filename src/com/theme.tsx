@@ -16,11 +16,11 @@ export const darkSeaTheme = {
   logo: "darksea/ecco-io-logo.svg",
 
   footer: `
-    bg-[#111a28]
+    bg-[#0e1d35]
   `,
 
   menuBar: `
-    bg-[#111a28]
+    bg-[#0e1d35]
   `,
 
   menuBarNav: `
@@ -49,7 +49,8 @@ export const darkSeaTheme = {
     bg-[rgba(4,6,12,0.92)]
   `,
 
-  toolbar: `bg-[#111a28]`,
+  toolbar: `bg-[#0e1d35]`,
+
   smallButton: `bg-[#1e355a]`,
   galleryItem: `bg-[#1e355a]`,
   galleryItemSelected: `border-[5px] border-[#111a28]`,
@@ -80,11 +81,11 @@ export const seaOfGreenTheme = {
   logo: "seaofgreen/ecco-io-logo.svg",
 
   footer: `
-    bg-[#141c2f]
+    bg-[#0e1d35]
   `,
 
   menuBar: `
-    bg-[#141c2f]
+    bg-[#0e1d35]
   `,
 
   menuBarNav: `
@@ -112,6 +113,12 @@ export const seaOfGreenTheme = {
   card: `
     bg-[rgba(0,7,26,0.92)]
   `,
+
+  toolbar: `bg-[#0e1d35]`,
+
+  smallButton: `bg-[#1e355a]`,
+  galleryItemSelected: `border-[5px] border-[#1e355a]`,
+  tooltip: `mui-darksea`,
 
   scrollbars: `
     scrollbar-thin

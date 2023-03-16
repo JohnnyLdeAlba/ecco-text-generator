@@ -1,7 +1,6 @@
 import { useContext } from "react";
 
 import { Gallery } from "../../com/Gallery/Gallery"; 
-
 import { ThemeContext } from "../../com/theme";
 
 export const Index = () => {

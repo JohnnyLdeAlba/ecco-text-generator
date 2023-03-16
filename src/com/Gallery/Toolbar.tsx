@@ -31,7 +31,7 @@ export const Toolbar = ({
     `}>
 
       { onGoBack ? <SmallTipButton
-        icon={ <ArrowBackIcon fontSize="small" />  }
+        icon={ <div className={`ml-2`}><ArrowBackIcon fontSize="small" /></div> }
         rounded="left" tip="Go Back"
         onClick={ onGoBack } /> : null }
 
@@ -47,7 +47,7 @@ export const Toolbar = ({
         onClick={ onRemoveSelected } /> : null }
 
       { onToggleHidden ? <SmallTipButton
-        icon={ <VisibilityOffIcon fontSize="small" />  }
+        icon={ <div className={`mr-2`}><VisibilityOffIcon fontSize="small" /></div> }
         rounded="right" tip="Toggle Hidden"
         onClick={ onToggleHidden } /> : null }
 
@@ -55,12 +55,12 @@ export const Toolbar = ({
         <div className={`flex-1 flex flex-row justify-end`}>
 
           { onPrevPage ? <SmallTipButton
-            icon={ <ArrowLeftIcon fontSize="small" />  }
+            icon={ <div className={`ml-1`}><ArrowLeftIcon fontSize="small" /></div> }
             rounded="left" tip="Previous Page"
             onClick={ onPrevPage } /> : null }
-          { page == -1 ? null : <SmallButton title={ page } /> }
+          { page == -1 ? null : <SmallButton title={ <div className={`px-2`}>{ page }</div> } /> }
           { onNextPage ? <SmallTipButton
-            icon={ <ArrowRightIcon fontSize="small" />  }
+            icon={ <div className={`mr-1`}><ArrowRightIcon fontSize="small" /></div> }
             rounded="right" tip="Next Page"
             onClick={ onNextPage } /> : null }
 
