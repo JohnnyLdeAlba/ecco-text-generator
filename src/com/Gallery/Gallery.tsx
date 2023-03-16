@@ -16,7 +16,7 @@ export const DetailItem = ({ galleryItem }) => {
   const theme = useContext(ThemeContext);
 
   return (
-    <div className={`flex flex-col p-2`}>
+    <div className={`flex flex-col p-2 sm:p-2.5`}>
       <div className={`
         flex flex-col
         rounded-lg
@@ -27,6 +27,7 @@ export const DetailItem = ({ galleryItem }) => {
       <div className={`
         text-xs md:text-sm lg:text-xs
         flex flex-row items-start 
+        p-3 sm:p-4
         overflow-hidden
         rounded-lg
         ${ theme.galleryItem }
@@ -36,10 +37,10 @@ export const DetailItem = ({ galleryItem }) => {
         <Image
           src={ galleryItem.icon }
           width={ 300 } height={ 300 } alt=''
-          className={`w-[60px] 2xl:w-[80px]`} />
-        <div className={`flex-1 flex flex-col p-2`}>
+          className={`w-[80px] xl:w-[100px] mr-3 sm:mr-4`} />
+        <div className={`flex-1 flex flex-col`}>
           <div className={`
-            text-sm sm:text-base 2xl:text-lg
+            text-sm sm:text-base xl:text-xl
             font-medium
 
             overflow-hidden whitespace-nowrap
@@ -47,7 +48,7 @@ export const DetailItem = ({ galleryItem }) => {
           `}>
             { galleryItem.name }
           </div>
-          <div className={`text-sm sm:text-base`}>
+          <div className={`text-sm sm:text-base xl:text-xl}`}>
             { galleryItem.details }
           </div>
         </div>
@@ -67,7 +68,7 @@ export const DetailGroup = ({
     <div className={`
       flex flex-col
       overflow-y-auto
-      p-2
+      p-2 sm:p-2.5
       ${ theme.scrollbars }
     `}>
 
@@ -89,8 +90,8 @@ export const GalleryItem = ({ galleryItem }) => {
 
   return (
     <div className={`
-      w-1/2 xsm:w-1/3 sm:w-1/4 2xl:w-1/6
-      flex flex-col p-2`}>
+      w-1/3 sm:w-1/4 lg:w-1/6
+      flex flex-col p-2 sm:p-3`}>
       <div className={`
         flex flex-col
         rounded-lg
