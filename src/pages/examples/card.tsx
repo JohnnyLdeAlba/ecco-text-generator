@@ -41,9 +41,9 @@ export const Index = () => {
       <Container>
         <Card 
           icon={ <FolderIcon /> }
-          title="Home"
-          subTitle="Where to?">
-          <img src="/banners/eccothedolphin.jpg" alt='' />
+          title={ request.parentNode.name }
+          subTitle={ request.parentNode.description }>
+          { request.parentNode.banner ? <img src={ request.parentNode.banner } alt='' /> : null }
           <Gallery
             page={ request.page == -1 ? -1 : request.page + 1 }
 
@@ -52,6 +52,7 @@ export const Index = () => {
 
             galleryItems={ request.getGalleryItems() }
             onGoBack={ request.parentNode.parentId > 0 ? () => request.onGoBack() : null }
+            onToggleHidden={ () => {} }
           />
         </Card>
       </Container>

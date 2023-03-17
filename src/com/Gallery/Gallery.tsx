@@ -49,7 +49,7 @@ export const DetailItem = ({ galleryItem }) => {
             { galleryItem.name }
           </div>
           <div className={`text-sm sm:text-base xl:text-xl}`}>
-            { galleryItem.details }
+            { galleryItem.summary }
           </div>
         </div>
       </div>

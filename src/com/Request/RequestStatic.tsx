@@ -81,7 +81,7 @@ class t_request_static extends t_hook {
 
   getGalleryItems() {
 
-    const nodes = this.getAllNodes();
+    let nodes = this.getAllNodes();
     this.getNextPage();
 
     nodes.forEach(node => {

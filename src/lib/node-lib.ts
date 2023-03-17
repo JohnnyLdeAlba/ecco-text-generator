@@ -54,6 +54,18 @@ export const sort_order_id = array =>
     return 0;
   });
 
+export const sort_name_order = array => 
+
+  array.sort((x, y) => {
+
+    if (x.name < y.name || x.orderId < y.orderId)
+      return -1;
+    else if (x.name > y.name || x.orderId > y.orderId )
+      return 1;
+
+    return 0;
+  });
+
 export const sort_filtered = array => 
 
   array.sort((x, y) => {
@@ -264,30 +276,25 @@ export class t_node_container {
   }
 
   addNode(
-    hash,
+    hash = '',
     parentId = 0,
     serial = 0
   ) {
 
-    if (this.hashMap.has(hash))
+    if (hash != '' && this.hashMap.has(hash))
       return;
 
-    if (serial == 0)
-      serial = ++this.serial;
-    
     const node = new t_node();
+    serial = serial == 0 ? ++this.serial : serial;
 
     node.serial = serial;
     node.id = serial; 
-    node.hash = hash;
+    node.hash = hash == '' ? serial.toString() :  hash;
     node.parentId = parentId;
 
     this.map.set(node.id, node);
     this.hashMap.set(node.hash, node);
     this.array.push(node);
-
-    this.array = sort_name(this.array);
-    this.array = sort_order_id(this.array);
 
     return node;
   }
