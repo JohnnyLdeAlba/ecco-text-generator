@@ -53,7 +53,8 @@ export const Toolbar = ({
 
       { onShowDetails ? <SmallTipButton
         icon={ <ArtTrackIcon fontSize="small" /> }
-        tip="Show Details" closed={ showDetailsClosed }
+        tip="Show Details"
+        closed={ showDetailsClosed }
         onClick={ onShowDetails } /> : null }
 
       { onToggleHidden ? <SmallTipButton

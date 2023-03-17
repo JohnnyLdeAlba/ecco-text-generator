@@ -53,9 +53,11 @@ export const darkSeaTheme = {
 
   smallButton: `bg-[#1e355a]`,
   smallButtonClosed: `bg-[#182a48]`,
+
   galleryItem: `bg-[#1e355a]`,
   galleryItemSelected: `border-[5px] border-[#111a28]`,
 
+  hr: `border-[#0087b5] text-[#0087b5]`, 
   tooltip: `mui-darksea`,
 
   scrollbars: `
@@ -115,6 +117,7 @@ export const seaOfGreenTheme = {
     bg-[rgba(0,7,26,0.92)]
   `,
 
+  hr: `border-[#1e355a]`, 
   toolbar: `bg-[#0e1d35]`,
 
   smallButton: `bg-[#1e355a]`,

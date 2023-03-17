@@ -1,9 +1,7 @@
 import { useContext } from "react";
-import Image from "next/image";
 
 import FolderIcon from '@mui/icons-material/Folder';
 
-import { t_node } from "../../lib/node-lib";
 import { useRequestStatic } from "../../com/Request/RequestStatic";
 
 import { Gallery } from "../../com/Gallery/Gallery";
@@ -32,9 +30,11 @@ export const Container = ({ children }) => {
 export const Index = () => {
 
   const theme = useContext(ThemeContext);
-  const request = useRequestStatic({ container: container });
 
-  console.log(request.parentNode.parentId);
+  const request = useRequestStatic({
+    container: container,
+    parentHash: "home" 
+  });
 
   return (
     <Layout>

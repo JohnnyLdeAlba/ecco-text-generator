@@ -42,7 +42,6 @@ export const SmallButton = ({
     <div className={`
       flex flex-row
       p-1.5
-      bg-[#1e355a]
       font-medium text-xs
       ${ disabled ? "disabled" : '' }
       ${ !disabled && !closed && onClick ? "button" : '' }
@@ -50,7 +49,7 @@ export const SmallButton = ({
       ${ closed ? `${ theme.smallButtonClosed }` : `${ theme.smallButton }` }
       ${ rounded }
       ${ className }
-      `} onClick={onClick}>
+      `} onClick={ onClick }>
       { icon ? icon : null }
       { title }
     </div>

@@ -24,18 +24,27 @@ node.description = "Where do you want to go?";
 node.summary = "Discover new possibilities and expand your horizons with our Explore page your gateway to a vast range of topics.";
 node.icon = "/icons/explore.png";
 
+node = container.addNode('', RootId);
+node.name = "Ecco the Dolphin";
+node.orderId = 1;
+node.placeholder = true;
+
 node = container.addNode("eccoPC", RootId);
 node.name = "Ecco PC";
+node.orderId = 2;
 node.summary = "Get your game on with Ecco the Dolphin PC! Explore exciting content and resources to enhance your gameplay experience.";
 node.icon = "/icons/folder.png";
 
 node = container.addNode("ecco2", RootId);
 node.name = "Ecco 2";
+node.orderId = 2;
 node.summary = "Take your gaming experience to the next level with Ecco 2: The Tides of Time!";
 node.icon = "/icons/folder.png";
+node.banner = "/eccoserv/ecco-2-the-tides-of-time/banner.jpg";
 
 node = container.addNode("eccoJr", RootId);
 node.name = "Ecco Jr.";
+node.orderId = 2;
 node.summary = "Introduce your little ones to the wonders of the ocean with Ecco Jr. a game that offers a fun and educational gaming experience for kids.";
 node.icon = "/icons/folder.png";
 
@@ -46,7 +55,7 @@ node.name = "Settings";
 node.summary = "Customize your experience with our Settings page! Personalize your preferences and adjust settings to suit your needs.";
 node.icon = "/icons/settings.png";
 
-node = container.addNode("Theme", SettingsId);
+node = container.addNode("theme", SettingsId);
 node.name = "Theme";
 node.icon = "/icons/settings.png";
 
@@ -54,6 +63,8 @@ const EccoId = ++id;
 
 node = container.addNode("ecco", RootId, EccoId);
 node.name = "Ecco the Dolphin";
+node.orderId = 2;
+node.description = "No fate but what we make for oursleves.";
 node.summary = "Dive into the depths of the ocean and explore the wonders of the sea with Ecco the Dolphin."
 node.icon = "/icons/folder.png";
 node.banner = "/eccoserv/ecco-the-dolphin/banner.jpg";

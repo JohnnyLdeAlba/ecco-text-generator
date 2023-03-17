@@ -72,9 +72,33 @@ export const DetailGroup = ({
       ${ theme.scrollbars }
     `}>
 
-      { galleryItems.map(galleryItem =>
-          <DetailItem galleryItem={ galleryItem } />) }
+      { galleryItems.map(galleryItem => {
 
+        if (galleryItem.placeholder)
+          return <GalleryHR key={ galleryItem.uniqueId } galleryItem={ galleryItem} />;
+        else
+          return <DetailItem key={ galleryItem.uniqueId } galleryItem={ galleryItem } />;
+
+      }) }
+
+    </div>
+  );
+}
+
+export const GalleryHR = ({ galleryItem }) => {
+
+  const theme = useContext(ThemeContext);
+
+  return (
+    <div className={`
+      mx-4 my-2
+      px-4 pb-2
+      w-full
+      border-b-2
+      font-medium text-lg
+      ${ theme.hr }
+      `}>
+      { galleryItem.name }
     </div>
   );
 }
@@ -142,8 +166,13 @@ export const GalleryGroup = ({
       ${ theme.scrollbars }
     `}>
 
-      { galleryItems.map(galleryItem =>
-          <GalleryItem galleryItem={ galleryItem } />) }
+      { galleryItems.map(galleryItem => {
+
+          if (galleryItem.placeholder)
+            return <GalleryHR key={ galleryItem.uniqueId } galleryItem={ galleryItem} />;
+          else
+            return <GalleryItem key={ galleryItem.uniqueId } galleryItem={ galleryItem } />;
+      }) }
 
     </div>
   );
@@ -183,7 +212,7 @@ export const Gallery = ({
 
 }) => {
 
-  const [ detailsVisible, showDetails  ] = useState(false);
+  const [ detailsVisible, showDetails ] = useState(false);
 
   return (
     <div className={`flex-1 flex flex-col`}>

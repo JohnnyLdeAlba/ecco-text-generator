@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 import { t_hook } from "../lib/hook";
-import { t_node, t_node_container } from "../../lib/node-lib";
+import { t_node, t_node_container, sort_name, sort_order_id } from "../../lib/node-lib";
 
 const config = {
+  requestItemsPerPage: 2,
   itemsPerPage: 24
 };
 
@@ -11,7 +12,10 @@ class t_request_static extends t_hook {
 
   container;
   parentId;
+  parentHash;
   parentNode;
+
+  nodePages;
   page;
   nextPage;
   totalPages;
@@ -20,12 +24,43 @@ class t_request_static extends t_hook {
 
     super();
 
+    this.state = "init";
     this.serial = 1000;
     this.container = new t_node_container();
-    this.parentId = 1001; // Fix this  
+    this.parentId = 0; 
+    this.parentHash = '';
     this.parentNode = new t_node();
+
+    this.nodePages = new Map();
+    this.nodeCache = new Map();
+
     this.page = 0;
     this.nextPage = false;
+  }
+
+  saveNodeCache(parentId = -1) {
+
+    if (parentId < 0)
+      parentId = this.parentId;
+
+    this.nodeCache.set(parentId, this.nodePages);
+  }
+
+  restoreNodeCache(parentId = -1) {
+
+    this.saveNodeCache();
+
+    if (parentId < 0)
+      parentId = this.parentId;
+
+    const nodePages = this.nodeCache.get(parentId);
+    if (!nodePages) {
+
+      this.nodePages = new Map();
+      return;
+    }
+
+    this.nodePages = nodePages;
   }
 
   setParentId(parentId) {
@@ -37,8 +72,30 @@ class t_request_static extends t_hook {
     if (!parentNode)
       return;
 
+    this.restoreNodeCache(parentId);
+
     this.parentId = parentId;
     this.parentNode = parentNode;
+
+    this.sendRequest();
+  }
+
+  setParentHash(parentHash) {
+
+    if (parentHash == '')
+      return;
+
+    const parentNode = this.container.getNodeByHash(parentHash);
+    if (!parentNode)
+      return;
+
+    this.restoreNodeCache(parentNode.id);
+
+    this.parentId = parentNode.id;
+    this.parentHash = parentHash;
+    this.parentNode = parentNode;
+
+    this.sendRequest();
   }
 
   setPage(page) {
@@ -47,31 +104,73 @@ class t_request_static extends t_hook {
       return;
 
     this.page = page;
+    this.sendRequest();
   }
 
-  setNode(galleryItem) {
+  requestAllNodes(page = -1) {
 
-    this.setParentId(galleryItem.id);
-    this.setPage(0);
-    this.getGalleryItems();
- 
-    this.refresh();
-  }
+    let array = this.container.array;
 
-  getAllNodes(page = -1) {
+    array = array.filter(
+      node => node.parentId == this.parentId);
+
+    array = sort_name(array);
+    array = sort_order_id(array);
+
+    const startIndex = page * config.requestItemsPerPage;
+
+    return array.slice(
+      startIndex,
+      startIndex + config.requestItemsPerPage);
+  } 
+
+  filterAllNodes(page = -1) {
 
     if (page == -1)
       page = this.page;
 
-    const array = this.container.array.filter(
-      node => node.parentId == this.parentId);
+    const nodes = [];
+
+    this.nodePages.forEach(nodeCache =>
+      nodeCache.forEach(node => nodes.push(node))
+    );
 
     const startIndex = page * config.itemsPerPage;
 
-    return array.slice(
+    return nodes.slice(
       startIndex,
       startIndex + config.itemsPerPage);
-  } 
+  }
+
+  getAllNodes(page = -1) {
+
+    page == -1 ? this.page : page;
+    
+    let reqPage = 0;
+    let reqNodes = [];
+    let nodes = [];
+
+    while (nodes.length < config.itemsPerPage) {
+
+      reqNodes = this.nodePages.has(reqPage);
+      if (!reqNodes) {
+
+        reqNodes = this.requestAllNodes(reqPage);
+        if (reqNodes.length == 0)
+          break;
+
+        this.nodePages.set(reqPage, reqNodes);
+      }
+
+      if (reqNodes.length == 0)
+        break;
+
+      nodes = this.filterAllNodes(page);
+      reqPage++;
+    }
+    
+    return nodes;
+  }
 
   getNextPage() {
 
@@ -79,10 +178,17 @@ class t_request_static extends t_hook {
     this.nextPage = array.length > 0;
   }
 
+  setNode(galleryItem) {
+
+    this.setParentId(galleryItem.id);
+    this.setPage(0);
+ 
+    this.commit();
+  }
+
   getGalleryItems() {
 
-    let nodes = this.getAllNodes();
-    this.getNextPage();
+    const nodes = this.filterAllNodes();
 
     nodes.forEach(node => {
 
@@ -98,50 +204,100 @@ class t_request_static extends t_hook {
   onGoBack() {
 
     this.setParentId(this.parentNode.parentId);
-    this.refresh();
+    this.commit();
   }
 
   onPrevPage() {
 
     this.setPage(this.page - 1);
-    this.refresh();
+    this.commit();
   }
 
   onNextPage() {
 
     this.setPage(this.page + 1);
-    this.refresh();
+    this.commit();
+  }
+
+  send() {
+
+    const nodes = this.getAllNodes();
+    this.getNextPage();
+
+    this.nodes = nodes;
   }
 
   set(params) {
 
+    const { refresh } = params;
+    this.refresh = refresh;
+  }
+
+  process(params) {
+
     const {
-      refresh,
-      container
+      container,
+      filterType,
+      parentId,
+      parentHash,
+      page
     } = params;
 
-    this.refresh = refresh;
+    switch (this.state) {
 
-    if (container != this.container) {
+      case "init": {
 
-      this.container = container;
-      this.refresh();
+        if (container == this.container &&
+          filterType == this.filterType &&
+          parentId == this.parentId &&
+          parentHash == this.parentHash &&
+          page == this.page)
+            return;
+
+        this.disableAutoCommit();
+
+        if (this.container != null)
+          this.container = container;
+
+        this.setParentId(parentId);
+        this.setParentHash(parentHash);
+        this.setPage(page);
+
+        this.update();
+
+        break;
+      }
     }
   }
 }
 
-// fix this!
-const requestStatic = new t_request_static();
+const RequestStaticContext = createContext(new t_request_static());
 
 export const useRequestStatic = ({
   container = null,
+  filterType = '',
+  parentId = 0,
+  parentHash = '',
+  page = 0
 }) => {
 
+  const requestStatic = useContext(RequestStaticContext);
   const [ serial, setSerial ] = useState(0);
 
   requestStatic.set({
-    refresh: () => setSerial(serial + 1),
-    container: container
+    refresh: () => setSerial(serial + 1)
+  });
+
+  useEffect(() => {
+
+    requestStatic.process({
+      container: container,
+      filterType: filterType,
+      parentId: parentId,
+      parentHash: parentHash,
+      page: page,
+    });
+
   });
 
   return requestStatic;

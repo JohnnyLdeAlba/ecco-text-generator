@@ -54,18 +54,6 @@ export const sort_order_id = array =>
     return 0;
   });
 
-export const sort_name_order = array => 
-
-  array.sort((x, y) => {
-
-    if (x.name < y.name || x.orderId < y.orderId)
-      return -1;
-    else if (x.name > y.name || x.orderId > y.orderId )
-      return 1;
-
-    return 0;
-  });
-
 export const sort_filtered = array => 
 
   array.sort((x, y) => {
