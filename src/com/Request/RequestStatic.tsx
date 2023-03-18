@@ -4,7 +4,7 @@ import { t_hook } from "../lib/hook";
 import { t_node, t_node_container, sort_name, sort_order_id } from "../../lib/node-lib";
 
 const config = {
-  requestItemsPerPage: 2,
+  requestItemsPerPage: 100,
   itemsPerPage: 24
 };
 

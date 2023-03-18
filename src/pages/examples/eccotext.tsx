@@ -31,29 +31,13 @@ export const Index = () => {
 
   const theme = useContext(ThemeContext);
 
-  const request = useRequestStatic({
-    container: container,
-    parentHash: "home" 
-  });
-
   return (
     <Layout>
       <Container>
         <Card 
           icon={ <FolderIcon /> }
-          title={ request.parentNode.name }
-          subTitle={ request.parentNode.description }>
-          { request.parentNode.banner ? <img src={ request.parentNode.banner } alt='' /> : null }
-          <Gallery
-            page={ request.page == -1 ? -1 : request.page + 1 }
-
-            onPrevPage={ request.page > 0 ? () => request.onPrevPage() : null }
-            onNextPage={ request.nextPage ? () => request.onNextPage() : null }
-
-            galleryItems={ request.getGalleryItems() }
-            onGoBack={ request.parentNode.parentId > 0 ? () => request.onGoBack() : null }
-            onToggleHidden={ () => {} }
-          />
+          title=""
+          subTitle="">
         </Card>
       </Container>
     </Layout>
