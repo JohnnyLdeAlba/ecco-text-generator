@@ -1,3 +1,22 @@
+export class t_rgba {
+
+  red;
+  green;
+  blue;
+  alpha;
+
+  constructor(
+    r = 0,
+    g = 0,
+    b = 0,
+    a = 1) {
+
+    this.red = r;
+    this.green = g;
+    this.blue = b;
+    this.alpha = a;
+  }
+}
 
 export const PlotState = {
 
@@ -25,7 +44,9 @@ export class t_plot_state {
   width;
   height;
 
+  imageSmoothing;
   colorFilter;
+  process;
 
   constructor() {
 
@@ -44,6 +65,10 @@ export class t_plot_state {
     this.y = 0;
     this.width = 0;
     this.height = 0;
+
+    this.imageSmoothing = true;
+    this.colorFilter = null;
+    this.process = null;
   }
 
   clone(plotState) {
@@ -63,12 +88,18 @@ export class t_plot_state {
     this.y = plotState.y;
     this.width = plotState.width;
     this.height = plotState.height;
+
+    this.imageSmoothing = plotState.imageSmoothing;
+    this.colorFilter = plotState.colorFilter;
+    this.process = plotState.process;
   }
 
   copy() {
 
-    const plotState = new t_plotState();
+    const plotState = new t_plot_state();
     plotState.clone(this);
+
+    return plotState;
   }
 }
 

@@ -1,16 +1,16 @@
-import { load_image, create_canvas } from "./plotter.js";
+import { load_image, create_canvas } from "./bitmap";
 
 export class t_sprite_sheet {
 
   width;
   height;
 
-  total_rows;
-  total_columns;
-  total_frames;
+  totalRows;
+  totalColumns;
+  totalFrames;
 
-  frame_width;
-  frame_height;
+  frameWidth;
+  frameHeight;
 
   canvas;
 
@@ -19,23 +19,61 @@ export class t_sprite_sheet {
     this.width = 0;
     this.height = 0;
 
-    this.total_rows = 0;
-    this.total_columns = 0;
-    this.total_frames = 0;
+    this.totalRows = 0;
+    this.totalColumns = 0;
+    this.totalFrames = 0;
 
-    this.frame_width = 0;
-    this.frame_height = 0;
+    this.frameWidth = 0;
+    this.frameHeight = 0;
 
     this.canvas = null;
   }
+
+  extractFrame(index) {
+
+    const row = parseInt(index / this.totalColumns);
+
+    const column = index - (row * this.totalColumns);
+    const x = column * this.frameWidth;
+    const y = row * this.frameHeight;
+
+    const canvas = create_canvas(
+     this.frameWidth,
+     this.frameHeight
+    );
+
+    const context = canvas.getContext("2d");
+
+    context.drawImage(
+      this.canvas,
+      x, y,
+      this.frameWidth,
+      this.frameHeight,
+      0, 0,
+      this.frameWidth,
+      this.frameHeight);
+
+    return canvas;
+  }
+
+  extractAllFrames(spriteSheet) {
+
+    const frames = new Array();
+
+    for (let index = 0; index < this.totalFrames; index++)
+      frames[index] = this.extractFrame(index);
+
+    return frames;
+  }
+
 }
 
-export const sprite_sheet_create = async (
+export const create_sprite_sheet = async (
   filename,
-  cell_width,
-  cell_height) => {
+  cellWidth,
+  cellHeight) => {
 
-  const sprite_sheet = new t_sprite_sheet();
+  const spriteSheet = new t_sprite_sheet();
 
   const bitmap = await load_image(filename)
     .catch(err => null);
@@ -53,71 +91,37 @@ export const sprite_sheet_create = async (
   const context = canvas.getContext("2d");
 
   context.drawImage(bitmap, 0, 0, width, height);
-  sprite_sheet.canvas = canvas;
+  spriteSheet.canvas = canvas;
 
-  sprite_sheet.width = width;
-  sprite_sheet.height = height;
+  spriteSheet.width = width;
+  spriteSheet.height = height;
 
-  const total_columns = Math.ceil(width/cell_width);
-  const total_rows = Math.ceil(height/cell_height);
+  const totalColumns = Math.ceil(width/cellWidth);
+  const totalRows = Math.ceil(height/cellHeight);
 
-  sprite_sheet.total_columns = total_columns;
-  sprite_sheet.total_rows = total_rows;
+  spriteSheet.totalColumns = totalColumns;
+  spriteSheet.totalRows = totalRows;
 
-  sprite_sheet.frame_width = width / total_columns;
-  sprite_sheet.frame_height = height / total_rows;
-  sprite_sheet.frame_total = total_columns * total_rows;
+  spriteSheet.frameWidth = width / totalColumns;
+  spriteSheet.frameHeight = height / totalRows;
+  spriteSheet.totalFrames = totalColumns * totalRows;
 
-  return sprite_sheet;
+  return spriteSheet;
 }
 
-export const sprite_sheet_extract_frame = (sprite_sheet, index) => {
+export const extract_canvas_array = async (
+    filename,
+    cellWidth,
+    cellHeight
+  ) => {
 
-  const row = parseInt(index / sprite_sheet.total_columns);
+  const spriteSheet = await create_sprite_sheet(
+    filename, cellWidth, cellHeight);
 
-  const column = index - (row * sprite_sheet.total_columns);
-  const x = column * sprite_sheet.frame_width;
-  const y = row * sprite_sheet.frame_height;
+  if (spriteSheet == null)
+    return [];
 
-  const canvas = create_canvas(
-    sprite_sheet.frame_width,
-    sprite_sheet.frame_height
-  );
-  const context = canvas.getContext("2d");
+  return spriteSheet.extractAllFrames(spriteSheet);
+}
 
-  context.drawImage(
-    sprite_sheet.canvas,
-    x, y,
-    sprite_sheet.frame_width,
-    sprite_sheet.frame_height,
-    0, 0,
-    sprite_sheet.frame_width,
-    sprite_sheet.frame_height);
-
-  return canvas;
-};
-
-export const sprite_sheet_extract_all_frames = (sprite_sheet) => {
-
-  const frames = new Array();
-
-  for (let index = 0; index < sprite_sheet.frame_total; index++)
-    frames[index] = sprite_sheet_extract_frame(sprite_sheet, index);
-
-  return frames;
-};
-
-export const sprite_sheet_to_canvas_array = async (
-  filename, cell_width, cell_height
-) => {
-
-  const sprite_sheet = await sprite_sheet_create(
-    filename, cell_width, cell_height);
-
-  if (sprite_sheet == null)
-    return null;
-
-  return sprite_sheet_extract_all_frames(sprite_sheet);
-};
-
-export default sprite_sheet_to_canvas_array;
+export default extract_canvas_array;

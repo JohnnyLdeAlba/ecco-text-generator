@@ -1,4 +1,4 @@
-export const create_response(code, message, payload = null) {
+export const create_response = (code, message, payload = null) => {
 
   return { 
     code: code,
@@ -94,7 +94,7 @@ export class t_bitmaps {
       serial = ++this.serial;
 
     bitmap.id = serial;
-    bitmap.hash = hash ? hash == '' ? serial : hash;
+    bitmap.hash = hash = hash == '' ? serial : hash;
 
     this.bitmapMap.set(bitmap.id, bitmap);
     this.hashMap.set(hash, bitmap);
@@ -118,7 +118,7 @@ export class t_bitmaps {
       serial = ++this.serial;
 
     bitmap.id = serial;
-    bitmap.hash = hash ? hash == '' ? serial : hash;
+    bitmap.hash = hash = hash == '' ? serial : hash;
     bitmap.source = canvas;
 
     this.bitmapMap.set(bitmap.id, bitmap);
@@ -134,7 +134,7 @@ export class t_bitmaps {
     );
   }
 
-  addCanvas(canvasArray) {
+  addCanvasArray(canvasArray) {
     canvasArray.forEach(
       canvas => this.addCanvas(canvas)
     );
@@ -167,7 +167,7 @@ export class t_bitmaps {
   }
 
   getBitmap(bitmapId) {
-    return this.bitmapMap.get(bitmap);
+    return this.bitmapMap.get(bitmapId);
   }
 
   getBitmapByHash(hash) {
