@@ -44,16 +44,22 @@ export class t_char {
 
 export class t_word {
 
+  type;
+
   startIndex;
   totalChars;
+  totalWords;
 
   width;
   height;
 
   constructor() {
 
+    this.type = '';
+
     this.startIndex = 0;
     this.totalChars = 0;
+    this.totalWords = 0;
 
     this.width = 0;
     this.height = 0;
@@ -155,7 +161,7 @@ class t_composition {
     let width = 0;
     let height = 0;
 
-    for (let index = 0; index < word.totalChar; index++) {
+    for (let index = 0; index < word.totalChars; index++) {
 
       const hash = text.charAt(word.startIndex + index);
       const char = this.font.get(hash);
@@ -171,10 +177,90 @@ class t_composition {
     word.height = height;
   }
 
+  breakWords(words, text) {
+
+    const _words = [];
+
+    words.forEach(word => {
+
+    });
+
+    return _words;
+  }
+
+  breakWord(word, text) {
+
+    if (word.width <= this.width)
+      return [ word ];
+
+    const words = [];
+
+    let _word = new t_word();
+    _word.startIndex = word.startIndex;
+
+    let totalChars = 0;
+    let width = 0;
+    let height = 0;
+
+    for (let index = 0; index < word.totalChars; index++) {
+
+      const hash = text.charAt(word.startIndex + index);
+      const char = this.font.get(hash);
+      if (!char)
+        continue;
+        
+      if (char.width + width > this.width) {
+
+        _word.width = width;
+        _word.height = height; 
+        _word.totalChars = totalChars;
+
+        words.push(_word);
+
+        _word = new t_word();
+        _word.startIndex = word.startIndex + index;
+
+        totalChars = 0;
+        width = 0;
+        height = 0;
+      }
+
+      totalChars++;
+
+      width+= char.width;
+      if (char.height > height)
+        height = char.height;
+    }
+ 
+    if (totalChars > 0) {
+
+      _word.width = width;
+      _word.height = height; 
+      _word.totalChars = totalChars;
+
+      words.push(_word);  
+    }
+
+    return words;
+  }
+
+  breakWords(words, text) {
+
+    const _words = [];
+
+    words.forEach(word => {
+
+      const _word = this.breakWord(words, text);
+      _word.forEach(word => _words.push(_word));
+    });
+
+    return _words;
+  }
+
   wordCount(text) {
 
     let word = null;
-    let totalChar = 0;
+    let totalChars = 0;
 
     const wordArray = [];
 
@@ -185,7 +271,7 @@ class t_composition {
 
       if (word == null) {
 
-        totalChar = 0;
+        totalChars = 0;
  
         word = new t_word();
         word.startIndex = index;
@@ -193,15 +279,19 @@ class t_composition {
 
       if (char == ' ' || char == '\n') {
 
-        if (index > 0) {
+        if (totalChars > 0) {
 
-          word.totalChar = totalChar;
+          word.totalChars = totalChars;
           wordArray.push(word);
         }
 
-        word = new t_word()
+        word = new t_word();
+
+        if (char == '\n')
+          word.type = "newline"
+
         word.startIndex = index;
-        word.totalChar = 1;
+        word.totalChars = 1;
 
         wordArray.push(word);
         word = null;
@@ -209,16 +299,30 @@ class t_composition {
         continue;
       } 
 
-      totalChar++;
+      totalChars++;
+    }
+
+    if (word && totalChars > 0) {
+
+      word.totalChars = totalChars;
+      wordArray.push(word);
     }
 
     wordArray.forEach(word => this.wordDimensions(word, text));
-    return wordArray;
+
+    const _wordArray = this.breakWord(word, text);
+    _wordArray.forEach(word => this.wordDimensions(word, text));
+
+    this.lineCount(_wordArray);
+
+    console.log(_wordArray);
+
+    return _wordArray;
   }
 
   lineCount(wordArray) {
 
-    let line = null;
+    let line = new t_word();
     let totalWords = 0;
 
     let width = 0;
@@ -226,46 +330,73 @@ class t_composition {
 
     const lineArray = [];
 
-    for (let index = 0; index < word.length; index++) {
+    for (let index = 0; index < wordArray.length; index++) {
 
-      if (line == null) {
+      const word = wordArray[index];
 
-        totalWords = 0;
+      if (word.type == "newline") {
+
+        line = new t_word();
+        line.startIndex = index;
+
+        line.totalWords = 1;
+        line.width = word.width;
+        line.height = word.height;
+
+        lineArray.push(line);
+
+        line = new t_word();
+        line.startIndex = index;
+
         width = 0;
         height = 0;
- 
-        line = new t_word();
-        word.startIndex = index;
+        totalWords = 0;
+
+        continue;
       }
 
       if (width + word.width > this.width) {
 
-        if (word.width > this.width) {
+        if (totalWords > 0) {
 
-          line = null;
-          continue;
+          line.totalWords = totalWords;
+          line.width = width;
+          line.height = height;
+
+          lineArray.push(line);
         }
 
-        line.totalWords = totalWords;
-        line.width = width;
-        line.height = height;
+        line = new t_word();
+        line.startIndex = index;
 
-        this.lineArray = lineArray;
-        line = null;
+        width = 0;
+        height = 0;
+        totalWords = 0;
       }
 
       totalWords++;
-
       width+= word.width;
+
       if (word.height > height)
         height = word.height;
     }
+
+    if (line && totalWords > 0) {
+
+      line.totalWords = totalWords;
+      line.width = width;
+      line.height = height;
+
+      lineArray.push(line);;
+    }
+
+    return lineArray;
   }
 }
 
 const com = new t_composition();
 
-com.wordCount("hello how are you doing folks is everything okay?");
+com.wordCount("testtesttheburgerisgreatwheneatenfromlunchokaydfjldsjgfds;gfjsgjudposgjuogjghd");
 
 export const Container = ({ children }) => {
 
