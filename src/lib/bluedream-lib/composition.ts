@@ -169,8 +169,9 @@ export class t_composition {
 
   breakWord(word, text) {
 
-    if (word.width <= this.width)
-      return [ word ];
+    if (word.width <= this.width ||
+      word.type == "newline")
+        return [ word ];
 
     const words = [];
 
@@ -292,7 +293,7 @@ export class t_composition {
 
   lineCount(wordArray) {
 
-    let line = new t_word();
+    let line = null;
     let totalWords = 0;
 
     let width = 0;
@@ -304,9 +305,29 @@ export class t_composition {
 
       const word = wordArray[index];
 
-      if (word.type == "newline") {
+      if (!line) {
 
         line = new t_word();
+        line.startIndex = index; // fix
+
+        width = 0;
+        height = 0;
+        totalWords = 0;
+      }
+
+      if (word.type == "newline") {
+
+        if (totalWords > 0) {
+
+          line.totalWords = totalWords;
+          line.width = width;
+          line.height = height;
+
+          lineArray.push(line);
+	}
+
+        line = new t_word();
+	line.type = "newline";
         line.startIndex = index;
 
         line.totalWords = 1;
@@ -315,13 +336,7 @@ export class t_composition {
 
         lineArray.push(line);
 
-        line = new t_word();
-        line.startIndex = index;
-
-        width = 0;
-        height = 0;
-        totalWords = 0;
-
+        line = null;
         continue;
       }
 
@@ -351,7 +366,7 @@ export class t_composition {
         height = word.height;
     }
 
-    if (line && totalWords > 0) {
+    if (totalWords > 0) {
 
       line.totalWords = totalWords;
       line.width = width;

@@ -21,8 +21,8 @@ const default_font = () => {
 
   const font = new t_font();
 
-  font.add(' ',  0,  28,  0,  0,  0); 
-  font.add('\n', 0,   0, 28,  0,  0); 
+  font.add(' ',  0,  14,  0,  0,  0); 
+  font.add('\n', 0,   0, 14,  0,  0); 
   font.add('a',  0,  14, 16, -7, -6); 
   font.add('b',  1,  14, 16, -7, -6); 
   font.add('c',  2,  14, 16, -7, -6); 
@@ -58,7 +58,7 @@ const com = new t_composition();
 com.generate(
   default_font(),
   320, 240,
-  "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz"
+  "happy birthday meepers the cat\n\nabcefg\nhello"
 );
 
 const ps_generate = com => {
@@ -70,17 +70,34 @@ const ps_generate = com => {
 
     for (const line of com.lineArray) {
 
+      if (line.type == "newline") {
+
+        const char = com.font.get('\n');
+
+        width = 0;
+        height+= char.height;
+
+        continue; 
+      }
+
       for (let index = 0; index < line.totalWords; index++) {
 
         const word = com.wordArray[line.startIndex + index];
+
+        console.log(word);
 
         for (let index = 0; index < word.totalChars; index++) {
 
           const hash = com.text.charAt(word.startIndex + index);
           const char = com.font.get(hash);
+
+          if (hash == ' ') {
+
+            width+= char.width;
+            continue;
+          }
  
           const ps = new t_plot_state();
-
           ps.index = char.bitmapIndex;
 
           ps.x = char.offsetX + width;
@@ -100,8 +117,6 @@ const ps_generate = com => {
   }
 
 const psArray = ps_generate(com);
-
-console.log(psArray);
 
 export const Container = ({ children }) => {
 
