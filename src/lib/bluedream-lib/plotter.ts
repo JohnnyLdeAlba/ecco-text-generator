@@ -94,7 +94,7 @@ export class t_plotter {
     const _plotState = plotState.copy();
 
     if (_plotState.process == null)
-      _plotState.process = () => ps_process_default(this, plotState);
+      _plotState.process = () => { ps_process_default(this, plotState) }
 
     this.psArray[_plotState.layer].push(_plotState);
   }

@@ -90,8 +90,11 @@ export class t_bitmaps {
 
     const bitmap = new t_bitmap();  
 
-    if (serial == -1)
-      serial = ++this.serial;
+    if (serial == -1) {
+
+      serial = this.serial;
+      this.serial++;
+    }
 
     bitmap.id = serial;
     bitmap.hash = hash = hash == '' ? serial : hash;
@@ -114,8 +117,11 @@ export class t_bitmaps {
 
     const bitmap = new t_bitmap();
 
-    if (serial == -1)
-      serial = ++this.serial;
+    if (serial == -1) {
+
+      serial = this.serial;
+      this.serial++;
+    }
 
     bitmap.id = serial;
     bitmap.hash = hash = hash == '' ? serial : hash;
