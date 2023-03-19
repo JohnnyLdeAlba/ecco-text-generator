@@ -58,34 +58,48 @@ const com = new t_composition();
 com.generate(
   default_font(),
   320, 240,
-  "happy birthday meepers the cat\n\nabcefg\nhello"
+  "happy birthday meepers the cat\nthe cat\ndeer"
+  // "happy birthday meepers the cat\n\nabcefg\nhello"
 );
+
+com.setAlign("right");
+com.setVAlign("top");
 
 const ps_generate = com => {
 
+     let vAlign = 0;
+
+    if (com.vAlign == "bottom")
+      vAlign = com.height - com.blockHeight;
+    else if (com.vAlign == "middle")
+      vAlign = (com.height - com.blockHeight)/2;
+
     let width = 0;
-    let height = 0;
+    let height = vAlign;
 
     let psArray = [];
 
     for (const line of com.lineArray) {
 
+      let align = 0;
+
+      if (com.align == "right")
+        align = com.width - line.width;
+      else if (com.align == "center")
+        align = (com.width - line.width)/2;
+
+      if (width == 0)
+        width+= align;
+
       if (line.type == "newline") {
 
-        const char = com.font.get('\n');
-
         width = 0;
-        height+= char.height;
-
         continue; 
       }
 
       for (let index = 0; index < line.totalWords; index++) {
 
         const word = com.wordArray[line.startIndex + index];
-
-        console.log(word);
-
         for (let index = 0; index < word.totalChars; index++) {
 
           const hash = com.text.charAt(word.startIndex + index);
@@ -106,11 +120,10 @@ const ps_generate = com => {
           psArray.push(ps);
           width+= char.width;
         }
-
       }
 
       width = 0;
-      height+= line.height; 
+      height+= line.height;
     }
 
     return psArray;
