@@ -49,21 +49,22 @@ const default_font = () => {
   font.add('x',  23, 16, 16, -6, -6); 
   font.add('y',  24, 14, 16, -7, -6); 
   font.add('z',  25, 14, 16, -7, -6);
+  font.add('!',  26, 28, 28, 0, 0);
 
   return font; 
 }
 
 const com = new t_composition();
 
+com.setAlign("center");
+com.setVAlign("middle");
+com.trimSpaces = true;
+
 com.generate(
   default_font(),
   320, 240,
-  "happy birthday meepers the cat\nthe cat\ndeer"
-  // "happy birthday meepers the cat\n\nabcefg\nhello"
+  "ecco the dolphin is the e best"
 );
-
-com.setAlign("right");
-com.setVAlign("top");
 
 const ps_generate = com => {
 
@@ -100,22 +101,27 @@ const ps_generate = com => {
       for (let index = 0; index < line.totalWords; index++) {
 
         const word = com.wordArray[line.startIndex + index];
+
+        if (word.type == "space") {
+ 
+          width+= word.width;
+          continue;
+        }
+
         for (let index = 0; index < word.totalChars; index++) {
 
           const hash = com.text.charAt(word.startIndex + index);
           const char = com.font.get(hash);
 
-          if (hash == ' ') {
-
-            width+= char.width;
-            continue;
-          }
- 
           const ps = new t_plot_state();
           ps.index = char.bitmapIndex;
 
+          // const offsetY = (line.height - char.height)/2;
+          // const offsetY = line.height - char.height;
+          const offsetY = 0;
+
           ps.x = char.offsetX + width;
-          ps.y = char.offsetY + height;
+          ps.y = char.offsetY + height + offsetY;
 
           psArray.push(ps);
           width+= char.width;

@@ -93,6 +93,7 @@ export class t_composition {
   text;
   align;
   vAlign;
+  twimSpaces;
 
   wordArray;
   lineArray;
@@ -107,6 +108,7 @@ export class t_composition {
     this.text = '';
     this.align = '';
     this.vAlign = '';
+    this.trimSpaces = false;
 
     this.wordArray = [];
     this.lineArray = [];
@@ -162,14 +164,64 @@ export class t_composition {
     wordArray = this.breakWords(wordArray, text);
     wordArray.forEach(word => this.wordDimensions(word, text));
 
-    const lineArray = this.lineCount(wordArray);
+    let lineArray = this.lineCount(wordArray);
+
+    if (this.trimSpaces)
+      this.trimAllLineSpaces(lineArray, wordArray);
+
+    lineArray.forEach(line => this.lineDimensions(line, wordArray));
     this.calcBlockHeight(lineArray);
 
     this.wordArray = wordArray;
     this.lineArray = lineArray;
+  }
 
-    console.log(this.blockHeight);
-    console.log(lineArray);
+  trimBeginSpaces(line, wordArray) {
+
+    let startIndex = 0;
+    for (let index = 0; index < line.totalWords; index++) {
+
+      const word = wordArray[line.startIndex + index];
+      if (word.type != "space")
+        break;
+
+      startIndex++;
+    }
+
+    let totalWords = line.totalWords - startIndex;
+
+    line.startIndex+= startIndex;
+    line.totalWords = totalWords;
+  }
+
+  trimEndSpaces(line, wordArray) {
+
+    let endIndex = 0;
+    const startIndex = line.startIndex + (line.totalWords - 1);
+
+    for (let index = 0; index < line.totalWords; index++) {
+
+      const word = wordArray[startIndex - index];
+      if (word.type != "space")
+        break;
+
+      endIndex++;
+    }
+
+    line.totalWords = line.totalWords - endIndex;
+  }
+
+  trimLineSpaces(line, wordArray) {
+
+    this.trimBeginSpaces(line, wordArray);
+    this.trimEndSpaces(line, wordArray);
+  }
+
+  trimAllLineSpaces(lineArray, wordArray) {
+
+    lineArray.forEach(line =>
+      this.trimLineSpaces(line, wordArray)
+    );
   }
 
   wordDimensions(word, text) {
@@ -191,6 +243,26 @@ export class t_composition {
 
     word.width = width;
     word.height = height;
+  }
+
+  lineDimensions(line, wordArray) {
+
+    let width = 0;
+    let height = 0;
+
+    for (let index = 0; index < line.totalWords; index++) {
+
+      const word = wordArray[line.startIndex + index];
+
+      width+= word.width;
+      if (word.height > height)
+        height+= height;
+    }
+
+    const char = this.font.get('\n'); 
+
+    line.width = width;
+    line.height = height + char.height;
   }
 
   breakWord(word, text) {
@@ -293,7 +365,9 @@ export class t_composition {
 
         word = new t_word();
 
-        if (char == '\n')
+	if (char == ' ')
+          word.type = "space";
+	else if (char == '\n')
           word.type = "newline"
 
         word.startIndex = index;
@@ -318,6 +392,8 @@ export class t_composition {
   }
 
   calcBlockHeight(lineArray) {
+
+    this.blockHeight = 0;
 
     lineArray.forEach(line => 
       this.blockHeight+= line.height
@@ -355,8 +431,8 @@ export class t_composition {
           const char = this.font.get('\n');
 
           line.totalWords = totalWords;
-          line.width = width;
-          line.height = height + char.height;
+          // line.width = width;
+          // line.height = height + char.height;
 
           lineArray.push(line);
 	}
@@ -379,8 +455,8 @@ export class t_composition {
           const char = this.font.get('\n');
 
           line.totalWords = totalWords;
-          line.width = width;
-          line.height = height + char.height;
+          // line.width = width;
+          // line.height = height + char.height;
 
           lineArray.push(line);
 	}
