@@ -359,6 +359,8 @@ export class t_composition {
 
       const char = text.charAt(index);
       const charFont = this.font.get(char);
+      if (!charFont)
+        continue;
 
       if (word == null) {
 
