@@ -58,6 +58,8 @@ const com = new t_composition();
 
 com.setAlign("center");
 com.setVAlign("middle");
+com.setBaseline("bottom");
+
 com.trimSpaces = true;
 
 com.generate(
@@ -68,7 +70,7 @@ com.generate(
 
 const ps_generate = com => {
 
-     let vAlign = 0;
+    let vAlign = 0;
 
     if (com.vAlign == "bottom")
       vAlign = com.height - com.blockHeight;
@@ -79,8 +81,6 @@ const ps_generate = com => {
     let height = vAlign;
 
     let psArray = [];
-
-    console.log(com.lineArray);
 
     for (const line of com.lineArray) {
 
@@ -122,16 +122,17 @@ const ps_generate = com => {
 
           if (char.height != line.height) {
 
-            // offsetY = line.height - char.height;
-            //offsetY = (line.height - char.height)/2;
-            // offsetY = 0;
+            if (com.baseline == "middle")
+              offsetY = (line.height - char.height)/2;
+            else if (com.baseline == "bottom")
+              offsetY = line.height - char.height;
           } 
 
           ps.x = char.offsetX + width;
           ps.y = char.offsetY + height + offsetY;
 
           psArray.push(ps);
-          width+= char.width;
+          width+= char.width + com.letterSpacing;
         }
       }
 

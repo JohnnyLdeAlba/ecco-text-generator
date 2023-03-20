@@ -134,16 +134,26 @@ export class t_bitmaps {
     return create_response(0, '', bitmap.id);
   }
 
-  async addBitmapURIs(uriArray) {
+  async addURIArray(uriArray) {
+
+    const startId = this.serial;
+
     uriArray.forEach(
       async uri => await this.addBitmap(uri)
     );
+
+    return startId;
   }
 
   addCanvasArray(canvasArray) {
+
+    const startId = this.serial;
+
     canvasArray.forEach(
       canvas => this.addCanvas(canvas)
     );
+
+    return startId;
   }
 
   removeBitmap(bitmapId) {

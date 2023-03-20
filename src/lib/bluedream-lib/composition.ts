@@ -94,6 +94,7 @@ export class t_composition {
   align;
   vAlign;
   twimSpaces;
+  letterSpacing;
   lineHeight;
 
   wordArray;
@@ -109,8 +110,10 @@ export class t_composition {
     this.text = '';
     this.align = '';
     this.vAlign = '';
-    this.trimSpaces = false;
-    this.lineHeight = 14;
+    this.trimSpaces = true;
+    this.letterSpacing = 2;
+    this.lineHeight = 5;
+    this.baseLine = "bottom";
 
     this.wordArray = [];
     this.lineArray = [];
@@ -130,6 +133,14 @@ export class t_composition {
       this.vAlign = vAlign;
     else
       this.vAlign = '';
+  }
+
+  setBaseline(baseline) {
+
+    if ("bottom" || "middle")
+      this.baseline = baseline;
+    else
+      this.baseline = '';
   }
 
   setFont(font) {
@@ -238,7 +249,7 @@ export class t_composition {
       if (!char)
         continue;
 
-      width+= char.width;
+      width+= char.width + this.letterSpacing;
       if (char.height > height)
         height = char.height;
     }
@@ -261,7 +272,6 @@ export class t_composition {
         height = word.height;
     }
 
-    const char = this.font.get('\n'); 
     line.width = width;
 
     if (line.type != "newline")
@@ -308,7 +318,7 @@ export class t_composition {
 
       totalChars++;
 
-      width+= char.width;
+      width+= char.width + this.letterSpacing;
       if (char.height > height)
         height = char.height;
     }
@@ -398,9 +408,12 @@ export class t_composition {
 
     this.blockHeight = 0;
 
-    lineArray.forEach(line =>
-      this.blockHeight+= line.height
-    );
+    lineArray.forEach(line => {
+
+      if (line.type != "newline")
+        this.blockHeight+= line.height + this.lineHeight;
+
+    });
   }
 
   lineCount(wordArray) {
@@ -431,12 +444,7 @@ export class t_composition {
 
         if (totalWords > 0) {
 
-          const char = this.font.get('\n');
-
           line.totalWords = totalWords;
-          // line.width = width;
-          // line.height = height + char.height;
-
           lineArray.push(line);
 	}
 
@@ -455,12 +463,7 @@ export class t_composition {
 
         if (totalWords > 0) {
 
-          const char = this.font.get('\n');
-
           line.totalWords = totalWords;
-          // line.width = width;
-          // line.height = height + char.height;
-
           lineArray.push(line);
 	}
 
@@ -482,9 +485,6 @@ export class t_composition {
     if (totalWords > 0) {
 
       line.totalWords = totalWords;
-      // line.width = width;
-      // line.height = height;
-
       lineArray.push(line);;
     }
 
