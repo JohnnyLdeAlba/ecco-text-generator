@@ -22,7 +22,7 @@ const default_font = () => {
   const font = new t_font();
 
   font.add(' ',  0,  14,  0,  0,  0); 
-  font.add('\n', 0,   0, 14,  0,  0); 
+  font.add('\n', 0,   0, 0,  0,  0); 
   font.add('a',  0,  14, 16, -7, -6); 
   font.add('b',  1,  14, 16, -7, -6); 
   font.add('c',  2,  14, 16, -7, -6); 
@@ -63,7 +63,7 @@ com.trimSpaces = true;
 com.generate(
   default_font(),
   320, 240,
-  "ecco the dolphin is the e best"
+  "ecco the dolphin is ! best\nhope"
 );
 
 const ps_generate = com => {
@@ -79,6 +79,8 @@ const ps_generate = com => {
     let height = vAlign;
 
     let psArray = [];
+
+    console.log(com.lineArray);
 
     for (const line of com.lineArray) {
 
@@ -116,9 +118,14 @@ const ps_generate = com => {
           const ps = new t_plot_state();
           ps.index = char.bitmapIndex;
 
-          // const offsetY = (line.height - char.height)/2;
-          // const offsetY = line.height - char.height;
-          const offsetY = 0;
+          let offsetY = 0;
+
+          if (char.height != line.height) {
+
+            // offsetY = line.height - char.height;
+            //offsetY = (line.height - char.height)/2;
+            // offsetY = 0;
+          } 
 
           ps.x = char.offsetX + width;
           ps.y = char.offsetY + height + offsetY;
@@ -129,7 +136,7 @@ const ps_generate = com => {
       }
 
       width = 0;
-      height+= line.height;
+      height+= line.height + com.lineHeight;
     }
 
     return psArray;

@@ -94,6 +94,7 @@ export class t_composition {
   align;
   vAlign;
   twimSpaces;
+  lineHeight;
 
   wordArray;
   lineArray;
@@ -109,6 +110,7 @@ export class t_composition {
     this.align = '';
     this.vAlign = '';
     this.trimSpaces = false;
+    this.lineHeight = 14;
 
     this.wordArray = [];
     this.lineArray = [];
@@ -256,13 +258,14 @@ export class t_composition {
 
       width+= word.width;
       if (word.height > height)
-        height+= height;
+        height = word.height;
     }
 
     const char = this.font.get('\n'); 
-
     line.width = width;
-    line.height = height + char.height;
+
+    if (line.type != "newline")
+      line.height = height;
   }
 
   breakWord(word, text) {
@@ -395,7 +398,7 @@ export class t_composition {
 
     this.blockHeight = 0;
 
-    lineArray.forEach(line => 
+    lineArray.forEach(line =>
       this.blockHeight+= line.height
     );
   }
@@ -479,8 +482,8 @@ export class t_composition {
     if (totalWords > 0) {
 
       line.totalWords = totalWords;
-      line.width = width;
-      line.height = height;
+      // line.width = width;
+      // line.height = height;
 
       lineArray.push(line);;
     }
