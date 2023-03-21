@@ -57,7 +57,7 @@ export class t_plotter {
 
   setCanvas(canvas) { this.canvas = canvas; }
 
-  async addBitmap(bitmapURI, hash = '', serial = 0) {
+  async addBitmap(bitmapURI, hash = '', serial = -1) {
     return await this.bitmaps.addBitmap(bitmapURI, hash, serial);
   }
 

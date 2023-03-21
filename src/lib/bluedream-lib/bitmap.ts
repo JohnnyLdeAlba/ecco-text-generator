@@ -85,10 +85,10 @@ export class t_bitmaps {
         return create_response(0, '', bitmap.id);
     }
 
+    const bitmap = new t_bitmap();  
+
     if (await bitmap.load(bitmapURI) == null)
       return create_response(-1, "loadBitmapFailed", -1);
-
-    const bitmap = new t_bitmap();  
 
     if (serial == -1) {
 
