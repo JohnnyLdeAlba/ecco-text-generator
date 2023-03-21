@@ -50,10 +50,35 @@ export class t_word {
 
 export class t_font {
 
+  hash;
+  name;
+  imageURI;
+  imageHash;
+  bitmapIndex;
+  bitmapOffset;
   charMap;
 
+  align;
+  vAlign;
+  trimSpaces;
+  letterSpacing;
+  lineHeight;
+
   constructor() {
+
+    this.hash = '';
+    this.name = '';
+    this.imageURI = '';
+    this.imageHash = '';
+    this.bitmapIndex = 0;
+    this.bitmapOffset = 0;
     this.charMap = new Map();
+
+    this.align = '';
+    this.vAlign = '';
+    this.trimSpaces = 0;
+    this.letterSpacing = 0;
+    this.lineHeight = 0;
   }
 
   add(
@@ -61,8 +86,8 @@ export class t_font {
     bitmapIndex,
     width,
     height,
-    offsetX,
-    offsetY) {
+    offsetX = 0,
+    offsetY = 0) {
 
     const char = new t_char();
 
@@ -93,7 +118,8 @@ export class t_composition {
   text;
   align;
   vAlign;
-  twimSpaces;
+  baseline;
+  trimSpaces;
   letterSpacing;
   lineHeight;
 
@@ -110,6 +136,7 @@ export class t_composition {
     this.text = '';
     this.align = '';
     this.vAlign = '';
+    this.baseline = '';
     this.trimSpaces = true;
     this.letterSpacing = 2;
     this.lineHeight = 5;

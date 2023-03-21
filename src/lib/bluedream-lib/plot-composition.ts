@@ -50,7 +50,7 @@ export const plot_composition = com => {
           continue;
 
         const ps = new t_plot_state();
-        ps.index = char.bitmapIndex;
+        ps.index = com.font.bitmapIndex + char.bitmapIndex;
 
         let offsetY = 0;
 

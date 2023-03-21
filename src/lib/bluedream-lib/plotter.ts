@@ -65,8 +65,8 @@ export class t_plotter {
     return await this.bitmaps.addURIArray(uriArray);
   }
 
-  async addCanvasArray(canvasArray = []) {
-    return await this.bitmaps.addCanvasArray(canvasArray);
+  addCanvasArray(canvasArray = []) {
+    return this.bitmaps.addCanvasArray(canvasArray);
   }
 
   removeBitmap(id) { this.bitmaps.removeBitmap(id); }

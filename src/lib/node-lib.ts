@@ -82,6 +82,8 @@ export class t_node {
   orderId;
   aliasId;
 
+  tokenId;
+  rootId;
   parentId;
   ownerId;
   groupId;
@@ -97,6 +99,9 @@ export class t_node {
   icon;
   banner;
   value;
+
+  walletAddress;
+  contractAddress;
 
   properties;
   status;
@@ -114,6 +119,8 @@ export class t_node {
     this.orderId = 0;
     this.aliasId = 0;
 
+    this.tokenId = 0;
+    this.rootId = 0;
     this.parentId = 0;
     this.ownerId = 0;
     this.groupId = 0;
@@ -129,6 +136,9 @@ export class t_node {
     this.icon = '';
     this.banner = '';
     this.value = '';
+
+    this.walletAddress = '';
+    this.contractAddress = '';
 
     this.properties = {
       mandatory: false,
@@ -162,6 +172,8 @@ export class t_node {
     this.orderId = empty(node.orderId, 0);
     this.aliasId = empty(node.aliasId, 0);
 
+    this.tokenId = empty(node.tokenId, 0);
+    this.rootId = empty(node.rootId, 0);
     this.parentId = empty(node.parentId, 0);
     this.ownerId = empty(node.ownerId, 0);
     this.groupId = empty(node.groupId, 0);
@@ -177,6 +189,9 @@ export class t_node {
     this.icon = empty('', node.icon);
     this.banner = empty('', node.banner);
     this.value = empty('', node.value);
+
+    this.walletAddress = empty('', node.walletAddress);
+    this.contractAddress = empty('', node.contractAddress);
 
     this.properties = {
       mandatory: empty(node.properties.mandatory, false),
