@@ -13,7 +13,9 @@ import { container } from "../../static-database";
 
 import { t_hook } from "../../com/lib/hook";
 import { t_plot_state } from "../../lib/bluedream-lib/plot-state";
+import { ps_process_wave } from "../../lib/bluedream-lib/processes";
 import { t_plotter } from "../../lib/bluedream-lib/plotter";
+import { t_frame_rate } from "../../lib/bluedream-lib/frame-rate";
 import { extract_canvas_array } from "../../lib/bluedream-lib/sprite-sheet";
 import { t_font, t_composition } from "../../lib/bluedream-lib/composition";
 import { plot_composition } from "../../lib/bluedream-lib/plot-composition";
@@ -37,6 +39,7 @@ export const Container = ({ children }) => {
 
 class t_canvas extends t_hook {
 
+  frameRate;
   canvas;
   plotter;
   com;
@@ -63,6 +66,7 @@ class t_canvas extends t_hook {
 
     this.state = "init";
 
+    this.frameRate = new t_frame_rate();
     this.canvas = null;
     this.plotter = null;
     this.com = null;
@@ -74,7 +78,7 @@ class t_canvas extends t_hook {
     this.letterSpacing = 0;
     this.lineHeight = 0;
     this.selectSpacing = 0;
-    this.cursorPosition = 2;
+    this.cursorPosition = -1;
     this.cursorFilter = null;
 
     this.font = null;
@@ -153,7 +157,6 @@ class t_canvas extends t_hook {
     const com = new t_composition();
 
     com.setFont(this.font);
-
     com.setAlign(this.align);
     com.setVAlign(this.vAlign);
     com.setBaseline(this.Baseline);
@@ -174,8 +177,6 @@ class t_canvas extends t_hook {
 
   render() {
 
-    this.plotter.fill();
-    this.plotter.process();
     this.plotter.render();
   }
 
@@ -238,13 +239,22 @@ class t_canvas extends t_hook {
     this.setFont("systemFont");
     this.setBackground("homeBayBackground");
 
-    const ps = this.plotter.createPS();
-    ps.index = this.background;
-    
-    this.plotter.addPS(ps);
-    this.updateComposition();
+    this.frameRate.process = () => {
 
-    this.render();
+      const ps = this.plotter.createPS();
+
+      ps.index = this.background;
+      ps.process = () => ps_process_wave(this.plotter, ps);
+
+      this.plotter.addPS(ps);
+      this.updateComposition();
+
+      this.plotter.fill();
+      this.plotter.process();
+    }
+
+    this.frameRate.render = () => this.render();
+    this.frameRate.updateFrame();
 
     this.disableLoading();
     this.state = "ready";

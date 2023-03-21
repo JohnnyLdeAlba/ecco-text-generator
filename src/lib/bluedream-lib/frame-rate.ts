@@ -37,7 +37,7 @@ export class t_frame_rate {
       this.refresh = 0;
 
       if (this.frameCounter != this.framesPerSecond)
-        this.delay = this.cycle/this.framesPerSecond;
+        this.delay = this.cycle / this.framesPerSecond;
 
       this.cycle = 0;
       this.frameCounter = 0;
@@ -61,6 +61,6 @@ export class t_frame_rate {
       this.updateLogic = true;
     }
     
-    requestAnimationFrame(() => this.update_frame() );
+    requestAnimationFrame(() => this.updateFrame() );
   }
 }

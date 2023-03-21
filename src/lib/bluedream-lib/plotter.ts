@@ -109,7 +109,7 @@ export class t_plotter {
     this.psArray = [];
   }
 
-  process(reset = false) {
+  process(reset = true) {
 
     let x = 0, y = 0;
     for (x = 0; x < this.psArray.length; x++) {

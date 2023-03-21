@@ -152,8 +152,8 @@ export class t_composition {
     this.baseline = "bottom";
     this.trimSpaces = true;
 
-    this.letterSpacing = 2;
-    this.lineHeight = 5;
+    this.letterSpacing = 0;
+    this.lineHeight = 0;
     this.selectSpacing = 0;
 
     this.cursorPosition = -1;

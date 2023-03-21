@@ -1,5 +1,5 @@
-let SINEWAVE_TABLE_ID = -999;
-let SINEWAVE_TABLE = [
+let SinewaveTableId = -999;
+let SinewaveTable = [
 
   0x40, 0x40, 0x40, 0x40, 0x40, 0x40, 0x3f, 0x3f,
   0x3f, 0x3e, 0x3e, 0x3e, 0x3d, 0x3d, 0x3c, 0x3c,
@@ -35,8 +35,8 @@ let SINEWAVE_TABLE = [
   0x3f, 0x3f, 0x3f, 0x40, 0x40, 0x40, 0x40, 0x40,
   0x40 ];
 
-let RIPPLE_TABLE_ID = -998;
-let RIPPLE_TABLE = [
+let RippleTableId = -998;
+let RippleTable = [
 
   0xe5, 0x72, 0xb9, 0xdc, 0xee, 0x77, 0x3b, 0x1d,
   0x0e, 0x87, 0xc3, 0xe1, 0x70, 0xb8, 0xdc, 0xee,
@@ -73,10 +73,10 @@ let RIPPLE_TABLE = [
 
 function get_wave_table(id)
 {
-  if (id == SINEWAVE_TABLE_ID)
-    return SINEWAVE_TABLE;
-  else if (id == RIPPLE_TABLE_ID)
-    return RIPPLE_TABLE;
+  if (id == SinewaveTableId)
+    return SinewaveTable;
+  else if (id == RippleTableId)
+    return RippleTable;
 
   let index;
   let table = new Array();
@@ -87,7 +87,7 @@ function get_wave_table(id)
   return table;
 }
 
-function create_wave_generator(
+export function create_wave_generator(
   primary_id,
   secondary_id)
 {
@@ -99,7 +99,7 @@ function create_wave_generator(
   return wg;
 }
 
-function process_wave_generator(wg, frame_index)
+export function process_wave_generator(wg, frame_index)
 {
   let line_index= 0;
   let line_offset = 0;
@@ -111,8 +111,8 @@ function process_wave_generator(wg, frame_index)
 
   if (wg == null) 
     wg = create_wave_generator(
-      SINEWAVE_TABLE_ID,
-      RIPPLE_TABLE_ID);
+      SinewaveTableId,
+      RippleTableId);
 
   while (line_index < 255)
   {
