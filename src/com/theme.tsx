@@ -60,6 +60,16 @@ export const darkSeaTheme = {
   hr: `border-[#0087b5] text-[#0087b5]`, 
   tooltip: `mui-darksea`,
 
+  miniGallery: {
+
+    scrollbars: `
+      scrollbar-thin
+      scrollbar-track-[#111a28]
+      scrollbar-thumb-rounded-full
+      scrollbar-thumb-[#162544]
+    `
+  },
+
   scrollbars: `
     scrollbar-thin
     scrollbar-track-[#111a28]
