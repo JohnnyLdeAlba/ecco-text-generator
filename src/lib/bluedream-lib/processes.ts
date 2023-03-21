@@ -1,5 +1,34 @@
 import { PlotState } from "./plot-state";
 
+const ps_filter_color = (canvas, color) => {
+
+  const context = canvas.getContext("2d");
+
+  const ImageData = context.getImageData(
+    0, 0, canvas.width, canvas.height);
+
+  for (let index = 0; index < ImageData.data.length / 4; index++) {
+
+    let r = ImageData.data[index * 4];
+    let g = ImageData.data[index * 4 + 1];
+    let b = ImageData.data[index * 4 + 2];
+    let a = ImageData.data[index * 4 + 3];
+
+    r = r * color.red;
+    g = g * color.green;
+    b = b * color.blue;
+    a = a * color.alpha
+
+    ImageData.data[index * 4] = parseInt(r);
+    ImageData.data[index * 4 + 1] = parseInt(g);
+    ImageData.data[index * 4 + 2] = parseInt(b);
+    ImageData.data[index * 4 + 3] = parseInt(a);
+  }
+
+  context.putImageData(ImageData, 0, 0);
+  return canvas;
+}
+
 export const ps_process_default = (plotter, plotState) => {
 
   const colorFilter = plotState.colorFilter;

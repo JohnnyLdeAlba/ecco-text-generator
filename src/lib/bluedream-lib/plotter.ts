@@ -80,8 +80,6 @@ export class t_plotter {
     plotter.initialize(w, h);
     plotter.bitmaps = this.bitmaps;
 
-    plotter.reset();   
-
     plotter.addPSArray(psArray);
     plotter.clear();
     plotter.process();

@@ -1,3 +1,5 @@
+import { t_rgba } from "./plot-state";
+
 export class t_char {
 
   id;
@@ -63,6 +65,8 @@ export class t_font {
   trimSpaces;
   letterSpacing;
   lineHeight;
+  selectSpacing;
+  cursorFilter;
 
   constructor() {
 
@@ -79,6 +83,8 @@ export class t_font {
     this.trimSpaces = 0;
     this.letterSpacing = 0;
     this.lineHeight = 0;
+    this.selectSpacing = 0;
+    this.cursorFilter = new t_rgba(1, 1, 1, 1);
   }
 
   add(
@@ -114,14 +120,20 @@ export class t_composition {
   width;
   height;
   blockHeight;
+  padding;
 
   text;
   align;
   vAlign;
   baseline;
   trimSpaces;
+
   letterSpacing;
   lineHeight;
+  selectSpacing;
+
+  cursorPosition;
+  cursorFilter;
 
   wordArray;
   lineArray;
@@ -132,15 +144,20 @@ export class t_composition {
     this.width = 320;
     this.height = 240;
     this.blockHeight = 0;
+    this.padding = 8;
 
     this.text = '';
     this.align = '';
     this.vAlign = '';
-    this.baseline = '';
+    this.baseline = "bottom";
     this.trimSpaces = true;
+
     this.letterSpacing = 2;
     this.lineHeight = 5;
-    this.baseLine = "bottom";
+    this.selectSpacing = 0;
+
+    this.cursorPosition = -1;
+    this.cursorFilter = new t_rgba(1,1,1,1);
 
     this.wordArray = [];
     this.lineArray = [];
@@ -175,13 +192,23 @@ export class t_composition {
     if (font == this.font)
       return;
 
+    this.align = font.align;
+    this.vAlign = font.vAlign;
+    this.baseline = font.baseline;
+    this.trimSpaces = font.trimSpaces;
+
+    this.letterSpacing = font.letterSpacing;
+    this.lineHeight = font.lineHeight;
+    this.selectSpacing = font.selectSpacing;
+    this.cursorFilter = font.cursorFilter;
+
     this.font = font;
   }
 
   setSize(width, height) {
 
-    this.width = width;
-    this.height = height;
+    this.width = width - (this.padding * 2);
+    this.height = height - (this.padding * 2);
   }
 
   setText(text) {
@@ -192,9 +219,8 @@ export class t_composition {
     this.text = text;
   }
 
-  generate(font, width, height, text) {
+  generate(width, height, text) {
 
-    this.setFont(font);
     this.setSize(width, height);
     this.setText(text);
 

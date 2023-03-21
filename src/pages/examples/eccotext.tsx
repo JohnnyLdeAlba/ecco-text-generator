@@ -47,6 +47,8 @@ class t_canvas extends t_hook {
   trimSpaces;
   letterSpacing;
   lineHeight;
+  selectSpacing;
+  cursorPosition;
 
   font;
   background;
@@ -68,9 +70,12 @@ class t_canvas extends t_hook {
     this.align = '';
     this.vAlign = '';
     this.baseline = '';
-    this.trimSpaces = 0;
+    this.trimSpaces = true;
     this.letterSpacing = 0;
     this.lineHeight = 0;
+    this.selectSpacing = 0;
+    this.cursorPosition = 2;
+    this.cursorFilter = null;
 
     this.font = null;
     this.background = 0;
@@ -81,9 +86,6 @@ class t_canvas extends t_hook {
   }
 
   async addFont(font) {
-
-    if (this.uriMap.get(font.imageHash))
-      return;
 
     this.uriMap.set(font.imageHash, font.imageURI);
 
@@ -116,15 +118,21 @@ class t_canvas extends t_hook {
   setFont(hash) {
 
     const font = this.fontMap.get(hash);
+
     if (!font)
+      return;
+    else if (font == this.font)
       return;
 
     this.align = font.align;
     this.vAlign = font.vAlign;
     this.baseline = font.baseline;
     this.trimSpaces = font.trimSpaces;
+
     this.letterSpacing = font.letterSpacing;
     this.lineHeight = font.lineHeight;
+    this.selectSpacing = font.selectSpacing;
+    this.cursorFilter = font.cursorFilter;
 
     this.font = font;
     this.commit();
@@ -144,16 +152,15 @@ class t_canvas extends t_hook {
 
     const com = new t_composition();
 
+    com.setFont(this.font);
+
     com.setAlign(this.align);
     com.setVAlign(this.vAlign);
-    com.setBaseline(this.baseline);
-    com.trimSpaces = this.trimSpaces;
-    com.letterSpacing = this.letterSpacing;
-    com.lineHeight = this.lineHeight;
-
+    com.setBaseline(this.Baseline);
+    com.cursorPosition = this.cursorPosition;
+    
     com.generate(
-      this.font,
-      320, 240,
+      320, 240, 
       "hello world"
     );
 
@@ -228,8 +235,8 @@ class t_canvas extends t_hook {
       "/eccotext/theme/backgrounds/volcano.png"
     );
 
-    this.setFont("homeBayFont");
-    this.setBackground("vaporwaveBackground");
+    this.setFont("systemFont");
+    this.setBackground("homeBayBackground");
 
     const ps = this.plotter.createPS();
     ps.index = this.background;

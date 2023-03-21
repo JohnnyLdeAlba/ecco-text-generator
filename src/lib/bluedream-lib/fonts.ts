@@ -1,3 +1,4 @@
+import { t_rgba } from "./plot-state";
 import { t_font } from "./composition";
 
 const font_system = () => {
@@ -14,6 +15,8 @@ const font_system = () => {
   font.trimSpaces = true;
   font.letterSpacing = 2;
   font.lineHeight = 4;
+  font.selectSpacing = -2;
+  font.cursorFilter = new t_rgba(1, 0.6);
 
   font.bitmapIndex = 0;
   font.width = 8;
@@ -82,12 +85,15 @@ const font_system_yellow = () => {
   font.name = "System Yellow";
   font.imageHash = "systemFont";
   font.imageURI = "/eccotext/theme/fonts/system.png";
+  font.cursorFilter = new t_rgba(1, 0.6);
 
   font.align = "center";
   font.vAlign = "middle";
   font.trimSpaces = true;
   font.letterSpacing = 2;
   font.lineHeight = 4;
+  font.selectSpacing = -2;
+  font.cursorFilter = new t_rgba(1.8, 0.6);
 
   font.bitmapIndex = 49;
   font.width = 8;
@@ -162,6 +168,8 @@ const font_system_red = () => {
   font.trimSpaces = true;
   font.letterSpacing = 2;
   font.lineHeight = 4;
+  font.selectSpacing = -2;
+  font.cursorFilter = new t_rgba(2.8, 2.8, 0.2);
 
   font.bitmapIndex = 49 * 2;
   font.width = 8;
@@ -236,6 +244,8 @@ const font_home_bay = () => {
   font.trimSpaces = true;
   font.letterSpacing = 2;
   font.lineHeight = 5;
+  font.selectSpacing = -3;
+  font.cursorFilter = new t_rgba(1.5, 1.2);
 
   font.bitmapIndex = 0;
   font.width = 28;

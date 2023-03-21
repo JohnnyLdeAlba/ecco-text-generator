@@ -1,4 +1,4 @@
-import { t_plot_state } from "./plot-state";
+import { t_rgba, t_plot_state } from "./plot-state";
 
 export const plot_composition = com => {
 
@@ -13,6 +13,7 @@ export const plot_composition = com => {
   let height = vAlign;
 
   let psArray = [];
+  let charIndex = 0;
 
   for (const line of com.lineArray) {
 
@@ -25,6 +26,9 @@ export const plot_composition = com => {
 
     if (width == 0)
       width+= align;
+
+    width+= com.padding;
+    height+= com.padding;
 
     if (line.type == "newline") {
 
@@ -63,10 +67,19 @@ export const plot_composition = com => {
         } 
 
         ps.x = char.offsetX + width;
-        ps.y = char.offsetY + height + offsetY;
+
+        if (com.cursorPosition == charIndex) {
+
+          ps.y = char.offsetY + height + offsetY + com.selectSpacing;
+	  ps.colorFilter = com.cursorFilter;
+	}
+        else
+          ps.y = char.offsetY + height + offsetY;
 
         psArray.push(ps);
+
         width+= char.width + com.letterSpacing;
+	charIndex++
       }
     }
 
