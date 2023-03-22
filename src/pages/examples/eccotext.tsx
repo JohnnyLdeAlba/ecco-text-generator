@@ -17,8 +17,8 @@ export const Container = ({ children }) => {
   return (
     <div className={`
       mx-0 xl:mx-auto 
-      w-full 3xl:w-[900px]
-      px-0 sm:px-4 3xl:px-0
+      w-full 2xl:w-[900px]
+      px-0 sm:px-4 2xl:px-0
       py-0 sm:py-4
       flex-1 flex flex-col
       overflow-y-auto sm:overflow-y-visible
@@ -45,28 +45,31 @@ export const Index = () => {
 
       <div className={`flex flex-col overflow-y-auto`}>
         <div className={`flex flex-row`}>
+
           <div className={`flex-1 flex flex-col`}>
             <Canvas />
           </div>
 
-          <div className={`flex flex-col overflow-y-auto px-4 w-[240px] h-[500px]`}>
+          <div className={`hidden md:flex flex-col overflow-y-auto pl-4 w-[240px] h-[450px] 2xl:h-[500px]`}>
+
             <div className={`flex-1 flex flex-col overflow-y-auto rounded-lg ${ theme.card }`}>
               <div className={`flex flex-col px-3 py-2 font-medium text-sm ${ theme.cardHeader }`}>
                 { request.parentNode.name }
               </div>
-          <div className={`flex-1 flex flex-col overflow-y-auto h-full ${ theme.scrollbars }`}>
-          <Gallery
-            forceDetailsVisible={ true }
-            page={ request.page == -1 ? -1 : request.page + 1 }
+              <div className={`flex-1 flex flex-col overflow-y-auto h-full ${ theme.scrollbars }`}>
+                <Gallery
+                  forceDetailsVisible={ true }
+                  page={ request.page == -1 ? -1 : request.page + 1 }
 
-            onPrevPage={ request.page > 0 ? () => request.onPrevPage() : null }
-            onNextPage={ request.nextPage ? () => request.onNextPage() : null }
+                  onPrevPage={ request.page > 0 ? () => request.onPrevPage() : null }
+                  onNextPage={ request.nextPage ? () => request.onNextPage() : null }
 
-            galleryItems={ request.getGalleryItems() }
-            onGoBack={ request.parentNode.parentId > 0 ? () => request.onGoBack() : null }
-          />
+                  galleryItems={ request.getGalleryItems() }
+                  onGoBack={ request.parentNode.parentId > 0 ? () => request.onGoBack() : null }
+                />
+              </div>
             </div>
-            </div>
+
           </div>
         </div>
       </div>

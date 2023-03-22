@@ -310,7 +310,7 @@ export const Canvas = () => {
   });
 
   return (
-    <div className={`rounded-lg overflow-hidden`}>
+    <div className={`sm:rounded-lg overflow-hidden`}>
     <canvas
       width={ 320 } height={ 240 }
       ref={ ref }

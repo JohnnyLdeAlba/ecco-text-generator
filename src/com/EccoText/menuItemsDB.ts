@@ -62,6 +62,13 @@ node.name = "320x240 Low";
 node.icon = "/icons/settings.png";
 node.orderId = 3;
 
+node = container.addNode("low1", RootId);
+node.name = "320x240 Low";
+node.icon = "/icons/settings.png";
+node.orderId = 3;
+
+
+
 // Themes
 
 node = container.addNode("jurassic", ThemesId);
@@ -87,7 +94,5 @@ node.icon = "/eccotext/icons/thanos.jpg";
 node = container.addNode("vaporwave", ThemesId);
 node.name = "Vaporwave";
 node.icon = "/eccotext/icons/vaporwave.jpg";
-
-
 
 export default container;
