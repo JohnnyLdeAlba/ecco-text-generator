@@ -8,9 +8,10 @@ let node = null;
 const RootId = ++id;
 
 node = container.addNode("home", 0, RootId);
-node.name = "Ecco Text Generator";
+node.name = "Menu";
 
-node = container.addNode("themes", RootId);
+const ThemesId = ++id;
+node = container.addNode("themes", RootId, ThemesId);
 node.name = "Themes";
 node.icon = "/icons/paint.png";
 node.orderId = 1;
@@ -60,5 +61,33 @@ node = container.addNode("low", RootId);
 node.name = "320x240 Low";
 node.icon = "/icons/settings.png";
 node.orderId = 3;
+
+// Themes
+
+node = container.addNode("jurassic", ThemesId);
+node.name = "Jurassic Beach";
+node.icon = "/eccotext/icons/jurassic-beach.png";
+
+node = container.addNode("lastFight", ThemesId);
+node.name = "The Last Fight";
+node.icon = "/eccotext/icons/the-last-fight.png";
+
+node = container.addNode("theMachine", ThemesId);
+node.name = "The Machine";
+node.icon = "/eccotext/icons/the-machine.png";
+
+node = container.addNode("homeBay", ThemesId);
+node.name = "Home Bay";
+node.icon = "/eccotext/icons/home-bay.png";
+
+node = container.addNode("thanos", ThemesId);
+node.name = "Thanos";
+node.icon = "/eccotext/icons/thanos.jpg";
+
+node = container.addNode("vaporwave", ThemesId);
+node.name = "Vaporwave";
+node.icon = "/eccotext/icons/vaporwave.jpg";
+
+
 
 export default container;

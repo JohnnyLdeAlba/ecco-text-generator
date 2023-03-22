@@ -33,7 +33,7 @@ export const DetailItem = ({ galleryItem }) => {
         <Image
           src={ galleryItem.icon }
           width={ 300 } height={ 300 } alt=''
-          className={`w-[30px] mr-2 `} />
+          className={`w-[30px] mr-2 rounded-md`} />
         <div className={`flex-1 flex flex-col`}>
           <div className={`
             text-sm
