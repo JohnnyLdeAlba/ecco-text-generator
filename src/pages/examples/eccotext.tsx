@@ -12,6 +12,7 @@ import { useRequestStatic } from "../../com/Request/RequestStatic";
 import { ProgmaContext, useProgma } from "../../com/Progma";
 
 import { container } from "../../com/EccoText/menuItemsDB";
+import { Toolbar } from "../../com/EccoText/Toolbar";
 
 export const Container = ({ children }) => {
 
@@ -72,11 +73,10 @@ export const Index = () => {
                 />
               </div>
             </div>
-
           </div>
         </div>
       </div>
-
+          <Toolbar />
       </Container>
     </Layout>
   )
