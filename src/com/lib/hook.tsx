@@ -1,5 +1,6 @@
 export class t_hook {
 
+  progma;
   serial;
   state;
   status;
@@ -13,6 +14,7 @@ export class t_hook {
 
   constructor() {
 
+    this.progma;
     this.serial = 0;
     this.state = "ready";
     this.status = new Map();

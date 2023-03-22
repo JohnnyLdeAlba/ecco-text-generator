@@ -9,6 +9,7 @@ import { Layout } from "../../com/Layout/Layout";
 import { useCanvas, Canvas } from "../../com/EccoText/Canvas";
 
 import { useRequestStatic } from "../../com/Request/RequestStatic";
+import { ProgmaContext, useProgma } from "../../com/Progma";
 
 import { container } from "../../com/EccoText/menuItemsDB";
 
@@ -31,9 +32,11 @@ export const Container = ({ children }) => {
 export const Index = () => {
 
   const theme = useContext(ThemeContext);
-  const canvas = useCanvas();
+  const progma = useProgma();
+  const canvas = useCanvas({ progma: progma });
 
   const request = useRequestStatic({
+    progma: progma,
     container: container,
     parentHash: "home" 
   });
@@ -43,16 +46,16 @@ export const Index = () => {
     <Layout>
       <Container>
 
-      <div className={`flex flex-col overflow-y-auto`}>
-        <div className={`flex flex-row`}>
+      <div className={`flex flex-col overflow-y-auto h-[450px] 2xl:h-[500px]`}>
+        <div className={`flex flex-row overflow-y-auto`}>
 
           <div className={`flex-1 flex flex-col`}>
             <Canvas />
           </div>
 
-          <div className={`hidden md:flex flex-col overflow-y-auto pl-4 w-[240px] h-[450px] 2xl:h-[500px]`}>
+          <div className={`hidden md:flex flex-col overflow-y-auto pl-4 w-[240px]`}>
 
-            <div className={`flex-1 flex flex-col overflow-y-auto rounded-lg ${ theme.card }`}>
+            <div className={`flex-1 flex flex-col overflow-y-auto rounded-lg h-full ${ theme.card }`}>
               <div className={`flex flex-col px-3 py-2 font-medium text-sm ${ theme.cardHeader }`}>
                 { request.parentNode.name }
               </div>

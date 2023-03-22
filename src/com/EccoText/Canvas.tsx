@@ -259,6 +259,10 @@ class t_canvas extends t_hook {
     this.setFont("systemFont");
     this.setBackground("homeBayBackground");
 
+    this.progma.set("themes", galleryItem => console.log(galleryItem));
+    this.progma.set("backgrounds", galleryItem => this.setBackground(galleryItem.hash));
+    this.progma.set("fonts", galleryItem => this.setFont(galleryItem.hash));
+
     this.frameRate.process = () => this.updateViewport();
     this.frameRate.render = () => this.render();
     this.frameRate.updateFrame();
@@ -270,7 +274,9 @@ class t_canvas extends t_hook {
 
   set(params) {
 
-    const { refresh } = params;
+    const { progma, refresh } = params;
+
+    this.progma = progma;
     this.refresh = refresh;
   }
 
@@ -291,11 +297,15 @@ class t_canvas extends t_hook {
 
 const CanvasContext = createContext(new t_canvas());
 
-export const useCanvas  = () => {
+export const useCanvas  = ({ progma = null }) => {
   
   const canvas  = useContext(CanvasContext);
   const [ serial, setSerial ] = useState(0);
-  canvas.set({ refresh: () => setSerial(serial + 1) });
+
+  canvas.set({
+    progma: progma,
+    refresh: () => setSerial(serial + 1)
+  });
 
   return canvas;
 }

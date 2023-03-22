@@ -2,6 +2,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 
 import { t_hook } from "../lib/hook";
 import { t_node, t_node_container, sort_name, sort_order_id } from "../../lib/node-lib";
+import { ProgmaContext } from "../Progma"; 
 
 const config = {
   requestItemsPerPage: 100,
@@ -194,8 +195,14 @@ class t_request_static extends t_hook {
 
       node.uniqueId = ++this.serial;
 
-      if (!node.onClick)
-        node.onClick = () => this.setNode(node);
+      const onClick = this.progma.get(node.type);
+      if (!node.onClick) {
+
+        if (onClick)
+          node.onClick = () => onClick(node);
+        else
+          node.onClick = () => this.setNode(node);
+      }
     });
 
     return nodes;
@@ -229,7 +236,9 @@ class t_request_static extends t_hook {
 
   set(params) {
 
-    const { refresh } = params;
+    const { progma, refresh } = params;
+
+    this.progma = progma;
     this.refresh = refresh;
   }
 
@@ -281,16 +290,19 @@ export const useRequestStatic = ({
   page = 0
 }) => {
 
+  const progma = useContext(ProgmaContext);
   const requestStatic = useContext(RequestStaticContext);
   const [ serial, setSerial ] = useState(0);
 
   requestStatic.set({
+    progma: progma,
     refresh: () => setSerial(serial + 1)
   });
 
   useEffect(() => {
 
     requestStatic.process({
+
       container: container,
       filterType: filterType,
       parentId: parentId,
