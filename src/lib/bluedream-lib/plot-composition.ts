@@ -9,8 +9,12 @@ export const plot_composition = com => {
   else if (com.vAlign == "middle")
     vAlign = (com.height - com.blockHeight)/2;
 
+  console.log(com.blockHeight);
+  console.log(com.height);
+  console.log(vAlign);
+
   let width = 0;
-  let height = vAlign;
+  let height = com.padding + vAlign;
 
   let psArray = [];
   let charIndex = 0;
@@ -28,7 +32,6 @@ export const plot_composition = com => {
       width+= align;
 
     width+= com.padding;
-    height+= com.padding;
 
     if (line.type == "newline") {
 
