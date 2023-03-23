@@ -264,9 +264,6 @@ class t_canvas extends t_hook {
         }
 
         case "Backspace": {
-          
-          if (this.cursorPosition == this.text.length)
-            this.cursorPosition--;
 
           if (this.cursorPosition == 0) {
 
@@ -378,9 +375,12 @@ class t_canvas extends t_hook {
     this.setFont("systemFont");
     this.setBackground("homeBayBackground");
 
+// selectedItems.set(hash, galleryitem)
+// for each if galitemparentid == item.pid remove;
+
     this.progma.set("themes", galleryItem => console.log(galleryItem));
-    this.progma.set("backgrounds", galleryItem => this.setBackground(galleryItem.hash));
-    this.progma.set("fonts", galleryItem => this.setFont(galleryItem.hash));
+    this.progma.set("backgrounds", galleryItem => this.onBackgroundChange(galleryItem));
+    this.progma.set("fonts", galleryItem => this.onFontChange(galleryItem));
 
     this.frameRate.process = () => this.updateViewport();
     this.frameRate.render = () => this.render();
@@ -389,6 +389,22 @@ class t_canvas extends t_hook {
     this.disableLoading();
     this.state = "ready";
     this.refresh();
+  }
+
+  onBackgroundChange(galleryItem) {
+
+    this.progma.removeSelectedItemsByParentId(galleryItem.parentId);
+    this.progma.addSelectedItem(galleryItem);
+
+    this.setBackground(galleryItem.hash);
+  }
+
+  onFontChange(galleryItem) {
+
+    this.progma.removeSelectedItemsByParentId(galleryItem.parentId);
+    this.progma.addSelectedItem(galleryItem);
+
+    this.setFont(galleryItem.hash);
   }
 
   set(params) {

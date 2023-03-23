@@ -58,7 +58,7 @@ export const darkSeaTheme = {
   smallButtonLightClosed: `bg-[#1e355a]`,
 
   galleryItem: `bg-[#1e355a]`,
-  galleryItemSelected: `border-[5px] border-[#111a28]`,
+  galleryItemSelected: `bg-[#051638]`,
 
   hr: `border-[#0087b5] text-[#0087b5]`, 
   tooltip: `mui-darksea`,

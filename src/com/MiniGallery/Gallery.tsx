@@ -26,9 +26,8 @@ export const DetailItem = ({ galleryItem }) => {
       <div className={`
         flex flex-row items-start 
         overflow-hidden p-2
-        ${ theme.galleryItem }
         ${ properties.disabled ? "disabled" : "button" }
-        ${ status.selected ? theme.galleryItemSelected : '' }
+        ${ status.selected ? theme.galleryItemSelected : theme.galleryItem }
       `}>
         <Image
           src={ galleryItem.icon }
@@ -67,7 +66,7 @@ export const DetailGroup = ({
 
       { galleryItems.map(galleryItem => {
 
-        if (galleryItem.placeholder)
+        if (galleryItem.properties.placeholder)
           return <GalleryHR key={ galleryItem.uniqueId } galleryItem={ galleryItem} />;
         else
           return <DetailItem key={ galleryItem.uniqueId } galleryItem={ galleryItem } />;

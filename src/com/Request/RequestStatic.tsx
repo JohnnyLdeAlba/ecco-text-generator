@@ -190,10 +190,18 @@ class t_request_static extends t_hook {
   getGalleryItems() {
 
     const nodes = this.filterAllNodes();
+    const _nodes = [];
 
     nodes.forEach(node => {
 
+      node = node.copy();
       node.uniqueId = ++this.serial;
+
+      const selectedItem = this.progma
+        .getSelectedItem(node.hash);
+
+      if (selectedItem)
+        node.status.selected = true;
 
       const onClick = this.progma.get(node.type);
       if (!node.onClick) {
@@ -203,9 +211,11 @@ class t_request_static extends t_hook {
         else
           node.onClick = () => this.setNode(node);
       }
+
+      _nodes.push(node);
     });
 
-    return nodes;
+    return _nodes;
   }
 
   onGoBack() {

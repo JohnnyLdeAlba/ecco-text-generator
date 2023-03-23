@@ -37,7 +37,7 @@ node.orderId = 1;
 node = container.addNode('', RootId);
 node.name = "Resolution";
 node.orderId = 2;
-node.placeholder = true;
+node.properties.placeholder = true;
 
 node = container.addNode("ultraHigh", RootId);
 node.name = "640x480 Ultra High";

@@ -74,7 +74,7 @@ export const DetailGroup = ({
 
       { galleryItems.map(galleryItem => {
 
-        if (galleryItem.placeholder)
+        if (galleryItem.properties.placeholder)
           return <GalleryHR key={ galleryItem.uniqueId } galleryItem={ galleryItem} />;
         else
           return <DetailItem key={ galleryItem.uniqueId } galleryItem={ galleryItem } />;
