@@ -9,6 +9,7 @@ export const SmallButton = ({
   title,
   rounded,
   closed = false,
+  skin = "light",
   onClick,
   className
 }) => {
@@ -46,7 +47,8 @@ export const SmallButton = ({
       ${ disabled ? "disabled" : '' }
       ${ !disabled && !closed && onClick ? "button" : '' }
       ${ !disabled && closed && onClick ? "buttonClosed" : '' }
-      ${ closed ? `${ theme.smallButtonClosed }` : `${ theme.smallButton }` }
+      ${ skin == '' && closed ? `${ theme.smallButtonClosed }` : `${ theme.smallButton }` }
+      ${ skin == "light" && closed ? `${ theme.smallButtonLightClosed }` : `${ theme.smallButtonLight }` }
       ${ rounded }
       ${ className }
       `} onClick={ onClick }>

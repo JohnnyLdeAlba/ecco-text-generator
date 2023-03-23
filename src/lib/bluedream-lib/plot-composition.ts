@@ -33,6 +33,7 @@ export const plot_composition = com => {
     if (line.type == "newline") {
 
       width = 0;
+      charIndex++;
       continue; 
     }
 
@@ -43,6 +44,7 @@ export const plot_composition = com => {
       if (word.type == "space") {
  
         width+= word.width;
+	charIndex++;
         continue;
       }
 

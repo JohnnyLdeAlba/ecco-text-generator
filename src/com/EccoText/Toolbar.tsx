@@ -24,6 +24,8 @@ import CameraAltIcon from '@mui/icons-material/CameraAlt';
 import ContentCutIcon from '@mui/icons-material/ContentCut';
 import GifBoxIcon from '@mui/icons-material/GifBox';
 import KeyboardIcon from '@mui/icons-material/Keyboard';
+import CopyAllIcon from '@mui/icons-material/CopyAll';
+import ContentPasteIcon from '@mui/icons-material/ContentPaste';
 
 
 import { SmallButton, SmallTipButton } from "../Button"; 
@@ -48,6 +50,7 @@ export const Toolbar = ({
   return (
     <div className={`
       flex flex-col sm:flex-row p-2 sm:p-4 justify-center
+      ${ theme.eccoText.toolbar }
     `}>
 
       <div className={`flex flex-row`}>
@@ -103,7 +106,7 @@ export const Toolbar = ({
       </div>
       </div>
 
-      <div className={`flex flex-row`}>
+      <div className={`flex flex-row pt-2 sm:pt-0`}>
       <div className={`flex-1 flex flex-row`}>
       <SmallTipButton
         disabled={ onGoBack ? false : true }
@@ -125,15 +128,34 @@ export const Toolbar = ({
         className={`mr-4 pr-3`}
         onClick={ onGoBack } />
       </div>
+
       <SmallTipButton
         disabled={ onGoBack ? false : true }
         tip={ onGoBack ? "Go Back" : '' }
         icon={ <ContentCutIcon fontSize="small" /> }
         rounded={ "full" }
-        className={`px-3 mr-0 sm:mr-4 w-fit`}
+        className={`mr-4 px-3 w-fit`}
         onClick={ onGoBack } />
+
+      <SmallTipButton
+        disabled={ onGoBack ? false : true }
+        tip={ onGoBack ? "Go Back" : '' }
+        icon={ <CopyAllIcon fontSize="small" /> }
+        rounded={ "left" }
+        className={`pl-3 w-fit`}
+        onClick={ onGoBack } />
+
+      <SmallTipButton
+        disabled={ onGoBack ? false : true }
+        tip={ onGoBack ? "Go Back" : '' }
+        icon={ <ContentPasteIcon fontSize="small" /> }
+        rounded={ "right" }
+        className={`pr-3 w-fit`}
+        onClick={ onGoBack } />
+
       </div>
 
+{/*
       <div className={`hidden xl:flex flex-row`}>
       <SmallTipButton
         disabled={ onGoBack ? false : true }
@@ -153,6 +175,7 @@ export const Toolbar = ({
         className={`pr-3`}
         onClick={ onGoBack } />
       </div>
+*/}
     </div>
   );
 }

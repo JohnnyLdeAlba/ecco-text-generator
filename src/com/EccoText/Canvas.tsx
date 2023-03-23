@@ -28,6 +28,7 @@ class t_canvas extends t_hook {
   plotter;
   com;
 
+  text;
   waveformIndex;
   align;
   vAlign;
@@ -58,6 +59,7 @@ class t_canvas extends t_hook {
     this.com = null;
 
     // this.waveformIndex = RippleTableId;
+    this.text = '';
     this.waveformIndex = 1;
     this.align = '';
     this.vAlign = '';
@@ -179,7 +181,7 @@ class t_canvas extends t_hook {
     
     com.generate(
       320, 240, 
-      "hello world"
+      this.text
     );
 
     // can validate here...
@@ -219,6 +221,67 @@ class t_canvas extends t_hook {
 
     if (!canvas)
       return;
+
+    window.addEventListener("keydown", event => {
+
+      console.log(event.key);
+
+      switch (event.key) {
+
+        case "ArrowLeft": {
+ 
+          if (this.cursorPosition > 0)
+            this.cursorPosition--;
+
+          break;
+        }
+
+        case "ArrowRight": {
+ 
+          if (this.cursorPosition < this.text.length)
+            this.cursorPosition++;
+
+          break;
+        }
+
+        case "Delete": {
+ 
+          const text = this.text;
+
+          this.text = text.slice(0, this.cursorPosition > 0 ? this.cursorPosition : 0);
+
+          if (this.cursorPosition != (this.text.length - 1))
+            this.text+= text.slice(this.cursorPosition + 1);
+
+          break;
+        }
+
+        case "Backspace": {
+          this.text = this.text.slice(0, -1);
+          this.cursorPosition = this.text.length;
+          break;
+        }
+
+        case "Enter": {
+
+          this.text+= '\n';
+          this.cursorPosition = this.text.length;
+          break; 
+        }
+
+        default: {
+
+          const char = this.font.get(event.key);
+          if (!char)
+            return;
+
+          this.text+= char.hash;
+
+          this.cursorPosition = this.text.length;
+          break;
+        }
+      }
+    });
 
     this.state = "initPending";
     this.enableLoading();

@@ -54,11 +54,18 @@ export const darkSeaTheme = {
   smallButton: `bg-[#1e355a]`,
   smallButtonClosed: `bg-[#182a48]`,
 
+  smallButtonLight: `bg-[#1d468a]`,
+  smallButtonLightClosed: `bg-[#1e355a]`,
+
   galleryItem: `bg-[#1e355a]`,
   galleryItemSelected: `border-[5px] border-[#111a28]`,
 
   hr: `border-[#0087b5] text-[#0087b5]`, 
   tooltip: `mui-darksea`,
+
+  eccoText: {
+    toolbar: `bg-[#0e1d35] sm:bg-transparent`,
+  },
 
   miniGallery: {
 

@@ -537,7 +537,7 @@ export class t_composition {
         height = word.height;
     }
 
-    if (totalWords > 0) {
+    if (line && totalWords > 0) {
 
       line.totalWords = totalWords;
       lineArray.push(line);;
