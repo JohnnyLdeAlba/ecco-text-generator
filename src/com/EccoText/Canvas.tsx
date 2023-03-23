@@ -77,6 +77,24 @@ class t_canvas extends t_hook {
     this.uriMap = new Map();
   }
 
+  setAlign(align) {
+    
+    if (align == this.align)
+      return;
+
+    this.align = align;
+    this.commit();
+  }
+
+  setVAlign(vAlign) {
+    
+    if (vAlign == this.vAlign)
+      return;
+
+    this.vAlign = vAlign;
+    this.commit();
+  }
+
   setCanvas(canvas) {
 
     if (canvas == this.canvas)
@@ -215,6 +233,7 @@ class t_canvas extends t_hook {
     await this.addFont(Fonts.font_system_yellow());
     await this.addFont(Fonts.font_system_red());
     await this.addFont(Fonts.font_home_bay());
+    await this.addFont(Fonts.font_vaporwave());
 
     await this.addBackground(
       "homeBayBackground",
@@ -295,7 +314,7 @@ class t_canvas extends t_hook {
   }
 }
 
-const CanvasContext = createContext(new t_canvas());
+export const CanvasContext = createContext(new t_canvas());
 
 export const useCanvas  = ({ progma = null }) => {
   

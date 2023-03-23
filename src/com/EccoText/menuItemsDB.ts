@@ -148,22 +148,30 @@ node.icon = "/eccotext/icons/vaporwave.jpg";
 node = container.addNode("homeBayFont", FontsId);
 node.type = "fonts";
 node.name = "Home Bay";
-node.icon = "/eccotext/icons/jurassic-beach.png";
+node.icon = "/eccotext/icons/fonts/home-bay.png";
+
+node = container.addNode("vaporwaveFont", FontsId);
+node.type = "fonts";
+node.name = "Vaporwave";
+node.icon = "/eccotext/icons/fonts/vaporwave.png";
 
 node = container.addNode("systemFont", FontsId);
+node.orderId = 1;
 node.type = "fonts";
 node.name = "System";
-node.icon = "/eccotext/icons/the-last-fight.png";
+node.icon = "/eccotext/icons/fonts/system.png";
 
 node = container.addNode("systemFontRed", FontsId);
+node.orderId = 1;
 node.type = "fonts";
 node.name = "System Red";
-node.icon = "/eccotext/icons/the-machine.png";
+node.icon = "/eccotext/icons/fonts/system-red.png";
 
 node = container.addNode("systemFontYellow", FontsId);
+node.orderId = 1;
 node.type = "fonts";
 node.name = "System Yellow";
-node.icon = "/eccotext/icons/the-machine.png";
+node.icon = "/eccotext/icons/fonts/system-yellow.png";
 
 
 

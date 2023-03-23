@@ -47,14 +47,14 @@ export const Index = () => {
     <Layout>
       <Container>
 
-      <div className={`flex flex-col overflow-y-auto h-[450px] 2xl:h-[500px]`}>
+      <div className={`flex flex-col overflow-y-auto`}>
         <div className={`flex flex-row overflow-y-auto`}>
 
           <div className={`flex-1 flex flex-col`}>
             <Canvas />
           </div>
 
-          <div className={`hidden md:flex flex-col overflow-y-auto pl-4 w-[240px]`}>
+          <div className={`hidden md:flex flex-col overflow-y-auto pl-4 w-[240px] sm:h-[450px] 2xl:h-[500px]`}>
 
             <div className={`flex-1 flex flex-col overflow-y-auto rounded-lg h-full ${ theme.card }`}>
               <div className={`flex flex-col px-3 py-2 font-medium text-sm ${ theme.cardHeader }`}>
