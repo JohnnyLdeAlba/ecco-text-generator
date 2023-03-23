@@ -106,6 +106,12 @@ class t_canvas extends t_hook {
     this.commit();
   }
 
+  toggleTrimSpaces() {
+
+    this.trimSpaces = !this.trimSpaces;
+    this.commit();
+  }
+
   async addFont(font) {
 
     this.uriMap.set(font.imageHash, font.imageURI);
@@ -177,6 +183,7 @@ class t_canvas extends t_hook {
     com.setAlign(this.align);
     com.setVAlign(this.vAlign);
     com.setBaseline(this.Baseline);
+    com.trimSpaces = this.trimSpaces;
     com.cursorPosition = this.cursorPosition;
     
     com.generate(
@@ -226,6 +233,9 @@ class t_canvas extends t_hook {
 
       console.log(event.key);
 
+      if (this.cursorPosition < 0)
+        this.cursorPosition = this.text.length;
+
       switch (event.key) {
 
         case "ArrowLeft": {
@@ -245,20 +255,37 @@ class t_canvas extends t_hook {
         }
 
         case "Delete": {
- 
-          const text = this.text;
 
-          this.text = text.slice(0, this.cursorPosition > 0 ? this.cursorPosition : 0);
+          const startText = this.text.slice(0, this.cursorPosition);
+          const endText = this.text.slice(this.cursorPosition + 1);
 
-          if (this.cursorPosition != (this.text.length - 1))
-            this.text+= text.slice(this.cursorPosition + 1);
-
+          this.text = startText + endText;
           break;
         }
 
         case "Backspace": {
-          this.text = this.text.slice(0, -1);
-          this.cursorPosition = this.text.length;
+          
+          if (this.cursorPosition == this.text.length)
+            this.cursorPosition--;
+
+          if (this.cursorPosition == 0) {
+
+            const startText = this.text.slice(0, this.cursorPosition);
+            const endText = this.text.slice(this.cursorPosition + 1);
+
+            this.text = startText + endText;
+
+            break;
+          }
+
+          const startText = this.text.slice(0, this.cursorPosition - 1);
+          const endText = this.text.slice(this.cursorPosition);
+
+          this.text = startText + endText;
+
+          if (this.cursorPosition > 0)
+            this.cursorPosition--;
+
           break;
         }
 
@@ -275,9 +302,19 @@ class t_canvas extends t_hook {
           if (!char)
             return;
 
-          this.text+= char.hash;
+          if (this.cursorPosition < this.text.length) {
 
-          this.cursorPosition = this.text.length;
+            const startText = this.text.slice(0, this.cursorPosition + 1);
+            const endText = this.text.slice(this.cursorPosition + 1);
+
+            this.text = startText + char.hash + endText;
+            this.cursorPosition++;
+          }
+          else {
+            this.text+= char.hash;
+            this.cursorPosition = this.text.length;
+          }
+
           break;
         }
       }

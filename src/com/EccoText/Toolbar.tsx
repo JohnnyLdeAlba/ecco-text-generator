@@ -135,7 +135,7 @@ export const Toolbar = ({
         icon={ <ContentCutIcon fontSize="small" /> }
         rounded={ "full" }
         className={`mr-4 px-3 w-fit`}
-        onClick={ onGoBack } />
+        onClick={ () => canvas.toggleTrimSpaces() } />
 
       <SmallTipButton
         disabled={ onGoBack ? false : true }
