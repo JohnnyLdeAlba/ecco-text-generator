@@ -26,7 +26,7 @@ import GifBoxIcon from '@mui/icons-material/GifBox';
 import KeyboardIcon from '@mui/icons-material/Keyboard';
 import CopyAllIcon from '@mui/icons-material/CopyAll';
 import ContentPasteIcon from '@mui/icons-material/ContentPaste';
-
+import LibraryAddIcon from '@mui/icons-material/LibraryAdd';
 
 import { SmallButton, SmallTipButton } from "../Button"; 
 import { CanvasContext } from "./Canvas";
@@ -55,13 +55,29 @@ export const Toolbar = ({
 
       <div className={`flex flex-row`}>
 
-      <div className={`flex-1 sm:flex-none`}>
+      <div className={`flex-1 sm:flex-none flex flex-row`}>
+      <SmallTipButton
+        disabled={ false }
+        tip={ onGoBack ? "Go Back" : '' }
+        icon={ <LibraryAddIcon fontSize="small" /> }
+        rounded={ "left" }
+        className={`flex md:hidden pl-3 w-fit`}
+        onClick={ onGoBack } />
+
+      <SmallTipButton
+        disabled={ false }
+        tip={ onGoBack ? "Go Back" : '' }
+        icon={ <KeyboardIcon fontSize="small" /> }
+        rounded={ "right" }
+        className={`flex md:hidden pr-3 mr-4 w-fit`}
+        onClick={ onGoBack } />
+
       <SmallTipButton
         disabled={ false }
         tip={ onGoBack ? "Go Back" : '' }
         icon={ <KeyboardIcon fontSize="small" /> }
         rounded={ "full" }
-        className={`px-3 mr-4 w-fit`}
+        className={`hidden md:flex px-3 mr-4 w-fit`}
         onClick={ onGoBack } />
       </div>
 
