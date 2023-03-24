@@ -15,6 +15,14 @@ import { container } from "../../com/EccoText/menuItemsDB";
 import { Toolbar } from "../../com/EccoText/Toolbar";
 import { t_node } from "../../lib/node-lib";
 
+import CameraAltIcon from '@mui/icons-material/CameraAlt';
+import GifIcon from '@mui/icons-material/Gif';
+import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
+import BackspaceIcon from '@mui/icons-material/Backspace';
+import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
+import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
+import ArrowRightIcon from '@mui/icons-material/ArrowRight';
+
 import Slider from '@mui/material/Slider';
 
 
@@ -81,40 +89,37 @@ export const Index = () => {
       </div>
           <Toolbar />
 
-<div className={`flex-1 sm:mx-auto sm:w-[600px] flex flex-row sm:items-start items-end sm:rounded-lg bg-[#0e1d35]`}>
 
-  <div className={`p-2 flex justify-end flex-col`}>
-
-    <div className={`px-4`}> 
+    <div className={`hidden px-4 w-full`}> 
     <Slider classes={{ root: "mui-darksea" }} aria-label="Volume" value={ canvas.waveformIndex } max={ 255 } onChange={ (event, value) => canvas.setWaveformIndex(value) } />
     </div>
-    <KeyboardRow galleryItems={ [] } /> 
-  </div>
-  <div>...</div>
 
+    <Keyboard />
 
-</div>
       </Container>
     </Layout>
   )
 }
 
-const KeyboardItem = ({ galleryItem = null }) => {
+const Keyboard = () => {
 
   return (
     <div className={`
-      button
-      flex flex-row
-      items-center justify-center
-      mx-1 w-[30px] h-[30px]
-      rounded-md
-      bg-[#1d468a]
-      font-medium
-      text-lg
-    `}>
-     { galleryItem.name }
+      items-end sm:items-start justify-center
+      sm:mx-auto sm:w-fit
+      sm:rounded-lg
+      flex-1 sm:flex-none flex flex-row
+      p-[2px] bg-[#0e1d35]`}>
+      <div className={`
+        flex flex-col
+        items-center justify-center
+        py-[3px]`}>
+        <KeyboardRow galleryItems={ [] } />
+        <CommandRow />       
+      </div>
     </div>
-  );
+  )
+
 }
 
 const KeyboardRow = ({  galleryItems = [] }) => {
@@ -203,6 +208,7 @@ const KeyboardRow = ({  galleryItems = [] }) => {
     "ЪЫЬЭЮЯ"
   ];
 */
+
   for (const row of rows) {
 
     const galleryItems = [];
@@ -219,14 +225,32 @@ const KeyboardRow = ({  galleryItems = [] }) => {
   }
 
   return (
-    <div className={`p-2 flex-1 flex justify-end flex-col`}>
+    <div className={`flex-1 flex justify-end flex-col`}>
       { galleryRows.map(galleryItems =>
         <KeyboardGroup galleryItems={ galleryItems } />) }
     </div>
   );
 }
 
+const KeyboardItem = ({ galleryItem = null }) => {
 
+  return (
+    <div className={`
+      w-[30px] xs:w-[40px] sm:w-[50px]
+      h-[30px] xs:h-[35px] sm:h-[40px]
+      button
+      flex flex-row
+      items-center justify-center
+      mx-[3px]
+      rounded-md
+      bg-[#1d468a]
+      font-medium
+      text-lg
+    `}>
+     { galleryItem.name }
+    </div>
+  );
+}
 
 const KeyboardGroup = ({  galleryItems = [] }) => {
 
@@ -234,10 +258,74 @@ const KeyboardGroup = ({  galleryItems = [] }) => {
     <div className={`
       flex flex-row
       items-center justify-center
-      py-1`}>
+      py-[3px]`}>
       { galleryItems.map(galleryItem =>
           <KeyboardItem galleryItem={ galleryItem } />
       )}
+    </div>
+  );
+}
+
+const CommandButton = ({ width,  children }) => {
+
+  if (width == "stretch")
+    width = '';
+  else
+    width = "w-[30px] xs:w-[40px] sm:w-[50px]"; 
+
+  return (
+    <div className={`
+      h-[30px] xs:h-[35px] sm:h-[40px]
+      button
+      flex flex-row
+      items-center justify-center
+      mx-[3px] px-3
+      rounded-md
+      bg-[#1d468a]
+      font-medium
+      text-xs
+      ${ width }
+    `}>
+      { children }
+    </div>
+  );
+}
+
+const CommandRow = () => {
+
+  return (
+    <div className={`
+      flex flex-row
+      items-center justify-center
+      py-[3px]`}>
+      <CommandButton>
+        <ArrowLeftIcon />
+      </CommandButton>
+
+      <CommandButton width="stretch">
+        <BackspaceIcon fontSize="small" />
+      </CommandButton>
+
+      <div className={`
+        w-[140px] xs:w-[180px] sm:w-[200px]
+        h-[30px] xs:h-[35px] sm:h-[40px]
+        button
+        flex flex-row
+        items-center justify-center
+        mx-[3px]
+        rounded-md
+        bg-[#1d468a]
+        font-medium
+        text-lg
+      `} />
+
+      <CommandButton width="stretch">
+        <KeyboardReturnIcon fontSize="small" />
+      </CommandButton>
+
+      <CommandButton>
+        <ArrowRightIcon />
+      </CommandButton>
     </div>
   );
 }

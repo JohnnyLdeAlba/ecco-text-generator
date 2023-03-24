@@ -61,7 +61,7 @@ export const Toolbar = ({
         tip={ onGoBack ? "Go Back" : '' }
         icon={ <LibraryAddIcon fontSize="small" /> }
         rounded={ "left" }
-        className={`flex md:hidden pl-3 w-fit`}
+        className={`flex pl-3 w-fit`}
         onClick={ onGoBack } />
 
       <SmallTipButton
@@ -69,15 +69,7 @@ export const Toolbar = ({
         tip={ onGoBack ? "Go Back" : '' }
         icon={ <KeyboardIcon fontSize="small" /> }
         rounded={ "right" }
-        className={`flex md:hidden pr-3 mr-4 w-fit`}
-        onClick={ onGoBack } />
-
-      <SmallTipButton
-        disabled={ false }
-        tip={ onGoBack ? "Go Back" : '' }
-        icon={ <KeyboardIcon fontSize="small" /> }
-        rounded={ "full" }
-        className={`hidden md:flex px-3 mr-4 w-fit`}
+        className={`flex pr-3 mr-4 w-fit`}
         onClick={ onGoBack } />
       </div>
 
@@ -144,14 +136,6 @@ export const Toolbar = ({
         className={`mr-4 pr-3`}
         onClick={ onGoBack } />
       </div>
-
-      <SmallTipButton
-        disabled={ onGoBack ? false : true }
-        tip={ onGoBack ? "Go Back" : '' }
-        icon={ <ContentCutIcon fontSize="small" /> }
-        rounded={ "full" }
-        className={`mr-4 px-3 w-fit`}
-        onClick={ () => canvas.toggleTrimSpaces() } />
 
       <SmallTipButton
         disabled={ onGoBack ? false : true }
