@@ -27,7 +27,12 @@ node.icon = "/icons/explore.png";
 node = container.addNode('', RootId);
 node.name = "Ecco the Dolphin";
 node.orderId = 1;
-node.placeholder = true;
+node.properties.placeholder = true;
+
+const MyCollectionId = ++id;
+node = container.addNode("myCollection", RootId, MyCollectionId);
+node.name = "My Collection";
+node.icon = "/icons/folder.png";
 
 node = container.addNode("eccoPC", RootId);
 node.name = "Ecco PC";
@@ -58,6 +63,68 @@ node.icon = "/icons/settings.png";
 node = container.addNode("theme", SettingsId);
 node.name = "Theme";
 node.icon = "/icons/settings.png";
+
+node = container.addNode('', MyCollectionId);
+node.name = "Sega Power Cuts";
+node.icon = "/eccoserv/my-collection/icons/sega-power-cuts.jpg";
+
+node = container.addNode('', MyCollectionId);
+node.name = "Sega Power Cuts E3";
+node.icon = "/eccoserv/my-collection/icons/sega-power-cuts-e3-demo.jpg";
+
+node = container.addNode('', MyCollectionId);
+node.name = "Ecco Master System Silver";
+node.icon = "/eccoserv/my-collection/icons/ecco-master-system-silver-ed-signed.jpg";
+
+node = container.addNode('', MyCollectionId);
+node.name = "Ecco PC Jack In The Box";
+node.icon = "/eccoserv/my-collection/icons/ecco-pc-jack-in-the-box.jpg";
+
+node = container.addNode('', MyCollectionId);
+node.name = "Ecco 2 Dreamcast Blue";
+node.icon = "/eccoserv/my-collection/icons/ecco-2-dreamcast-blue-bootleg.jpg";
+
+node = container.addNode('', MyCollectionId);
+node.name = "Wacky Worlds";
+node.icon = "/eccoserv/my-collection/icons/wacky-worlds.jpg";
+
+node = container.addNode('', MyCollectionId);
+node.name = "Ecco DOTF Dreamcast JP";
+node.icon = "/eccoserv/my-collection/icons/ecco-dotf-dreamcast-jp.jpg";
+
+node = container.addNode('', MyCollectionId);
+node.name = "Ecco DOTF PS2 Sega3 Demo";
+node.icon = "/eccoserv/my-collection/icons/ecco-dotf-ps2-sega3-demo.jpg";
+
+node = container.addNode('', MyCollectionId);
+node.name = "Ecco Songs of Time";
+node.icon = "/eccoserv/my-collection/icons/ecco-songs-of-time.jpg";
+
+node = container.addNode('', MyCollectionId);
+node.name = "Ecco PC Comix Zone Blue";
+node.icon = "/eccoserv/my-collection/icons/ecco-pc-comix-zone-blue.jpg";
+
+node = container.addNode('', MyCollectionId);
+node.name = "Ecco PC Tuneland";
+node.icon = "/eccoserv/my-collection/icons/ecco-pc-tuneland-packard-bell.jpg";
+
+node = container.addNode('', MyCollectionId);
+node.name = "Ecco PC";
+node.icon = "/eccoserv/my-collection/icons/ecco-pc-jewel-case.jpg";
+
+node = container.addNode('', MyCollectionId);
+node.name = "Ecco PC Comix Zone Red";
+node.icon = "/eccoserv/my-collection/icons/ecco-pc-comix-zone-packard-bell.jpg";
+
+node = container.addNode('', MyCollectionId);
+node.name = "Ecco DOTF Dreamcast White";
+node.icon = "/eccoserv/my-collection/icons/ecco-dotf-dreamcast-white.jpg";
+
+node = container.addNode('', MyCollectionId);
+node.name = "Ecco DOTF Dreamcast White";
+node.icon = "/eccoserv/my-collection/icons/ecco-dotf-dreamcast-magazine.jpg";
+
+
 
 const EccoId = ++id;
 

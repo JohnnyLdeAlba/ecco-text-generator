@@ -168,7 +168,7 @@ export const GalleryGroup = ({
 
       { galleryItems.map(galleryItem => {
 
-          if (galleryItem.placeholder)
+          if (galleryItem.properties.placeholder)
             return <GalleryHR key={ galleryItem.uniqueId } galleryItem={ galleryItem} />;
           else
             return <GalleryItem key={ galleryItem.uniqueId } galleryItem={ galleryItem } />;
