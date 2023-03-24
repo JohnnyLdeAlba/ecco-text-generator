@@ -1,3 +1,5 @@
+
+
 .pixelated {
   image-rendering: pixelated;
 }
@@ -58,6 +60,19 @@
 
 .mui-darksea .MuiTooltip-arrow {
   color: #111a28;
+}
+
+.mui-darksea .MuiSlider-thumb {
+  background-color: #1d468a;
+}
+
+.mui-darksea .MuiSlider-rail {
+  background-color: #1d468a;
+}
+
+.mui-darksea .MuiSlider-track {
+  border-color: transparent;
+  background-color: #1d468a;
 }
 
 .background-darksea {

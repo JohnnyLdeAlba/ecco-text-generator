@@ -13,6 +13,10 @@ import { ProgmaContext, useProgma } from "../../com/Progma";
 
 import { container } from "../../com/EccoText/menuItemsDB";
 import { Toolbar } from "../../com/EccoText/Toolbar";
+import { t_node } from "../../lib/node-lib";
+
+import Slider from '@mui/material/Slider';
+
 
 export const Container = ({ children }) => {
 
@@ -41,7 +45,6 @@ export const Index = () => {
     container: container,
     parentHash: "home" 
   });
-
 
   return (
     <Layout>
@@ -77,9 +80,166 @@ export const Index = () => {
         </div>
       </div>
           <Toolbar />
+
+<div className={`flex-1 sm:mx-auto sm:w-[600px] flex flex-row sm:items-start items-end sm:rounded-lg bg-[#0e1d35]`}>
+
+  <div className={`p-2 flex justify-end flex-col`}>
+
+    <div className={`px-4`}> 
+    <Slider classes={{ root: "mui-darksea" }} aria-label="Volume" value={ canvas.waveformIndex } max={ 255 } onChange={ (event, value) => canvas.setWaveformIndex(value) } />
+    </div>
+    <KeyboardRow galleryItems={ [] } /> 
+  </div>
+  <div>...</div>
+
+
+</div>
       </Container>
     </Layout>
   )
+}
+
+const KeyboardItem = ({ galleryItem = null }) => {
+
+  return (
+    <div className={`
+      button
+      flex flex-row
+      items-center justify-center
+      mx-1 w-[30px] h-[30px]
+      rounded-md
+      bg-[#1d468a]
+      font-medium
+      text-lg
+    `}>
+     { galleryItem.name }
+    </div>
+  );
+}
+
+const KeyboardRow = ({  galleryItems = [] }) => {
+
+  galleryItems = [];
+  const galleryRows = [];
+
+  let rows = [
+    "!¡?¿\'“”;:-",
+    "QWERTYUIOP",
+    "ASDFGHJKL",
+    ",ZXCVBNM.",
+  ];
+
+/*
+  rows = [
+    "123",
+    "456",
+    "789",
+    "0"
+  ];
+
+  rows = [
+    "あぁかさたな",
+    "いぃきしちに",
+    "うぅくすつぬ",
+    "えぇけせてね",
+    "おぉこそとの",
+    "ゔっん"
+  ];
+
+  rows = [
+    "はまやゃら",
+    "ひみり",
+    "ふむゆゅる",
+    "へめれ",
+    "ほもよょろ",
+    "ーゝゞ、。" 
+  ];
+
+  rows = [
+    "わがざだばぱ",
+    "ゐぎじぢびぴ",
+    "ぐずづぶぷ",
+    "ゑげぜでべぺ",
+    "をごぞどぼぽ"
+  ];
+
+  rows = [
+    "アァカサタナ",
+    "イィキシチニ",
+    "ウゥクスツヌ",
+    "エェケセテネ",
+    "オォコソトノ",
+    "ヴッン"
+  ];
+
+  rows = [
+    "ハマヤャラ",
+    "ヒミリ",
+    "フムユュル",
+    "ヘメレ",
+    "ホモヨョロ",
+    "・ーヽヾ、。" 
+  ];
+
+  rows = [
+    "ワガザダバパ",
+    "ヰギジヂビピ",
+    "グズヅブプ",
+    "ヱゲゼデベペ",
+    "ヲゴゾドボポ"
+  ];
+
+  rows = [
+    "ÀÈÌÒÙÁÉÍÓÚ",
+    "ȀȄȈȌȔÄËÏÖÜ",
+    "ÃẼĨÕŨÂÊÎÔÛ",
+    "ŇÇÐÞÆ"
+  ];
+
+  rows = [
+    "АБВГДЕЁЖЗ",
+    "ИЙКЛМНОПР",
+    "СТУФХЦЧШЩ",
+    "ЪЫЬЭЮЯ"
+  ];
+*/
+  for (const row of rows) {
+
+    const galleryItems = [];
+
+    for (let index = 0; index < row.length; index++) {
+
+      const galleryItem = new t_node();
+
+      galleryItem.name = row.charAt(index);
+      galleryItems.push(galleryItem);
+    }
+
+    galleryRows.push(galleryItems);
+  }
+
+  return (
+    <div className={`p-2 flex-1 flex justify-end flex-col`}>
+      { galleryRows.map(galleryItems =>
+        <KeyboardGroup galleryItems={ galleryItems } />) }
+    </div>
+  );
+}
+
+
+
+const KeyboardGroup = ({  galleryItems = [] }) => {
+
+  return (
+    <div className={`
+      flex flex-row
+      items-center justify-center
+      py-1`}>
+      { galleryItems.map(galleryItem =>
+          <KeyboardItem galleryItem={ galleryItem } />
+      )}
+    </div>
+  );
 }
 
 export default Index;

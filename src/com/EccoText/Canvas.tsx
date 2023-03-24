@@ -219,6 +219,13 @@ class t_canvas extends t_hook {
     this.plotter.process();
   }
 
+  setWaveformIndex(value) {
+
+    console.log(value);
+    this.waveformIndex = value;
+    this.commit();
+  }
+
   render() {
 
     this.plotter.render();
@@ -286,16 +293,9 @@ class t_canvas extends t_hook {
           break;
         }
 
-        case "Enter": {
-
-          this.text+= '\n';
-          this.cursorPosition = this.text.length;
-          break; 
-        }
-
         default: {
 
-          const char = this.font.get(event.key);
+          const char = this.font.get(event.key == "Enter" ? '\n' : event.key );
           if (!char)
             return;
 
