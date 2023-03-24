@@ -1,4 +1,6 @@
-
+.disable-selection {
+  user-select: none;
+}
 
 .pixelated {
   image-rendering: pixelated;

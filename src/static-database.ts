@@ -124,6 +124,22 @@ node = container.addNode('', MyCollectionId);
 node.name = "Ecco DOTF Dreamcast White";
 node.icon = "/eccoserv/my-collection/icons/ecco-dotf-dreamcast-magazine.jpg";
 
+node = container.addNode('', MyCollectionId);
+node.name = "Ecco PC Big Box";
+node.icon = "/eccoserv/my-collection/icons/ecco-pc-big-box.jpg";
+
+node = container.addNode('', MyCollectionId);
+node.name = "Ecco PC Europe Big Box";
+node.icon = "/eccoserv/my-collection/icons/ecco-pc-eur-big-box.jpg";
+
+node = container.addNode('', MyCollectionId);
+node.name = "Sega Lifeguard Potential";
+node.icon = "/eccoserv/my-collection/icons/sega-life-guard-potential.jpg";
+
+node = container.addNode('', MyCollectionId);
+node.name = "Ecco CD Japanese";
+node.icon = "/eccoserv/my-collection/icons/ecco-cd-jp.jpg";
+
 
 
 const EccoId = ++id;

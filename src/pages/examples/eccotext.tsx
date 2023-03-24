@@ -65,7 +65,7 @@ export const Index = () => {
             <Canvas />
           </div>
 
-          <div className={`hidden md:flex flex-col overflow-y-auto pl-4 w-[240px] sm:h-[450px] 2xl:h-[500px]`}>
+          <div className={`hidden md:flex flex-col overflow-y-auto pl-4 w-[240px] sm:h-[425px] 2xl:h-[500px]`}>
 
             <div className={`flex-1 flex flex-col overflow-y-auto rounded-lg h-full ${ theme.card }`}>
               <div className={`flex flex-col px-3 py-2 font-medium text-sm ${ theme.cardHeader }`}>
@@ -105,11 +105,15 @@ const Keyboard = () => {
 
   return (
     <div className={`
-      items-end sm:items-start justify-center
+      disable-selection
+      flex-1 sm:flex-none
+      items-center sm:items-start
       sm:mx-auto sm:w-fit
       sm:rounded-lg
-      flex-1 sm:flex-none flex flex-row
-      p-[2px] bg-[#0e1d35]`}>
+      flex flex-row
+      justify-center
+      p-[3px]
+      bg-[#0e1d35]`}>
       <div className={`
         flex flex-col
         items-center justify-center
