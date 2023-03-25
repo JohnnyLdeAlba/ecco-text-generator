@@ -140,7 +140,49 @@ node = container.addNode('', MyCollectionId);
 node.name = "Ecco CD Japanese";
 node.icon = "/eccoserv/my-collection/icons/ecco-cd-jp.jpg";
 
+node = container.addNode('', MyCollectionId);
+node.name = "Ecco the Dolphin CD";
+node.icon = "/eccoserv/my-collection/icons/ecco-cd.jpg";
 
+node = container.addNode('', MyCollectionId);
+node.name = "Ecco 2: The Tides of Time CD";
+node.icon = "/eccoserv/my-collection/icons/ecco-2-cd.jpg";
+
+node = container.addNode('', MyCollectionId);
+node.name = "Ecco Pocket Arcade";
+node.icon = "/eccoserv/my-collection/icons/ecco-pocket-arcade.jpg";
+
+node = container.addNode('', MyCollectionId);
+node.name = "Ecco Pocket Arcade Blue";
+node.icon = "/eccoserv/my-collection/icons/ecco-pocket-arcade-blue.jpg";
+
+node = container.addNode('', MyCollectionId);
+node.name = "Ecco Mega Drive Brazil";
+node.icon = "/eccoserv/my-collection/icons/ecco-mega-drive-br.jpg";
+
+node = container.addNode('', MyCollectionId);
+node.name = "Ecco 2 Mega Drive Brazil";
+node.icon = "/eccoserv/my-collection/icons/ecco-2-mega-drive-br.jpg";
+
+node = container.addNode('', MyCollectionId);
+node.name = "Ecco Jr. Pico Japanese";
+node.icon = "/eccoserv/my-collection/icons/ecco-jr-pico-jp.jpg";
+
+node = container.addNode('', MyCollectionId);
+node.name = "Ecco 2 Master System Brazil";
+node.icon = "/eccoserv/my-collection/icons/ecco-2-master-system-br.jpg";
+
+node = container.addNode('', MyCollectionId);
+node.name = "Ecco 2 Master System Brazil Repo";
+node.icon = "/eccoserv/my-collection/icons/ecco-2-master-system-br-repo.jpg";
+
+node = container.addNode('', MyCollectionId);
+node.name = "Ecco 2 CD Europe";
+node.icon = "/eccoserv/my-collection/icons/ecco-2-cd-eur.jpg";
+
+node = container.addNode('', MyCollectionId);
+node.name = "Ecco Master System Brazil";
+node.icon = "/eccoserv/my-collection/icons/ecco-master-system-br.jpg";
 
 const EccoId = ++id;
 

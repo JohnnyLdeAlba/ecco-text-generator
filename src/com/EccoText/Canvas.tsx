@@ -238,8 +238,6 @@ class t_canvas extends t_hook {
 
     window.addEventListener("keydown", event => {
 
-      console.log(event.key);
-
       if (this.cursorPosition < 0)
         this.cursorPosition = this.text.length;
 
@@ -315,6 +313,8 @@ class t_canvas extends t_hook {
           break;
         }
       }
+
+      event.preventDefault();
     });
 
     this.state = "initPending";

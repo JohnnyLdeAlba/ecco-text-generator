@@ -22,7 +22,7 @@ import VerticalAlignCenterIcon from '@mui/icons-material/VerticalAlignCenter';
 import VerticalAlignTopIcon from '@mui/icons-material/VerticalAlignTop';
 import CameraAltIcon from '@mui/icons-material/CameraAlt';
 import ContentCutIcon from '@mui/icons-material/ContentCut';
-import GifBoxIcon from '@mui/icons-material/GifBox';
+import GifIcon from '@mui/icons-material/Gif';
 import KeyboardIcon from '@mui/icons-material/Keyboard';
 import CopyAllIcon from '@mui/icons-material/CopyAll';
 import ContentPasteIcon from '@mui/icons-material/ContentPaste';
@@ -73,7 +73,7 @@ export const Toolbar = ({
       <SmallTipButton
         disabled={ false }
         tip={ onGoBack ? "Go Back" : '' }
-        icon={ <GifBoxIcon fontSize="small" /> }
+        icon={ <GifIcon fontSize="small" /> }
         rounded={ "right" }
         className={`flex pr-3 w-fit mr-4`}
         onClick={ onGoBack } />
