@@ -9,7 +9,7 @@ import { t_node } from "../../lib/node-lib";
 import { CanvasContext } from "./Canvas";
 import { ThemeContext } from "../../com/theme";
 
-const EnglishLayout = () => {
+const EnglishLayout = ({ disable = false }) => {
 
   const alpha = [
     "!¡?¿\'“”;:-",
@@ -28,17 +28,17 @@ const EnglishLayout = () => {
   return (
     <div className={`flex flex-row`}>
       <div>
-        <KeyboardRow charRows={ alpha } />
-        <ControlRow />       
+        <KeyboardRow disable={ disable } charRows={ alpha } />
+        <ControlRow disable={ disable } />       
       </div>
       <div className={`hidden xl:block ml-1`}>
-        <KeyboardRow charRows={ numeric } />
+        <KeyboardRow disable={ disable } charRows={ numeric } />
       </div>
     </div>
   );
 }
 
-const NumbersLayout = () => {
+const NumbersLayout = ({ disable = false }) => {
 
   const numeric = [
     "123",
@@ -49,13 +49,13 @@ const NumbersLayout = () => {
 
   return (
     <div className={`flex flex-col`}>
-      <KeyboardRow charRows={ numeric } />
-      <ControlRow />       
+      <KeyboardRow disable={ disable } charRows={ numeric } />
+      <ControlRow disable={ disable } />       
     </div>
   );
 }
 
-const IntlLayout = () => {
+const IntlLayout = ({ disable = false }) => {
 
   const international = [
     "ÀÈÌÒÙÁÉÍÓÚ",
@@ -66,13 +66,13 @@ const IntlLayout = () => {
 
   return (
     <div className={`flex flex-col`}>
-      <KeyboardRow charRows={ international } />
-      <ControlRow />       
+      <KeyboardRow disable={ disable } charRows={ international } />
+      <ControlRow disable={ disable } />       
     </div>
   );
 }
 
-const RussianLayout = () => {
+const RussianLayout = ({ disable = false }) => {
 
   const russian = [
     "АБВГДЕЁЖЗ",
@@ -83,8 +83,8 @@ const RussianLayout = () => {
 
   return (
     <div className={`flex flex-col`}>
-      <KeyboardRow charRows={ russian } />
-      <ControlRow />       
+      <KeyboardRow disable={ disable } charRows={ russian } />
+      <ControlRow disable={ disable } />       
     </div>
   );
 }
@@ -150,7 +150,7 @@ const HiraganaLayout = ({ disable = false }) => {
 
       <div className={`flex flex-row`}>
         <div className={`flex flex-row items-start`}>
-          <KeyboardRow charRows={ getLayout(visible) } />
+          <KeyboardRow disable={ disable }  charRows={ getLayout(visible) } />
         </div>
 
         <div className={`flex-1 flex flex-col items-end`}>
@@ -188,7 +188,7 @@ const HiraganaLayout = ({ disable = false }) => {
         </div>
       </div>
 
-      <ControlRow />       
+      <ControlRow disable={ disable } />       
     </div>
   );
 }
@@ -466,7 +466,7 @@ const KeyboardRow = ({ disable = false, charRows = [] }) => {
   );
 }
 
-export const Keyboard = ({ layout = "engKeyboard" }) => {
+export const Keyboard = ({ disable = false, layout = "engKeyboard" }) => {
 
   const theme = useContext(ThemeContext);
 
@@ -486,12 +486,12 @@ export const Keyboard = ({ layout = "engKeyboard" }) => {
         flex flex-col
         items-center justify-center
         py-[3px]`}>
-        { layout == "engKeyboard" ? <EnglishLayout /> : null }
-        { layout == "numKeyboard" ? <NumbersLayout /> : null }
-        { layout == "intlKeyboard" ? <IntlLayout /> : null }
-        { layout == "rusKeyboard" ? <RussianLayout /> : null }
-        { layout == "hiraKeyboard" ? <HiraganaLayout /> : null }
-        { layout == "kataKeyboard" ? <KatakanaLayout /> : null }
+        { layout == "engKeyboard" ? <EnglishLayout disable={ disable } /> : null }
+        { layout == "numKeyboard" ? <NumbersLayout disable={ disable } /> : null }
+        { layout == "intlKeyboard" ? <IntlLayout disable={ disable } /> : null }
+        { layout == "rusKeyboard" ? <RussianLayout disable={ disable } /> : null }
+        { layout == "hiraKeyboard" ? <HiraganaLayout disable={ disable } /> : null }
+        { layout == "kataKeyboard" ? <KatakanaLayout disable={ disable } /> : null }
       </div>
     </div>
   )
