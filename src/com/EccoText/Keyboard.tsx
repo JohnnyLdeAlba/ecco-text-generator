@@ -41,8 +41,10 @@ const EnglishLayout = () => {
 const NumbersLayout = () => {
 
   const numeric = [
-    "12345",
-    "67890",
+    "123",
+    "456",
+    "789",
+    "0"
   ];
 
   return (
@@ -87,9 +89,9 @@ const RussianLayout = () => {
   );
 }
 
-const HiraganaLayout = () => {
+const HiraganaLayout = ({ disable = false }) => {
 
-  const [ visible, show ] = useState("hiraganaB");
+  const [ visible, show ] = useState("hiraganaA");
 
   const hiraganaA = [
     "あぁかさたな",
@@ -97,75 +99,93 @@ const HiraganaLayout = () => {
     "うぅくすつぬ",
     "えぇけせてね",
     "おぉこそとの",
-    "ゔっん"
   ];
 
   const hiraganaB = [
     "はまやゃら",
-    "ひみり",
+    "ひみ**り",
     "ふむゆゅる",
-    "へめれ",
+    "へめ**れ",
     "ほもよょろ",
-    "ーゝゞ" 
   ];
 
   const hiraganaC = [
     "わがざだばぱ",
     "ゐぎじぢびぴ",
-    "ぐずづぶぷ",
+    "*ぐずづぶぷ",
     "ゑげぜでべぺ",
     "をごぞどぼぽ",
-    "、。"
   ];
+
+  const hiraganaD = [
+    "ゔっん",
+    "ーゝゞ",
+    "、。*",
+    "*",
+    "*"
+  ];
+
+  const getLayout = layout => {
+
+    switch (layout) {
+
+      case "hiraganaA":
+        return hiraganaA;
+
+      case "hiraganaB":
+        return hiraganaB;
+
+      case "hiraganaC":
+        return hiraganaC;
+
+      case "hiraganaD":
+        return hiraganaD;
+    }
+
+    return  [];
+  }
 
   return (
     <div className={`flex flex-col`}>
-      <div className={`
-        flex-row justify-center
-        mx-auto w-fit
-        ${ visible == "hiraganaA" ? "flex" : "hidden" }
-        `}>
-        <KeyboardRow charRows={ hiraganaA } />
-        <ControlKey
-          width="stretch"
-          className={`m-[3px]`}
-          onClick={ () => show("hiraganaB") }>
-          はま → 
-        </ControlKey>
-      </div>
 
-      <div className={`
-        flex-row justify-center
-        mx-auto w-fit
-        ${ visible == "hiraganaB" ? "flex" : "hidden" }
-        `}>
-        <ControlKey
-          width="stretch"
-          className={`m-[3px]`}
-          onClick={ () => show("hiraganaA") }>
-          ← あぁ
-        </ControlKey>
-        <KeyboardRow charRows={ hiraganaB } />
-        <ControlKey
-          width="stretch"
-          className={`m-[3px]`}
-          onClick={ () => show("hiraganaC") }>
-          わが → 
-        </ControlKey>
-      </div>
+      <div className={`flex flex-row`}>
+        <div className={`flex flex-row items-start`}>
+          <KeyboardRow charRows={ getLayout(visible) } />
+        </div>
 
-      <div className={`
-        flex-row justify-center
-        mx-auto w-fit
-        ${ visible == "hiraganaC" ? "flex" : "hidden" }
-        `}>
-        <ControlKey
-          width="stretch"
-          className={`m-[3px]`}
-          onClick={ () => show("hiraganaB") }>
-          ← わが
-        </ControlKey>
-        <KeyboardRow charRows={ hiraganaC } />
+        <div className={`flex-1 flex flex-col items-end`}>
+          <ControlKey
+            disable={ disable || visible == "hiraganaA" }
+            width="stretch"
+            className={`m-[3px]`}
+            onClick={ () => show("hiraganaA") }>
+            あぁか 
+          </ControlKey>
+
+          <ControlKey
+            disable={ disable || visible == "hiraganaB" }
+            width="stretch"
+            className={`m-[3px]`}
+            onClick={ () => show("hiraganaB") }>
+            はまや
+          </ControlKey>
+
+          <ControlKey
+            disable={ disable || visible == "hiraganaC" }
+            width="stretch"
+            className={`m-[3px]`}
+            onClick={ () => show("hiraganaC") }>
+            わがざ
+          </ControlKey>
+
+          <ControlKey
+            disable={ disable || visible == "hiraganaD" }
+            width="stretch"
+            className={`m-[3px]`}
+            onClick={ () => show("hiraganaD") }>
+            ゔっん
+          </ControlKey>
+        </div>
       </div>
 
       <ControlRow />       
@@ -173,93 +193,116 @@ const HiraganaLayout = () => {
   );
 }
 
-const KatakanaLayout = () => {
+const KatakanaLayout = ({ disable = false }) => {
 
-  const [ visible, show ] = useState("katakanaB");
+  const [ visible, show ] = useState("katakanaA");
 
   const katakanaA = [
     "アァカサタナ",
     "イィキシチニ",
     "ウゥクスツヌ",
     "エェケセテネ",
-    "オォコソトノ",
-    "ヴッン"
+    "オォコソトノ"
   ];
 
   const katakanaB = [
     "ハマヤャラ",
-    "ヒミリ",
+    "ヒミ**リ",
     "フムユュル",
-    "ヘメレ",
-    "ホモヨョロ",
-    "・ーヽヾ" 
+    "ヘメ**レ",
+    "ホモヨョロ"
   ];
 
   const katakanaC = [
     "ワガザダバパ",
     "ヰギジヂビピ",
-    "グズヅブプ",
+    "*グズヅブプ",
     "ヱゲゼデベペ",
-    "ヲゴゾドボポ",
-    "、。"
+    "ヲゴゾドボポ"
   ];
+
+  const katakanaD = [
+    "ヴッン*",
+    "・ーヽヾ",
+    "、。**",
+    "*",
+    "*"
+  ];
+
+  const getLayout = layout => {
+
+    switch (layout) {
+
+      case "katakanaA":
+        return katakanaA;
+
+      case "katakanaB":
+        return katakanaB;
+
+      case "katakanaC":
+        return katakanaC;
+
+      case "katakanaD":
+        return katakanaD;
+    }
+
+    return  [];
+  }
 
   return (
     <div className={`flex flex-col`}>
-      <div className={`
-        flex-row justify-center
-        mx-auto w-fit
-        ${ visible == "katakanaA" ? "flex" : "hidden" }
-        `}>
-        <KeyboardRow charRows={ katakanaA } />
-        <ControlKey
-          width="stretch"
-          className={`m-[3px]`}
-          onClick={ () => show("katakanaB") }>
-          ハマ → 
-        </ControlKey>
+
+      <div className={`flex flex-row`}>
+        <div className={`flex flex-row items-start`}>
+          <KeyboardRow disable={ disable } charRows={ getLayout(visible) } />
+        </div>
+
+        <div className={`flex-1 flex flex-col items-end`}>
+          <ControlKey
+            disable={ disable || visible == "katakanaA" }
+            width="stretch"
+            className={`m-[3px]`}
+            onClick={ () => show("katakanaA") }>
+            アァカ 
+          </ControlKey>
+
+          <ControlKey
+            disable={ disable || visible == "katakanaB" }
+            width="stretch"
+            className={`m-[3px]`}
+            onClick={ () => show("katakanaB") }>
+            ハマヤ
+          </ControlKey>
+
+          <ControlKey
+            disable={ disable || visible == "katakanaC" }
+            width="stretch"
+            className={`m-[3px]`}
+            onClick={ () => show("katakanaC") }>
+            ワガザ
+          </ControlKey>
+
+          <ControlKey
+            disable={ disable || visible == "katakanaD" }
+            width="stretch"
+            className={`m-[3px]`}
+            onClick={ () => show("katakanaD") }>
+            ヴッン
+          </ControlKey>
+        </div>
       </div>
 
-      <div className={`
-        flex-row justify-center
-        mx-auto w-fit
-        ${ visible == "katakanaB" ? "flex" : "hidden" }
-        `}>
-        <ControlKey
-          width="stretch"
-          className={`m-[3px]`}
-          onClick={ () => show("katakanaA") }>
-          ← アァ
-        </ControlKey>
-        <KeyboardRow charRows={ katakanaB } />
-        <ControlKey
-          width="stretch"
-          className={`m-[3px]`}
-          onClick={ () => show("katakanaC") }>
-          ワガ → 
-        </ControlKey>
-      </div>
-
-      <div className={`
-        flex-row justify-center
-        mx-auto w-fit
-        ${ visible == "katakanaC" ? "flex" : "hidden" }
-        `}>
-        <ControlKey
-          width="stretch"
-          className={`m-[3px]`}
-          onClick={ () => show("katakanaB") }>
-          ← ハマ
-        </ControlKey>
-        <KeyboardRow charRows={ katakanaC } />
-      </div>
-
-      <ControlRow />       
+      <ControlRow disable={ disable } />       
     </div>
   );
 }
 
-const ControlKey = ({ width, onClick, className, children }) => {
+const ControlKey = ({
+  disable = false,
+  width,
+  className,
+  onClick,
+  children }) => {
 
   const theme = useContext(ThemeContext);
 
@@ -271,23 +314,23 @@ const ControlKey = ({ width, onClick, className, children }) => {
   return (
     <div className={`
       h-[30px] xs:h-[35px] sm:h-[40px]
-      button
       flex flex-row
       items-center justify-center
       mx-[3px] px-3
       rounded-md
       font-medium
       text-xs
+      ${ disable ? "disabled" : "button" }
       ${ width }
       ${ className }
       ${ theme.eccoText.keyboardItem }
-      `} onClick={ onClick }>
+      `} onClick={ disable ? null : onClick }>
       { children }
     </div>
   );
 }
 
-const ControlRow = () => {
+const ControlRow = ({ disable = false }) => {
 
   const canvas = useContext(CanvasContext);
 
@@ -296,11 +339,12 @@ const ControlRow = () => {
       flex flex-row
       items-center justify-center
       py-[3px]`}>
-      <ControlKey onClick={ () => canvas.handleInput("ArrowLeft") }>
+      <ControlKey disable={ disable }
+        onClick={ () => canvas.handleInput("ArrowLeft") }>
         <ArrowLeftIcon />
       </ControlKey>
 
-      <ControlKey width="stretch">
+      <ControlKey disable={ disable } width="stretch">
         <BackspaceIcon fontSize="small"
           onClick={ () => canvas.handleInput("Backspace") }/>
       </ControlKey>
@@ -308,7 +352,6 @@ const ControlRow = () => {
       <div className={`
         w-[140px] xs:w-[180px] sm:w-[200px]
         h-[30px] xs:h-[35px] sm:h-[40px]
-        button
         flex flex-row
         items-center justify-center
         mx-[3px]
@@ -316,35 +359,51 @@ const ControlRow = () => {
         bg-[#1d468a]
         font-medium
         text-lg
+        ${ disable ? "disabled" : "button" }
       `} onClick={ () => canvas.handleInput(' ') } />
 
-      <ControlKey width="stretch">
+      <ControlKey disable={ disable } width="stretch">
         <KeyboardReturnIcon fontSize="small"
           onClick={ () => canvas.handleInput("Enter") } />
       </ControlKey>
 
-      <ControlKey onClick={ () => canvas.handleInput("ArrowRight") }>
+      <ControlKey disable={ disable }
+        onClick={ () => canvas.handleInput("ArrowRight") }>
         <ArrowRightIcon />
       </ControlKey>
     </div>
   );
 }
 
-const KeyboardItem = ({ galleryItem = null }) => {
-
-  const theme = useContext(ThemeContext);
+const NullItem = () => {
 
   return (
     <div className={`
       w-[30px] xs:w-[40px] sm:w-[50px]
       h-[30px] xs:h-[35px] sm:h-[40px]
-      button
+      mx-[3px]
+    `}/>
+  );
+}
+
+const KeyboardItem = ({ disable = false, galleryItem = null }) => {
+
+  const theme = useContext(ThemeContext);
+
+  if (galleryItem.hash == '*')
+    return <NullItem />
+
+  return (
+    <div className={`
+      w-[30px] xs:w-[40px] sm:w-[50px]
+      h-[30px] xs:h-[35px] sm:h-[40px]
       flex flex-row
       items-center justify-center
       mx-[3px]
       rounded-md
       font-medium
       text-lg
+      ${ disable ? "disabled" : "button" }
       ${ theme.eccoText.keyboardItem }
     `} onClick={ galleryItem.onClick }>
      { galleryItem.name }
@@ -352,7 +411,7 @@ const KeyboardItem = ({ galleryItem = null }) => {
   );
 }
 
-const KeyboardGroup = ({  galleryItems = [] }) => {
+const KeyboardGroup = ({ disable = false, galleryItems = [] }) => {
 
   return (
     <div className={`
@@ -362,13 +421,14 @@ const KeyboardGroup = ({  galleryItems = [] }) => {
       { galleryItems.map(galleryItem =>
           <KeyboardItem
             key={ galleryItem.uniqueId }
+            disable={ disable }
             galleryItem={ galleryItem } />
       )}
     </div>
   );
 }
 
-const KeyboardRow = ({  charRows = [] }) => {
+const KeyboardRow = ({ disable = false, charRows = [] }) => {
 
   let uniqueId = 9000;
 
@@ -382,10 +442,11 @@ const KeyboardRow = ({  charRows = [] }) => {
     for (let index = 0; index < charRow.length; index++) {
 
       const galleryItem = new t_node();
+      const hash = charRow.charAt(index);
 
       galleryItem.uniqueId = uniqueId++; 
-      galleryItem.name = charRow.charAt(index);
-      galleryItem.hash = galleryItem.name;
+      galleryItem.name = hash;
+      galleryItem.hash = hash;
       galleryItem.onClick = () => canvas.handleInput(galleryItem.hash);
 
       galleryItems.push(galleryItem);
@@ -397,7 +458,10 @@ const KeyboardRow = ({  charRows = [] }) => {
   return (
     <div className={`flex-1 flex justify-end flex-col`}>
       { galleryRows.map(galleryItems =>
-        <KeyboardGroup key={ uniqueId++ } galleryItems={ galleryItems } />) }
+        <KeyboardGroup
+          key={ uniqueId++ }
+          disable={ disable }
+          galleryItems={ galleryItems } />) }
     </div>
   );
 }

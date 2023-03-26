@@ -34,15 +34,8 @@ import { CanvasContext } from "./Canvas";
 import { ThemeContext } from "../theme";
 
 export const Toolbar = ({
-  page = 0,
-  showDetailsClosed = false,
-  onGoBack = true,
-  onUnselect,
-  onRemoveSelected,
-  onShowDetails,
-  onToggleHidden,
-  onNextPage,
-  onPrevPage
+  disabled = false,
+  onGoBack
 }) => {
 
   const canvas = useContext(CanvasContext);
@@ -50,74 +43,83 @@ export const Toolbar = ({
 
   return (
     <div className={`
-      flex flex-col sm:flex-row p-2 sm:p-4 justify-center
+      sm:flex-row p-2 sm:p-4
+      flex flex-col justify-center
       ${ theme.eccoText.toolbar }
     `}>
 
       <div className={`flex flex-row`}>
 
-      <div className={`flex-1 sm:flex-none flex flex-row`}>
-      <SmallTipButton
-        disabled={ false }
-        tip={ onGoBack ? "Go Back" : '' }
-        icon={ <LibraryAddIcon fontSize="small" /> }
-        rounded={ "left" }
-        className={`flex pl-3 w-fit`}
-        onClick={ onGoBack } />
-      <SmallTipButton
-        disabled={ false }
-        tip={ onGoBack ? "Go Back" : '' }
-        icon={ <CameraAltIcon fontSize="small" /> }
-        className={`flex w-fit`}
-        onClick={ onGoBack } />
-      <SmallTipButton
-        disabled={ false }
-        tip={ onGoBack ? "Go Back" : '' }
-        icon={ <GifIcon fontSize="small" /> }
-        rounded={ "right" }
-        className={`flex pr-3 w-fit mr-4`}
-        onClick={ onGoBack } />
-      </div>
+        <div className={`flex-1 sm:flex-none flex flex-row`}>
+          <SmallTipButton
+            disabled={ disabled }
+            tip={ "Open Menu" }
+            icon={ <LibraryAddIcon fontSize="small" /> }
+            rounded={ "left" }
+            className={`flex md:hidden pl-3 w-fit`}
+            onClick={ () => {} } />
 
-      <div className={`flex flex-row`}>
-      <SmallTipButton
-        disabled={ onGoBack ? false : true }
-        tip={ "Align Left" }
-        icon={ <FormatAlignLeftIcon fontSize="small" /> }
-        rounded={ "left" }
-        className={`pl-3`}
-        onClick={ () => canvas.setAlign("left") } />
+          <SmallTipButton
+            disabled={ disabled }
+            tip={ "Take Snapshot" }
+            icon={ <CameraAltIcon fontSize="small" /> }
+            className={`flex md:hidden w-fit`}
+            onClick={ () => {} } />
 
-      <SmallTipButton
-        disabled={ onGoBack ? false : true }
-        tip={ "Align Center" }
-        icon={ <FormatAlignCenterIcon fontSize="small" /> }
-        onClick={ () => canvas.setAlign("center") } />
+          <SmallTipButton
+            disabled={ disabled }
+            tip={ "Take Snapshot" }
+            icon={ <CameraAltIcon fontSize="small" /> }
+            rounded={ "left" }
+            className={`hidden md:flex pl-3 w-fit`}
+            onClick={ () => {} } />
 
-      <SmallTipButton
-        disabled={ onGoBack ? false : true }
-        tip={ "Align Right" }
-        icon={ <FormatAlignRightIcon fontSize="small" /> }
-        onClick={ () => canvas.setAlign("right") } />
+          <SmallTipButton
+            disabled={ disabled }
+            tip={ "Generate GIF" }
+            icon={ <GifIcon fontSize="small" /> }
+            rounded={ "right" }
+            className={`mr-4 pr-3 w-fit`}
+            onClick={ () => {} } />
+        </div>
 
-      <SmallTipButton
-        disabled={ onGoBack ? false : true }
-        tip={ "Align Top" }
-        icon={ <VerticalAlignTopIcon fontSize="small" /> }
-        onClick={ () => canvas.setVAlign("top") } />
-      <SmallTipButton
-        disabled={ onGoBack ? false : true }
-        tip={ "Align Middle" }
-        icon={ <VerticalAlignCenterIcon fontSize="small" /> }
-        onClick={ () => canvas.setVAlign("middle") } />
-      <SmallTipButton
-        disabled={ onGoBack ? false : true }
-        tip={ "Align Bottom" }
-        icon={ <VerticalAlignBottomIcon fontSize="small" /> }
-        rounded={ "right" }
-        className={`mr-0 sm:mr-4 pr-3`}
-        onClick={ () => canvas.setVAlign("bottom") } />
-      </div>
+        <div className={`flex flex-row`}>
+          <SmallTipButton
+            disabled={ disabled }
+            tip={ "Align Left" }
+            icon={ <FormatAlignLeftIcon fontSize="small" /> }
+            rounded={ "left" }
+            className={`pl-3`}
+            onClick={ () => canvas.setAlign("left") } />
+          <SmallTipButton
+            disabled={ disabled }
+            tip={ "Align Center" }
+            icon={ <FormatAlignCenterIcon fontSize="small" /> }
+            onClick={ () => canvas.setAlign("center") } />
+          <SmallTipButton
+            disabled={ disabled }
+            tip={ "Align Right" }
+            icon={ <FormatAlignRightIcon fontSize="small" /> }
+            onClick={ () => canvas.setAlign("right") } />
+
+          <SmallTipButton
+            disabled={ disabled }
+            tip={ "Align Top" }
+            icon={ <VerticalAlignTopIcon fontSize="small" /> }
+            onClick={ () => canvas.setVAlign("top") } />
+          <SmallTipButton
+            disabled={ disabled }
+            tip={ "Align Middle" }
+            icon={ <VerticalAlignCenterIcon fontSize="small" /> }
+            onClick={ () => canvas.setVAlign("middle") } />
+          <SmallTipButton
+            disabled={ disabled }
+            tip={ "Align Bottom" }
+            icon={ <VerticalAlignBottomIcon fontSize="small" /> }
+            rounded={ "right" }
+            className={`mr-0 sm:mr-4 pr-3`}
+            onClick={ () => canvas.setVAlign("bottom") } />
+        </div>
       </div>
 
       <div className={`flex flex-row pt-2 sm:pt-0`}>
@@ -160,28 +162,6 @@ export const Toolbar = ({
         onClick={ onGoBack } />
 
       </div>
-
-{/*
-      <div className={`hidden xl:flex flex-row`}>
-      <SmallTipButton
-        disabled={ onGoBack ? false : true }
-        tip={ onGoBack ? "Go Back" : '' }
-        title="Take Snapshot"
-        icon={ <div className={`mr-2`}><CameraAltIcon fontSize="small" /></div> }
-        rounded={ "left" }
-        className={`pl-3`}
-        onClick={ onGoBack } />
-
-      <SmallTipButton
-        disabled={ onGoBack ? false : true }
-        tip={ onGoBack ? "Go Back" : '' }
-        title="Generate GIF"
-        icon={ <div className={`mr-2`}><GifBoxIcon fontSize="small" /></div> }
-        rounded={ "right" }
-        className={`pr-3`}
-        onClick={ onGoBack } />
-      </div>
-*/}
     </div>
   );
 }
