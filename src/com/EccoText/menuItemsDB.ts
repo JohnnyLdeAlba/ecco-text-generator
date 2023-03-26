@@ -56,31 +56,37 @@ node.icon = "/icons/settings.png";
 node.orderId = 3;
 
 node = container.addNode("engKeyboard", RootId);
+node.type = "keyboardLayout";
 node.name = "English";
 node.icon = "/icons/settings.png";
 node.orderId = 4;
 
 node = container.addNode("numKeyboard", RootId);
+node.type = "keyboardLayout";
 node.name = "Numbers";
 node.icon = "/icons/settings.png";
 node.orderId = 4;
 
 node = container.addNode("rusKeyboard", RootId);
+node.type = "keyboardLayout";
 node.name = "Russian";
 node.icon = "/icons/settings.png";
 node.orderId = 7;
 
-node = container.addNode("intKeyboard", RootId);
+node = container.addNode("intlKeyboard", RootId);
+node.type = "keyboardLayout";
 node.name = "International";
 node.icon = "/icons/settings.png";
 node.orderId = 6;
 
 node = container.addNode("hiraKeyboard", RootId);
+node.type = "keyboardLayout";
 node.name = "Hiragana";
 node.icon = "/icons/settings.png";
 node.orderId = 8;
 
 node = container.addNode("kataKeyboard", RootId);
+node.type = "keyboardLayout";
 node.name = "Katakana";
 node.icon = "/icons/settings.png";
 node.orderId = 8;

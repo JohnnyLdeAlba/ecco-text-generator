@@ -13,7 +13,9 @@ import { ProgmaContext, useProgma } from "../../com/Progma";
 
 import { container } from "../../com/EccoText/menuItemsDB";
 import { Toolbar } from "../../com/EccoText/Toolbar";
+import { Keyboard } from "../../com/EccoText/Keyboard";
 import { t_node } from "../../lib/node-lib";
+import { t_hook } from "../../com/lib/hook";
 
 import CameraAltIcon from '@mui/icons-material/CameraAlt';
 import GifIcon from '@mui/icons-material/Gif';
@@ -42,10 +44,79 @@ export const Container = ({ children }) => {
   );
 }
 
+class t_ecco_text extends t_hook {
+
+  keyboardLayout;
+
+  constructor() {
+
+    super();
+
+    this.state = "init";
+    this.keyboardLayout = "numbersLayout";
+  }
+
+  set(params) {
+
+    const { refresh } = params;
+    this.refresh = refresh;
+  }
+
+  initialize(params) {
+
+    const { progma } = params;
+
+    progma.set("keyboardLayout",
+      galleryItem => this.onKBLayoutChange(galleryItem));
+  }
+
+  process(params) {
+
+    switch (this.state) {
+
+      case "init": {
+        this.initialize(params);
+        break;
+      }
+    }
+  }
+
+  setKBLayout(keyboardLayout) {
+
+    if (this.keyboardLayout == keyboardLayout)
+      return;
+
+    this.keyboardLayout = keyboardLayout;
+    this.refresh();
+  }
+
+  onKBLayoutChange(galleryItem) {
+    this.setKBLayout(galleryItem.hash);
+  }
+}
+
+const EccoTextContext = createContext(new t_ecco_text());
+
+export const useEccoText = ({ progma }) => {
+
+  const eccoText = useContext(EccoTextContext);
+  const [ serial, setSerial ] = useState(0);
+
+  eccoText.set({ refresh: () => setSerial(serial + 1) });
+
+  useEffect(() => {
+    eccoText.process({ progma: progma })
+  });
+
+  return eccoText;
+}
+
 export const Index = () => {
 
   const theme = useContext(ThemeContext);
+
   const progma = useProgma();
+  const eccoText = useEccoText({ progma: progma });
   const canvas = useCanvas({ progma: progma });
 
   const request = useRequestStatic({
@@ -89,249 +160,14 @@ export const Index = () => {
       </div>
           <Toolbar />
 
+      <div className={`hidden px-4 w-full`}> 
+        <Slider classes={{ root: "mui-darksea" }} aria-label="Volume" value={ canvas.waveformIndex } max={ 255 } onChange={ (event, value) => canvas.setWaveformIndex(value) } />
+      </div>
 
-    <div className={`hidden px-4 w-full`}> 
-    <Slider classes={{ root: "mui-darksea" }} aria-label="Volume" value={ canvas.waveformIndex } max={ 255 } onChange={ (event, value) => canvas.setWaveformIndex(value) } />
-    </div>
-
-    <Keyboard />
-
+      <Keyboard layout={ eccoText.keyboardLayout } />
       </Container>
     </Layout>
   )
-}
-
-const Keyboard = () => {
-
-  return (
-    <div className={`
-      disable-selection
-      flex-1 sm:flex-none
-      items-center sm:items-start
-      sm:mx-auto sm:w-fit
-      sm:rounded-lg
-      flex flex-row
-      justify-center
-      p-[3px]
-      bg-[#0e1d35]`}>
-      <div className={`
-        flex flex-col
-        items-center justify-center
-        py-[3px]`}>
-        <KeyboardRow galleryItems={ [] } />
-        <CommandRow />       
-      </div>
-    </div>
-  )
-
-}
-
-const KeyboardRow = ({  galleryItems = [] }) => {
-
-  galleryItems = [];
-  const galleryRows = [];
-
-  let rows = [
-    "!¡?¿\'“”;:-",
-    "QWERTYUIOP",
-    "ASDFGHJKL",
-    ",ZXCVBNM.",
-  ];
-
-/*
-  rows = [
-    "123",
-    "456",
-    "789",
-    "0"
-  ];
-
-  rows = [
-    "あぁかさたな",
-    "いぃきしちに",
-    "うぅくすつぬ",
-    "えぇけせてね",
-    "おぉこそとの",
-    "ゔっん"
-  ];
-
-  rows = [
-    "はまやゃら",
-    "ひみり",
-    "ふむゆゅる",
-    "へめれ",
-    "ほもよょろ",
-    "ーゝゞ、。" 
-  ];
-
-  rows = [
-    "わがざだばぱ",
-    "ゐぎじぢびぴ",
-    "ぐずづぶぷ",
-    "ゑげぜでべぺ",
-    "をごぞどぼぽ"
-  ];
-
-  rows = [
-    "アァカサタナ",
-    "イィキシチニ",
-    "ウゥクスツヌ",
-    "エェケセテネ",
-    "オォコソトノ",
-    "ヴッン"
-  ];
-
-  rows = [
-    "ハマヤャラ",
-    "ヒミリ",
-    "フムユュル",
-    "ヘメレ",
-    "ホモヨョロ",
-    "・ーヽヾ、。" 
-  ];
-
-  rows = [
-    "ワガザダバパ",
-    "ヰギジヂビピ",
-    "グズヅブプ",
-    "ヱゲゼデベペ",
-    "ヲゴゾドボポ"
-  ];
-
-  rows = [
-    "ÀÈÌÒÙÁÉÍÓÚ",
-    "ȀȄȈȌȔÄËÏÖÜ",
-    "ÃẼĨÕŨÂÊÎÔÛ",
-    "ŇÇÐÞÆ"
-  ];
-
-  rows = [
-    "АБВГДЕЁЖЗ",
-    "ИЙКЛМНОПР",
-    "СТУФХЦЧШЩ",
-    "ЪЫЬЭЮЯ"
-  ];
-*/
-
-  for (const row of rows) {
-
-    const galleryItems = [];
-
-    for (let index = 0; index < row.length; index++) {
-
-      const galleryItem = new t_node();
-
-      galleryItem.name = row.charAt(index);
-      galleryItems.push(galleryItem);
-    }
-
-    galleryRows.push(galleryItems);
-  }
-
-  return (
-    <div className={`flex-1 flex justify-end flex-col`}>
-      { galleryRows.map(galleryItems =>
-        <KeyboardGroup galleryItems={ galleryItems } />) }
-    </div>
-  );
-}
-
-const KeyboardItem = ({ galleryItem = null }) => {
-
-  return (
-    <div className={`
-      w-[30px] xs:w-[40px] sm:w-[50px]
-      h-[30px] xs:h-[35px] sm:h-[40px]
-      button
-      flex flex-row
-      items-center justify-center
-      mx-[3px]
-      rounded-md
-      bg-[#1d468a]
-      font-medium
-      text-lg
-    `}>
-     { galleryItem.name }
-    </div>
-  );
-}
-
-const KeyboardGroup = ({  galleryItems = [] }) => {
-
-  return (
-    <div className={`
-      flex flex-row
-      items-center justify-center
-      py-[3px]`}>
-      { galleryItems.map(galleryItem =>
-          <KeyboardItem galleryItem={ galleryItem } />
-      )}
-    </div>
-  );
-}
-
-const CommandButton = ({ width,  children }) => {
-
-  if (width == "stretch")
-    width = '';
-  else
-    width = "w-[30px] xs:w-[40px] sm:w-[50px]"; 
-
-  return (
-    <div className={`
-      h-[30px] xs:h-[35px] sm:h-[40px]
-      button
-      flex flex-row
-      items-center justify-center
-      mx-[3px] px-3
-      rounded-md
-      bg-[#1d468a]
-      font-medium
-      text-xs
-      ${ width }
-    `}>
-      { children }
-    </div>
-  );
-}
-
-const CommandRow = () => {
-
-  return (
-    <div className={`
-      flex flex-row
-      items-center justify-center
-      py-[3px]`}>
-      <CommandButton>
-        <ArrowLeftIcon />
-      </CommandButton>
-
-      <CommandButton width="stretch">
-        <BackspaceIcon fontSize="small" />
-      </CommandButton>
-
-      <div className={`
-        w-[140px] xs:w-[180px] sm:w-[200px]
-        h-[30px] xs:h-[35px] sm:h-[40px]
-        button
-        flex flex-row
-        items-center justify-center
-        mx-[3px]
-        rounded-md
-        bg-[#1d468a]
-        font-medium
-        text-lg
-      `} />
-
-      <CommandButton width="stretch">
-        <KeyboardReturnIcon fontSize="small" />
-      </CommandButton>
-
-      <CommandButton>
-        <ArrowRightIcon />
-      </CommandButton>
-    </div>
-  );
 }
 
 export default Index;

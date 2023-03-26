@@ -65,6 +65,8 @@ export const darkSeaTheme = {
 
   eccoText: {
     toolbar: `bg-[#0e1d35] sm:bg-transparent`,
+    keyboard: `bg-[#0e1d35]`,
+    keyboardItem: `bg-[#1d468a]`
   },
 
   miniGallery: {

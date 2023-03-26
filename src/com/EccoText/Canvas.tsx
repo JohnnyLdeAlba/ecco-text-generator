@@ -221,7 +221,6 @@ class t_canvas extends t_hook {
 
   setWaveformIndex(value) {
 
-    console.log(value);
     this.waveformIndex = value;
     this.commit();
   }
@@ -374,9 +373,6 @@ class t_canvas extends t_hook {
 
     this.setFont("systemFont");
     this.setBackground("homeBayBackground");
-
-// selectedItems.set(hash, galleryitem)
-// for each if galitemparentid == item.pid remove;
 
     this.progma.set("themes", galleryItem => console.log(galleryItem));
     this.progma.set("backgrounds", galleryItem => this.onBackgroundChange(galleryItem));
