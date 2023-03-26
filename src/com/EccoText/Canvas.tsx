@@ -191,10 +191,6 @@ class t_canvas extends t_hook {
       this.text
     );
 
-    // can validate here...
-
-    this.com = com;
-
     const psArray = plot_composition(com);
     this.plotter.addPSArray(psArray);
   }
@@ -230,35 +226,41 @@ class t_canvas extends t_hook {
     this.plotter.render();
   }
 
-  async initialize(canvas) {
+  handleInput(key) {
 
-    if (!canvas)
-      return;
+    if (this.cursorPosition < 0)
+      this.cursorPosition = this.text.length;
 
-    window.addEventListener("keydown", event => {
+    switch (key) {
 
-      if (this.cursorPosition < 0)
-        this.cursorPosition = this.text.length;
-
-      switch (event.key) {
-
-        case "ArrowLeft": {
+      case "ArrowLeft": {
  
-          if (this.cursorPosition > 0)
-            this.cursorPosition--;
+        if (this.cursorPosition > 0)
+          this.cursorPosition--;
 
-          break;
-        }
+        break;
+      }
 
-        case "ArrowRight": {
+      case "ArrowRight": {
  
-          if (this.cursorPosition < this.text.length)
-            this.cursorPosition++;
+        if (this.cursorPosition < this.text.length)
+          this.cursorPosition++;
 
-          break;
-        }
+        break;
+      }
 
-        case "Delete": {
+      case "Delete": {
+
+        const startText = this.text.slice(0, this.cursorPosition);
+        const endText = this.text.slice(this.cursorPosition + 1);
+
+        this.text = startText + endText;
+        break;
+      }
+
+      case "Backspace": {
+
+        if (this.cursorPosition == 0) {
 
           const startText = this.text.slice(0, this.cursorPosition);
           const endText = this.text.slice(this.cursorPosition + 1);
@@ -267,52 +269,52 @@ class t_canvas extends t_hook {
           break;
         }
 
-        case "Backspace": {
+        const startText = this.text.slice(0, this.cursorPosition - 1);
+        const endText = this.text.slice(this.cursorPosition);
 
-          if (this.cursorPosition == 0) {
+        this.text = startText + endText;
 
-            const startText = this.text.slice(0, this.cursorPosition);
-            const endText = this.text.slice(this.cursorPosition + 1);
+        if (this.cursorPosition > 0)
+          this.cursorPosition--;
 
-            this.text = startText + endText;
-
-            break;
-          }
-
-          const startText = this.text.slice(0, this.cursorPosition - 1);
-          const endText = this.text.slice(this.cursorPosition);
-
-          this.text = startText + endText;
-
-          if (this.cursorPosition > 0)
-            this.cursorPosition--;
-
-          break;
-        }
-
-        default: {
-
-          const char = this.font.get(event.key == "Enter" ? '\n' : event.key );
-          if (!char)
-            return;
-
-          if (this.cursorPosition < this.text.length) {
-
-            const startText = this.text.slice(0, this.cursorPosition + 1);
-            const endText = this.text.slice(this.cursorPosition + 1);
-
-            this.text = startText + char.hash + endText;
-            this.cursorPosition++;
-          }
-          else {
-            this.text+= char.hash;
-            this.cursorPosition = this.text.length;
-          }
-
-          break;
-        }
+        break;
       }
 
+      default: {
+
+        const char = this.font.get(
+          key == "Enter" ? '\n' : key.toLowerCase() );
+
+        if (!char)
+          return;
+
+        if (this.cursorPosition < this.text.length) {
+
+          const startText = this.text.slice(0, this.cursorPosition + 1);
+          const endText = this.text.slice(this.cursorPosition + 1);
+
+          this.text = startText + char.hash + endText;
+          this.cursorPosition++;
+        }
+        else {
+
+          this.text+= char.hash;
+          this.cursorPosition = this.text.length;
+        }
+
+        break;
+      }
+    }
+  }
+
+  async initialize(canvas) {
+
+    if (!canvas)
+      return;
+
+    window.addEventListener("keydown", event => {
+
+      this.handleInput(event.key);
       event.preventDefault();
     });
 

@@ -188,7 +188,7 @@ export const GalleryDisabled = ({
   );
 }
 
-export const Gallery = ({
+export const Menu = ({
   galleryItems = [],
   page = 1,
   disableToolbar = false,
@@ -234,4 +234,4 @@ export const Gallery = ({
   );
 }
 
-export default Gallery;
+export default Menu;

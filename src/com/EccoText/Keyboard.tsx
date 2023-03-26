@@ -6,6 +6,7 @@ import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 
 import { t_node } from "../../lib/node-lib";
+import { CanvasContext } from "./Canvas";
 import { ThemeContext } from "../../com/theme";
 
 const EnglishLayout = () => {
@@ -58,7 +59,7 @@ const IntlLayout = () => {
     "ÀÈÌÒÙÁÉÍÓÚ",
     "ȀȄȈȌȔÄËÏÖÜ",
     "ÃẼĨÕŨÂÊÎÔÛ",
-    "ŇÇÐÞÆ"
+    "ÑŇÇÐÞÆ"
   ];
 
   return (
@@ -288,17 +289,20 @@ const ControlKey = ({ width, onClick, className, children }) => {
 
 const ControlRow = () => {
 
+  const canvas = useContext(CanvasContext);
+
   return (
     <div className={`
       flex flex-row
       items-center justify-center
       py-[3px]`}>
-      <ControlKey>
+      <ControlKey onClick={ () => canvas.handleInput("ArrowLeft") }>
         <ArrowLeftIcon />
       </ControlKey>
 
       <ControlKey width="stretch">
-        <BackspaceIcon fontSize="small" />
+        <BackspaceIcon fontSize="small"
+          onClick={ () => canvas.handleInput("Backspace") }/>
       </ControlKey>
 
       <div className={`
@@ -312,13 +316,14 @@ const ControlRow = () => {
         bg-[#1d468a]
         font-medium
         text-lg
-      `} />
+      `} onClick={ () => canvas.handleInput(' ') } />
 
       <ControlKey width="stretch">
-        <KeyboardReturnIcon fontSize="small" />
+        <KeyboardReturnIcon fontSize="small"
+          onClick={ () => canvas.handleInput("Enter") } />
       </ControlKey>
 
-      <ControlKey>
+      <ControlKey onClick={ () => canvas.handleInput("ArrowRight") }>
         <ArrowRightIcon />
       </ControlKey>
     </div>
@@ -341,7 +346,7 @@ const KeyboardItem = ({ galleryItem = null }) => {
       font-medium
       text-lg
       ${ theme.eccoText.keyboardItem }
-    `}>
+    `} onClick={ galleryItem.onClick }>
      { galleryItem.name }
     </div>
   );
@@ -355,14 +360,19 @@ const KeyboardGroup = ({  galleryItems = [] }) => {
       items-center justify-center
       py-[3px]`}>
       { galleryItems.map(galleryItem =>
-          <KeyboardItem galleryItem={ galleryItem } />
+          <KeyboardItem
+            key={ galleryItem.uniqueId }
+            galleryItem={ galleryItem } />
       )}
     </div>
   );
 }
 
-const KeyboardRow = ({  charRows = [], onClick }) => {
+const KeyboardRow = ({  charRows = [] }) => {
 
+  let uniqueId = 9000;
+
+  const canvas = useContext(CanvasContext);
   const galleryRows = [];
 
   for (const charRow of charRows) {
@@ -373,8 +383,10 @@ const KeyboardRow = ({  charRows = [], onClick }) => {
 
       const galleryItem = new t_node();
 
+      galleryItem.uniqueId = uniqueId++; 
       galleryItem.name = charRow.charAt(index);
-      galleryItem.onClick = onClick;
+      galleryItem.hash = galleryItem.name;
+      galleryItem.onClick = () => canvas.handleInput(galleryItem.hash);
 
       galleryItems.push(galleryItem);
     }
@@ -385,7 +397,7 @@ const KeyboardRow = ({  charRows = [], onClick }) => {
   return (
     <div className={`flex-1 flex justify-end flex-col`}>
       { galleryRows.map(galleryItems =>
-        <KeyboardGroup galleryItems={ galleryItems } />) }
+        <KeyboardGroup key={ uniqueId++ } galleryItems={ galleryItems } />) }
     </div>
   );
 }

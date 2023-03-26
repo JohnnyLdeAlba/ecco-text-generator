@@ -3,7 +3,7 @@ import { createContext, useEffect, useContext, useState, useRef } from "react";
 import { ThemeContext } from "../../com/theme";
 import FolderIcon from '@mui/icons-material/Folder';
 
-import { Gallery } from "../../com/MiniGallery/Gallery";
+import { Menu } from "../../com/PanelMenu/Menu";
 import { Card } from "../../com/Card";
 import { Layout } from "../../com/Layout/Layout";
 import { useCanvas, Canvas } from "../../com/EccoText/Canvas";
@@ -53,7 +53,7 @@ class t_ecco_text extends t_hook {
     super();
 
     this.state = "init";
-    this.keyboardLayout = "numbersLayout";
+    this.keyboardLayout = "engKeyboard";
   }
 
   set(params) {
@@ -116,8 +116,9 @@ export const Index = () => {
   const theme = useContext(ThemeContext);
 
   const progma = useProgma();
-  const eccoText = useEccoText({ progma: progma });
   const canvas = useCanvas({ progma: progma });
+  const eccoText = useEccoText({ progma: progma });
+
 
   const request = useRequestStatic({
     progma: progma,
@@ -129,42 +130,62 @@ export const Index = () => {
     <Layout>
       <Container>
 
-      <div className={`flex flex-col overflow-y-auto`}>
-        <div className={`flex flex-row overflow-y-auto`}>
+        <div className={`flex flex-col overflow-y-auto`}>
+          <div className={`flex flex-row overflow-y-auto`}>
 
-          <div className={`flex-1 flex flex-col`}>
-            <Canvas />
-          </div>
+            <div className={`flex-1 flex flex-col`}>
+              <Canvas />
+            </div>
 
-          <div className={`hidden md:flex flex-col overflow-y-auto pl-4 w-[240px] sm:h-[425px] 2xl:h-[500px]`}>
+            <div className={`
+              sm:h-[425px] 2xl:h-[500px]
+              hidden md:flex
+              flex-col overflow-y-auto
+              pl-4 w-[240px]`}>
 
-            <div className={`flex-1 flex flex-col overflow-y-auto rounded-lg h-full ${ theme.card }`}>
-              <div className={`flex flex-col px-3 py-2 font-medium text-sm ${ theme.cardHeader }`}>
-                { request.parentNode.name }
-              </div>
-              <div className={`flex-1 flex flex-col overflow-y-auto h-full ${ theme.scrollbars }`}>
-                <Gallery
-                  forceDetailsVisible={ true }
-                  page={ request.page == -1 ? -1 : request.page + 1 }
+              <div className={`
+                flex-1 flex flex-col
+                overflow-y-auto
+                rounded-lg h-full
+                ${ theme.card }`}>
 
-                  onPrevPage={ request.page > 0 ? () => request.onPrevPage() : null }
-                  onNextPage={ request.nextPage ? () => request.onNextPage() : null }
+                <div className={`
+                  flex flex-col
+                  px-3 py-2
+                  font-medium text-sm
+                  ${ theme.cardHeader }`}>
+                  { request.parentNode.name }
+                </div>
 
-                  galleryItems={ request.getGalleryItems() }
-                  onGoBack={ request.parentNode.parentId > 0 ? () => request.onGoBack() : null }
-                />
+                <div className={`
+                  flex-1 flex flex-col
+                  overflow-y-auto h-full
+                  ${ theme.scrollbars }`}>
+
+                  <Menu
+                    forceDetailsVisible={ true }
+                    page={ request.page == -1 ? -1 : request.page + 1 }
+
+                    onPrevPage={ request.page > 0 ? () => request.onPrevPage() : null }
+                    onNextPage={ request.nextPage ? () => request.onNextPage() : null }
+
+                    galleryItems={ request.getGalleryItems() }
+                    onGoBack={ request.parentNode.parentId > 0 ? () => request.onGoBack() : null }
+                  />
+                </div>
+
               </div>
             </div>
           </div>
         </div>
-      </div>
-          <Toolbar />
+
+        <Toolbar />
+        <Keyboard layout={ eccoText.keyboardLayout } />
 
       <div className={`hidden px-4 w-full`}> 
         <Slider classes={{ root: "mui-darksea" }} aria-label="Volume" value={ canvas.waveformIndex } max={ 255 } onChange={ (event, value) => canvas.setWaveformIndex(value) } />
       </div>
 
-      <Keyboard layout={ eccoText.keyboardLayout } />
       </Container>
     </Layout>
   )
