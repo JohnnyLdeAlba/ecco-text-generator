@@ -320,7 +320,7 @@ const ControlKey = ({
       rounded-md
       font-medium
       text-xs
-      ${ disabled ? "disabled" : "button" }
+      ${ disabled ? "disabledd" : "button" }
       ${ width }
       ${ className }
       ${ theme.eccoText.keyboardItem }
@@ -359,7 +359,7 @@ const ControlRow = ({ disabled = false }) => {
         bg-[#1d468a]
         font-medium
         text-lg
-        ${ disabled ? "disabled" : "button" }
+        ${ disabled ? "disabledd" : "button" }
       `} onClick={ () => canvas.handleInput(' ') } />
 
       <ControlKey disabled={ disabled } width="stretch">
@@ -403,7 +403,7 @@ const KeyboardItem = ({ disabled = false, galleryItem = null }) => {
       rounded-md
       font-medium
       text-lg
-      ${ disabled ? "disabled" : "button" }
+      ${ disabled ? "disabledd" : "button" }
       ${ theme.eccoText.keyboardItem }
     `} onClick={ galleryItem.onClick }>
      { galleryItem.name }

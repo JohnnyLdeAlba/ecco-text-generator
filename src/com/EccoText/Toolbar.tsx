@@ -47,7 +47,6 @@ export const Toolbar = ({
       flex flex-col justify-center
       ${ theme.eccoText.toolbar }
     `}>
-
       <div className={`flex flex-row`}>
 
         <div className={`flex-1 sm:flex-none flex flex-row`}>
@@ -85,35 +84,35 @@ export const Toolbar = ({
 
         <div className={`flex flex-row`}>
           <SmallTipButton
-            disabled={ disabled }
+            disabled={ disabled || canvas.align == "left" }
             tip={ "Align Left" }
             icon={ <FormatAlignLeftIcon fontSize="small" /> }
             rounded={ "left" }
             className={`pl-3`}
             onClick={ () => canvas.setAlign("left") } />
           <SmallTipButton
-            disabled={ disabled }
+            disabled={ disabled || canvas.align == "center" }
             tip={ "Align Center" }
             icon={ <FormatAlignCenterIcon fontSize="small" /> }
             onClick={ () => canvas.setAlign("center") } />
           <SmallTipButton
-            disabled={ disabled }
+            disabled={ disabled || canvas.align == "right" }
             tip={ "Align Right" }
             icon={ <FormatAlignRightIcon fontSize="small" /> }
             onClick={ () => canvas.setAlign("right") } />
 
           <SmallTipButton
-            disabled={ disabled }
+            disabled={ disabled || canvas.vAlign == "top" }
             tip={ "Align Top" }
             icon={ <VerticalAlignTopIcon fontSize="small" /> }
             onClick={ () => canvas.setVAlign("top") } />
           <SmallTipButton
-            disabled={ disabled }
+            disabled={ disabled || canvas.vAlign == "middle" }
             tip={ "Align Middle" }
             icon={ <VerticalAlignCenterIcon fontSize="small" /> }
             onClick={ () => canvas.setVAlign("middle") } />
           <SmallTipButton
-            disabled={ disabled }
+            disabled={ disabled || canvas.vAlign == "bottom" }
             tip={ "Align Bottom" }
             icon={ <VerticalAlignBottomIcon fontSize="small" /> }
             rounded={ "right" }
@@ -123,43 +122,43 @@ export const Toolbar = ({
       </div>
 
       <div className={`flex flex-row pt-2 sm:pt-0`}>
-      <div className={`flex-1 flex flex-row`}>
-      <SmallTipButton
-        disabled={ onGoBack ? false : true }
-        tip={ onGoBack ? "Go Back" : '' }
-        icon={ <AlignVerticalBottomIcon fontSize="small" /> }
-        rounded={ "left" }
-        className={`pl-3`}
-        onClick={ onGoBack } />
-      <SmallTipButton
-        disabled={ onGoBack ? false : true }
-        tip={ onGoBack ? "Go Back" : '' }
-        icon={ <AlignVerticalCenterIcon fontSize="small" /> }
-        onClick={ onGoBack } />
-      <SmallTipButton
-        disabled={ onGoBack ? false : true }
-        tip={ onGoBack ? "Go Back" : '' }
-        icon={ <AlignVerticalTopIcon fontSize="small" /> }
-        rounded={ "right" }
-        className={`mr-4 pr-3`}
-        onClick={ onGoBack } />
-      </div>
+        <div className={`flex-1 flex flex-row`}>
+          <SmallTipButton
+            disabled={ disabled }
+            tip={ "Top Baseline" }
+            icon={ <AlignVerticalBottomIcon fontSize="small" /> }
+            rounded={ "left" }
+            className={`pl-3`}
+            onClick={ null } />
+          <SmallTipButton
+            disabled={ disabled }
+            tip={ "Middle Baseline" }
+            icon={ <AlignVerticalCenterIcon fontSize="small" /> }
+            onClick={ null } />
+          <SmallTipButton
+            disabled={ disabled }
+            tip={ "Top Baseline" }
+            icon={ <AlignVerticalTopIcon fontSize="small" /> }
+            rounded={ "right" }
+            className={`mr-4 pr-3`}
+            onClick={ null } />
+          </div>
 
-      <SmallTipButton
-        disabled={ onGoBack ? false : true }
-        tip={ onGoBack ? "Go Back" : '' }
-        icon={ <CopyAllIcon fontSize="small" /> }
-        rounded={ "left" }
-        className={`pl-3 w-fit`}
-        onClick={ onGoBack } />
+        <SmallTipButton
+          disabled={ disabled }
+          tip={ "Copy to Clipboard" }
+          icon={ <CopyAllIcon fontSize="small" /> }
+          rounded={ "left" }
+          className={`pl-3 w-fit`}
+          onClick={ null } />
 
-      <SmallTipButton
-        disabled={ onGoBack ? false : true }
-        tip={ onGoBack ? "Go Back" : '' }
-        icon={ <ContentPasteIcon fontSize="small" /> }
-        rounded={ "right" }
-        className={`pr-3 w-fit`}
-        onClick={ onGoBack } />
+        <SmallTipButton
+          disabled={ disabled }
+          tip={ "Paste from Clipboard" }
+          icon={ <ContentPasteIcon fontSize="small" /> }
+          rounded={ "right" }
+          className={`pr-3 w-fit`}
+          onClick={ null } />
 
       </div>
     </div>
