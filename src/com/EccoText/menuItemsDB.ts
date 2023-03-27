@@ -216,6 +216,18 @@ node.type = "fonts";
 node.name = "Vaporwave";
 node.icon = "/eccotext/icons/fonts/vaporwave.png";
 
+node = container.addNode("jurassicFont", FontsId);
+node.type = "fonts";
+node.name = "Jurassic Beach";
+node.icon = "/eccotext/icons/fonts/vaporwave.png";
+
+node = container.addNode("volcanoFont", FontsId);
+node.type = "fonts";
+node.name = "Volcano";
+node.icon = "/eccotext/icons/fonts/vaporwave.png";
+
+
+
 node = container.addNode("systemFont", FontsId);
 node.orderId = 1;
 node.type = "fonts";

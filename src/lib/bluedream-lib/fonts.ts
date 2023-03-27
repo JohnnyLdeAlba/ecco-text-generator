@@ -336,13 +336,123 @@ const font_vaporwave = () => {
   return font; 
 }
 
+const font_jurassic = () => {
+
+  const font = new t_font();
+
+  font.hash = "jurassicFont";
+  font.name = "Jurassic Beach";
+  font.imageHash = "jurassicFont"
+  font.imageURI = "/eccotext/theme/fonts/jurassic-beach.png";
+
+  font.align = "center";
+  font.vAlign = "middle";
+  font.trimSpaces = true;
+  font.letterSpacing = 2;
+  font.lineHeight = 5;
+  font.selectSpacing = -3;
+  font.cursorFilter = new t_rgba(1.5, 1.2);
+
+  font.bitmapIndex = 0;
+  font.width = 28;
+  font.height = 28;
+
+  font.add(' ',  0,  14,  0); 
+  font.add('\n', 0,   0,  0); 
+  font.add('a',  0,  14, 16); 
+  font.add('b',  1,  14, 16); 
+  font.add('c',  2,  14, 16); 
+  font.add('d',  3,  14, 16); 
+  font.add('e',  4,  14, 16); 
+  font.add('f',  5,  13, 16); 
+  font.add('g',  6,  14, 16); 
+  font.add('h',  7,  14, 16); 
+  font.add('i',  8,   6, 16); 
+  font.add('j',  9,  14, 16); 
+  font.add('k',  10, 14, 16); 
+  font.add('l',  11, 14, 16); 
+  font.add('m',  12, 22, 16); 
+  font.add('n',  13, 14, 16); 
+  font.add('o',  14, 14, 16); 
+  font.add('p',  15, 14, 16); 
+  font.add('q',  16, 14, 16); 
+  font.add('r',  17, 14, 16); 
+  font.add('s',  18, 14, 16); 
+  font.add('t',  19, 14, 16); 
+  font.add('u',  20, 14, 16); 
+  font.add('v',  21, 14, 16); 
+  font.add('w',  22, 22, 16); 
+  font.add('x',  23, 16, 16); 
+  font.add('y',  24, 14, 16); 
+  font.add('z',  25, 14, 16);
+
+  return font; 
+}
+
+const font_volcano = () => {
+
+  const font = new t_font();
+
+  font.hash = "volcanoFont";
+  font.name = "Volcano";
+  font.imageHash = "volcanoFont"
+  font.imageURI = "/eccotext/theme/fonts/volcano.png";
+
+  font.align = "center";
+  font.vAlign = "middle";
+  font.trimSpaces = true;
+  font.letterSpacing = 2;
+  font.lineHeight = 5;
+  font.selectSpacing = -3;
+  font.cursorFilter = new t_rgba(1.5, 1.2);
+
+  font.bitmapIndex = 0;
+  font.width = 28;
+  font.height = 28;
+
+  font.add(' ',  0,  14,  0); 
+  font.add('\n', 0,   0,  0); 
+  font.add('a',  0,  14, 16); 
+  font.add('b',  1,  14, 16); 
+  font.add('c',  2,  14, 16); 
+  font.add('d',  3,  14, 16); 
+  font.add('e',  4,  14, 16); 
+  font.add('f',  5,  13, 16); 
+  font.add('g',  6,  14, 16); 
+  font.add('h',  7,  14, 16); 
+  font.add('i',  8,   6, 16); 
+  font.add('j',  9,  14, 16); 
+  font.add('k',  10, 14, 16); 
+  font.add('l',  11, 14, 16); 
+  font.add('m',  12, 22, 16); 
+  font.add('n',  13, 14, 16); 
+  font.add('o',  14, 14, 16); 
+  font.add('p',  15, 14, 16); 
+  font.add('q',  16, 14, 16); 
+  font.add('r',  17, 14, 16); 
+  font.add('s',  18, 14, 16); 
+  font.add('t',  19, 14, 16); 
+  font.add('u',  20, 14, 16); 
+  font.add('v',  21, 14, 16); 
+  font.add('w',  22, 22, 16); 
+  font.add('x',  23, 16, 16); 
+  font.add('y',  24, 14, 16); 
+  font.add('z',  25, 14, 16);
+
+  return font; 
+}
+
+
+
 export const Fonts = {
 
   font_system: font_system,
   font_system_yellow: font_system_yellow,
   font_system_red: font_system_red,
   font_home_bay: font_home_bay,
-  font_vaporwave: font_vaporwave
+  font_vaporwave: font_vaporwave,
+  font_volcano: font_volcano,
+  font_jurassic: font_jurassic,
 }
 
 export default Fonts;
