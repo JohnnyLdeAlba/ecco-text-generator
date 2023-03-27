@@ -118,9 +118,10 @@ const HiraganaLayout = ({ disabled = false }) => {
   ];
 
   const hiraganaD = [
-    "ゔっん",
-    "ーゝゞ",
-    "、。*",
+    // "ゔっんゝゞ",
+    "*っん",
+    "ー*。",
+    "*",
     "*",
     "*"
   ];

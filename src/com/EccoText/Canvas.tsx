@@ -63,7 +63,7 @@ class t_canvas extends t_hook {
     this.waveformIndex = 1;
     this.align = '';
     this.vAlign = '';
-    this.baseline = '';
+    this.baseline = "bottom";
     this.trimSpaces = true;
     this.letterSpacing = 0;
     this.lineHeight = 0;
@@ -94,6 +94,15 @@ class t_canvas extends t_hook {
       return;
 
     this.vAlign = vAlign;
+    this.commit();
+  }
+
+  setBaseline(baseline) {
+    
+    if (baseline == this.baseline)
+      return;
+
+    this.baseline = baseline;
     this.commit();
   }
 
@@ -182,7 +191,7 @@ class t_canvas extends t_hook {
     com.setFont(this.font);
     com.setAlign(this.align);
     com.setVAlign(this.vAlign);
-    com.setBaseline(this.Baseline);
+    com.setBaseline(this.baseline);
     com.trimSpaces = this.trimSpaces;
     com.cursorPosition = this.cursorPosition;
     
@@ -282,6 +291,8 @@ class t_canvas extends t_hook {
 
       default: {
 
+        console.log(this.font);
+
         const char = this.font.get(
           key == "Enter" ? '\n' : key.toLowerCase() );
 
@@ -375,7 +386,7 @@ class t_canvas extends t_hook {
       "/eccotext/theme/backgrounds/volcano.png"
     );
 
-    this.setFont("systemFont");
+    this.setFont("homeBayFont");
     this.setBackground("homeBayBackground");
 
     this.progma.set("themes", galleryItem => console.log(galleryItem));

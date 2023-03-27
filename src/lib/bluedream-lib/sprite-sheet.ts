@@ -31,7 +31,7 @@ export class t_sprite_sheet {
 
   extractFrame(index) {
 
-    const row = parseInt(index / this.totalColumns);
+    const row = Math.floor(index/this.totalColumns);
 
     const column = index - (row * this.totalColumns);
     const x = column * this.frameWidth;
@@ -102,8 +102,8 @@ export const create_sprite_sheet = async (
   spriteSheet.totalColumns = totalColumns;
   spriteSheet.totalRows = totalRows;
 
-  spriteSheet.frameWidth = width / totalColumns;
-  spriteSheet.frameHeight = height / totalRows;
+  spriteSheet.frameWidth = cellWidth;
+  spriteSheet.frameHeight = cellHeight;
   spriteSheet.totalFrames = totalColumns * totalRows;
 
   return spriteSheet;

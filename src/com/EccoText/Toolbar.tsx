@@ -125,23 +125,23 @@ export const Toolbar = ({
         <div className={`flex-1 flex flex-row`}>
           <SmallTipButton
             disabled={ disabled }
-            tip={ "Top Baseline" }
+            tip={ "Bottom Baseline" }
             icon={ <AlignVerticalBottomIcon fontSize="small" /> }
             rounded={ "left" }
             className={`pl-3`}
-            onClick={ null } />
+            onClick={ () => canvas.setBaseline("top") } />
           <SmallTipButton
             disabled={ disabled }
             tip={ "Middle Baseline" }
             icon={ <AlignVerticalCenterIcon fontSize="small" /> }
-            onClick={ null } />
+            onClick={ () => canvas.setBaseline("middle") } />
           <SmallTipButton
             disabled={ disabled }
             tip={ "Top Baseline" }
             icon={ <AlignVerticalTopIcon fontSize="small" /> }
             rounded={ "right" }
             className={`mr-4 pr-3`}
-            onClick={ null } />
+            onClick={ () => canvas.setBaseline("bottom") } />
           </div>
 
         <SmallTipButton
