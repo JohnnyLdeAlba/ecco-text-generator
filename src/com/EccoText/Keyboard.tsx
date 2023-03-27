@@ -205,11 +205,15 @@ const KatakanaLayout = ({ disabled = false }) => {
   const [ visible, show ] = useState("katakanaA");
 
   const katakanaA = [
-    "アァカサタナ",
+    // "アァカサタナ",
+    "ア*カサタナ",
     "イィキシチニ",
-    "ウゥクスツヌ",
-    "エェケセテネ",
-    "オォコソトノ"
+    // "ウゥクスツヌ",
+    "ウ*クスツヌ",
+    // "エェケセテネ",
+    "エ*ケセテネ",
+    // "オォコソトノ"
+    "オ*コソトノ"
   ];
 
   const katakanaB = [
@@ -222,9 +226,11 @@ const KatakanaLayout = ({ disabled = false }) => {
 
   const katakanaC = [
     "ワガザダバパ",
-    "ヰギジヂビピ",
+    // "ヰギジヂビピ",
+    "*ギジヂビピ",
     "*グズヅブプ",
-    "ヱゲゼデベペ",
+    // "ヱゲゼデベペ",
+    "*ゲゼデベペ",
     "ヲゴゾドボポ"
   ];
 
