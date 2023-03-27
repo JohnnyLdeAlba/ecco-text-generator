@@ -94,11 +94,15 @@ const HiraganaLayout = ({ disabled = false }) => {
   const [ visible, show ] = useState("hiraganaA");
 
   const hiraganaA = [
-    "あぁかさたな",
+    // "あぁかさたな",
+    "あ*かさたな",
     "いぃきしちに",
-    "うぅくすつぬ",
-    "えぇけせてね",
-    "おぉこそとの",
+    // "うぅくすつぬ",
+    "う*くすつぬ",
+    // "えぇけせてね",
+    "え*けせてね",
+    // "おぉこそとの",
+    "お*こそとの",
   ];
 
   const hiraganaB = [
@@ -111,16 +115,18 @@ const HiraganaLayout = ({ disabled = false }) => {
 
   const hiraganaC = [
     "わがざだばぱ",
-    "ゐぎじぢびぴ",
+    // "ゐぎじぢびぴ",
+    "*ぎじぢびぴ",
     "*ぐずづぶぷ",
-    "ゑげぜでべぺ",
+    // "ゑげぜでべぺ",
+    "*げぜでべぺ",
     "をごぞどぼぽ",
   ];
 
   const hiraganaD = [
     // "ゔっんゝゞ",
     "*っん",
-    "ー*。",
+    "ー・。",
     "*",
     "*",
     "*"
@@ -223,9 +229,11 @@ const KatakanaLayout = ({ disabled = false }) => {
   ];
 
   const katakanaD = [
-    "ヴッン*",
-    "・ーヽヾ",
-    "、。**",
+    // "ヴッンヽヾ",
+    "*ッン**",
+    // "ー・。、",
+    "ー・。*",
+    "*",
     "*",
     "*"
   ];

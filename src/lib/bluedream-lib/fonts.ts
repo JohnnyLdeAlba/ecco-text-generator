@@ -376,126 +376,126 @@ const font_home_bay = () => {
   
   index = 26 * 5;
   font.add('あ', index, 15, 15);
-  font.add('ぁ', ++index, 14, 16);
-  font.add('か', ++index, 14, 16);
-  font.add('さ', ++index, 14, 16);
-  font.add('た', ++index, 14, 16);
-  font.add('な', ++index, 14, 16);
+  font.add('ぁ', ++index, 15, 15);
+  font.add('か', ++index, 14, 15);
+  font.add('さ', ++index, 15, 15);
+  font.add('た', ++index, 15, 15);
+  font.add('な', ++index, 16, 15);
 
   index = 26 * 6;
-  font.add('い', index, 14, 16);
-  font.add('ぃ', ++index, 14, 16);
-  font.add('き', ++index, 14, 16);
-  font.add('し', ++index, 14, 16);
-  font.add('ち', ++index, 14, 16);
+  font.add('い', index, 15, 13);
+  font.add('ぃ', ++index, 12, 9);
+  font.add('き', ++index, 15, 15);
+  font.add('し', ++index, 14, 15);
+  font.add('ち', ++index, 15, 15);
   font.add('に', ++index, 14, 16);
 
   index = 26 * 7;
-  font.add('う', index, 14, 16);
-  font.add('ぅ', ++index, 14, 16);
-  font.add('く', ++index, 14, 16);
-  font.add('す', ++index, 14, 16);
-  font.add('つ', ++index, 14, 16);
-  font.add('ぬ', ++index, 14, 16);
+  font.add('う', index, 11, 15);
+  font.add('ぅ', ++index, 0, 0);
+  font.add('く', ++index, 11, 15);
+  font.add('す', ++index, 15, 15);
+  font.add('つ', ++index, 15, 11);
+  font.add('ぬ', ++index, 15, 15);
 
   index = 26 * 8;
-  font.add('え', index, 14, 16);
-  font.add('ぇ', ++index, 14, 16);
-  font.add('け', ++index, 14, 16);
-  font.add('せ', ++index, 14, 16);
-  font.add('て', ++index, 14, 16);
-  font.add('ね', ++index, 14, 16);
+  font.add('え', index, 15, 15);
+  font.add('ぇ', ++index, 0, 0);
+  font.add('け', ++index, 15, 15);
+  font.add('せ', ++index, 15, 15);
+  font.add('て', ++index, 15, 14);
+  font.add('ね', ++index, 15, 15);
 
   index = 26 * 9;
-  font.add('お', index, 14, 16);
-  font.add('ぉ', ++index, 14, 16);
-  font.add('こ', ++index, 14, 16);
-  font.add('そ', ++index, 14, 16);
-  font.add('と', ++index, 14, 16);
-  font.add('の', ++index, 14, 16);
+  font.add('お', index, 15, 15);
+  font.add('ぉ', ++index, 0, 0);
+  font.add('こ', ++index, 14, 14);
+  font.add('そ', ++index, 15, 15);
+  font.add('と', ++index, 13, 15);
+  font.add('の', ++index, 15, 14);
 
   // Panel 2
 
   index = 26 * 5 + 6;
-  font.add('は', index, 14, 16);
-  font.add('ま', ++index, 14, 16);
-  font.add('や', ++index, 14, 16);
-  font.add('ゃ', ++index, 14, 16);
-  font.add('ら', ++index, 14, 16);
+  font.add('は', index, 15, 14);
+  font.add('ま', ++index, 13, 15);
+  font.add('や', ++index, 15, 15);
+  font.add('ゃ', ++index, 13, 12);
+  font.add('ら', ++index, 14, 15);
 
   index = 26 * 6 + 6;
-  font.add('ひ', index, 14, 16);
-  font.add('み', ++index, 14, 16);
-  font.add('り', index+= 3, 14, 16);
+  font.add('ひ', index, 15, 14);
+  font.add('み', ++index, 16, 14);
+  font.add('り', index+= 3, 13, 15);
 
   index = 26 * 7 + 6;
-  font.add('ふ', index, 14, 16);
-  font.add('む', ++index, 14, 16);
-  font.add('ゆ', ++index, 14, 16);
-  font.add('ゅ', ++index, 14, 16);
-  font.add('る', ++index, 14, 16);
+  font.add('ふ', index, 15, 15);
+  font.add('む', ++index, 15, 15);
+  font.add('ゆ', ++index, 15, 15);
+  font.add('ゅ', ++index, 12, 12);
+  font.add('る', ++index, 14, 15);
 
   index = 26 * 8 + 6;
-  font.add('へ', index, 14, 16);
-  font.add('め', ++index, 14, 16);
-  font.add('れ', index+= 3, 14, 16);
+  font.add('へ', index, 15, 10);
+  font.add('め', ++index, 15, 15);
+  font.add('れ', index+= 3, 15, 15);
 
   index = 26 * 9 + 6;
-  font.add('ほ', index, 14, 16);
-  font.add('も', ++index, 14, 16);
-  font.add('よ', ++index, 14, 16);
-  font.add('ょ', ++index, 14, 16);
-  font.add('ろ', ++index, 14, 16);
+  font.add('ほ', index, 16, 16);
+  font.add('も', ++index, 14, 15);
+  font.add('よ', ++index, 13, 15);
+  font.add('ょ', ++index, 10, 12);
+  font.add('ろ', ++index, 13, 15);
 
   // Panel 3
 
   index = 26 * 5 + 6 + 5;
-  font.add('わ', index, 14, 16);
-  font.add('が', ++index, 14, 16);
-  font.add('ざ', ++index, 14, 16);
-  font.add('だ', ++index, 14, 16);
-  font.add('ば', ++index, 14, 16);
-  font.add('ぱ', ++index, 14, 16);
+  font.add('わ', index, 15, 15);
+  font.add('が', ++index, 16, 16);
+  font.add('ざ', ++index, 16, 16);
+  font.add('だ', ++index, 15, 15);
+  font.add('ば', ++index, 17, 15);
+  font.add('ぱ', ++index, 18, 16);
 
   index = 26 * 6 + 6 + 5;
-  font.add('ゐ', index, 14, 16);
-  font.add('ぎ', ++index, 14, 16);
-  font.add('じ', ++index, 14, 16);
-  font.add('ぢ', ++index, 14, 16);
-  font.add('び', ++index, 14, 16);
-  font.add('ぴ', ++index, 14, 16);
+  font.add('ゐ', index, 0, 0);
+  font.add('ぎ', ++index, 17, 16);
+  font.add('じ', ++index, 14, 15);
+  font.add('ぢ', ++index, 16, 16);
+  font.add('び', ++index, 17, 14);
+  font.add('ぴ', ++index, 17, 14);
 
   index = 26 * 7 + 6 + 5;
-  font.add('ぐ', ++index, 14, 16);
-  font.add('ず', ++index, 14, 16);
-  font.add('づ', ++index, 14, 16);
-  font.add('ぶ', ++index, 14, 16);
-  font.add('ぷ', ++index, 14, 16);
+  font.add('ぐ', ++index, 16, 16);
+  font.add('ず', ++index, 17, 17);
+  font.add('づ', ++index, 16, 14);
+  font.add('ぶ', ++index, 17, 15);
+  font.add('ぷ', ++index, 16, 15);
 
   index = 26 * 8 + 6 + 5;
-  font.add('ゑ', index, 14, 16);
-  font.add('げ', ++index, 14, 16);
-  font.add('ぜ', ++index, 14, 16);
-  font.add('で', ++index, 14, 16);
-  font.add('べ', ++index, 14, 16);
-  font.add('ぺ', ++index, 14, 16);
+  font.add('ゑ', index, 0, 0);
+  font.add('げ', ++index, 18, 15);
+  font.add('ぜ', ++index, 18, 15);
+  font.add('で', ++index, 15, 14);
+  font.add('べ', ++index, 15, 10);
+  font.add('ぺ', ++index, 15, 11);
 
   index = 26 * 9 + 6 + 5;
-  font.add('を', index, 14, 16);
-  font.add('ご', ++index, 14, 16);
-  font.add('ぞ', ++index, 14, 16);
-  font.add('ど', ++index, 14, 16);
-  font.add('ぼ', ++index, 14, 16);
-  font.add('ぽ', ++index, 14, 16);
+  font.add('を', index, 15, 15);
+  font.add('ご', ++index, 15, 16);
+  font.add('ぞ', ++index, 17, 15);
+  font.add('ど', ++index, 14, 15);
+  font.add('ぼ', ++index, 17, 16);
+  font.add('ぽ', ++index, 20, 16);
 
   // Panel 4
 
   index = 26 * 5 + 6 + 5 + 6;
-  font.add('ゔ', index, 14, 16);
-  font.add('っ', ++index, 14, 16);
-  font.add('ん', ++index, 14, 16);
-  font.add('ゝ', ++index, 14, 16);
-  font.add('ゞ', ++index, 14, 16);
+  font.add('ゔ', index, 0, 0);
+  font.add('っ', ++index, 11, 8);
+  font.add('ん', ++index, 15, 14);
+  font.add('ゝ', ++index, 0, 0);
+  font.add('ゞ', ++index, 0, 0);
 
   // Katakana
   // Panel 1
