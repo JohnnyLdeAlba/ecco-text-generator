@@ -366,6 +366,7 @@ class t_canvas extends t_hook {
     await this.addFont(Fonts.font_home_bay());
     await this.addFont(Fonts.font_jurassic());
     await this.addFont(Fonts.font_last_fight());
+    await this.addFont(Fonts.font_mordor());
     await this.addFont(Fonts.font_night());
     await this.addFont(Fonts.font_system());
     await this.addFont(Fonts.font_system_yellow());
@@ -399,6 +400,13 @@ class t_canvas extends t_hook {
       "jurassicBackground",
       "/eccotext/theme/backgrounds/jurassic-beach.png"
     );
+
+    await this.addBackground(
+      "mordorBackground",
+      "/eccotext/theme/backgrounds/mordor.png"
+    );
+
+
 
     await this.addBackground(
       "nightBackground",
@@ -436,6 +444,7 @@ class t_canvas extends t_hook {
     this.addTheme("homeBayTheme", "homeBayFont", "homeBayBackground");
     this.addTheme("jurassicTheme", "jurassicFont", "jurassicBackground");
     this.addTheme("lastFightTheme", "lastFightFont", "lastFightBackground");
+    this.addTheme("mordorTheme", "mordorFont", "mordorBackground");
     this.addTheme("nightTheme", "nightFont", "nightBackground");
     this.addTheme("thanosTheme", "thanosFont", "thanosBackground");
     this.addTheme("theMachineTheme", "theMachineFont", "theMachineBackground");

@@ -157,6 +157,11 @@ node.type = "backgrounds";
 node.name = "Jurassic Beach";
 node.icon = "/eccotext/icons/backgrounds/jurassic-beach.png";
 
+node = container.addNode("mordorBackground", BackgroundsId);
+node.type = "backgrounds";
+node.name = "Mordor";
+node.icon = "/eccotext/icons/backgrounds/mordor.png";
+
 node = container.addNode("nightBackground", BackgroundsId);
 node.type = "backgrounds";
 node.name = "Night";
@@ -214,10 +219,20 @@ node.type = "themes";
 node.name = "Jurassic Beach";
 node.icon = "/eccotext/icons/jurassic-beach.png";
 
+node = container.addNode("mordorTheme", ThemesId);
+node.type = "themes";
+node.name = "Mordor";
+node.icon = "/eccotext/icons/mordor.jpg";
+
 node = container.addNode("nightTheme", ThemesId);
 node.type = "themes";
 node.name = "Night";
 node.icon = "/eccotext/icons/night.jpg";
+
+node = container.addNode("thanosTheme", ThemesId);
+node.type = "themes";
+node.name = "Thanos";
+node.icon = "/eccotext/icons/thanos.jpg";
 
 node = container.addNode("lastFightTheme", ThemesId);
 node.type = "themes";
@@ -228,11 +243,6 @@ node = container.addNode("theMachineTheme", ThemesId);
 node.type = "themes";
 node.name = "The Machine";
 node.icon = "/eccotext/icons/the-machine.png";
-
-node = container.addNode("thanosTheme", ThemesId);
-node.type = "themes";
-node.name = "Thanos";
-node.icon = "/eccotext/icons/thanos.jpg";
 
 node = container.addNode("vaporwaveTheme", ThemesId);
 node.type = "themes";
@@ -265,6 +275,11 @@ node = container.addNode("jurassicFont", FontsId);
 node.type = "fonts";
 node.name = "Jurassic Beach";
 node.icon = "/eccotext/icons/fonts/jurassic.png";
+
+node = container.addNode("mordorFont", FontsId);
+node.type = "fonts";
+node.name = "Mordor";
+node.icon = "/eccotext/icons/fonts/mordor.png";
 
 node = container.addNode("nightFont", FontsId);
 node.type = "fonts";

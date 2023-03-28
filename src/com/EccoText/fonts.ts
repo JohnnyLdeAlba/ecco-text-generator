@@ -581,6 +581,18 @@ const font_last_fight = () => {
   return font; 
 }
 
+const font_mordor = () => {
+
+  const font = font_home_bay();
+
+  font.hash = "mordorFont";
+  font.name = "Mordor";
+  font.imageHash = "mordorFont"
+  font.imageURI = "/eccotext/theme/fonts/mordor.png";
+
+  return font; 
+}
+
 const font_night = () => {
 
   const font = font_home_bay();
@@ -649,6 +661,7 @@ export const Fonts = {
   font_home_bay: font_home_bay,
   font_jurassic: font_jurassic,
   font_last_fight: font_last_fight,
+  font_mordor: font_mordor,
   font_night: font_night,
   font_system: font_system,
   font_system_yellow: font_system_yellow,
