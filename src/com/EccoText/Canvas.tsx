@@ -17,7 +17,7 @@ import { extract_canvas_array } from "../../lib/bluedream-lib/sprite-sheet";
 
 import { t_font, t_composition } from "../../lib/bluedream-lib/composition";
 import { plot_composition } from "../../lib/bluedream-lib/plot-composition";
-import Fonts from "../../lib/bluedream-lib/fonts";
+import Fonts from "./fonts";
 
 class t_canvas extends t_hook {
 
@@ -41,10 +41,12 @@ class t_canvas extends t_hook {
 
   font;
   background;
+  theme;
 
   fontMap;
   backgroundMap;
   uriMap;
+  themeMap;
 
   constructor() {
 
@@ -73,10 +75,12 @@ class t_canvas extends t_hook {
 
     this.font = null;
     this.background = 0;
+    this.theme = '';
 
     this.fontMap = new Map();
     this.backgroundMap = new Map();
     this.uriMap = new Map();
+    this.themeMap = new Map();
   }
 
   setAlign(align) {
@@ -121,6 +125,13 @@ class t_canvas extends t_hook {
     this.commit();
   }
 
+  addTheme(hash, font, background) {
+
+    this.themeMap.set(hash,
+      { font: font, background: background }
+    );
+  }
+
   async addFont(font) {
 
     this.uriMap.set(font.imageHash, font.imageURI);
@@ -149,6 +160,19 @@ class t_canvas extends t_hook {
  
     const bitmapIndex = response.payload;
     this.backgroundMap.set(hash, bitmapIndex);
+  }
+
+  setTheme(hash) {
+
+    const theme = this.themeMap.get(hash);
+  
+    if (!theme)
+      return;
+    else if (theme == this.theme)
+      return;
+
+    this.setFont(theme.font);
+    this.setBackground(theme.background);
   }
 
   setFont(hash) {
@@ -291,8 +315,6 @@ class t_canvas extends t_hook {
 
       default: {
 
-        console.log(this.font);
-
         const char = this.font.get(
           key == "Enter" ? '\n' : key.toLowerCase() );
 
@@ -338,15 +360,35 @@ class t_canvas extends t_hook {
     this.plotter.initialize(320, 240);    
     this.plotter.setCanvas(canvas);
 
+    await this.addFont(Fonts.font_crimson());
+    await this.addFont(Fonts.font_deep_blue());
+    await this.addFont(Fonts.font_elvish());
+    await this.addFont(Fonts.font_home_bay());
+    await this.addFont(Fonts.font_jurassic());
+    await this.addFont(Fonts.font_last_fight());
+    await this.addFont(Fonts.font_night());
     await this.addFont(Fonts.font_system());
     await this.addFont(Fonts.font_system_yellow());
     await this.addFont(Fonts.font_system_red());
-    await this.addFont(Fonts.font_home_bay());
-    await this.addFont(Fonts.font_vaporwave());
-    await this.addFont(Fonts.font_jurassic());
-    await this.addFont(Fonts.font_volcano());
-    await this.addFont(Fonts.font_last_fight());
+    await this.addFont(Fonts.font_thanos());
     await this.addFont(Fonts.font_the_machine());
+    await this.addFont(Fonts.font_vaporwave());
+    await this.addFont(Fonts.font_volcano());
+
+    await this.addBackground(
+      "crimsonBackground",
+      "/eccotext/theme/backgrounds/crimson.png"
+    );
+
+    await this.addBackground(
+      "deepBlueBackground",
+      "/eccotext/theme/backgrounds/deep-blue.png"
+    );
+
+    await this.addBackground(
+      "elvishBackground",
+      "/eccotext/theme/backgrounds/elvish.png"
+    );
 
     await this.addBackground(
       "homeBayBackground",
@@ -388,12 +430,23 @@ class t_canvas extends t_hook {
       "/eccotext/theme/backgrounds/volcano.png"
     );
 
-    this.setFont("homeBayFont");
-    this.setBackground("homeBayBackground");
+    this.addTheme("crimsonTheme", "crimsonFont", "crimsonBackground");
+    this.addTheme("deepBlueTheme", "deepBlueFont", "deepBlueBackground");
+    this.addTheme("elvishTheme", "elvishFont", "elvishBackground");
+    this.addTheme("homeBayTheme", "homeBayFont", "homeBayBackground");
+    this.addTheme("jurassicTheme", "jurassicFont", "jurassicBackground");
+    this.addTheme("lastFightTheme", "lastFightFont", "lastFightBackground");
+    this.addTheme("nightTheme", "nightFont", "nightBackground");
+    this.addTheme("thanosTheme", "thanosFont", "thanosBackground");
+    this.addTheme("theMachineTheme", "theMachineFont", "theMachineBackground");
+    this.addTheme("vaporwaveTheme", "vaporwaveFont", "vaporwaveBackground");
+    this.addTheme("volcanoTheme", "volcanoFont", "volcanoBackground");
 
-    this.progma.set("themes", galleryItem => console.log(galleryItem));
+    this.setTheme("homeBayTheme");
+
     this.progma.set("backgrounds", galleryItem => this.onBackgroundChange(galleryItem));
     this.progma.set("fonts", galleryItem => this.onFontChange(galleryItem));
+    this.progma.set("themes", galleryItem => this.onThemeChange(galleryItem));
 
     this.frameRate.process = () => this.updateViewport();
     this.frameRate.render = () => this.render();
@@ -402,6 +455,14 @@ class t_canvas extends t_hook {
     this.disableLoading();
     this.state = "ready";
     this.refresh();
+  }
+
+  onThemeChange(galleryItem) {
+
+    this.progma.removeSelectedItemsByParentId(galleryItem.parentId);
+    this.progma.addSelectedItem(galleryItem);
+
+    this.setTheme(galleryItem.hash);
   }
 
   onBackgroundChange(galleryItem) {

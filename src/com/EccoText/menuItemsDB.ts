@@ -132,30 +132,40 @@ node.orderId = 3;
 
 // Backgrounds
 
-node = container.addNode("jurassicBackground", BackgroundsId);
+node = container.addNode("crimsonBackground", BackgroundsId);
 node.type = "backgrounds";
-node.name = "Jurassic Beach";
-node.icon = "/eccotext/icons/backgrounds/jurassic-beach.png";
+node.name = "Crimson";
+node.icon = "/eccotext/icons/backgrounds/crimson.png";
 
-node = container.addNode("vaporwaveBackground", BackgroundsId);
+node = container.addNode("deepBlueBackground", BackgroundsId);
 node.type = "backgrounds";
-node.name = "Vaporwave";
-node.icon = "/eccotext/icons/backgrounds/vaporwave.png";
+node.name = "Deep Blue";
+node.icon = "/eccotext/icons/backgrounds/deep-blue.png";
+
+node = container.addNode("elvishBackground", BackgroundsId);
+node.type = "backgrounds";
+node.name = "Elvish";
+node.icon = "/eccotext/icons/backgrounds/elvish.png";
 
 node = container.addNode("homeBayBackground", BackgroundsId);
 node.type = "backgrounds";
 node.name = "Home Bay";
 node.icon = "/eccotext/icons/backgrounds/home-bay.png";
 
-node = container.addNode("thanosBackground", BackgroundsId);
+node = container.addNode("jurassicBackground", BackgroundsId);
 node.type = "backgrounds";
-node.name = "Thanos";
-node.icon = "/eccotext/icons/backgrounds/thanos.png";
+node.name = "Jurassic Beach";
+node.icon = "/eccotext/icons/backgrounds/jurassic-beach.png";
 
 node = container.addNode("nightBackground", BackgroundsId);
 node.type = "backgrounds";
 node.name = "Night";
 node.icon = "/eccotext/icons/backgrounds/night.png";
+
+node = container.addNode("thanosBackground", BackgroundsId);
+node.type = "backgrounds";
+node.name = "Thanos";
+node.icon = "/eccotext/icons/backgrounds/thanos.png";
 
 node = container.addNode("theMachineBackground", BackgroundsId);
 node.type = "backgrounds";
@@ -167,6 +177,11 @@ node.type = "backgrounds";
 node.name = "The Last Fight";
 node.icon = "/eccotext/icons/backgrounds/the-last-fight.png";
 
+node = container.addNode("vaporwaveBackground", BackgroundsId);
+node.type = "backgrounds";
+node.name = "Vaporwave";
+node.icon = "/eccotext/icons/backgrounds/vaporwave.png";
+
 node = container.addNode("volcanoBackground", BackgroundsId);
 node.type = "backgrounds";
 node.name = "Volcano";
@@ -174,10 +189,35 @@ node.icon = "/eccotext/icons/backgrounds/volcano.png";
 
 // Themes
 
+node = container.addNode("crimsonTheme", ThemesId);
+node.type = "themes";
+node.name = "Crimson";
+node.icon = "/eccotext/icons/crimson.jpg";
+
+node = container.addNode("deepBlueTheme", ThemesId);
+node.type = "themes";
+node.name = "Deep Blue";
+node.icon = "/eccotext/icons/deep-blue.png";
+
+node = container.addNode("elvishTheme", ThemesId);
+node.type = "themes";
+node.name = "Elvish";
+node.icon = "/eccotext/icons/elvish.jpg";
+
+node = container.addNode("homeBayTheme", ThemesId);
+node.type = "themes";
+node.name = "Home Bay";
+node.icon = "/eccotext/icons/home-bay.png";
+
 node = container.addNode("jurassicTheme", ThemesId);
 node.type = "themes";
 node.name = "Jurassic Beach";
 node.icon = "/eccotext/icons/jurassic-beach.png";
+
+node = container.addNode("nightTheme", ThemesId);
+node.type = "themes";
+node.name = "Night";
+node.icon = "/eccotext/icons/night.jpg";
 
 node = container.addNode("lastFightTheme", ThemesId);
 node.type = "themes";
@@ -189,11 +229,6 @@ node.type = "themes";
 node.name = "The Machine";
 node.icon = "/eccotext/icons/the-machine.png";
 
-node = container.addNode("homeBayTheme", ThemesId);
-node.type = "themes";
-node.name = "Home Bay";
-node.icon = "/eccotext/icons/home-bay.png";
-
 node = container.addNode("thanosTheme", ThemesId);
 node.type = "themes";
 node.name = "Thanos";
@@ -202,39 +237,39 @@ node.icon = "/eccotext/icons/thanos.jpg";
 node = container.addNode("vaporwaveTheme", ThemesId);
 node.type = "themes";
 node.name = "Vaporwave";
-node.icon = "/eccotext/icons/vaporwave.jpg";
+node.icon = "/eccotext/icons/vaporwave.png";
 
 // Fonts
+
+node = container.addNode("crimsonFont", FontsId);
+node.type = "fonts";
+node.name = "Crimson";
+node.icon = "/eccotext/icons/fonts/crimson.png";
+
+node = container.addNode("deepBlueFont", FontsId);
+node.type = "fonts";
+node.name = "Deep Blue";
+node.icon = "/eccotext/icons/fonts/deep-blue.png";
+
+node = container.addNode("elvishFont", FontsId);
+node.type = "fonts";
+node.name = "Elvish";
+node.icon = "/eccotext/icons/fonts/elvish.png";
 
 node = container.addNode("homeBayFont", FontsId);
 node.type = "fonts";
 node.name = "Home Bay";
 node.icon = "/eccotext/icons/fonts/home-bay.png";
 
-node = container.addNode("vaporwaveFont", FontsId);
-node.type = "fonts";
-node.name = "Vaporwave";
-node.icon = "/eccotext/icons/fonts/vaporwave.png";
-
 node = container.addNode("jurassicFont", FontsId);
 node.type = "fonts";
 node.name = "Jurassic Beach";
-node.icon = "/eccotext/icons/fonts/vaporwave.png";
+node.icon = "/eccotext/icons/fonts/jurassic.png";
 
-node = container.addNode("volcanoFont", FontsId);
+node = container.addNode("nightFont", FontsId);
 node.type = "fonts";
-node.name = "Volcano";
-node.icon = "/eccotext/icons/fonts/vaporwave.png";
-
-node = container.addNode("lastFightFont", FontsId);
-node.type = "fonts";
-node.name = "The Last Fight";
-node.icon = "/eccotext/icons/fonts/vaporwave.png";
-
-node = container.addNode("theMachineFont", FontsId);
-node.type = "fonts";
-node.name = "Welcome to the Machine";
-node.icon = "/eccotext/icons/fonts/vaporwave.png";
+node.name = "Night";
+node.icon = "/eccotext/icons/fonts/night.png";
 
 node = container.addNode("systemFont", FontsId);
 node.orderId = 1;
@@ -254,6 +289,24 @@ node.type = "fonts";
 node.name = "System Yellow";
 node.icon = "/eccotext/icons/fonts/system-yellow.png";
 
+node = container.addNode("lastFightFont", FontsId);
+node.type = "fonts";
+node.name = "The Last Fight";
+node.icon = "/eccotext/icons/fonts/the-last-fight.png";
 
+node = container.addNode("theMachineFont", FontsId);
+node.type = "fonts";
+node.name = "The Machine";
+node.icon = "/eccotext/icons/fonts/the-machine.png";
+
+node = container.addNode("vaporwaveFont", FontsId);
+node.type = "fonts";
+node.name = "Vaporwave";
+node.icon = "/eccotext/icons/fonts/vaporwave.png";
+
+node = container.addNode("volcanoFont", FontsId);
+node.type = "fonts";
+node.name = "Volcano";
+node.icon = "/eccotext/icons/fonts/volcano.png";
 
 export default container;
