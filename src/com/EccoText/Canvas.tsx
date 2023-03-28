@@ -345,6 +345,8 @@ class t_canvas extends t_hook {
     await this.addFont(Fonts.font_vaporwave());
     await this.addFont(Fonts.font_jurassic());
     await this.addFont(Fonts.font_volcano());
+    await this.addFont(Fonts.font_last_fight());
+    await this.addFont(Fonts.font_the_machine());
 
     await this.addBackground(
       "homeBayBackground",

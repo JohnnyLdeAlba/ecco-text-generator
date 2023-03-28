@@ -716,7 +716,53 @@ const font_volcano = () => {
   return font; 
 }
 
+const font_last_fight = () => {
 
+  const font = font_home_bay();
+
+  font.hash = "lastFightFont";
+  font.name = "The Last Fight";
+  font.imageHash = "lastFightFont"
+  font.imageURI = "/eccotext/theme/fonts/the-last-fight.png";
+
+  font.align = "center";
+  font.vAlign = "middle";
+  font.trimSpaces = true;
+  font.letterSpacing = 2;
+  font.lineHeight = 5;
+  font.selectSpacing = -3;
+  font.cursorFilter = new t_rgba(1.5, 1.2);
+
+  font.bitmapIndex = 0;
+  font.width = 30;
+  font.height = 30;
+
+  return font; 
+}
+
+const font_the_machine = () => {
+
+  const font = font_home_bay();
+
+  font.hash = "theMachineFont";
+  font.name = "Welcome to the Machine";
+  font.imageHash = "theMachineFont"
+  font.imageURI = "/eccotext/theme/fonts/the-machine.png";
+
+  font.align = "center";
+  font.vAlign = "middle";
+  font.trimSpaces = true;
+  font.letterSpacing = 2;
+  font.lineHeight = 5;
+  font.selectSpacing = -3;
+  font.cursorFilter = new t_rgba(1.5, 1.2);
+
+  font.bitmapIndex = 0;
+  font.width = 30;
+  font.height = 30;
+
+  return font; 
+}
 
 export const Fonts = {
 
@@ -727,6 +773,8 @@ export const Fonts = {
   font_vaporwave: font_vaporwave,
   font_volcano: font_volcano,
   font_jurassic: font_jurassic,
+  font_last_fight: font_last_fight,
+  font_the_machine: font_the_machine
 }
 
 export default Fonts;

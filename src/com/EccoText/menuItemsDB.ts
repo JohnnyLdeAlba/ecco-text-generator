@@ -226,7 +226,15 @@ node.type = "fonts";
 node.name = "Volcano";
 node.icon = "/eccotext/icons/fonts/vaporwave.png";
 
+node = container.addNode("lastFightFont", FontsId);
+node.type = "fonts";
+node.name = "The Last Fight";
+node.icon = "/eccotext/icons/fonts/vaporwave.png";
 
+node = container.addNode("theMachineFont", FontsId);
+node.type = "fonts";
+node.name = "Welcome to the Machine";
+node.icon = "/eccotext/icons/fonts/vaporwave.png";
 
 node = container.addNode("systemFont", FontsId);
 node.orderId = 1;
