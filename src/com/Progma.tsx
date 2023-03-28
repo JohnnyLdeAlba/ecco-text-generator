@@ -19,28 +19,34 @@ export class t_progma {
   }
 
   getSelectedItem(hash) {
-    return this.selectedItems.get(hash);
+
+    for (const selectedItems of this.selectedItems.values()) {
+
+      const selectedItem = selectedItems.get(hash);
+      if (selectedItem)
+        return selectedItem;
+    }
+
+    return null;
   }
 
-  addSelectedItem(galleryItem) {
+  addSelectedItem(parentHash, hash) {
 
-    const _galleryItem = galleryItem.copy();
-    this.selectedItems.set(_galleryItem.hash, _galleryItem);
+    let selectedItems = this.selectedItems.get(parentHash);
+    if (!selectedItems) {
+
+      selectedItems = new Map();
+      selectedItems.set(hash, true);
+
+      this.selectedItems.set(parentHash, selectedItems);
+      return;
+    }
+
+    selectedItems.set(hash, true);
   }
 
-  removeSelectedItemsByParentId(parentId) {
-
-    const selectedItems = new Map();
-
-    this.selectedItems.forEach(selectedItem => {
-
-      if (selectedItem.parentId == parentId)
-        return;
-
-      selectedItems.set(selectedItem.hash, selectedItem);
-    });
-
-    this.selectedItems = selectedItems;
+  removeAllSelectedItems(parentHash) {
+    this.selectedItems.set(parentHash, new Map());
   }
 }
 

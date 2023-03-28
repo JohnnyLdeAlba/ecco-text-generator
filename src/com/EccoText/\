@@ -171,9 +171,6 @@ class t_canvas extends t_hook {
     else if (theme == this.theme)
       return;
 
-    this.progma.removeAllSelectedItems("themes");
-    this.progma.addSelectedItem("themes", hash);
-
     this.setFont(theme.font);
     this.setBackground(theme.background);
   }
@@ -197,9 +194,6 @@ class t_canvas extends t_hook {
     this.selectSpacing = font.selectSpacing;
     this.cursorFilter = font.cursorFilter;
 
-    this.progma.removeAllSelectedItems("fonts");
-    this.progma.addSelectedItem("fonts", hash);
-
     this.font = font;
     this.commit();
   }
@@ -209,9 +203,6 @@ class t_canvas extends t_hook {
     const bitmapIndex = this.backgroundMap.get(hash);
     if (!bitmapIndex)
       return;
-
-    this.progma.removeAllSelectedItems("backgrounds");
-    this.progma.addSelectedItem("backgrounds", hash);
 
     this.background = bitmapIndex;
     this.commit();
@@ -415,6 +406,8 @@ class t_canvas extends t_hook {
       "/eccotext/theme/backgrounds/mordor.png"
     );
 
+
+
     await this.addBackground(
       "nightBackground",
       "/eccotext/theme/backgrounds/night.png"
@@ -474,14 +467,26 @@ class t_canvas extends t_hook {
   }
 
   onThemeChange(galleryItem) {
+
+    this.progma.removeAllSelectedItems(parentHash);
+    this.progma.addSelectedItem(parentHash, galleryItem);
+
     this.setTheme(galleryItem.hash);
   }
 
-  onBackgroundChange(galleryItem) {
+  onBackgroundChange(parentHash, galleryItem) {
+
+    this.progma.removeAllSelectedItems(parentHash);
+    this.progma.addSelectedItem(parentHash, galleryItem);
+
     this.setBackground(galleryItem.hash);
   }
 
   onFontChange(galleryItem) {
+
+    this.progma.removeAllSelectedItems(parentHash);
+    this.progma.addSelectedItem(parentHash, galleryItem);
+
     this.setFont(galleryItem.hash);
   }
 

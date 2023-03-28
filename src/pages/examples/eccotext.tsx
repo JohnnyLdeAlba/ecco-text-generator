@@ -53,7 +53,7 @@ class t_ecco_text extends t_hook {
     super();
 
     this.state = "init";
-    this.keyboardLayout = "engKeyboard";
+    this.keyboardLayout = '';
   }
 
   set(params) {
@@ -66,8 +66,15 @@ class t_ecco_text extends t_hook {
 
     const { progma } = params;
 
-    progma.set("keyboardLayout",
+    progma.set("keyboardLayouts",
       galleryItem => this.onKBLayoutChange(galleryItem));
+
+    this.progma = progma;
+
+    this.setKBLayout("engKeyboard");
+
+    this.state = "ready";
+    this.commit();
   }
 
   process(params) {
@@ -85,6 +92,9 @@ class t_ecco_text extends t_hook {
 
     if (this.keyboardLayout == keyboardLayout)
       return;
+
+    this.progma.removeAllSelectedItems("keyboardLayouts")
+    this.progma.addSelectedItem("keyboardLayouts", keyboardLayout);    
 
     this.keyboardLayout = keyboardLayout;
     this.refresh();
