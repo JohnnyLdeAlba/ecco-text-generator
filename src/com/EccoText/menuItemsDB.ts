@@ -37,7 +37,7 @@ node.orderId = 1;
 const ResolutionsId = ++id;
 node = container.addNode("resolutions", RootId, ResolutionsId);
 node.name = "Resolutions";
-node.icon = "/icons/wave.png";
+node.icon = "/icons/resolutions.png";
 node.orderId = 1;
 
 node = container.addNode('', RootId);
@@ -48,7 +48,7 @@ node.properties.placeholder = true;
 
 node = container.addNode("aniKeyboard", RootId);
 node.name = "Animations";
-node.icon = "/icons/settings.png";
+node.icon = "/icons/animation.png";
 node.orderId = 4;
 
 node = container.addNode("setKeyboard", RootId);
@@ -59,37 +59,37 @@ node.orderId = 3;
 node = container.addNode("engKeyboard", RootId);
 node.type = "keyboardLayouts";
 node.name = "English";
-node.icon = "/icons/settings.png";
+node.icon = "/icons/english.png";
 node.orderId = 4;
 
 node = container.addNode("numKeyboard", RootId);
 node.type = "keyboardLayouts";
 node.name = "Numbers";
-node.icon = "/icons/settings.png";
+node.icon = "/icons/numbers.png";
 node.orderId = 4;
 
 node = container.addNode("rusKeyboard", RootId);
 node.type = "keyboardLayouts";
 node.name = "Russian";
-node.icon = "/icons/settings.png";
+node.icon = "/icons/russian.png";
 node.orderId = 7;
 
 node = container.addNode("intlKeyboard", RootId);
 node.type = "keyboardLayouts";
 node.name = "International";
-node.icon = "/icons/settings.png";
+node.icon = "/icons/international.png";
 node.orderId = 6;
 
 node = container.addNode("hiraKeyboard", RootId);
 node.type = "keyboardLayouts";
 node.name = "Hiragana";
-node.icon = "/icons/settings.png";
+node.icon = "/icons/japanese.png";
 node.orderId = 8;
 
 node = container.addNode("kataKeyboard", RootId);
 node.type = "keyboardLayouts";
 node.name = "Katakana";
-node.icon = "/icons/settings.png";
+node.icon = "/icons/japanese.png";
 node.orderId = 8;
 
 // Backgrounds
