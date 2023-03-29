@@ -6,8 +6,7 @@ import FolderIcon from '@mui/icons-material/Folder';
 import GIF from "gif.js";
 
 import { Menu } from "../../com/PanelMenu/Menu";
-import { Backdrop } from "../../com/Backdrop";
-import { Card } from "../../com/Card";
+import { ProgressDialog, DownloadDialog } from "../../com/ProgressDialog";
 import { Layout } from "../../com/Layout/Layout";
 import { useCanvas, Canvas } from "../../com/EccoText/Canvas";
 
@@ -72,7 +71,6 @@ class t_ecco_text extends t_hook {
       galleryItem => this.onKBLayoutChange(galleryItem));
 
     this.progma = progma;
-
     this.setKBLayout("engKeyboard");
 
     this.state = "ready";
@@ -138,7 +136,21 @@ export const Index = () => {
     parentHash: "home" 
   });
 
-  return (
+  return (<>
+
+    <DownloadDialog
+      show={ canvas.downloadVisible }
+      type={ canvas.downloadType }
+      resolution={ canvas.resolution }
+      blob={ canvas.downloadBlob }
+      onClose={ () => canvas.closeDownload() }/>
+
+    <ProgressDialog
+      show={ canvas.progressVisible }
+      title="Generating GIF"
+      progressIndex={ canvas.progressIndex }
+      onAbort={ () => canvas.abort() }/>
+
     <Layout>
       <Container>
 
@@ -200,7 +212,7 @@ export const Index = () => {
 
       </Container>
     </Layout>
-  )
+  </>)
 }
 
 export default Index;

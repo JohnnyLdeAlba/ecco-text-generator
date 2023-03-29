@@ -10,7 +10,7 @@ import GIF from "gif.js";
 import { ThemeContext } from "../../com/theme";
 
 import { t_hook } from "../../com/lib/hook";
-import { SmallButton } from "../../com/Button";
+import { Button } from "../../com/Button";
 import { Card } from "../../com/Card";
 import { Backdrop } from "../../com/Backdrop";
 import { t_plot_state } from "../../lib/bluedream-lib/plot-state";
@@ -227,6 +227,10 @@ class t_canvas extends t_hook {
 
     this.progressVisible = false;;
     this.progressIndex = 0;
+
+    this.downloadVisible = false;
+    this.downloadBlob = null;
+    this.downloadType = '';
   }
 
   showProgress(visible) {
@@ -254,7 +258,18 @@ class t_canvas extends t_hook {
     this.setProgressIndex(0);
     this.showProgress(false);
 
-    window.location = URL.createObjectURL(blob);
+    this.downloadVisible = true;
+    this.downloadBlob = blob;
+    this.downloadType = "gif";
+  }
+
+  closeDownload() {
+
+    this.downloadVisible = false;
+    this.downloadBlob = null;
+    this.downloadType = '';
+
+    this.commit();
   }
 
   setAlign(align) {
@@ -526,6 +541,7 @@ class t_canvas extends t_hook {
     this.abort = () => {
 
       gen.abort();
+      this.setProgressIndex(0);
       this.showProgress(false);
     }
 
@@ -735,7 +751,7 @@ class t_canvas extends t_hook {
     this.addTheme("volcanoTheme", "volcanoFont", "volcanoBackground");
 
     this.setTheme("homeBayTheme");
-    this.setResolution("ultraHigh");
+    this.setResolution("low");
 
     this.progma.set("backgrounds", galleryItem => this.onBackgroundChange(galleryItem));
     this.progma.set("fonts", galleryItem => this.onFontChange(galleryItem));
@@ -747,6 +763,9 @@ class t_canvas extends t_hook {
 
     this.disableLoading();
     this.state = "ready";
+
+
+
     this.refresh();
   }
 
@@ -800,16 +819,38 @@ export const useCanvas  = ({ progma = null }) => {
   return canvas;
 }
 
-export const ProgressPanel = ({ show = false, progressIndex = 0, onAbort }) => {
+export const ProgressDialog = ({
+  title = '',
+  show = false,
+  progressIndex = 0,
+  onAbort
+}) => {
+
+  show = true;
+  progressIndex = 50;
 
   return (
     <Backdrop show={ show }>
-      <div className={`mx-auto my-4 w-[600px]`}>
-        <Card title="Generating Gif">
-          <div className={`flex flex-col m-4`}>
-            <div><LinearProgress variant="determinate" value={ progressIndex } classes={{ root: "mui-darksea-LinearProgress" }} /> { progressIndex }</div>
-            <br /><br />
-            <SmallButton title="Cancel" rounded="full" onClick={ onAbort } />
+      <div className={`
+        sm:mx-auto sm:my-4
+        w-full sm:w-[500px]
+        flex-1 h-full`}>
+        <Card title={ title }
+          className={`h-full sm:h-fit`}>
+          <div className={`flex flex-col items-end m-4`}>
+            <div className={`w-full mb-2`}>
+              <LinearProgress
+                variant="determinate"
+                value={ progressIndex }
+                classes={{ root: "mui-darksea-LinearProgress" }} />
+            </div>
+            <div className={`mb-4 font-medium text-lg`}>
+              { progressIndex }%
+            </div>
+            <Button
+              title="Cancel"
+              rounded="full"
+              onClick={ onAbort } />
           </div>
         </Card>
       </div>
@@ -827,7 +868,6 @@ export const Canvas = () => {
   });
 
   return (<>
-    <ProgressPanel show={ canvas.progressVisible } progressIndex={ canvas.progressIndex } onAbort={ () => canvas.abort() }/>
     <div className={`sm:rounded-lg overflow-hidden`}>
     <canvas
       width={ 320 } height={ 240 }

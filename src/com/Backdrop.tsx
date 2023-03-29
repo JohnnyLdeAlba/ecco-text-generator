@@ -8,11 +8,11 @@ export const Backdrop = ({
     <div className={`
       backdrop
       absolute
-      flex
-      w-full h-full
+      flex flex-col
+      w-screen h-screen
       bg-[rgba(0,0,0,0.6)]
 
-      ${ show ? "z-[8]" : "z-[-1]" } 
+      ${ show ? "z-[100]" : "z-[-1]" } 
       ${ show ? "opacity-100" : "opacity-0" } 
       ${ onClick ? "cursor-pointer" : '' }
     `}

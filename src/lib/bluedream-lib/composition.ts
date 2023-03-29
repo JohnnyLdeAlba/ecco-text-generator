@@ -62,6 +62,7 @@ export class t_font {
 
   align;
   vAlign;
+  baseline;
   trimSpaces;
   letterSpacing;
   lineHeight;
@@ -78,8 +79,9 @@ export class t_font {
     this.bitmapOffset = 0;
     this.charMap = new Map();
 
-    this.align = '';
-    this.vAlign = '';
+    this.align = "center";
+    this.vAlign = "middle";
+    this.baseline = "bottom";
     this.trimSpaces = 0;
     this.letterSpacing = 0;
     this.lineHeight = 0;

@@ -15,7 +15,7 @@ export const CardIcon = ({ children }) => {
 export const CardTitle = ({ children }) => {
 
   return (
-    <div className={`font-medium text-lg`}>
+    <div className={`font-medium md:text-lg`}>
       { children }
     </div>
   );
@@ -51,16 +51,17 @@ export const CardHeader = ({
   icon,
   title,
   subTitle,
-  menuItems
+  menuItems,
+  rounded
 }) => {
 
   const theme = useContext(ThemeContext);
 
   return (
     <div className={`
-      rounded-t-none sm:rounded-t-lg
       flex flex-row
       px-4 py-2
+      ${ rounded ? "rounded-t-lg" : "rounded-t-none sm:rounded-t-lg" }
       ${ theme.cardHeader }        
     `}>
       { icon ? <CardIcon>{ icon }</CardIcon> : null }
@@ -80,6 +81,7 @@ export const Card = ({
   title,
   subTitle,
   menuItems,
+  rounded,
   className,
   children
 }) => {
@@ -89,15 +91,17 @@ export const Card = ({
   return (
     <div className={`
       rounded-none sm:rounded-t-lg
-      flex-1 flex flex-col
       overflow-y-auto sm:overflow-y-visible
+      flex-1 flex flex-col
       ${ theme.card }
+      ${ className }
     `}>
       <CardHeader
         icon={ icon }
         title={ title }
         subTitle={ subTitle }
         menuItems={ menuItems }
+        rounded={ rounded }
       />
         <div className={`
           flex-1 flex flex-col
