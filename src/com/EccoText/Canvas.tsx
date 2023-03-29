@@ -3,6 +3,8 @@ import {
   createContext, useContext,
   useRef, useState } from "react";
 
+import GIF from "gif.js";
+
 import { ThemeContext } from "../../com/theme";
 
 import { t_hook } from "../../com/lib/hook";
@@ -18,6 +20,93 @@ import { extract_canvas_array } from "../../lib/bluedream-lib/sprite-sheet";
 import { t_font, t_composition } from "../../lib/bluedream-lib/composition";
 import { plot_composition } from "../../lib/bluedream-lib/plot-composition";
 import Fonts from "./fonts";
+
+function copy_canvas(oldCanvas) {
+
+    //create a new canvas
+    var newCanvas = document.createElement('canvas');
+
+    newCanvas.width = 640;
+    newCanvas.height = 480;
+
+    var context = newCanvas.getContext('2d');
+
+    context.imageSmoothingEnabled = false;
+
+    //set dimensions
+    //apply the old canvas to the new one
+    context.drawImage(oldCanvas, 0, 0, 640, 480);
+
+    //return the new canvas
+    return newCanvas;
+} 
+
+class t_generator_gif {
+
+  gen;
+  plotter;
+  com;
+  font;
+  background
+  waveformIndex;
+
+  constructor() {
+
+    this.plotter = new t_plotter();
+    this.plotter.initialize(320, 240);    
+  }
+
+  updateViewport(frameIndex) {
+
+    const ps = this.plotter.createPS();
+
+    ps.index = this.background;
+    ps.process = () => ps_process_wave(
+      this.plotter, ps,
+      this.waveformIndex,
+      frameIndex);
+
+    this.plotter.addPS(ps);
+
+    const psArray = plot_composition(this.com);
+    this.plotter.addPSArray(psArray);
+
+    this.plotter.fill();
+    this.plotter.process();
+  }
+
+  generate() {
+
+    // support frame skipping
+
+    const gen = new GIF({
+      quality: 0,
+      workers: 64,
+      transparent: null
+    });
+
+
+    gen.on("progress", percentage => console.log(percentage));
+    gen.on('finished', blob => window.location = URL.createObjectURL(blob));
+
+    let canvas = null
+
+    for (let index = 0; index < 255; index++) {
+
+      this.updateViewport(index);
+
+       canvas = copy_canvas(this.plotter.viewport);
+
+       gen.addFrame(canvas, { 
+        delay: parseInt(1000/60),
+        dispose: -2
+       });
+    }
+
+    gen.render();
+    this.gen = gen;
+  }
+}
 
 class t_canvas extends t_hook {
 
@@ -60,9 +149,9 @@ class t_canvas extends t_hook {
     this.plotter = null;
     this.com = null;
 
-    // this.waveformIndex = RippleTableId;
+    this.waveformIndex = RippleTableId;
     this.text = '';
-    this.waveformIndex = 1;
+    // this.waveformIndex = 1;
     this.align = '';
     this.vAlign = '';
     this.baseline = "bottom";
@@ -233,6 +322,8 @@ class t_canvas extends t_hook {
       this.text
     );
 
+    this.com = com;
+
     const psArray = plot_composition(com);
     this.plotter.addPSArray(psArray);
   }
@@ -255,6 +346,20 @@ class t_canvas extends t_hook {
 
     this.plotter.fill();
     this.plotter.process();
+  }
+
+  generate() {
+
+    const gen = new t_generator_gif();
+
+    gen.plotter.bitmaps = this.plotter.bitmaps;
+    gen.waveformIndex = this.waveformIndex;
+    gen.background = this.background;
+
+    this.updateComposition();
+ 
+    gen.com = this.com;
+    gen.generate();
   }
 
   setWaveformIndex(value) {

@@ -66,7 +66,7 @@ export class t_plot_state {
     this.width = 0;
     this.height = 0;
 
-    this.imageSmoothing = true;
+    this.imageSmoothing = false;
     this.colorFilter = null;
     this.process = null;
   }

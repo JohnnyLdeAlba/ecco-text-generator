@@ -3,6 +3,8 @@ import { createContext, useEffect, useContext, useState, useRef } from "react";
 import { ThemeContext } from "../../com/theme";
 import FolderIcon from '@mui/icons-material/Folder';
 
+import GIF from "gif.js";
+
 import { Menu } from "../../com/PanelMenu/Menu";
 import { Card } from "../../com/Card";
 import { Layout } from "../../com/Layout/Layout";
@@ -26,7 +28,6 @@ import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 
 import Slider from '@mui/material/Slider';
-
 
 export const Container = ({ children }) => {
 

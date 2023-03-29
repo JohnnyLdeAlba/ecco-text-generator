@@ -47,13 +47,16 @@ export const ps_process_default = (plotter, plotState) => {
   const viewport = plotter.viewport;
   const context = viewport.getContext("2d");
 
+/*
   if (plotState.imageSmoothing) {
     context.imageSmoothingEnabled = true;
     context.imageSmoothingQuality = "high";
   }
   else
     context.imageSmoothingEnabled = false;
+*/
 
+  context.imageSmoothingEnabled = false;
   context.translate(plotState.x, plotState.y);
 
   switch (plotState.flip) {
@@ -144,13 +147,7 @@ export const ps_process_wave = (plotter, plotState, waveformIndex, frameIndex) =
   const viewport = plotter.viewport;
   const context = viewport.getContext("2d");
 
-  if (plotState.imageSmoothing) {
-    context.imageSmoothingEnabled = true;
-    context.imageSmoothingQuality = "high";
-  }
-  else
-    context.imageSmoothingEnabled = false;
-
+  context.imageSmoothingEnabled = false;
   context.translate(plotState.x, plotState.y);
 
   const canvas = (colorFilter => {

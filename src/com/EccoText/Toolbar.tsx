@@ -79,7 +79,7 @@ export const Toolbar = ({
             icon={ <GifIcon fontSize="small" /> }
             rounded={ "right" }
             className={`mr-4 pr-3 w-fit`}
-            onClick={ () => {} } />
+            onClick={ () => canvas.generate() } />
         </div>
 
         <div className={`flex flex-row`}>

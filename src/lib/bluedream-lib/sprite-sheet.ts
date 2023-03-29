@@ -43,6 +43,7 @@ export class t_sprite_sheet {
     );
 
     const context = canvas.getContext("2d");
+    context.imageSmoothingEnabled = false;
 
     context.drawImage(
       this.canvas,
@@ -89,6 +90,7 @@ export const create_sprite_sheet = async (
 
   const canvas = create_canvas(width, height);
   const context = canvas.getContext("2d");
+  context.imageSmoothingEnabled = false;
 
   context.drawImage(bitmap, 0, 0, width, height);
   spriteSheet.canvas = canvas;
