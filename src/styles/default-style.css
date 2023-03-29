@@ -77,6 +77,17 @@
   background-color: #1d468a;
 }
 
+.mui-darksea-LinearProgress {
+
+  height: 8px;
+  border-radius: 10px;
+  background-color: #111a28;
+}
+
+.mui-darksea-LinearProgress .MuiLinearProgress-bar {
+  background-color: #1d468a;
+}
+
 .background-darksea {
   background-attachment: fixed;
   background-repeat: no-repeat;

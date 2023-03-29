@@ -3,11 +3,16 @@ import {
   createContext, useContext,
   useRef, useState } from "react";
 
+import LinearProgress, { LinearProgressProps } from '@mui/material/LinearProgress';
+
 import GIF from "gif.js";
 
 import { ThemeContext } from "../../com/theme";
 
 import { t_hook } from "../../com/lib/hook";
+import { SmallButton } from "../../com/Button";
+import { Card } from "../../com/Card";
+import { Backdrop } from "../../com/Backdrop";
 import { t_plot_state } from "../../lib/bluedream-lib/plot-state";
 import { t_plotter } from "../../lib/bluedream-lib/plotter";
 
@@ -21,23 +26,27 @@ import { t_font, t_composition } from "../../lib/bluedream-lib/composition";
 import { plot_composition } from "../../lib/bluedream-lib/plot-composition";
 import Fonts from "./fonts";
 
-function copy_canvas(canvas) {
+function copy_canvas(canvas, width = 0, height = 0) {
 
-    let _canvas = document.createElement('canvas');
+    width = width ? width : canvas.width;
+    height = height ? height : canvas.height;
 
-    _canvas.width = canvas.width;
-    _canvas.height = canvas.height;
+    const _canvas = document.createElement('canvas');
+
+    _canvas.width = width;
+    _canvas.height = height;
 
     let context = _canvas.getContext('2d');
 
     context.imageSmoothingEnabled = false;
-    context.drawImage(canvas, 0, 0);
+    context.drawImage(canvas, 0, 0, width, height);
 
     return _canvas;
 } 
 
 class t_gif_generator {
 
+  gen;
   plotter;
   bitmaps;
   background;
@@ -48,11 +57,13 @@ class t_gif_generator {
   frameSkip;
   waveformIndex;
 
-  setProgress;
+  abort;
+  setProgressIndex;
   setBlob;
 
   constructor() {
 
+    this.gen = null;
     this.plotter = null;
     this.bitmaps = null;
     this.background = 0;
@@ -63,17 +74,30 @@ class t_gif_generator {
     this.frameSkip = false;
     this.waveformIndex = 0;
 
-    this.setProgress = progress => {};
+    this.abort = () => {};
+    this.setProgressIndex = progress => {};
     this.setBlob = blob => {}
   }
 
   initialize(resolution) {
 
-    this.setResolution(resolution);
-
     this.plotter = new t_plotter();
     this.plotter.initialize(
-      this.width, this.height);    
+      320, 240);   
+    this.plotter.bitmaps = this.bitmaps;
+
+    const gen = new GIF({
+      quality: 0,
+      workers: 64,
+      transparent: null
+    });
+
+    gen.on("progress", progressIndex =>
+      this.setProgressIndex(progressIndex));
+    gen.on('finished', blob => this.setBlob(blob));
+
+    this.abort = () => gen.abort();
+    this.gen = gen;
   }
 
   plotBackground(frameIndex) {
@@ -103,27 +127,21 @@ class t_gif_generator {
 
   generate() {
 
-    this.initialize();
-
-    const gen = new GIF({
-      quality: 0,
-      workers: 64,
-      transparent: null
-    });
-
-    gen.on("progress", percentage => this.setProgress(progress));
-    gen.on('finished', blob => this.setBlob(blob));
+    const gen = this.gen;
 
     for (let index = 0; index < 255; index++) {
 
-      if (this.frameSkip && ((index % 1) == 1))
+      if (this.frameSkip && ((index % 2) == 1))
         continue;
 
       this.plotBackground(index);
       this.plotComposition(this.com);
+      this.render();
 
       const canvas = copy_canvas(
-        this.plotter.viewport);
+        this.plotter.viewport,
+        this.width, this.height
+      );
 
       gen.addFrame(canvas, { 
         delay: parseInt(1000/60),
@@ -206,6 +224,37 @@ class t_canvas extends t_hook {
     this.backgroundMap = new Map();
     this.uriMap = new Map();
     this.themeMap = new Map();
+
+    this.progressVisible = false;;
+    this.progressIndex = 0;
+  }
+
+  showProgress(visible) {
+
+    if (this.progressVisible == visible)
+      return;
+
+    this.progressVisible = visible;
+    this.commit();
+  }
+
+  setProgressIndex(progressIndex) {
+
+    if (this.progressIndex == progressIndex)
+      return;
+
+    progressIndex = Math.ceil(progressIndex * 100);
+
+    this.progressIndex = progressIndex;
+    this.commit();
+  }
+
+  setBlob(blob) {
+
+    this.setProgressIndex(0);
+    this.showProgress(false);
+
+    window.location = URL.createObjectURL(blob);
   }
 
   setAlign(align) {
@@ -454,9 +503,11 @@ class t_canvas extends t_hook {
 
   generate() {
 
+    this.showProgress(true);
+
     const gen = new t_gif_generator();
 
-    gen.bitmaps = this.bitmaps;
+    gen.bitmaps = this.plotter.bitmaps;
     gen.background = this.background;
 
     gen.resolution = this.resolution;
@@ -465,6 +516,18 @@ class t_canvas extends t_hook {
     gen.frameSkip = this.frameSkip;
     gen.waveformIndex = this.waveformIndex;
     gen.com = this.updateComposition();
+
+    gen.setProgressIndex = progressIndex =>
+      this.setProgressIndex(progressIndex);
+    gen.setBlob = blob => this.setBlob(blob);
+    
+    gen.initialize();
+
+    this.abort = () => {
+
+      gen.abort();
+      this.showProgress(false);
+    }
 
     gen.generate();
   }
@@ -479,6 +542,9 @@ class t_canvas extends t_hook {
   }
 
   handleInput(key) {
+
+    if (this.state != "ready")
+      return;
 
     if (this.cursorPosition < 0)
       this.cursorPosition = this.text.length;
@@ -669,6 +735,7 @@ class t_canvas extends t_hook {
     this.addTheme("volcanoTheme", "volcanoFont", "volcanoBackground");
 
     this.setTheme("homeBayTheme");
+    this.setResolution("ultraHigh");
 
     this.progma.set("backgrounds", galleryItem => this.onBackgroundChange(galleryItem));
     this.progma.set("fonts", galleryItem => this.onFontChange(galleryItem));
@@ -733,6 +800,23 @@ export const useCanvas  = ({ progma = null }) => {
   return canvas;
 }
 
+export const ProgressPanel = ({ show = false, progressIndex = 0, onAbort }) => {
+
+  return (
+    <Backdrop show={ show }>
+      <div className={`mx-auto my-4 w-[600px]`}>
+        <Card title="Generating Gif">
+          <div className={`flex flex-col m-4`}>
+            <div><LinearProgress variant="determinate" value={ progressIndex } classes={{ root: "mui-darksea-LinearProgress" }} /> { progressIndex }</div>
+            <br /><br />
+            <SmallButton title="Cancel" rounded="full" onClick={ onAbort } />
+          </div>
+        </Card>
+      </div>
+    </Backdrop>
+  );
+}
+
 export const Canvas = () => {
 
   const ref = useRef();
@@ -742,13 +826,14 @@ export const Canvas = () => {
     canvas.process({ canvas: ref.current });
   });
 
-  return (
+  return (<>
+    <ProgressPanel show={ canvas.progressVisible } progressIndex={ canvas.progressIndex } onAbort={ () => canvas.abort() }/>
     <div className={`sm:rounded-lg overflow-hidden`}>
     <canvas
       width={ 320 } height={ 240 }
       ref={ ref }
       className={`pixelated w-full`} />
     </div>
-  );
+  </>);
 }
 

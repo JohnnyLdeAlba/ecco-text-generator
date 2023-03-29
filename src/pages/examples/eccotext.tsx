@@ -6,6 +6,7 @@ import FolderIcon from '@mui/icons-material/Folder';
 import GIF from "gif.js";
 
 import { Menu } from "../../com/PanelMenu/Menu";
+import { Backdrop } from "../../com/Backdrop";
 import { Card } from "../../com/Card";
 import { Layout } from "../../com/Layout/Layout";
 import { useCanvas, Canvas } from "../../com/EccoText/Canvas";

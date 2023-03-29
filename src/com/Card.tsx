@@ -80,6 +80,7 @@ export const Card = ({
   title,
   subTitle,
   menuItems,
+  className,
   children
 }) => {
 
@@ -90,7 +91,7 @@ export const Card = ({
       rounded-none sm:rounded-t-lg
       flex-1 flex flex-col
       overflow-y-auto sm:overflow-y-visible
-      ${ theme.card }        
+      ${ theme.card }
     `}>
       <CardHeader
         icon={ icon }
