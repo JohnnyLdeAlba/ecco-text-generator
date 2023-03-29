@@ -410,7 +410,7 @@ class t_canvas extends t_hook {
 
     switch (resolution) {
 
-      case "ultraHigh": {
+      case "resUltraHigh": {
 
         this.resolution = resolution;
         this.width = 640;
@@ -420,7 +420,7 @@ class t_canvas extends t_hook {
         break;
       }
 
-      case "high": {
+      case "resHigh": {
 
         this.resolution = resolution;
         this.width = 640;
@@ -430,7 +430,7 @@ class t_canvas extends t_hook {
         break;
       }
 
-      case "low": {
+      case "resLow": {
 
         this.resolution = resolution;
         this.width = 320;
@@ -442,7 +442,7 @@ class t_canvas extends t_hook {
 
       default: {
 
-        this.resolution = "medium";
+        this.resolution = "resMedium";
         this.width = 320;
         this.height = 240;
         this.frameSkip = false;
@@ -450,6 +450,9 @@ class t_canvas extends t_hook {
         break;
       }
     }
+
+    this.progma.removeAllSelectedItems("resolutions");
+    this.progma.addSelectedItem("resolutions", resolution);
 
     this.commit();
   }
@@ -751,11 +754,12 @@ class t_canvas extends t_hook {
     this.addTheme("volcanoTheme", "volcanoFont", "volcanoBackground");
 
     this.setTheme("homeBayTheme");
-    this.setResolution("low");
+    this.setResolution("resMedium");
 
     this.progma.set("backgrounds", galleryItem => this.onBackgroundChange(galleryItem));
     this.progma.set("fonts", galleryItem => this.onFontChange(galleryItem));
     this.progma.set("themes", galleryItem => this.onThemeChange(galleryItem));
+    this.progma.set("resolutions", galleryItem => this.setResolution(galleryItem.hash));
 
     this.frameRate.process = () => this.updateViewport();
     this.frameRate.render = () => this.render();

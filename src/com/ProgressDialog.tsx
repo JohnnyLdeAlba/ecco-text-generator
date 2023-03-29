@@ -50,19 +50,19 @@ export const DownloadDialog = ({
 
   switch (resolution) {
 
-    case "ultraHigh": {
+    case "resUltraHigh": {
 
       resolution = "640x480 Ultra High";
       break;
     }
 
-    case "high": {
+    case "resHigh": {
 
       resolution = "640x480 High";
       break;
     }
 
-    case "low": {
+    case "resLow": {
 
       resolution = "320x240 Low";
       break;

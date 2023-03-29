@@ -34,7 +34,8 @@ node.name = "Effects";
 node.icon = "/icons/wave.png";
 node.orderId = 1;
 
-node = container.addNode("resolutions", RootId);
+const ResolutionsId = ++id;
+node = container.addNode("resolutions", RootId, ResolutionsId);
 node.name = "Resolutions";
 node.icon = "/icons/wave.png";
 node.orderId = 1;
@@ -90,45 +91,6 @@ node.type = "keyboardLayouts";
 node.name = "Katakana";
 node.icon = "/icons/settings.png";
 node.orderId = 8;
-
-
-
-/*
-node = container.addNode('', RootId);
-node.name = "Resolution";
-node.orderId = 2;
-node.properties.placeholder = true;
-
-node = container.addNode("ultraHigh", RootId);
-node.name = "640x480 Ultra High";
-node.icon = "/icons/settings.png";
-node.orderId = 3;
-
-node = container.addNode("high", RootId);
-node.name = "640x480 High";
-node.icon = "/icons/settings.png";
-node.orderId = 3;
-
-node = container.addNode("mediumHigh", RootId);
-node.name = "320x240 Medium High";
-node.icon = "/icons/settings.png";
-node.orderId = 3;
-
-node = container.addNode("medium", RootId);
-node.name = "320x240 Medium";
-node.icon = "/icons/settings.png";
-node.orderId = 3;
-
-node = container.addNode("low", RootId);
-node.name = "320x240 Low";
-node.icon = "/icons/settings.png";
-node.orderId = 3;
-
-node = container.addNode("low1", RootId);
-node.name = "320x240 Low";
-node.icon = "/icons/settings.png";
-node.orderId = 3;
-*/
 
 // Backgrounds
 
@@ -323,5 +285,31 @@ node = container.addNode("volcanoFont", FontsId);
 node.type = "fonts";
 node.name = "Volcano";
 node.icon = "/eccotext/icons/fonts/volcano.png";
+
+// Resolutions
+
+node = container.addNode("resUltraHigh", ResolutionsId);
+node.orderId = 1;
+node.type = "resolutions";
+node.name = "Ultra High";
+node.icon = "/icons/settings.png";
+
+node = container.addNode("resHigh", ResolutionsId);
+node.orderId = 2;
+node.type = "resolutions";
+node.name = "High";
+node.icon = "/icons/settings.png";
+
+node = container.addNode("resMedium", ResolutionsId);
+node.orderId = 3;
+node.type = "resolutions";
+node.name = "Medium";
+node.icon = "/icons/settings.png";
+
+node = container.addNode("resLow", ResolutionsId);
+node.orderId = 4;
+node.type = "resolutions";
+node.name = "Low";
+node.icon = "/icons/settings.png";
 
 export default container;
