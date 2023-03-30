@@ -1,9 +1,31 @@
 import { t_rgba } from "../../lib/bluedream-lib/plot-state";
 import { t_font } from "../../lib/bluedream-lib/composition";
 
-const font_system = () => {
+const font_animated = () => {
 
   const font = new t_font();
+
+  font.animated = {
+
+    imageHash: "animations",
+    imageURI: "/eccotext/theme/fonts/animations.png",
+    bitmapIndex: 0,
+    bitmapOffset: 0,
+    width: 128,
+    height: 128
+  };
+
+  let index = 0;
+
+  font.add('a', 0, 24, 32, -54, -48, [ 0, 1, 2, 3, 4, 5 ], [ 10, 10, 10, 10, 10, 10 ]);
+  font.add('b', 10, 34, 48, -48, -50, [ 0, 1, 2, 3, 4, 5, 6, 7 ], [ 8, 8, 8, 8, 8, 8, 8, 8 ]);
+
+  return font;
+}
+
+const font_system = () => {
+
+  const font = font_animated();
 
   font.hash = "systemFont";
   font.name = "System";
@@ -109,7 +131,7 @@ const font_system_red = () => {
 
 const font_home_bay = () => {
 
-  const font = new t_font();
+  const font = font_animated();
 
   font.hash = "homeBayFont";
   font.name = "Home Bay";
@@ -133,6 +155,7 @@ const font_home_bay = () => {
 
   let index = 0;
 
+/*
   font.add('a', index,   14, 23); 
   font.add('b', ++index, 14, 23); 
   font.add('c', ++index, 14, 23); 
@@ -159,6 +182,7 @@ const font_home_bay = () => {
   font.add('x', ++index, 16, 23); 
   font.add('y', ++index, 14, 23); 
   font.add('z', ++index, 14, 23);
+*/
 
   index = 26 * 1;
 

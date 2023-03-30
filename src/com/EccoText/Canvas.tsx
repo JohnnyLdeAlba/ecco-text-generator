@@ -331,10 +331,29 @@ class t_canvas extends t_hook {
       font.height
     );
 
-    font.bitmapIndex+= this.plotter
+    font.bitmapIndex = this.plotter
       .addCanvasArray(canvasArray);
 
     this.fontMap.set(font.hash, font);
+
+    if (font.animated.imageHash != '') {
+
+      if (this.uriMap.get(font.animated.imageHash))
+        return;
+
+      this.uriMap.set(
+        font.animated.imageHash,
+        font.animated.imageURI);
+
+      const canvasArray = await extract_canvas_array(
+        font.animated.imageURI,
+        font.animated.width,
+        font.animated.height
+      );
+
+      font.animated.bitmapIndex = this.plotter
+        .addCanvasArray(canvasArray);
+    }
   }
 
   async addBackground(hash, imageURI) {
@@ -627,8 +646,8 @@ class t_canvas extends t_hook {
 
         if (this.cursorPosition < this.text.length) {
 
-          const startText = this.text.slice(0, this.cursorPosition + 1);
-          const endText = this.text.slice(this.cursorPosition + 1);
+          const startText = this.text.slice(0, this.cursorPosition);
+          const endText = this.text.slice(this.cursorPosition);
 
           this.text = startText + char.hash + endText;
           this.cursorPosition++;
@@ -664,7 +683,8 @@ class t_canvas extends t_hook {
     this.plotter.initialize(320, 240);    
     this.plotter.setCanvas(canvas);
 
-    await this.addFont(Fonts.font_crimson());
+    const primaryFont = Fonts.font_crimson();
+    await this.addFont(primaryFont);
     await this.addFont(Fonts.font_deep_blue());
     await this.addFont(Fonts.font_elvish());
     await this.addFont(Fonts.font_home_bay());
@@ -679,6 +699,8 @@ class t_canvas extends t_hook {
     await this.addFont(Fonts.font_the_machine());
     await this.addFont(Fonts.font_vaporwave());
     await this.addFont(Fonts.font_volcano());
+
+    this.fontMap.forEach(font => font.animated = primaryFont.animated);
 
     await this.addBackground(
       "crimsonBackground",

@@ -55,7 +55,16 @@ export const plot_composition = com => {
           continue;
 
         const ps = new t_plot_state();
-        ps.index = com.font.bitmapIndex + char.bitmapIndex;
+
+	if (char.type == "animated") {
+
+          const frameIndex = char.getFrame();
+          ps.index = com.font.animated.bitmapIndex + char.bitmapIndex + frameIndex;
+	   
+	  char.updateFrame();
+	}
+	else
+          ps.index = com.font.bitmapIndex + char.bitmapIndex;
 
         let offsetY = 0;
 

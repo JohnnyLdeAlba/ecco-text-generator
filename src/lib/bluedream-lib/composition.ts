@@ -15,6 +15,7 @@ export class t_char {
   constructor() {
 
     this.id = 0;
+    this.type = '';
     this.hash = '';
     this.bitmapIndex = 0;
 
@@ -23,6 +24,34 @@ export class t_char {
    
     this.width = 0;
     this.height = 0;
+
+    this.frameIndex = 0;
+    this.frameTotal = 0;
+    this.delayIndex = 0;
+
+    this.frames = null;
+    this.frameDelay = null;
+  }
+
+  getFrame() {
+    return this.frames[this.frameIndex];
+  }
+
+  updateFrame() {
+
+    const delayTotal = this.frameDelay[this.frameIndex];
+
+    if (this.delayIndex >= delayTotal - 1) {
+
+      this.delayIndex = 0;
+
+      if (this.frameIndex >= this.frameTotal - 1)
+        this.frameIndex = 0;
+      else
+        this.frameIndex++;
+    }
+    else
+      this.delayIndex++;
   }
 }
 
@@ -54,12 +83,17 @@ export class t_font {
 
   hash;
   name;
+  compatibleWith;
+
   imageURI;
   imageHash;
   bitmapIndex;
   bitmapOffset;
-  charMap;
+  width;
+  height;
 
+  animated;
+  charMap;
   align;
   vAlign;
   baseline;
@@ -73,12 +107,26 @@ export class t_font {
 
     this.hash = '';
     this.name = '';
+    this.compatibleWith = '';
+
     this.imageURI = '';
     this.imageHash = '';
     this.bitmapIndex = 0;
     this.bitmapOffset = 0;
-    this.charMap = new Map();
+    this.width = 0;
+    this.height = 0;
 
+    this.animated = {
+
+      imageURI: '',
+      imageHash: '',
+      bitmapIndex: 0,
+      bitmapOffset: 0,
+      width: 0,
+      height: 0
+    }
+
+    this.charMap = new Map();
     this.align = "center";
     this.vAlign = "middle";
     this.baseline = "bottom";
@@ -95,7 +143,9 @@ export class t_font {
     width,
     height,
     offsetX = 0,
-    offsetY = 0) {
+    offsetY = 0,
+    frames = null,
+    frameDelay = null) {
 
     const char = new t_char();
 
@@ -107,6 +157,14 @@ export class t_font {
 
     char.width = width;
     char.height = height; 
+   
+    if (frames) {
+
+      char.type = "animated";
+      char.frames = frames;
+      char.frameDelay = frameDelay;
+      char.frameTotal = frames.length;
+    }
 
     this.charMap.set(char.hash, char);
   }
