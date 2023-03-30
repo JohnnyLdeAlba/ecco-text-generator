@@ -28,6 +28,7 @@ export class t_char {
     this.frameIndex = 0;
     this.frameTotal = 0;
     this.delayIndex = 0;
+    this.frameUpdated = false;
 
     this.frames = null;
     this.frameDelay = null;
@@ -38,6 +39,9 @@ export class t_char {
   }
 
   updateFrame() {
+
+    if (this.frameUpdated)
+      return;
 
     const delayTotal = this.frameDelay[this.frameIndex];
 
@@ -52,6 +56,8 @@ export class t_char {
     }
     else
       this.delayIndex++;
+
+    this.frameUpdated = true;
   }
 }
 
@@ -135,6 +141,23 @@ export class t_font {
     this.lineHeight = 0;
     this.selectSpacing = 0;
     this.cursorFilter = new t_rgba(1, 1, 1, 1);
+  }
+
+  resetAnimated() {
+
+    this.charMap.forEach(char => {
+
+      char.frameIndex = 0;
+      char.delayIndex = 0;
+      char.frameUpdated = false;
+    });
+  }
+
+  updateAnimated() {
+
+    this.charMap.forEach(char => {
+      char.frameUpdated = false;
+    });
   }
 
   add(

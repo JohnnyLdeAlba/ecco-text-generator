@@ -97,5 +97,6 @@ export const plot_composition = com => {
     height+= line.height + com.lineHeight;
   }
 
+  com.font.updateAnimated();
   return psArray;
 }

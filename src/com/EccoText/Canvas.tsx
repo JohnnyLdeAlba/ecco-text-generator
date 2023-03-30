@@ -86,6 +86,8 @@ class t_gif_generator {
       320, 240);   
     this.plotter.bitmaps = this.bitmaps;
 
+    this.com.font.resetAnimated();
+
     const gen = new GIF({
       quality: 0,
       workers: 64,
