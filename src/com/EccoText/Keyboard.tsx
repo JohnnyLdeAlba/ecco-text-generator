@@ -163,7 +163,7 @@ const HiraganaLayout = ({ disabled = false }) => {
         <div className={`flex-1 flex flex-col items-end`}>
           <ControlKey
             disabled={ disabled || visible == "hiraganaA" }
-            width="stretch"
+            dimensions="stretchWidth"
             className={`m-[3px]`}
             onClick={ () => show("hiraganaA") }>
             あぁか 
@@ -171,7 +171,7 @@ const HiraganaLayout = ({ disabled = false }) => {
 
           <ControlKey
             disabled={ disabled || visible == "hiraganaB" }
-            width="stretch"
+            dimensions="stretchWidth"
             className={`m-[3px]`}
             onClick={ () => show("hiraganaB") }>
             はまや
@@ -179,7 +179,7 @@ const HiraganaLayout = ({ disabled = false }) => {
 
           <ControlKey
             disabled={ disabled || visible == "hiraganaC" }
-            width="stretch"
+            dimensions="stretchWidth"
             className={`m-[3px]`}
             onClick={ () => show("hiraganaC") }>
             わがざ
@@ -187,7 +187,7 @@ const HiraganaLayout = ({ disabled = false }) => {
 
           <ControlKey
             disabled={ disabled || visible == "hiraganaD" }
-            width="stretch"
+            dimensions="stretchWidth"
             className={`m-[3px]`}
             onClick={ () => show("hiraganaD") }>
             ゔっん
@@ -275,7 +275,7 @@ const KatakanaLayout = ({ disabled = false }) => {
         <div className={`flex-1 flex flex-col items-end`}>
           <ControlKey
             disabled={ disabled || visible == "katakanaA" }
-            width="stretch"
+            dimensions="stretchWidth"
             className={`m-[3px]`}
             onClick={ () => show("katakanaA") }>
             アァカ 
@@ -283,7 +283,7 @@ const KatakanaLayout = ({ disabled = false }) => {
 
           <ControlKey
             disabled={ disabled || visible == "katakanaB" }
-            width="stretch"
+            dimensions="stretchWidth"
             className={`m-[3px]`}
             onClick={ () => show("katakanaB") }>
             ハマヤ
@@ -291,7 +291,7 @@ const KatakanaLayout = ({ disabled = false }) => {
 
           <ControlKey
             disabled={ disabled || visible == "katakanaC" }
-            width="stretch"
+            dimensions="stretchWidth"
             className={`m-[3px]`}
             onClick={ () => show("katakanaC") }>
             ワガザ
@@ -299,7 +299,7 @@ const KatakanaLayout = ({ disabled = false }) => {
 
           <ControlKey
             disabled={ disabled || visible == "katakanaD" }
-            width="stretch"
+            dimensions="stretchWidth"
             className={`m-[3px]`}
             onClick={ () => show("katakanaD") }>
             ヴッン
@@ -312,23 +312,195 @@ const KatakanaLayout = ({ disabled = false }) => {
   );
 }
 
+const AnimationsLayout = ({ disabled = false }) => {
+
+  const canvas = useContext(CanvasContext);
+
+  return (
+    <>
+    <div className={`
+      w-full
+      flex flex-row
+      items-center justify-center
+      py-[3px]`}>
+
+      <ControlKey disabled={ disabled } dimensions="stretch"
+        onClick={ () => canvas.handleInput('\u1004') }>
+        <img src="/eccotext/icons/keyboard/amoeba.png" alt="" />
+      </ControlKey>
+
+      <ControlKey disabled={ disabled } dimensions="stretch"
+        onClick={ () => canvas.handleInput('\u1013') }>
+        <img src="/eccotext/icons/keyboard/crab.png" alt="" />
+      </ControlKey>
+
+      <ControlKey disabled={ disabled } dimensions="stretch"
+        onClick={ () => canvas.handleInput('\u1007') }>
+        <img src="/eccotext/icons/keyboard/dolphin.png" alt="" />
+      </ControlKey>
+
+      <ControlKey disabled={ disabled } dimensions="stretch"
+        onClick={ () => canvas.handleInput('\u1008') }>
+        <img src="/eccotext/icons/keyboard/glyph.png" alt="" />
+      </ControlKey>
+
+      <ControlKey disabled={ disabled } dimensions="stretch"
+        onClick={ () => canvas.handleInput('\u1000') }>
+        <img src="/eccotext/icons/keyboard/jellyfish.png" alt="" />
+      </ControlKey>
+
+    </div>
+    <div className={`
+      w-full
+      flex flex-row
+      items-center justify-center
+      py-[3px]`}>
+
+      <ControlKey disabled={ disabled } dimensions="stretch"
+        onClick={ () => canvas.handleInput('\u1001') }>
+        <img src="/eccotext/icons/keyboard/metasphere.png" alt="" />
+      </ControlKey>
+
+      <ControlKey disabled={ disabled } dimensions="stretch"
+        onClick={ () => canvas.handleInput('\u1005') }>
+        <img src="/eccotext/icons/keyboard/seagull.png" alt="" />
+      </ControlKey>
+
+      <ControlKey disabled={ disabled } dimensions="stretch"
+        onClick={ () => canvas.handleInput('\u1014') }>
+        <img src="/eccotext/icons/keyboard/shield-crab.png" alt="" />
+      </ControlKey>
+
+      <ControlKey disabled={ disabled } dimensions="stretch"
+        onClick={ () => canvas.handleInput('\u1006') }>
+        <img src="/eccotext/icons/keyboard/small-orca.png" alt="" />
+      </ControlKey>
+
+      <ControlKey disabled={ disabled } dimensions="stretch"
+        onClick={ () => canvas.handleInput('\u1012') }>
+        <img src="/eccotext/icons/keyboard/starfish.png" alt="" />
+      </ControlKey>
+
+    </div>
+    <div className={`
+      w-full
+      flex flex-row
+      items-center justify-center
+      py-[3px]`}>
+
+      <ControlKey disabled={ disabled } dimensions="stretch"
+        onClick={ () => canvas.handleInput('\u1010') }>
+        <img src="/eccotext/icons/keyboard/turtle.png" alt="" />
+      </ControlKey>
+
+      <ControlKey disabled={ disabled } dimensions="stretch"
+        onClick={ () => canvas.handleInput('\u1009') }>
+        <img src="/eccotext/icons/keyboard/vortex-future-dolphin.png" alt="" />
+      </ControlKey>
+
+      <ControlKey disabled={ disabled } dimensions="stretch"
+        onClick={ () => canvas.handleInput('\u1003') }>
+        <img src="/eccotext/icons/keyboard/vortex-globe.png" alt="" />
+      </ControlKey>
+
+      <ControlKey disabled={ disabled } dimensions="stretch"
+        onClick={ () => canvas.handleInput('\u1002') }>
+        <img src="/eccotext/icons/keyboard/vortex-jellyfish.png" alt="" />
+      </ControlKey>
+
+      <ControlKey disabled={ disabled } dimensions="stretch"
+        onClick={ () => canvas.handleInput('\u1011') }>
+        <img src="/eccotext/icons/keyboard/stingray.png" alt="" />
+      </ControlKey>
+
+    </div>
+    <div className={`
+      w-full
+      flex flex-row
+      items-center justify-center
+      py-[3px]`}>
+
+      <ControlKey disabled={ disabled } dimensions="stretch"
+        onClick={ () => canvas.handleInput('\u1015') }>
+        <img src="/eccotext/icons/keyboard/fish-1.png" alt="" />
+      </ControlKey>
+
+      <ControlKey disabled={ disabled } dimensions="stretch"
+        onClick={ () => canvas.handleInput('\u1016') }>
+        <img src="/eccotext/icons/keyboard/fish-2.png" alt="" />
+      </ControlKey>
+
+      <ControlKey disabled={ disabled } dimensions="stretch"
+        onClick={ () => canvas.handleInput('\u1017') }>
+        <img src="/eccotext/icons/keyboard/fish-3.png" alt="" />
+      </ControlKey>
+
+      <ControlKey disabled={ disabled } dimensions="stretch"
+        onClick={ () => canvas.handleInput('\u1018') }>
+        <img src="/eccotext/icons/keyboard/fish-4.png" alt="" />
+      </ControlKey>
+
+      <ControlKey disabled={ disabled } dimensions="stretch"
+        onClick={ () => canvas.handleInput('\u1019') }>
+        <img src="/eccotext/icons/keyboard/fish-5.png" alt="" />
+      </ControlKey>
+
+    </div>
+    <div className={`
+      w-full
+      flex flex-row
+      items-center justify-center
+      py-[3px]`}>
+
+      <ControlKey disabled={ disabled } dimensions="stretch"
+        onClick={ () => canvas.handleInput('\u1020') }>
+        <img src="/eccotext/icons/keyboard/fish-6.png" alt="" />
+      </ControlKey>
+
+      <ControlKey disabled={ disabled } dimensions="stretch"
+        onClick={ () => canvas.handleInput('\u1021') }>
+        <img src="/eccotext/icons/keyboard/fish-7.png" alt="" />
+      </ControlKey>
+
+      <ControlKey disabled={ disabled } dimensions="stretch"
+        onClick={ () => canvas.handleInput('\u1022') }>
+        <img src="/eccotext/icons/keyboard/fish-8.png" alt="" />
+      </ControlKey>
+
+      <ControlKey disabled={ disabled } dimensions="stretch"
+        onClick={ () => canvas.handleInput('\u1023') }>
+        <img src="/eccotext/icons/keyboard/fish-9.png" alt="" />
+      </ControlKey>
+
+      <ControlKey disabled={ disabled } dimensions="stretch"
+        onClick={ () => canvas.handleInput('\u1024') }>
+        <img src="/eccotext/icons/keyboard/fish-10.png" alt="" />
+      </ControlKey>
+
+    </div>
+    </>
+  );
+}
+
 const ControlKey = ({
   disabled = false,
-  width,
+  dimensions,
   className,
   onClick,
   children }) => {
 
   const theme = useContext(ThemeContext);
 
-  if (width == "stretch")
-    width = '';
+  if (dimensions == "stretch")
+    dimensions = '';
+  else if (dimensions == "stretchWidth")
+    dimensions = `h-[30px] xs:h-[35px] sm:h-[40px]`; 
   else
-    width = "w-[30px] xs:w-[40px] sm:w-[50px]"; 
+    dimensions = `w-[30px] xs:w-[40px] sm:w-[50px]
+      h-[30px] xs:h-[35px] sm:h-[40px]`; 
 
   return (
     <div className={`
-      h-[30px] xs:h-[35px] sm:h-[40px]
       flex flex-row
       items-center justify-center
       mx-[3px] px-3
@@ -336,7 +508,7 @@ const ControlKey = ({
       font-medium
       text-xs
       ${ disabled ? "disabled" : "button" }
-      ${ width }
+      ${ dimensions }
       ${ className }
       ${ theme.eccoText.keyboardItem }
       `} onClick={ disabled ? null : onClick }>
@@ -359,7 +531,7 @@ const ControlRow = ({ disabled = false }) => {
         <ArrowLeftIcon />
       </ControlKey>
 
-      <ControlKey disabled={ disabled } width="stretch">
+      <ControlKey disabled={ disabled } dimensions="stretchWidth">
         <BackspaceIcon fontSize="small"
           onClick={ () => canvas.handleInput("Backspace") }/>
       </ControlKey>
@@ -377,7 +549,7 @@ const ControlRow = ({ disabled = false }) => {
         ${ disabled ? "disabled" : "button" }
       `} onClick={ () => canvas.handleInput(' ') } />
 
-      <ControlKey disabled={ disabled } width="stretch">
+      <ControlKey disabled={ disabled } dimensions="stretchWidth">
         <KeyboardReturnIcon fontSize="small"
           onClick={ () => canvas.handleInput("Enter") } />
       </ControlKey>
@@ -501,6 +673,7 @@ export const Keyboard = ({ disabled = false, layout = "engKeyboard" }) => {
         flex flex-col
         items-center justify-center
         py-[3px]`}>
+        { layout == "aniKeyboard" ? <AnimationsLayout disabled={ disabled } /> : null }
         { layout == "engKeyboard" ? <EnglishLayout disabled={ disabled } /> : null }
         { layout == "numKeyboard" ? <NumbersLayout disabled={ disabled } /> : null }
         { layout == "intlKeyboard" ? <IntlLayout disabled={ disabled } /> : null }

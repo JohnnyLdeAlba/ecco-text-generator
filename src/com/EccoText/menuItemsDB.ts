@@ -47,6 +47,7 @@ node.icon = "/icons/wave.png";
 node.properties.placeholder = true;
 
 node = container.addNode("aniKeyboard", RootId);
+node.type = "keyboardLayouts";
 node.name = "Animations";
 node.icon = "/icons/animation.png";
 node.orderId = 4;
