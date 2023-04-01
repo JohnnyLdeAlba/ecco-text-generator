@@ -131,6 +131,7 @@ export const Index = () => {
 
 
   const request = useRequestStatic({
+    tokens: canvas.tokens,
     progma: progma,
     container: container,
     parentHash: "home" 

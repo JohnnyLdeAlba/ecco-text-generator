@@ -2,6 +2,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 
 import { t_hook } from "../lib/hook";
 import { t_node, t_node_container, sort_name, sort_order_id } from "../../lib/node-lib";
+import Filters from "../../lib/filters";
 import { ProgmaContext } from "../Progma"; 
 
 const config = {
@@ -21,6 +22,9 @@ class t_request_static extends t_hook {
   nextPage;
   totalPages;
 
+  tokens;
+  filters;
+
   constructor() {
 
     super();
@@ -37,6 +41,13 @@ class t_request_static extends t_hook {
 
     this.page = 0;
     this.nextPage = false;
+
+    this.tokens = new Map();
+    this.filters = [];
+
+    this.filters.push(Filters.filter_nodes);
+    this.filters.push(Filters.sort_name);
+    this.filters.push(Filters.sort_order_id);
   }
 
   saveNodeCache(parentId = -1) {
@@ -143,6 +154,16 @@ class t_request_static extends t_hook {
       startIndex + config.itemsPerPage);
   }
 
+  processFilters(nodes, tokenNodes) {
+
+    nodes;
+
+    this.filters.forEach(filter =>
+      nodes = filter(nodes, tokenNodes));
+
+    return nodes;
+  }
+
   getAllNodes(page = -1) {
 
     page == -1 ? this.page : page;
@@ -189,10 +210,15 @@ class t_request_static extends t_hook {
 
   getGalleryItems() {
 
-    const nodes = this.filterAllNodes();
+    let nodes = this.filterAllNodes();
+    nodes = this.processFilters(nodes, this.tokens);
+
     const _nodes = [];
 
     nodes.forEach(node => {
+
+      if (node.hasFiltered())
+        return;
 
       node = node.copy();
       node.uniqueId = ++this.serial;
@@ -246,10 +272,12 @@ class t_request_static extends t_hook {
 
   set(params) {
 
-    const { progma, refresh } = params;
+    const { progma, refresh, tokens } = params;
 
     this.progma = progma;
     this.refresh = refresh;
+
+    this.tokens = tokens ? tokens : new Map();
   }
 
   process(params) {
@@ -294,6 +322,7 @@ const RequestStaticContext = createContext(new t_request_static());
 
 export const useRequestStatic = ({
   container = null,
+  tokens = null,
   filterType = '',
   parentId = 0,
   parentHash = '',
@@ -306,7 +335,8 @@ export const useRequestStatic = ({
 
   requestStatic.set({
     progma: progma,
-    refresh: () => setSerial(serial + 1)
+    refresh: () => setSerial(serial + 1),
+    tokens: tokens
   });
 
   useEffect(() => {

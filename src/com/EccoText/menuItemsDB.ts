@@ -74,24 +74,28 @@ node.type = "keyboardLayouts";
 node.name = "Russian";
 node.icon = "/icons/russian.png";
 node.orderId = 7;
+node.filters.set("homeBayFont", true);
 
 node = container.addNode("intlKeyboard", RootId);
 node.type = "keyboardLayouts";
 node.name = "International";
 node.icon = "/icons/international.png";
 node.orderId = 6;
+node.filters.set("homeBayFont", true);
 
 node = container.addNode("hiraKeyboard", RootId);
 node.type = "keyboardLayouts";
 node.name = "Hiragana";
 node.icon = "/icons/japanese.png";
 node.orderId = 8;
+node.filters.set("homeBayFont", true);
 
 node = container.addNode("kataKeyboard", RootId);
 node.type = "keyboardLayouts";
 node.name = "Katakana";
 node.icon = "/icons/japanese.png";
 node.orderId = 8;
+node.filters.set("homeBayFont", true);
 
 // Backgrounds
 

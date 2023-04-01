@@ -89,7 +89,7 @@ export class t_font {
 
   hash;
   name;
-  compatibleWith;
+  type;
 
   imageURI;
   imageHash;
@@ -113,7 +113,7 @@ export class t_font {
 
     this.hash = '';
     this.name = '';
-    this.compatibleWith = '';
+    this.type = '';
 
     this.imageURI = '';
     this.imageHash = '';

@@ -232,6 +232,14 @@ export class t_node {
     }
   }
 
+  hasFiltered() {
+
+    return (this.status.filteredAttribute ||
+      this.status.filteredPriority ||
+      this.status.filteredHidden);
+    
+  }
+
   copy() {
  
     const node = new t_node();

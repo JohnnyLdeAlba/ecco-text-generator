@@ -163,6 +163,7 @@ class t_canvas extends t_hook {
   canvas;
   plotter;
   com;
+  tokens;
 
   resolution;
   width;
@@ -200,6 +201,7 @@ class t_canvas extends t_hook {
     this.canvas = null;
     this.plotter = null;
     this.com = null;
+    this.tokens = new Map();
 
     this.resolution = '';
     this.width = 0;
@@ -219,6 +221,7 @@ class t_canvas extends t_hook {
     this.waveformIndex = RippleTableId;
 
     this.font = null;
+    this.fontType = '';
     this.background = 0;
     this.theme = '';
 
@@ -397,6 +400,9 @@ class t_canvas extends t_hook {
     else if (font == this.font)
       return;
 
+    if (font.type != this.fontType)
+      this.text = '';
+
     this.align = font.align;
     this.vAlign = font.vAlign;
     this.baseline = font.baseline;
@@ -410,7 +416,10 @@ class t_canvas extends t_hook {
     this.progma.removeAllSelectedItems("fonts");
     this.progma.addSelectedItem("fonts", hash);
 
+    this.tokens.set("fontType", font.type);
+
     this.font = font;
+    this.fontType = font.type;
     this.commit();
   }
  
@@ -791,8 +800,6 @@ class t_canvas extends t_hook {
 
     this.disableLoading();
     this.state = "ready";
-
-
 
     this.refresh();
   }

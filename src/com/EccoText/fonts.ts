@@ -55,6 +55,7 @@ const font_system = () => {
   font.name = "System";
   font.imageHash = "systemFont";
   font.imageURI = "/eccotext/theme/fonts/system.png";
+  font.compatibleWidth = "systemFont";
 
   font.align = "center";
   font.vAlign = "middle";
@@ -161,6 +162,7 @@ const font_home_bay = () => {
   font.name = "Home Bay";
   font.imageHash = "defaultFont"
   font.imageURI = "/eccotext/theme/fonts/home-bay.png";
+  font.type = "homeBayFont";
 
   font.align = "center";
   font.vAlign = "middle";
@@ -179,7 +181,6 @@ const font_home_bay = () => {
 
   let index = 0;
 
-/*
   font.add('a', index,   14, 23); 
   font.add('b', ++index, 14, 23); 
   font.add('c', ++index, 14, 23); 
@@ -206,7 +207,6 @@ const font_home_bay = () => {
   font.add('x', ++index, 16, 23); 
   font.add('y', ++index, 14, 23); 
   font.add('z', ++index, 14, 23);
-*/
 
   index = 26 * 1;
 
