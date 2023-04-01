@@ -40,61 +40,69 @@ node.name = "Resolutions";
 node.icon = "/icons/resolutions.png";
 node.orderId = 1;
 
+// Keyboard Layouts
+
 node = container.addNode('', RootId);
 node.name = "Layouts";
 node.orderId = 2;
 node.icon = "/icons/wave.png";
 node.properties.placeholder = true;
 
+node = container.addNode("noneKeyboard", RootId);
+node.type = "keyboardLayouts";
+node.name = "None";
+node.icon = "/icons/settings.png";
+node.orderId = 5;
+
 node = container.addNode("aniKeyboard", RootId);
 node.type = "keyboardLayouts";
 node.name = "Animations";
 node.icon = "/icons/animation.png";
-node.orderId = 4;
+node.orderId = 6;
 
 node = container.addNode("setKeyboard", RootId);
 node.name = "Settings";
 node.icon = "/icons/settings.png";
-node.orderId = 3;
+node.orderId = 7;
 
 node = container.addNode("engKeyboard", RootId);
 node.type = "keyboardLayouts";
 node.name = "English";
 node.icon = "/icons/english.png";
-node.orderId = 4;
+node.orderId = 8;
 
 node = container.addNode("numKeyboard", RootId);
 node.type = "keyboardLayouts";
 node.name = "Numbers";
 node.icon = "/icons/numbers.png";
-node.orderId = 4;
+node.orderId = 9;
 
 node = container.addNode("rusKeyboard", RootId);
 node.type = "keyboardLayouts";
 node.name = "Russian";
 node.icon = "/icons/russian.png";
-node.orderId = 7;
+node.orderId = 10;
 node.filters.set("homeBayFont", true);
 
 node = container.addNode("intlKeyboard", RootId);
 node.type = "keyboardLayouts";
 node.name = "International";
 node.icon = "/icons/international.png";
-node.orderId = 6;
+node.orderId = 11;
 node.filters.set("homeBayFont", true);
 
 node = container.addNode("hiraKeyboard", RootId);
 node.type = "keyboardLayouts";
 node.name = "Hiragana";
 node.icon = "/icons/japanese.png";
-node.orderId = 8;
+node.orderId = 12;
 node.filters.set("homeBayFont", true);
 
 node = container.addNode("kataKeyboard", RootId);
 node.type = "keyboardLayouts";
 node.name = "Katakana";
 node.icon = "/icons/japanese.png";
-node.orderId = 8;
+node.orderId = 13;
 node.filters.set("homeBayFont", true);
 
 // Backgrounds

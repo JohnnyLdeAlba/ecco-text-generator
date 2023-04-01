@@ -5,7 +5,8 @@ import FolderIcon from '@mui/icons-material/Folder';
 
 import GIF from "gif.js";
 
-import { Menu } from "../../com/PanelMenu/Menu";
+import { Menu } from "../../com/Menu/Menu";
+import { DialogMenu } from "../../com/Menu/DialogMenu";
 import { ProgressDialog, DownloadDialog } from "../../com/ProgressDialog";
 import { Layout } from "../../com/Layout/Layout";
 import { useCanvas, Canvas } from "../../com/EccoText/Canvas";
@@ -16,6 +17,7 @@ import { ProgmaContext, useProgma } from "../../com/Progma";
 import { container } from "../../com/EccoText/menuItemsDB";
 import { Toolbar } from "../../com/EccoText/Toolbar";
 import { Keyboard } from "../../com/EccoText/Keyboard";
+import { useEccoText } from "../../com/EccoText/EccoText";
 import { t_node } from "../../lib/node-lib";
 import { t_hook } from "../../com/lib/hook";
 
@@ -45,90 +47,13 @@ export const Container = ({ children }) => {
   );
 }
 
-class t_ecco_text extends t_hook {
-
-  keyboardLayout;
-
-  constructor() {
-
-    super();
-
-    this.state = "init";
-    this.keyboardLayout = '';
-  }
-
-  set(params) {
-
-    const { refresh } = params;
-    this.refresh = refresh;
-  }
-
-  initialize(params) {
-
-    const { progma } = params;
-
-    progma.set("keyboardLayouts",
-      galleryItem => this.onKBLayoutChange(galleryItem));
-
-    this.progma = progma;
-    this.setKBLayout("engKeyboard");
-
-    this.state = "ready";
-    this.commit();
-  }
-
-  process(params) {
-
-    switch (this.state) {
-
-      case "init": {
-        this.initialize(params);
-        break;
-      }
-    }
-  }
-
-  setKBLayout(keyboardLayout) {
-
-    if (this.keyboardLayout == keyboardLayout)
-      return;
-
-    this.progma.removeAllSelectedItems("keyboardLayouts")
-    this.progma.addSelectedItem("keyboardLayouts", keyboardLayout);    
-
-    this.keyboardLayout = keyboardLayout;
-    this.refresh();
-  }
-
-  onKBLayoutChange(galleryItem) {
-    this.setKBLayout(galleryItem.hash);
-  }
-}
-
-const EccoTextContext = createContext(new t_ecco_text());
-
-export const useEccoText = ({ progma }) => {
-
-  const eccoText = useContext(EccoTextContext);
-  const [ serial, setSerial ] = useState(0);
-
-  eccoText.set({ refresh: () => setSerial(serial + 1) });
-
-  useEffect(() => {
-    eccoText.process({ progma: progma })
-  });
-
-  return eccoText;
-}
-
 export const Index = () => {
 
   const theme = useContext(ThemeContext);
 
   const progma = useProgma();
-  const canvas = useCanvas({ progma: progma });
   const eccoText = useEccoText({ progma: progma });
-
+  const canvas = useCanvas({ progma: progma, onFontChange: font => eccoText.onFontChange(font) });
 
   const request = useRequestStatic({
     tokens: canvas.tokens,
@@ -138,6 +63,10 @@ export const Index = () => {
   });
 
   return (<>
+
+    <DialogMenu
+      show={ eccoText.menuVisible }
+      onClose={ () => eccoText.onMenuClose() } />
 
     <DownloadDialog
       show={ canvas.downloadVisible }

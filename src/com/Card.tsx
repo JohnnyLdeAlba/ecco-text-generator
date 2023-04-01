@@ -1,3 +1,6 @@
+import CloseIcon from '@mui/icons-material/Close';
+import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+
 import { useContext } from "react";
 import { ThemeContext } from "./theme";
 
@@ -38,11 +41,28 @@ export const CardMenu = ({}) => {
     <div className={`
       button
       cursor-pointer
-      p-1 h-fit
+      p-1
       rounded-full
       ${ theme.cardHeader }
     `}>
       <MoreHorizIcon />
+    </div>
+  );
+}
+
+export const CardClose = ({ onClose }) => {
+
+  const theme = useContext(ThemeContext);
+
+  return (
+    <div className={`
+      button
+      cursor-pointer
+      p-1
+      rounded-full
+      ${ theme.cardHeader }
+      `} onClick={ onClose } >
+      <CloseIcon fontSize="small" />
     </div>
   );
 }
@@ -52,6 +72,7 @@ export const CardHeader = ({
   title,
   subTitle,
   menuItems,
+  onClose,
   rounded
 }) => {
 
@@ -72,6 +93,7 @@ export const CardHeader = ({
         { subTitle ? <CardSubTitle >{ subTitle }</CardSubTitle> : null }
       </div>
       { menuItems ? <CardMenu /> : null }
+      { onClose ? <CardClose onClose={ onClose } /> : null }
     </div>
   );
 }
@@ -82,6 +104,7 @@ export const Card = ({
   subTitle,
   menuItems,
   rounded,
+  onClose,
   className,
   children
 }) => {
@@ -102,6 +125,7 @@ export const Card = ({
         subTitle={ subTitle }
         menuItems={ menuItems }
         rounded={ rounded }
+        onClose={ onClose }
       />
         <div className={`
           flex-1 flex flex-col

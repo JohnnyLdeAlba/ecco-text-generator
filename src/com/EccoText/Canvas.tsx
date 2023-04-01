@@ -190,6 +190,8 @@ class t_canvas extends t_hook {
   uriMap;
   themeMap;
 
+  onFontChange;
+
   constructor() {
 
     super();
@@ -236,6 +238,43 @@ class t_canvas extends t_hook {
     this.downloadVisible = false;
     this.downloadBlob = null;
     this.downloadType = '';
+
+    this.onFontChange = null;
+  }
+
+  clipboardCopy() {
+
+    let text = '';
+
+    for (let index = 0; index < this.text.length; index++) {
+
+      const charCode = this.text.charCodeAt(index);
+
+      // Reserved for animated characters.
+      if (charCode < 4096 || charCode >= 4196)
+        text+= this.text.charAt(index);
+    }
+
+    navigator.clipboard.writeText(text);
+  }
+
+  clipboardPaste() {
+
+    navigator.clipboard
+      .readText()
+      .then(text => {
+
+      for (let index = 0; index < text.length; index++) {
+
+        const hash = text.charAt(index);
+        const char = this.font.get(hash);
+
+        if (char)
+          this.text+= hash;
+      }
+
+      this.cursorPosition = this.text.length;
+    });
   }
 
   showProgress(visible) {
@@ -420,6 +459,10 @@ class t_canvas extends t_hook {
 
     this.font = font;
     this.fontType = font.type;
+
+    if (this.onFontChange)
+      this.onFontChange(font);
+
     this.commit();
   }
  
@@ -547,6 +590,18 @@ class t_canvas extends t_hook {
     this.plotComposition(com);
     this.plot();
     this.updateFrame();
+  }
+
+  generatePNG() {
+
+    this.canvas.toBlob(blob => {
+
+      this.downloadVisible = true;
+      this.downloadBlob = blob;
+      this.downloadType = "png";
+      this.commit();
+    });
+
   }
 
   generate() {
@@ -790,7 +845,7 @@ class t_canvas extends t_hook {
     this.setResolution("resMedium");
 
     this.progma.set("backgrounds", galleryItem => this.onBackgroundChange(galleryItem));
-    this.progma.set("fonts", galleryItem => this.onFontChange(galleryItem));
+    this.progma.set("fonts", galleryItem => this.setFont(galleryItem.hash));
     this.progma.set("themes", galleryItem => this.onThemeChange(galleryItem));
     this.progma.set("resolutions", galleryItem => this.setResolution(galleryItem.hash));
 
@@ -812,16 +867,13 @@ class t_canvas extends t_hook {
     this.setBackground(galleryItem.hash);
   }
 
-  onFontChange(galleryItem) {
-    this.setFont(galleryItem.hash);
-  }
-
   set(params) {
 
-    const { progma, refresh } = params;
+    const { progma, refresh, onFontChange } = params;
 
     this.progma = progma;
     this.refresh = refresh;
+    this.onFontChange = onFontChange;
   }
 
   async process(params) {
@@ -841,14 +893,15 @@ class t_canvas extends t_hook {
 
 export const CanvasContext = createContext(new t_canvas());
 
-export const useCanvas  = ({ progma = null }) => {
+export const useCanvas  = ({ progma = null, onFontChange }) => {
   
   const canvas  = useContext(CanvasContext);
   const [ serial, setSerial ] = useState(0);
 
   canvas.set({
     progma: progma,
-    refresh: () => setSerial(serial + 1)
+    refresh: () => setSerial(serial + 1),
+    onFontChange: onFontChange
   });
 
   return canvas;

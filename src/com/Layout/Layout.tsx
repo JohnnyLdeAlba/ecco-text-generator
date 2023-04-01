@@ -26,7 +26,7 @@ export const Layout = ({ children }) => {
       <div className={`
         ml-0 lg:ml-[280px]
         absolute
-        flex flex-col
+        flex-1 flex flex-col
         w-full lg:w-[calc(100%-280px)]
         h-screen
         overflow-y-auto

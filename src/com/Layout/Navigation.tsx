@@ -30,7 +30,7 @@ export const Backdrop = ({
       backdrop
       absolute
       flex
-      w-full h-full
+      w-full h-screen
       bg-[rgba(0,0,0,0.6)]
 
       ${ show ? "z-[8]" : "z-0" } 
@@ -131,8 +131,8 @@ export const Navigation = ({
         navigation
         absolute
         z-[9]
-        flex flex-col
-        w-[280px] h-full
+        flex-1 flex flex-col
+        w-[280px] h-screen
         overflow-x-none
         overflow-y-auto
 

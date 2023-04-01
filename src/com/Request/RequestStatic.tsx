@@ -318,7 +318,7 @@ class t_request_static extends t_hook {
   }
 }
 
-const RequestStaticContext = createContext(new t_request_static());
+export const RequestStaticContext = createContext(new t_request_static());
 
 export const useRequestStatic = ({
   container = null,

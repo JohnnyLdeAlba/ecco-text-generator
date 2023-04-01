@@ -194,26 +194,60 @@ export const Menu = ({
   disableToolbar = false,
   disableShowDetails = false,
   forceDetailsVisible = false,
+  toolbarPosition = '',
   onGoBack,
   onUnselect,
   onRemoveSelected,
   onToggleHidden,
   onNextPage,
-  onPrevPage
+  onPrevPage,
+  onClose
 
 }) => {
 
   const theme = useContext(ThemeContext);
   const [ detailsVisible, showDetails ] = useState(false);
 
+  galleryItems.forEach(galleryItem => {
+
+    if (galleryItem.type == '')
+      return;
+
+    const onClick = galleryItem.onClick;
+    galleryItem.onClick = galleryItem => {
+
+      onClick(galleryItem);
+      if (onClose)
+        onClose();
+    }
+
+  });
+
   return (
     <div className={`flex-1 flex flex-col h-full`}>
+
+      { toolbarPosition != "top" || disableToolbar ? null :
+        <Toolbar
+
+          page={ page }
+          onPrevPage={ onPrevPage }
+          onNextPage={ onNextPage }
+
+          showDetailsClosed={ detailsVisible }
+
+          onGoBack={ onGoBack }
+
+          onShowDetails={ !disableShowDetails && !forceDetailsVisible ?
+            () => showDetails(!detailsVisible) : null }
+
+          onToggleHidden={ onToggleHidden }        
+        /> }
 
       { galleryItems.length == 0 ? <GalleryDisabled /> : null }
       { !forceDetailsVisible && !detailsVisible && galleryItems.length > 0 ? <GalleryGroup galleryItems={ galleryItems } /> : null }
       { (forceDetailsVisible || detailsVisible) && galleryItems.length > 0 ? <DetailGroup galleryItems={ galleryItems } /> : null }
 
-      { disableToolbar ? null :
+      { toolbarPosition == "top" || disableToolbar ? null :
         <Toolbar
 
           page={ page }

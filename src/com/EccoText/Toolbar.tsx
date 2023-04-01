@@ -31,6 +31,7 @@ import SettingsIcon from '@mui/icons-material/Settings';
 
 import { SmallButton, SmallTipButton } from "../Button"; 
 import { CanvasContext } from "./Canvas";
+import { EccoTextContext } from "./EccoText";
 import { ThemeContext } from "../theme";
 
 export const Toolbar = ({
@@ -39,6 +40,7 @@ export const Toolbar = ({
 }) => {
 
   const canvas = useContext(CanvasContext);
+  const eccoText = useContext(EccoTextContext);
   const theme = useContext(ThemeContext);
 
   return (
@@ -56,14 +58,14 @@ export const Toolbar = ({
             icon={ <LibraryAddIcon fontSize="small" /> }
             rounded={ "left" }
             className={`flex md:hidden pl-3 w-fit`}
-            onClick={ () => {} } />
+            onClick={ () => eccoText.showMenu() } />
 
           <SmallTipButton
             disabled={ disabled }
             tip={ "Take Snapshot" }
             icon={ <CameraAltIcon fontSize="small" /> }
             className={`flex md:hidden w-fit`}
-            onClick={ () => {} } />
+            onClick={ () => canvas.generatePNG() } />
 
           <SmallTipButton
             disabled={ disabled }
@@ -150,7 +152,7 @@ export const Toolbar = ({
           icon={ <CopyAllIcon fontSize="small" /> }
           rounded={ "left" }
           className={`pl-3 w-fit`}
-          onClick={ null } />
+          onClick={ () => canvas.clipboardCopy() } />
 
         <SmallTipButton
           disabled={ disabled }
@@ -158,7 +160,7 @@ export const Toolbar = ({
           icon={ <ContentPasteIcon fontSize="small" /> }
           rounded={ "right" }
           className={`pr-3 w-fit`}
-          onClick={ null } />
+          onClick={ () => canvas.clipboardPaste() } />
 
       </div>
     </div>

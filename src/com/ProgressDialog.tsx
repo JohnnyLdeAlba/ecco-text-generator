@@ -75,6 +75,9 @@ export const DownloadDialog = ({
     }
   }
 
+  if (type == "png")
+    resolution = '';
+
   const imageURL = (blob => {
 
     if (!blob)
@@ -106,8 +109,8 @@ export const DownloadDialog = ({
           rounded={ true }>
           <img src={ imageURL } alt='' className={`w-full`}/>
           <div className={`flex flex-row justify-center px-4 py-2 font-medium`}>
-            <span className={`mr-4`}>Type: { type.toUpperCase() }</span>
-            <span>Resolution: { resolution }</span>
+            <span className={`mr-4`}>File Type: { type.toUpperCase() }</span>
+            { resolution == '' ? null : <span>Resolution: { resolution }</span> }
           </div>
           <div className={`flex flex-row justify-center py-4`}>
             <SmallButton

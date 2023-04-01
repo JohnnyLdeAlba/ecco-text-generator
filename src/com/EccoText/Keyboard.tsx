@@ -501,6 +501,7 @@ const ControlKey = ({
 
   return (
     <div className={`
+      disable-select
       flex flex-row
       items-center justify-center
       mx-[3px] px-3
@@ -582,6 +583,7 @@ const KeyboardItem = ({ disabled = false, galleryItem = null }) => {
 
   return (
     <div className={`
+      disable-select
       w-[30px] xs:w-[40px] sm:w-[50px]
       h-[30px] xs:h-[35px] sm:h-[40px]
       flex flex-row
@@ -659,7 +661,6 @@ export const Keyboard = ({ disabled = false, layout = "engKeyboard" }) => {
 
   return (
     <div className={`
-      disabled-selection
       flex-1 sm:flex-none
       items-center sm:items-start
       sm:mx-auto sm:w-fit

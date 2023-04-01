@@ -1,6 +1,6 @@
 export const Backdrop = ({
   show = false,
-  onClick,
+  onClose,
   children
 }) => {
 
@@ -14,9 +14,9 @@ export const Backdrop = ({
 
       ${ show ? "z-[100]" : "z-[-1]" } 
       ${ show ? "opacity-100" : "opacity-0" } 
-      ${ onClick ? "cursor-pointer" : '' }
+      ${ onClose ? "cursor-pointer" : '' }
     `}
-     onClick={ onClick }>
+     onClick={ onClose }>
       { children }
     </div>
   );
