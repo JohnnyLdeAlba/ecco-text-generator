@@ -48,6 +48,8 @@ export const darkSeaTheme = {
   card: `
     bg-[rgba(4,6,12,0.92)]
   `,
+  
+  cardLight: `bg-[#162544]`,
 
   toolbar: `bg-[#0e1d35]`,
 
@@ -58,10 +60,12 @@ export const darkSeaTheme = {
   smallButtonLightClosed: `bg-[#1e355a]`,
 
   galleryItem: `bg-[#1e355a]`,
-  galleryItemSelected: `bg-[#051638]`,
+  galleryItemSelected: `bg-[#0f1834]`,
 
   hr: `border-[#0087b5] text-[#0087b5]`, 
   tooltip: `mui-darksea`,
+
+  circularProgress: "text-[#2e58a0]",
 
   eccoText: {
     toolbar: `bg-[#0e1d35] sm:bg-transparent`,
@@ -73,9 +77,9 @@ export const darkSeaTheme = {
 
     scrollbars: `
       scrollbar-thin
-      scrollbar-track-[#111a28]
+      scrollbar-track-[#020f28]
       scrollbar-thumb-rounded-full
-      scrollbar-thumb-[#162544]
+      scrollbar-thumb-[#2e58a0]
     `
   },
 

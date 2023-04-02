@@ -73,7 +73,7 @@ export const Toolbar = ({
             icon={ <CameraAltIcon fontSize="small" /> }
             rounded={ "left" }
             className={`hidden md:flex pl-3 w-fit`}
-            onClick={ () => {} } />
+            onClick={ () => canvas.generatePNG() } />
 
           <SmallTipButton
             disabled={ disabled }

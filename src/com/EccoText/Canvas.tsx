@@ -4,6 +4,7 @@ import {
   useRef, useState } from "react";
 
 import LinearProgress, { LinearProgressProps } from '@mui/material/LinearProgress';
+import CircularProgress from '@mui/material/CircularProgress';
 
 import GIF from "gif.js";
 
@@ -240,6 +241,7 @@ class t_canvas extends t_hook {
     this.downloadType = '';
 
     this.onFontChange = null;
+    this.enableLoading();
   }
 
   clipboardCopy() {
@@ -594,6 +596,8 @@ class t_canvas extends t_hook {
 
   generatePNG() {
 
+    console.log("generate PNG");
+
     this.canvas.toBlob(blob => {
 
       this.downloadVisible = true;
@@ -636,8 +640,13 @@ class t_canvas extends t_hook {
     gen.generate();
   }
 
-  setWaveformIndex(value) {
+  setWaveformIndex(value, hash = "custom") {
+
     this.waveformIndex = value;
+
+    this.progma.removeAllSelectedItems("effects");
+    this.progma.addSelectedItem("effects", hash);
+
     this.commit();
   }
 
@@ -741,7 +750,7 @@ class t_canvas extends t_hook {
     });
 
     this.state = "initPending";
-    this.enableLoading();
+
 
     this.canvas = canvas;
     this.plotter = new t_plotter();
@@ -843,8 +852,10 @@ class t_canvas extends t_hook {
 
     this.setTheme("homeBayTheme");
     this.setResolution("resMedium");
+    this.setWaveformIndex(-998, "rippleEffect");
 
     this.progma.set("backgrounds", galleryItem => this.onBackgroundChange(galleryItem));
+    this.progma.set("effects", galleryItem => this.setWaveformIndex(galleryItem.value, galleryItem.hash));
     this.progma.set("fonts", galleryItem => this.setFont(galleryItem.hash));
     this.progma.set("themes", galleryItem => this.onThemeChange(galleryItem));
     this.progma.set("resolutions", galleryItem => this.setResolution(galleryItem.hash));
@@ -946,10 +957,27 @@ export const ProgressDialog = ({
   );
 }
 
-export const Canvas = () => {
+export const CanvasLoading = () => {
+
+  const theme = useContext(ThemeContext);
+
+  return (
+    <div className={`relative pb-[75%] w-full bg-[#030712]`}>
+      <div className={`
+        absolute z-[9]
+        top-[calc(50%-30px)] left-[calc(50%-30px)]
+        ${ theme.circularProgress }`}>
+        <CircularProgress size={ 60 } thickness={ 6 } color="inherit" />
+      </div>
+    </div>
+  );
+}
+
+export const Canvas = ({ loading }) => {
 
   const ref = useRef();
   const canvas = useContext(CanvasContext);
+  loading = loading ? loading : canvas.loading
 
   useEffect(() => {
     canvas.process({ canvas: ref.current });
@@ -957,11 +985,18 @@ export const Canvas = () => {
 
   return (<>
     <div className={`sm:rounded-lg overflow-hidden`}>
+
+    { !loading ? null : 
+      <CanvasLoading /> }
+
     <canvas
       width={ 320 } height={ 240 }
       ref={ ref }
-      className={`pixelated w-full`} />
-    </div>
+      className={`
+        pixelated w-full
+        ${ loading ? "hidden" : '' }`} />
+
+    </div> 
   </>);
 }
 

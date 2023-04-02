@@ -104,6 +104,7 @@ export const Card = ({
   subTitle,
   menuItems,
   rounded,
+  color,
   onClose,
   className,
   children
@@ -113,10 +114,10 @@ export const Card = ({
 
   return (
     <div className={`
-      rounded-none sm:rounded-t-lg
       overflow-y-auto sm:overflow-y-visible
       flex-1 flex flex-col
-      ${ theme.card }
+      ${ rounded ? "rounded-t-lg" : "rounded-none sm:rounded-t-lg" }
+      ${ color ? theme.cardLight : theme.card }
       ${ className }
     `}>
       <CardHeader

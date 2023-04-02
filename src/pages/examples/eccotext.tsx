@@ -47,13 +47,14 @@ export const Container = ({ children }) => {
   );
 }
 
-export const Index = () => {
+export const Index = ({ loading }) => {
 
   const theme = useContext(ThemeContext);
 
   const progma = useProgma();
   const eccoText = useEccoText({ progma: progma });
   const canvas = useCanvas({ progma: progma, onFontChange: font => eccoText.onFontChange(font) });
+  loading = loading ? loading : canvas.loading;
 
   const request = useRequestStatic({
     tokens: canvas.tokens,
@@ -88,7 +89,7 @@ export const Index = () => {
           <div className={`flex flex-row overflow-y-auto`}>
 
             <div className={`flex-1 flex flex-col`}>
-              <Canvas />
+              <Canvas loading={ loading } />
             </div>
 
             <div className={`
@@ -101,6 +102,7 @@ export const Index = () => {
                 flex-1 flex flex-col
                 overflow-y-auto
                 rounded-lg h-full
+                ${ loading ? "disabled" : '' }
                 ${ theme.card }`}>
 
                 <div className={`
@@ -117,6 +119,7 @@ export const Index = () => {
                   ${ theme.scrollbars }`}>
 
                   <Menu
+                    disabled={ loading }
                     forceDetailsVisible={ true }
                     page={ request.page == -1 ? -1 : request.page + 1 }
 
@@ -133,8 +136,8 @@ export const Index = () => {
           </div>
         </div>
 
-        <Toolbar />
-        <Keyboard layout={ eccoText.keyboardLayout } />
+        <Toolbar disabled={ loading } />
+        <Keyboard disabled={ loading } layout={ eccoText.keyboardLayout } />
 
       <div className={`hidden px-4 w-full`}> 
         <Slider classes={{ root: "mui-darksea" }} aria-label="Volume" value={ canvas.waveformIndex } max={ 255 } onChange={ (event, value) => canvas.setWaveformIndex(value) } />

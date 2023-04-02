@@ -189,6 +189,7 @@ export const GalleryDisabled = ({
 }
 
 export const Menu = ({
+  disabled = false,
   galleryItems = [],
   page = 1,
   disableToolbar = false,
@@ -209,6 +210,12 @@ export const Menu = ({
   const [ detailsVisible, showDetails ] = useState(false);
 
   galleryItems.forEach(galleryItem => {
+
+    if (disabled) {
+
+      galleryItem.onClick = null;
+      return;
+    }
 
     if (galleryItem.type == '')
       return;

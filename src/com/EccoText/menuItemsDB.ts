@@ -19,7 +19,6 @@ node.orderId = 1;
 const FontsId = ++id;
 node = container.addNode("fonts", RootId, FontsId);
 node.name = "Fonts";
-node.description = "Where do you want to go?";
 node.icon = "/icons/fonts.png";
 node.orderId = 1;
 
@@ -29,7 +28,8 @@ node.name = "Backgrounds";
 node.icon = "/icons/backgrounds.png";
 node.orderId = 1;
 
-node = container.addNode("effects", RootId);
+const EffectsId = ++id;
+node = container.addNode("effects", RootId, EffectsId);
 node.name = "Effects";
 node.icon = "/icons/wave.png";
 node.orderId = 1;
@@ -166,6 +166,78 @@ node = container.addNode("volcanoBackground", BackgroundsId);
 node.type = "backgrounds";
 node.name = "Volcano";
 node.icon = "/eccotext/icons/backgrounds/volcano.png";
+
+// Effects
+
+node = container.addNode("noEffect", EffectsId);
+node.orderId = 1;
+node.type = "effects";
+node.name = "None";
+node.icon = "/icons/settings.png";
+node.value = 0;
+
+node = container.addNode("rippleEffect", EffectsId);
+node.orderId = 2;
+node.type = "effects";
+node.name = "Ripple";
+node.icon = "/icons/settings.png";
+node.value = -998;
+
+node = container.addNode("doubleEffect", EffectsId);
+node.orderId = 3;
+node.type = "effects";
+node.name = "Double Wave";
+node.icon = "/icons/settings.png";
+node.value = -999;
+
+node = container.addNode("waveEffect", EffectsId);
+node.orderId = 4;
+node.type = "effects";
+node.name = "Wave";
+node.icon = "/icons/settings.png";
+node.value = 1;
+
+node = container.addNode("waveX2Effect", EffectsId);
+node.orderId = 5;
+node.type = "effects";
+node.name = "Wave x2";
+node.icon = "/icons/settings.png";
+node.value = 2;
+
+node = container.addNode("waveX4Effect", EffectsId);
+node.orderId = 6;
+node.type = "effects";
+node.name = "Wave x4";
+node.icon = "/icons/settings.png";
+node.value = 4;
+
+node = container.addNode("waveX8Effect", EffectsId);
+node.orderId = 7;
+node.type = "effects";
+node.name = "Wave x8";
+node.icon = "/icons/settings.png";
+node.value = 6;
+
+node = container.addNode("halEffect", EffectsId);
+node.orderId = 8;
+node.type = "effects";
+node.name = "Hallucination";
+node.icon = "/icons/settings.png";
+node.value = -129;
+
+node = container.addNode("flamesEffect", EffectsId);
+node.orderId = 9;
+node.type = "effects";
+node.name = "Flames";
+node.icon = "/icons/settings.png";
+node.value = -130;
+
+node = container.addNode("distEffect", EffectsId);
+node.orderId = 10;
+node.type = "effects";
+node.name = "Distortion";
+node.icon = "/icons/settings.png";
+node.value = -132;
 
 // Themes
 

@@ -18,7 +18,7 @@ export const ProgressDialog = ({
         w-full sm:w-[500px]
         mt-20 mx-auto px-4
         flex flex-col`}>
-        <Card title={ title } rounded={ true }>
+        <Card title={ title } rounded={ true } color="light">
           <div className={`flex flex-col items-end m-4`}>
             <div className={`w-full mb-2`}>
               <LinearProgress
@@ -106,7 +106,7 @@ export const DownloadDialog = ({
         mt-20 mx-auto px-4
         flex flex-col`}>
         <Card title={ "Download " + type.toUpperCase() }
-          rounded={ true }>
+          rounded={ true } color="light">
           <img src={ imageURL } alt='' className={`w-full`}/>
           <div className={`flex flex-row justify-center px-4 py-2 font-medium`}>
             <span className={`mr-4`}>File Type: { type.toUpperCase() }</span>
