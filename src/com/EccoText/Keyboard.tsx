@@ -635,7 +635,7 @@ const SettingsLayout = ({ disabled = false }) => {
       </div>
 
       <div className={`flex flex-col px-4 py-2`}>
-        <div className={`font-medium text-sm`}>Effect</div>
+        <div className={`font-medium text-sm`}>Waveform</div>
         <div className={`flex flex-row`}> 
           <div className={`flex-1 px-8 font-medium`}>
 

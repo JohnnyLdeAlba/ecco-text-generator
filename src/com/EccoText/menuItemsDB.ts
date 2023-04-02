@@ -212,33 +212,40 @@ node.name = "Wave x4";
 node.icon = "/icons/settings.png";
 node.value = 4;
 
-node = container.addNode("waveX8Effect", EffectsId);
+node = container.addNode("waveX6Effect", EffectsId);
 node.orderId = 7;
 node.type = "effects";
-node.name = "Wave x8";
+node.name = "Wave x6";
 node.icon = "/icons/settings.png";
 node.value = 6;
 
-node = container.addNode("halEffect", EffectsId);
+node = container.addNode("waveX8Effect", EffectsId);
 node.orderId = 8;
+node.type = "effects";
+node.name = "Wave x8";
+node.icon = "/icons/settings.png";
+node.value = 8;
+
+node = container.addNode("halEffect", EffectsId);
+node.orderId = 9;
 node.type = "effects";
 node.name = "Hallucination";
 node.icon = "/icons/settings.png";
-node.value = -129;
+node.value = 129; // -129;
 
 node = container.addNode("flamesEffect", EffectsId);
-node.orderId = 9;
+node.orderId = 10;
 node.type = "effects";
 node.name = "Flames";
 node.icon = "/icons/settings.png";
-node.value = -130;
+node.value = 130; // -130;
 
 node = container.addNode("distEffect", EffectsId);
-node.orderId = 10;
+node.orderId = 11;
 node.type = "effects";
 node.name = "Distortion";
 node.icon = "/icons/settings.png";
-node.value = -132;
+node.value = 132; // -132;
 
 // Themes
 
