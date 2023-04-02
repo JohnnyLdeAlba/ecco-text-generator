@@ -64,7 +64,6 @@ export const Index = ({ loading }) => {
   });
 
   return (<>
-
     <DialogMenu
       show={ eccoText.menuVisible }
       onClose={ () => eccoText.onMenuClose() } />
@@ -138,11 +137,6 @@ export const Index = ({ loading }) => {
 
         <Toolbar disabled={ loading } />
         <Keyboard disabled={ loading } layout={ eccoText.keyboardLayout } />
-
-      <div className={`hidden px-4 w-full`}> 
-        <Slider classes={{ root: "mui-darksea" }} aria-label="Volume" value={ canvas.waveformIndex } max={ 255 } onChange={ (event, value) => canvas.setWaveformIndex(value) } />
-      </div>
-
       </Container>
     </Layout>
   </>)

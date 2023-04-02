@@ -1,5 +1,4 @@
 import { useEffect, createContext, useContext, useState } from "react";
-
 import { t_hook } from "../lib/hook";
 
 class t_ecco_text extends t_hook {
@@ -83,7 +82,7 @@ class t_ecco_text extends t_hook {
     this.progma.addSelectedItem("keyboardLayouts", keyboardLayout);    
 
     this.keyboardLayout = keyboardLayout;
-    this.refresh();
+    this.commit();
   }
 
   onKBLayoutChange(galleryItem) {
@@ -106,4 +105,3 @@ export const useEccoText = ({ progma }) => {
 
   return eccoText;
 }
-

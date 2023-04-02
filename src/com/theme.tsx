@@ -52,12 +52,12 @@ export const darkSeaTheme = {
   cardLight: `bg-[#162544]`,
 
   toolbar: `bg-[#0e1d35]`,
-
+ 
   smallButton: `bg-[#1e355a]`,
   smallButtonClosed: `bg-[#182a48]`,
 
   smallButtonLight: `bg-[#1d468a]`,
-  smallButtonLightClosed: `bg-[#1e355a]`,
+  smallButtonLightClosed: `bg-[#0e2369]`,
 
   galleryItem: `bg-[#1e355a]`,
   galleryItemSelected: `bg-[#0f1834]`,

@@ -61,6 +61,7 @@ node.icon = "/icons/animation.png";
 node.orderId = 6;
 
 node = container.addNode("setKeyboard", RootId);
+node.type = "keyboardLayouts";
 node.name = "Settings";
 node.icon = "/icons/settings.png";
 node.orderId = 7;

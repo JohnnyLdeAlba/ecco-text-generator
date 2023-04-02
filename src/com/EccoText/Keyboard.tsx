@@ -1,5 +1,9 @@
 import { useContext, useState } from "react";
 
+import Switch from '@mui/material/Switch';
+import Slider from '@mui/material/Slider';
+
+
 import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
 import BackspaceIcon from '@mui/icons-material/Backspace';
 import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
@@ -563,6 +567,95 @@ const ControlRow = ({ disabled = false }) => {
   );
 }
 
+const MiniCard = ({
+  disabled = false,
+  icon,
+  title,
+  children
+}) => {
+
+  const theme = useContext(ThemeContext);
+
+  return (
+    <div className={`
+      flex-1 flex flex-col
+      overflow-y-auto
+      sm:rounded-lg h-full
+      ${ disabled ? "disabled" : '' }
+      ${ theme.card }`}>
+
+      <div className={`
+        flex flex-row
+        px-3 py-2
+        font-medium text-sm
+        ${ theme.cardHeader }`}>
+        { icon ? <div className={`mr-2`}>{ icon }</div> : '' }
+        { title }
+      </div>
+
+      <div className={`
+        flex-1 flex flex-col
+        overflow-y-auto h-full
+        ${ theme.scrollbars }`}>
+        { children }
+      </div>
+    </div>
+  );
+}
+
+
+const SettingsLayout = ({ disabled = false }) => {
+
+  const canvas = useContext(CanvasContext);
+
+  return (
+    <div className={`
+      flex-1 sm:flex-none
+      w-full sm:w-[500px]
+      flex flex-row
+      mx-auto
+    `}>
+      <MiniCard
+        icon={ <img
+          src="/icons/settings.png"
+          alt='' className={`w-[24px]`} /> }
+        title="Settings">
+
+      <div className={`flex flex-row items-center px-4 py-2`}>
+        <div className={`flex-1 font-medium text-sm`}>Trim Spaces</div> 
+        <div>
+          <Switch color="default"
+            classes={{ root: "mui-darksea-Switch" }}
+            checked={ canvas.trimSpaces }
+            onChange={ () => canvas.toggleTrimSpaces() } />
+        </div> 
+        <div className={`pl-2 w-20 font-medium text-sm text-center`}>
+          { canvas.trimSpaces ? "Enabled" : "Disabled" }
+        </div> 
+      </div>
+
+      <div className={`flex flex-col px-4 py-2`}>
+        <div className={`font-medium text-sm`}>Effect</div>
+        <div className={`flex flex-row`}> 
+          <div className={`flex-1 px-8 font-medium`}>
+
+            <Slider classes={{ root: "mui-darksea" }}
+              value={ canvas.waveformIndex } max={ 255 }
+              onChange={ (event, value) => canvas.setWaveformIndex(value) }
+            />
+
+          </div>
+          <div className={`w-6 font-medium text-right`}>
+            { canvas.waveformIndex < 0 ? 0 : canvas.waveformIndex }
+          </div> 
+        </div>
+      </div>
+
+      </MiniCard>
+    </div>
+  );
+}
+
 const NullItem = () => {
 
   return (
@@ -658,6 +751,9 @@ const KeyboardRow = ({ disabled = false, charRows = [] }) => {
 export const Keyboard = ({ disabled = false, layout = "engKeyboard" }) => {
 
   const theme = useContext(ThemeContext);
+
+  if (layout == "setKeyboard")
+    return <SettingsLayout disabled={ disabled } />
 
   return (
     <div className={`

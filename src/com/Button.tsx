@@ -72,15 +72,19 @@ export const SmallButton = ({
 
   const theme = useContext(ThemeContext);
 
+  let padding = "p-1.5";
+
   switch (rounded) {
 
     case "left": {
       rounded = "rounded-l-full mr-[1px]";
+      padding+= " pl-3";
       break;
     }
 
     case "right": {
       rounded = "rounded-r-full";
+      padding+= " pr-3";
       break;
     }
 
@@ -99,15 +103,15 @@ export const SmallButton = ({
     <div className={`
       flex flex-row
       items-center
-      p-1.5
       font-medium text-xs
       ${ disabled ? "disabled" : '' }
       ${ !disabled && !closed && onClick ? "button" : '' }
       ${ !disabled && closed && onClick ? "buttonClosed" : '' }
-      ${ skin == '' && closed ? `${ theme.smallButtonClosed }` : `${ theme.smallButton }` }
-      ${ skin == "light" && closed ? `${ theme.smallButtonLightClosed }` : `${ theme.smallButtonLight }` }
+      ${ skin == '' ? (closed ? `${ theme.smallButtonClosed }` : `${ theme.smallButton }`) : '' }
+      ${ skin == "light" ? (closed ? `${ theme.smallButtonLightClosed }` : `${ theme.smallButtonLight }`) : '' }
+      ${ padding }
       ${ rounded }
-      ${ className }
+      ${ className } 
       `} onClick={ onClick }>
       { icon ? icon : null }
       { title }

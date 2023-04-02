@@ -16,6 +16,7 @@ import { Card } from "../../com/Card";
 import { Backdrop } from "../../com/Backdrop";
 import { t_plot_state } from "../../lib/bluedream-lib/plot-state";
 import { t_plotter } from "../../lib/bluedream-lib/plotter";
+import { useClipboard } from "../Clipboard";
 
 import { RippleTableId } from "../../lib/bluedream-lib/ecco-wave-generator";
 import { ps_process_wave } from "../../lib/bluedream-lib/processes";
@@ -241,6 +242,8 @@ class t_canvas extends t_hook {
     this.downloadType = '';
 
     this.onFontChange = null;
+
+    this.disableAutoCommit();
     this.enableLoading();
   }
 
@@ -257,26 +260,23 @@ class t_canvas extends t_hook {
         text+= this.text.charAt(index);
     }
 
-    navigator.clipboard.writeText(text);
+    this.clipboard.clipboardCopy(text);
   }
 
-  clipboardPaste() {
+  async clipboardPaste() {
 
-    navigator.clipboard
-      .readText()
-      .then(text => {
+    let text = await this.clipboard.clipboardPaste();
 
-      for (let index = 0; index < text.length; index++) {
+    for (let index = 0; index < text.length; index++) {
 
-        const hash = text.charAt(index);
-        const char = this.font.get(hash);
+      const hash = text.charAt(index);
+      const char = this.font.get(hash);
 
-        if (char)
-          this.text+= hash;
-      }
+      if (char)
+        this.text+= hash;
+    }
 
-      this.cursorPosition = this.text.length;
-    });
+    this.cursorPosition = this.text.length;
   }
 
   showProgress(visible) {
@@ -865,9 +865,9 @@ class t_canvas extends t_hook {
     this.frameRate.updateFrame();
 
     this.disableLoading();
-    this.state = "ready";
 
-    this.refresh();
+    this.pushUpdate();
+    this.update();
   }
 
   onThemeChange(galleryItem) {
@@ -880,10 +880,11 @@ class t_canvas extends t_hook {
 
   set(params) {
 
-    const { progma, refresh, onFontChange } = params;
+    const { progma, refresh, clipboard, onFontChange } = params;
 
     this.progma = progma;
     this.refresh = refresh;
+    this.clipboard = clipboard;
     this.onFontChange = onFontChange;
   }
 
@@ -905,13 +906,15 @@ class t_canvas extends t_hook {
 export const CanvasContext = createContext(new t_canvas());
 
 export const useCanvas  = ({ progma = null, onFontChange }) => {
-  
+ 
+  const clipboard = useClipboard(); 
   const canvas  = useContext(CanvasContext);
   const [ serial, setSerial ] = useState(0);
 
   canvas.set({
     progma: progma,
     refresh: () => setSerial(serial + 1),
+    clipboard: clipboard,
     onFontChange: onFontChange
   });
 

@@ -57,7 +57,7 @@ export const Toolbar = ({
             tip={ "Open Menu" }
             icon={ <LibraryAddIcon fontSize="small" /> }
             rounded={ "left" }
-            className={`flex md:hidden pl-3 w-fit`}
+            className={`flex md:hidden w-fit`}
             onClick={ () => eccoText.showMenu() } />
 
           <SmallTipButton
@@ -72,7 +72,7 @@ export const Toolbar = ({
             tip={ "Take Snapshot" }
             icon={ <CameraAltIcon fontSize="small" /> }
             rounded={ "left" }
-            className={`hidden md:flex pl-3 w-fit`}
+            className={`hidden md:flex w-fit`}
             onClick={ () => canvas.generatePNG() } />
 
           <SmallTipButton
@@ -80,45 +80,50 @@ export const Toolbar = ({
             tip={ "Generate GIF" }
             icon={ <GifIcon fontSize="small" /> }
             rounded={ "right" }
-            className={`mr-4 pr-3 w-fit`}
+            className={`mr-4 w-fit`}
             onClick={ () => canvas.generate() } />
         </div>
 
         <div className={`flex flex-row`}>
           <SmallTipButton
-            disabled={ disabled || canvas.align == "left" }
+            disabled={ disabled }
+            closed={ canvas.align == "left" }
             tip={ "Align Left" }
             icon={ <FormatAlignLeftIcon fontSize="small" /> }
             rounded={ "left" }
-            className={`pl-3`}
             onClick={ () => canvas.setAlign("left") } />
           <SmallTipButton
-            disabled={ disabled || canvas.align == "center" }
+            disabled={ disabled }
+            closed={ canvas.align == "center" }
             tip={ "Align Center" }
             icon={ <FormatAlignCenterIcon fontSize="small" /> }
             onClick={ () => canvas.setAlign("center") } />
           <SmallTipButton
-            disabled={ disabled || canvas.align == "right" }
+            disabled={ disabled }
+            closed={ canvas.align == "right" }
             tip={ "Align Right" }
             icon={ <FormatAlignRightIcon fontSize="small" /> }
             onClick={ () => canvas.setAlign("right") } />
 
           <SmallTipButton
-            disabled={ disabled || canvas.vAlign == "top" }
+            disabled={ disabled }
+            closed={ canvas.vAlign == "top" }
             tip={ "Align Top" }
             icon={ <VerticalAlignTopIcon fontSize="small" /> }
             onClick={ () => canvas.setVAlign("top") } />
           <SmallTipButton
-            disabled={ disabled || canvas.vAlign == "middle" }
+            disabled={ disabled }
+            closed={ canvas.vAlign == "middle" }
             tip={ "Align Middle" }
             icon={ <VerticalAlignCenterIcon fontSize="small" /> }
             onClick={ () => canvas.setVAlign("middle") } />
           <SmallTipButton
-            disabled={ disabled || canvas.vAlign == "bottom" }
+            disabled={ disabled }
+            closed={ canvas.vAlign == "bottom" }
             tip={ "Align Bottom" }
             icon={ <VerticalAlignBottomIcon fontSize="small" /> }
             rounded={ "right" }
-            className={`mr-0 sm:mr-4 pr-3`}
+            className={`mr-0 sm:mr-4`}
             onClick={ () => canvas.setVAlign("bottom") } />
         </div>
       </div>
@@ -126,23 +131,25 @@ export const Toolbar = ({
       <div className={`flex flex-row pt-2 sm:pt-0`}>
         <div className={`flex-1 flex flex-row`}>
           <SmallTipButton
-            disabled={ disabled || canvas.baseline == "bottom" }
+            disabled={ disabled }
+            closed={ canvas.baseline == "bottom" }
             tip={ "Bottom Baseline" }
             icon={ <AlignVerticalBottomIcon fontSize="small" /> }
             rounded={ "left" }
-            className={`pl-3`}
             onClick={ () => canvas.setBaseline("bottom") } />
           <SmallTipButton
-            disabled={ disabled || canvas.baseline == "middle" }
+            disabled={ disabled }
+            closed={ canvas.baseline == "middle" }
             tip={ "Middle Baseline" }
             icon={ <AlignVerticalCenterIcon fontSize="small" /> }
             onClick={ () => canvas.setBaseline("middle") } />
           <SmallTipButton
-            disabled={ disabled || canvas.baseline == "top" }
+            disabled={ disabled }
+            closed={ canvas.baseline == "top" }
             tip={ "Top Baseline" }
             icon={ <AlignVerticalTopIcon fontSize="small" /> }
             rounded={ "right" }
-            className={`mr-4 pr-3`}
+            className={`mr-4`}
             onClick={ () => canvas.setBaseline("top") } />
           </div>
 
@@ -151,7 +158,7 @@ export const Toolbar = ({
           tip={ "Copy to Clipboard" }
           icon={ <CopyAllIcon fontSize="small" /> }
           rounded={ "left" }
-          className={`pl-3 w-fit`}
+          className={`w-fit`}
           onClick={ () => canvas.clipboardCopy() } />
 
         <SmallTipButton
@@ -159,7 +166,7 @@ export const Toolbar = ({
           tip={ "Paste from Clipboard" }
           icon={ <ContentPasteIcon fontSize="small" /> }
           rounded={ "right" }
-          className={`pr-3 w-fit`}
+          className={`w-fit`}
           onClick={ () => canvas.clipboardPaste() } />
 
       </div>

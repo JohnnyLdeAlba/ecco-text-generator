@@ -88,6 +88,14 @@
   background-color: #1d468a;
 }
 
+.mui-darksea-Switch .MuiSwitch-thumb {
+  background-color: #1d468a;
+}
+
+.mui-darksea-Switch .MuiSwitch-track {
+  background-color: #1d468a;
+}
+
 .background-darksea {
   background-attachment: fixed;
   background-repeat: no-repeat;
