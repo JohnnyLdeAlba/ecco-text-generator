@@ -148,28 +148,63 @@ export const Navigation = ({
             alt='' />
         </MenuCategory>
 
+        <MenuItem onClick={ () => {} }>
+          <HomeIcon className={`mr-2`} />
+          <span className={`text-white`}>Home</span>
+        </MenuItem>
+
+        <MenuItem onClick={ () => {} }>
+          <HelpOutlineIcon className={`mr-2`} />
+          <span className={`text-white`}>About</span>
+        </MenuItem>
+
+        <MenuItem onClick={ () => {} }>
+          <ExploreIcon className={`mr-2`} />
+          <span className={`text-white`}>Explore</span>
+        </MenuItem>
+
+        <MenuItem onClick={ () => {} }>
+          <SettingsIcon className={`mr-2`} />
+          <span className={`text-white`}>Settings</span>
+        </MenuItem>
+
         <MenuCategory>
-          Official
+          Generators
         </MenuCategory>
 
-        <MenuLink href="https://mastodon.social/@HectorTelloc">
-          <Icons.MastodonIcon className={`mr-2`}/>
-          <span className={`text-white`}>Mastodon</span>
+        <MenuItem onClick={ () => {} }>
+          <FontDownloadIcon className={`mr-2`} />
+          <span className={`text-white`}>Ecco Text Generator</span>
+        </MenuItem>
+
+        <MenuItem onClick={ () => {} }>
+          <KeyIcon className={`mr-2`}/>
+          <span className={`text-white`}>Ecco Password Generator</span>
+        </MenuItem>
+
+        <MenuCategory>
+          Social
+        </MenuCategory>
+
+        <MenuLink href="https://twitter.com/hectortelloc">
+          <Icons.TwitterIcon className={`mr-2`}/>
+          <span className={`text-white`}>Founder's Twitter</span>
         </MenuLink>
 
         <MenuCategory>
-          Ecco Online
+          Partner's Social
         </MenuCategory>
 
         <MenuLink href="https://twitter.com/eccoonline">
           <Icons.TwitterIcon className={`mr-2`}/>
-          <span className={`text-white`}>Twitter</span>
+          <span className={`text-white`}>Ecco Online's Twitter</span>
         </MenuLink>
 
         <MenuLink href="">
           <Icons.DiscordIcon className={`mr-2`}/>
-          <span className={`text-white`}>Discord</span>
+          <span className={`text-white`}>Ecco Online's Discord</span>
         </MenuLink>
+
       </div>
     </>
   );

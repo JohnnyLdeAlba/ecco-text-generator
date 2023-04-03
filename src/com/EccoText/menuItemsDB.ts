@@ -10,6 +10,12 @@ const RootId = ++id;
 node = container.addNode("home", 0, RootId);
 node.name = "Menu";
 
+node = container.addNode("about", RootId);
+node.type = "aboutVisible";
+node.name = "About";
+node.icon = "/icons/about.png";
+node.orderId = 1;
+
 const ThemesId = ++id;
 node = container.addNode("themes", RootId, ThemesId);
 node.name = "Themes";

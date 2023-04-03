@@ -2,29 +2,29 @@ import { createContext, useEffect, useContext, useState, useRef } from "react";
 import Head from 'next/head'
 
 
-import { ThemeContext } from "../../com/theme";
+import { ThemeContext } from "../com/theme";
 import FolderIcon from '@mui/icons-material/Folder';
 
 import GIF from "gif.js";
 
-import { Menu } from "../../com/Menu/Menu";
-import { DialogMenu } from "../../com/Menu/DialogMenu";
-import { ProgressDialog, DownloadDialog } from "../../com/ProgressDialog";
-import { Layout } from "../../com/Layout/Layout";
-import { useCanvas, Canvas } from "../../com/EccoText/Canvas";
+import { Menu } from "../com/Menu/Menu";
+import { DialogMenu } from "../com/Menu/DialogMenu";
+import { ProgressDialog, DownloadDialog } from "../com/ProgressDialog";
+import { Layout } from "../com/Layout/Layout";
+import { useCanvas, Canvas } from "../com/EccoText/Canvas";
 
-import { useRequestStatic } from "../../com/Request/RequestStatic";
-import { ProgmaContext, useProgma } from "../../com/Progma";
+import { useRequestStatic } from "../com/Request/RequestStatic";
+import { ProgmaContext, useProgma } from "../com/Progma";
 
-import { container } from "../../com/EccoText/menuItemsDB";
-import { Toolbar } from "../../com/EccoText/Toolbar";
+import { container } from "../com/EccoText/menuItemsDB";
+import { Toolbar } from "../com/EccoText/Toolbar";
 
-import { Backdrop } from "../../com/Backdrop";
-import { Card } from "../../com/Card";
-import { Keyboard } from "../../com/EccoText/Keyboard";
-import { useEccoText } from "../../com/EccoText/EccoText";
-import { t_node } from "../../lib/node-lib";
-import { t_hook } from "../../com/lib/hook";
+import { Backdrop } from "../com/Backdrop";
+import { Card } from "../com/Card";
+import { Keyboard } from "../com/EccoText/Keyboard";
+import { useEccoText } from "../com/EccoText/EccoText";
+import { t_node } from "../lib/node-lib";
+import { t_hook } from "../com/lib/hook";
 
 import CameraAltIcon from '@mui/icons-material/CameraAlt';
 import GifIcon from '@mui/icons-material/Gif';

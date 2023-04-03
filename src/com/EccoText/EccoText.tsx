@@ -15,6 +15,7 @@ class t_ecco_text extends t_hook {
 
     this.font = null;
     this.keyboardLayout = '';
+    this.aboutVisible = false;
     this.menuVisible = false;
   }
 
@@ -24,12 +25,20 @@ class t_ecco_text extends t_hook {
     this.refresh = refresh;
   }
 
+  showAbout(visible) {
+
+    this.aboutVisible = visible;
+    this.commit();
+  }
+
   initialize(params) {
 
     const { progma } = params;
 
     progma.set("keyboardLayouts",
       galleryItem => this.onKBLayoutChange(galleryItem));
+    progma.set("aboutVisible",
+      galleryItem => this.showAbout(true));
 
     this.progma = progma;
     this.setKBLayout("engKeyboard");

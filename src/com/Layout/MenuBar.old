@@ -96,8 +96,18 @@ export const MenuBar = ({
 
       <MenuNav onClick={ toggleNav } />
 
-      <div className={`flex-1 flex flex-row justify-end h-[60px]`}>
-        &nbsp;
+      <div className={`flex-1 flex flex-row justify-end h-full`}>
+
+        <MenuLink href="/explore">
+          <ExploreIcon className={`mr-2`} />
+          <span className={`text-white`}>Explore</span>
+        </MenuLink>
+
+        <MenuLink href="https://twitter.com/hectortelloc">
+          <Icons.TwitterIcon className={`mr-2`} />
+          <span className={`text-white`}>Twitter</span>
+        </MenuLink>
+
       </div>
 
     </div>
