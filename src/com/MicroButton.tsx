@@ -56,7 +56,7 @@ export const MicroButton = ({
   )
 }
 
-export const WMicroButton = forwardRef((props, ref) => {
+const WMicroButton = forwardRef((props, ref) => {
 
   let {
     wDisabled,
@@ -82,6 +82,8 @@ export const WMicroButton = forwardRef((props, ref) => {
     </div>
   );
 });
+
+WMicroButton.displayName = "WMicroButton";
 
 export const MicroTipButton = ({
   disabled,
@@ -114,3 +116,5 @@ export const MicroTipButton = ({
     </Tooltip>
   );
 }
+
+export default MicroButton;

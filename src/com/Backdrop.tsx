@@ -1,6 +1,6 @@
 export const Backdrop = ({
   show = false,
-  onClose,
+  onClose = null,
   children
 }) => {
 

@@ -146,6 +146,8 @@ export const WSmallButton = forwardRef((props, ref) => {
   );
 });
 
+WSmallButton.displayName = "WSmallButton";
+
 export const SmallTipButton = ({
   disabled,
   icon,
