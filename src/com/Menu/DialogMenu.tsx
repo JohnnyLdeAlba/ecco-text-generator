@@ -25,23 +25,24 @@ export const DialogMenu = ({ show, onClose }) => {
         flex-1 flex flex-col
         overflow-y-auto
         h-full`}>
-      <Card
-        title={ request.parentNode.name }
-        onClose={ _onClose }
-        className={`h-full`}>
-      <Menu
-        toolbarPosition="top"
-        forceDetailsVisible={ true }
-        page={ request.page == -1 ? -1 : request.page + 1 }
+        <Card
+          title={ request.parentNode.name }
+          onClose={ _onClose }
+          color="solid"
+          className={`h-full`}>
+          <Menu
+            toolbarPosition="top"
+            forceDetailsVisible={ true }
+            page={ request.page == -1 ? -1 : request.page + 1 }
 
-        onPrevPage={ request.page > 0 ? () => request.onPrevPage() : null }
-        onNextPage={ request.nextPage ? () => request.onNextPage() : null }
+            onPrevPage={ request.page > 0 ? () => request.onPrevPage() : null }
+            onNextPage={ request.nextPage ? () => request.onNextPage() : null }
 
-        galleryItems={ request.getGalleryItems() }
-        onGoBack={ request.parentNode.parentId > 0 ? () => request.onGoBack() : null }
-        onClose={ _onClose }
-      />
-      </Card>
+            galleryItems={ request.getGalleryItems() }
+            onGoBack={ request.parentNode.parentId > 0 ? () => request.onGoBack() : null }
+            onClose={ _onClose }
+          />
+        </Card>
       </div>
     </Backdrop>
   );

@@ -1,5 +1,4 @@
 import { useContext, useState } from "react";
-import Image from "next/image";
 
 import { t_node } from "../../lib/node-lib";
 import { Toolbar } from "./Toolbar"; 
@@ -29,9 +28,8 @@ export const DetailItem = ({ galleryItem }) => {
         ${ properties.disabled ? "disabled" : "button" }
         ${ status.selected ? theme.galleryItemSelected : theme.galleryItem }
       `}>
-        <Image
-          src={ galleryItem.icon }
-          width={ 300 } height={ 300 } alt=''
+        <img
+          src={ galleryItem.icon } alt=''
           className={`w-[30px] mr-2 rounded-md`} />
         <div className={`flex-1 flex flex-col`}>
           <div className={`
@@ -61,7 +59,7 @@ export const DetailGroup = ({
       flex-1 flex flex-col
       overflow-y-auto pt-[1px]
       ${  theme.cardHeader }
-      ${ theme.miniGallery.scrollbars }
+      ${ theme.menu.scrollbars }
     `}>
 
       { galleryItems.map(galleryItem => {
@@ -120,9 +118,8 @@ export const GalleryItem = ({ galleryItem }) => {
         ${ properties.disabled ? "disabled" : "button" }
         ${ status.selected ? theme.galleryItemSelected : '' }
       `}>
-        <Image
-          src={ galleryItem.icon }
-          width={ 300 } height={ 300 } alt=''
+        <img
+          src={ galleryItem.icon } alt=''
           className={`
             w-full
             ${ status.filteredPriority || status.filteredAttribute ? '' : "rounded-lg" }
@@ -153,7 +150,7 @@ export const GalleryGroup = ({
       items-start content-start
       overflow-y-auto
       h-full
-      ${ theme.miniGallery.scrollbars }
+      ${ theme.menu.scrollbars }
     `}>
 
       { galleryItems.map(galleryItem => {

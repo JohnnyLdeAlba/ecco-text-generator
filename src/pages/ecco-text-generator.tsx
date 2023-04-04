@@ -21,8 +21,9 @@ import { Toolbar } from "../com/EccoText/Toolbar";
 
 import { Backdrop } from "../com/Backdrop";
 import { Card } from "../com/Card";
-import { Keyboard } from "../com/EccoText/Keyboard";
+import { Keyboard } from "../com/EccoText/Keyboard/Keyboard";
 import { useEccoText } from "../com/EccoText/EccoText";
+import { AboutDialog } from "../com/EccoText/AboutDialog";
 import { t_node } from "../lib/node-lib";
 import { t_hook } from "../com/lib/hook";
 
@@ -52,62 +53,6 @@ export const Container = ({ children }) => {
   );
 }
 
-export const AboutText = () => {
-
-  return (<>
-    <div className={`font-medium text-xl text-center`}>
-      Ecco Text Generator, Version 2.0
-    </div>
-    <div className={`text-center`}>
-      Created By  Johnny L. de Alba, 2023
-    </div>
-
-    <br />
-    <p className={`mb-2 font-medium`}>
-      What is this?
-    </p>
-
-    <p>
-      This is an Ecco the Dolphin Text Generator that creates animated gifs and static images using the
-      ripple generating algorythm from Ecco 2: The Tides of Time.
-    </p>
-
-    <br />
-    <p className={`mb-2 font-medium`}>
-      Special Thanks
-    </p>
-
-    <p className={`mb-2`}>
-      Jake ( Twitter: <a href="https://twitter.com/fiuefey">@fiuefey</a> ) for providing numbers and Icelandic character support.
-    </p>
-    <p>
-      Brad Corrupts ( YouTube: <a href="https://www.youtube.com/@BradCorrupts/videos">@BradCorrupts</a> ) who discovered that additional
-      effects that could be done with the ripple generator.
-    </p>
-  </>)
-}
-
-export const AboutDialog = ({ show = false, onClose }) => {
-
-  return (
-    <Backdrop show={ show }>
-      <div className={`
-        flex-1 sm:flex-none
-        sm:mx-4 md:mx-auto
-        sm:my-8
-        md:w-[600px]`}>
-        <Card title="About" onClose={ onClose } className={`
-          flex-1 sm:flex-none
-          h-full sm:h-fit`}>
-          <div className={`flex-1 px-4 py-6 h-full`}>
-            <AboutText />
-          </div>
-        </Card>
-      </div>
-    </Backdrop>
-  );
-}
-
 export const Index = ({ loading }) => {
 
   const theme = useContext(ThemeContext);
@@ -128,6 +73,16 @@ export const Index = ({ loading }) => {
 
     <Head>
       <title>Ecco Text Generator</title>
+
+      <link rel="icon" href="sigil-purple.svg" />
+      <meta property="og:locale" content="en_US" />
+      <meta property="og:site_name" content="Ecco the Dolphin IO" />
+      <meta property="og:title" content="Ecco Text Generator" />
+      <meta property="og:description" content="An animated Ecco the Dolphin Generator that can produce GIFs and static images." />
+      <meta property="og:image" content="card.jpg" />
+      <meta property="og:url" content="https://eccothedolphin.io/ecco-text-generator" />
+      <meta property="twitter:card" content="summary_large_image" />
+
     </Head>
 
     <AboutDialog
@@ -166,27 +121,12 @@ export const Index = ({ loading }) => {
               hidden md:flex
               flex-col overflow-y-auto
               pl-4 w-[240px]`}>
-
-              <div className={`
-                flex-1 flex flex-col
-                overflow-y-auto
-                rounded-lg h-full
-                ${ loading ? "disabled" : '' }
-                ${ theme.card }`}>
-
-                <div className={`
-                  flex flex-col
-                  px-3 py-2
-                  font-medium text-sm
-                  ${ theme.cardHeader }`}>
-                  { request.parentNode.name }
-                </div>
-
-                <div className={`
-                  flex-1 flex flex-col
-                  overflow-y-auto h-full
-                  ${ theme.scrollbars }`}>
-
+                <Card
+                  title={ request.parentNode.name }
+                  size="small"
+                  color="solid"
+                  rounded="full"
+                  className={`h-full`}>
                   <Menu
                     disabled={ loading }
                     forceDetailsVisible={ true }
@@ -198,9 +138,7 @@ export const Index = ({ loading }) => {
                     galleryItems={ request.getGalleryItems() }
                     onGoBack={ request.parentNode.parentId > 0 ? () => request.onGoBack() : null }
                   />
-                </div>
-
-              </div>
+               </Card>
             </div>
           </div>
         </div>

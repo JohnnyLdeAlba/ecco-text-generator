@@ -46,7 +46,7 @@ export const MicroButton = ({
       ${ disabled ? "disabled" : '' }
       ${ !disabled && !closed && onClick ? "button" : '' }
       ${ !disabled && closed && onClick ? "buttonClosed" : '' }
-      ${ closed ? `${ theme.smallButtonClosed }` : `${ theme.smallButton }` }
+      ${ closed ? `${ theme.buttonClosed }` : `${ theme.button }` }
       ${ rounded }
       ${ className }
       `} onClick={ onClick }>

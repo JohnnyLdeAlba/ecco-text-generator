@@ -28,10 +28,7 @@ export const Toolbar = ({
   const theme = useContext(ThemeContext);
 
   return (
-    <div className={`
-      flex flex-row px-4 py-2
-      ${ theme.toolbar }
-    `}>
+    <div className={`flex flex-row px-4 py-2`}>
 
       <MicroTipButton
         disabled={ onGoBack ? false : true }

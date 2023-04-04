@@ -4,21 +4,23 @@ import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import { useContext } from "react";
 import { ThemeContext } from "./theme";
 
-export const CardIcon = ({ children }) => {
+export const CardIcon = ({ size, children }) => {
 
   const theme = useContext(ThemeContext);
 
   return (
-    <div className={`mr-4`}>
+    <div className={`${ size ? "mr-1" : "mr-4" }`}>
       { children }
     </div>
   );
 }
 
-export const CardTitle = ({ children }) => {
+export const CardTitle = ({ size, children }) => {
 
   return (
-    <div className={`font-medium md:text-lg`}>
+    <div className={`
+      font-medium
+      ${ size == "small" ? "text-sm" : "md:text-lg" }`}>
       { children }
     </div>
   );
@@ -33,7 +35,7 @@ export const CardSubTitle = ({ children }) => {
   );
 }
 
-export const CardMenu = ({}) => {
+export const CardMenu = ({ small }) => {
 
   const theme = useContext(ThemeContext);
 
@@ -45,12 +47,14 @@ export const CardMenu = ({}) => {
       rounded-full
       ${ theme.cardHeader }
     `}>
-      <MoreHorizIcon />
+      { small ?
+          <MoreHorizIcon fontSize="small" /> :
+          <MoreHorizIcon /> }
     </div>
   );
 }
 
-export const CardClose = ({ onClose }) => {
+export const CardClose = ({ size, onClose }) => {
 
   const theme = useContext(ThemeContext);
 
@@ -58,11 +62,11 @@ export const CardClose = ({ onClose }) => {
     <div className={`
       button
       cursor-pointer
-      p-1
       rounded-full
+      ${ size == "small" ? "p-[2px]" : "p-1" }
       ${ theme.cardHeader }
       `} onClick={ onClose } >
-      <CloseIcon fontSize="small" />
+      { size == "small" ? <CloseIcon fontSize="small" /> : <CloseIcon /> }
     </div>
   );
 }
@@ -71,9 +75,10 @@ export const CardHeader = ({
   icon,
   title,
   subTitle,
+  size, 
+  rounded,
   menuItems,
-  onClose,
-  rounded
+  onClose
 }) => {
 
   const theme = useContext(ThemeContext);
@@ -81,32 +86,37 @@ export const CardHeader = ({
   return (
     <div className={`
       flex flex-row
+      justify-center
       px-4 py-2
-      ${ rounded ? "rounded-t-lg" : "rounded-t-none sm:rounded-t-lg" }
-      ${ theme.cardHeader }        
+      ${ rounded ? "rounded-lg" : "rounded-t-none sm:rounded-t-lg" }
+      ${ theme.cardHeader }
     `}>
-      { icon ? <CardIcon>{ icon }</CardIcon> : null }
-      <div className={`
-        flex-1 flex flex-col
-      `}>
-        <CardTitle >{ title }</CardTitle>
+
+      { icon ? <CardIcon size={ size }>{ icon }</CardIcon> : null }
+
+      <div className={`flex-1 flex flex-col justify-center`}>
+        <CardTitle size={ size }>{ title }</CardTitle>
         { subTitle ? <CardSubTitle >{ subTitle }</CardSubTitle> : null }
       </div>
+
       { menuItems ? <CardMenu /> : null }
-      { onClose ? <CardClose onClose={ onClose } /> : null }
+      { onClose ? <CardClose size={ size } onClose={ onClose } /> : null }
+
     </div>
   );
 }
 
 export const Card = ({
+  disabled,
   icon,
   title,
   subTitle,
+  size,
   menuItems,
   rounded,
   color,
   onClose,
-  className,
+  className = '',
   children
 }) => {
 
@@ -116,14 +126,16 @@ export const Card = ({
     <div className={`
       overflow-y-auto sm:overflow-y-visible
       flex-1 flex flex-col
-      ${ rounded ? "rounded-t-lg" : "rounded-none sm:rounded-t-lg" }
-      ${ color ? theme.cardLight : theme.card }
+      ${ disabled ? "disabled" : '' }
+      ${ rounded ? "rounded-lg" : "rounded-none sm:rounded-t-lg" }
+      ${ color ? theme.cardSolid : theme.card }
       ${ className }
     `}>
       <CardHeader
         icon={ icon }
         title={ title }
         subTitle={ subTitle }
+        size={ size }
         menuItems={ menuItems }
         rounded={ rounded }
         onClose={ onClose }

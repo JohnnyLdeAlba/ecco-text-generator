@@ -24,7 +24,7 @@ export const ProgressDialog = ({
               <LinearProgress
                 variant="determinate"
                 value={ progressIndex }
-                classes={{ root: "mui-darksea-LinearProgress" }} />
+                classes={{ root: "darkSea-LinearProgress" }} />
             </div>
             <div className={`mb-4 font-medium text-lg`}>
               { progressIndex }%

@@ -11,7 +11,7 @@ import GIF from "gif.js";
 import { ThemeContext } from "../../com/theme";
 
 import { t_hook } from "../../com/lib/hook";
-import { Button } from "../../com/Button";
+import { Button } from "../../com/Button/Button";
 import { Card } from "../../com/Card";
 import { Backdrop } from "../../com/Backdrop";
 import { t_plot_state } from "../../lib/bluedream-lib/plot-state";

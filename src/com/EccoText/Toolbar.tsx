@@ -56,6 +56,7 @@ export const Toolbar = ({
             disabled={ disabled }
             tip={ "Open Menu" }
             icon={ <LibraryAddIcon fontSize="small" /> }
+            color="light"
             rounded={ "left" }
             className={`flex md:hidden w-fit`}
             onClick={ () => eccoText.showMenu() } />
@@ -64,6 +65,7 @@ export const Toolbar = ({
             disabled={ disabled }
             tip={ "Take Snapshot" }
             icon={ <CameraAltIcon fontSize="small" /> }
+            color="light"
             className={`flex md:hidden w-fit`}
             onClick={ () => canvas.generatePNG() } />
 
@@ -71,6 +73,7 @@ export const Toolbar = ({
             disabled={ disabled }
             tip={ "Take Snapshot" }
             icon={ <CameraAltIcon fontSize="small" /> }
+            color="light"
             rounded={ "left" }
             className={`hidden md:flex w-fit`}
             onClick={ () => canvas.generatePNG() } />
@@ -79,6 +82,7 @@ export const Toolbar = ({
             disabled={ disabled }
             tip={ "Generate GIF" }
             icon={ <GifIcon fontSize="small" /> }
+            color="light"
             rounded={ "right" }
             className={`mr-4 w-fit`}
             onClick={ () => canvas.generate() } />
@@ -90,18 +94,21 @@ export const Toolbar = ({
             closed={ canvas.align == "left" }
             tip={ "Align Left" }
             icon={ <FormatAlignLeftIcon fontSize="small" /> }
+            color="light"
             rounded={ "left" }
             onClick={ () => canvas.setAlign("left") } />
           <SmallTipButton
             disabled={ disabled }
             closed={ canvas.align == "center" }
             tip={ "Align Center" }
+            color="light"
             icon={ <FormatAlignCenterIcon fontSize="small" /> }
             onClick={ () => canvas.setAlign("center") } />
           <SmallTipButton
             disabled={ disabled }
             closed={ canvas.align == "right" }
             tip={ "Align Right" }
+            color="light"
             icon={ <FormatAlignRightIcon fontSize="small" /> }
             onClick={ () => canvas.setAlign("right") } />
 
@@ -109,18 +116,21 @@ export const Toolbar = ({
             disabled={ disabled }
             closed={ canvas.vAlign == "top" }
             tip={ "Align Top" }
+            color="light"
             icon={ <VerticalAlignTopIcon fontSize="small" /> }
             onClick={ () => canvas.setVAlign("top") } />
           <SmallTipButton
             disabled={ disabled }
             closed={ canvas.vAlign == "middle" }
             tip={ "Align Middle" }
+            color="light"
             icon={ <VerticalAlignCenterIcon fontSize="small" /> }
             onClick={ () => canvas.setVAlign("middle") } />
           <SmallTipButton
             disabled={ disabled }
             closed={ canvas.vAlign == "bottom" }
             tip={ "Align Bottom" }
+            color="light"
             icon={ <VerticalAlignBottomIcon fontSize="small" /> }
             rounded={ "right" }
             className={`mr-0 sm:mr-4`}
@@ -135,12 +145,14 @@ export const Toolbar = ({
             closed={ canvas.baseline == "bottom" }
             tip={ "Bottom Baseline" }
             icon={ <AlignVerticalBottomIcon fontSize="small" /> }
+            color="light"
             rounded={ "left" }
             onClick={ () => canvas.setBaseline("bottom") } />
           <SmallTipButton
             disabled={ disabled }
             closed={ canvas.baseline == "middle" }
             tip={ "Middle Baseline" }
+            color="light"
             icon={ <AlignVerticalCenterIcon fontSize="small" /> }
             onClick={ () => canvas.setBaseline("middle") } />
           <SmallTipButton
@@ -148,6 +160,7 @@ export const Toolbar = ({
             closed={ canvas.baseline == "top" }
             tip={ "Top Baseline" }
             icon={ <AlignVerticalTopIcon fontSize="small" /> }
+            color="light"
             rounded={ "right" }
             className={`mr-4`}
             onClick={ () => canvas.setBaseline("top") } />
@@ -157,6 +170,7 @@ export const Toolbar = ({
           disabled={ disabled }
           tip={ "Copy to Clipboard" }
           icon={ <CopyAllIcon fontSize="small" /> }
+          color="light"
           rounded={ "left" }
           className={`w-fit`}
           onClick={ () => canvas.clipboardCopy() } />
@@ -165,6 +179,7 @@ export const Toolbar = ({
           disabled={ disabled }
           tip={ "Paste from Clipboard" }
           icon={ <ContentPasteIcon fontSize="small" /> }
+          color="light"
           rounded={ "right" }
           className={`w-fit`}
           onClick={ () => canvas.clipboardPaste() } />
