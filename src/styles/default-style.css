@@ -76,6 +76,19 @@
   color: #081021;
 }
 
+
+.darkSea-keyInTip
+.MuiTooltip-tooltip {
+  background-color: #081021;
+  font-size: 1.125rem;
+}
+
+.darkSea-keyInTip
+.MuiTooltip-arrow {
+  color: #081021;
+}
+
+
 .darkSea-Slider
 .MuiSlider-thumb {
   background-color: #1d468a;

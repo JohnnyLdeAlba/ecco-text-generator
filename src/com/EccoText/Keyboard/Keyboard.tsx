@@ -12,8 +12,9 @@ import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import { t_node } from "../../../lib/node-lib";
 import { Card } from "../../Card";
 import { CanvasContext } from "../Canvas";
-import { ThemeContext } from "../../../com/theme";
+import { TipKeyIn } from "./KeyIn";
 
+import { ThemeContext } from "../../../com/theme";
 import { SettingsLayout } from "./SettingsLayout";
 
 const EnglishLayout = ({ disabled = false }) => {
@@ -652,7 +653,7 @@ const KeyboardGroup = ({ disabled = false, galleryItems = [] }) => {
       items-center justify-center
       py-[3px]`}>
       { galleryItems.map(galleryItem =>
-          <KeyboardItem
+          <TipKeyIn
             key={ galleryItem.uniqueId }
             disabled={ disabled }
             galleryItem={ galleryItem } />

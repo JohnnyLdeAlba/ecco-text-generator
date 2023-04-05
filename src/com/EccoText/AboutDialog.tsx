@@ -49,7 +49,7 @@ export const AboutDialog = ({ show = false, onClose }) => {
         sm:mx-4 md:mx-auto
         sm:my-8
         md:w-[600px]`}>
-        <Card title="About" color="" size="small" onClose={ onClose } className={`
+        <Card title="About" onClose={ onClose } className={`
           flex-1 sm:flex-none
           h-full sm:h-fit`}>
           <div className={`flex-1 px-4 py-6 h-full`}>
@@ -60,4 +60,3 @@ export const AboutDialog = ({ show = false, onClose }) => {
     </Backdrop>
   );
 }
-

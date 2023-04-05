@@ -74,7 +74,8 @@ export const darkSeaTheme = {
   eccoText: {
     toolbar: `bg-[#0b1c38] sm:bg-transparent`,
     keyboard: `bg-[#0b1c38]`,
-    keyboardItem: `bg-[#1d468a]`
+    keyboardItem: `bg-[#1d468a]`,
+    keyInTip: `darkSea-keyInTip text-lg`
   },
 
   menu: {

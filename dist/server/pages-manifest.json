@@ -1,9 +1,7 @@
 {
+  "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/_app": "pages/_app.js",
-  "/api/hello": "pages/api/hello.js",
-  "/": "pages/index.html",
-  "/ecco-text-generator": "pages/ecco-text-generator.html",
-  "/404": "pages/404.html"
+  "/": "pages/index.js",
+  "/ecco-text-generator": "pages/ecco-text-generator.js"
 }
