@@ -233,7 +233,7 @@ export class t_composition {
     this.align = '';
     this.vAlign = '';
     this.baseline = "bottom";
-    this.trimSpaces = true;
+    this.trimSpaces = false;
 
     this.letterSpacing = 0;
     this.lineHeight = 0;
@@ -338,6 +338,7 @@ export class t_composition {
     }
 
     let totalWords = line.totalWords - startIndex;
+
 
     line.startIndex+= startIndex;
     line.totalWords = totalWords;

@@ -136,6 +136,8 @@ const font_system_yellow = () => {
   font.cursorFilter = new t_rgba(1.8, 0.6);
   font.bitmapIndex = 49;
 
+  font.charMap.forEach(
+    char => char.bitmapIndex+= font.bitmapIndex);
   return font; 
 }
 
@@ -151,6 +153,8 @@ const font_system_red = () => {
   font.cursorFilter = new t_rgba(2.8, 2.8, 0.2);
   font.bitmapIndex = 49 * 2;
 
+  font.charMap.forEach(
+    char => char.bitmapIndex+= font.bitmapIndex);
   return font; 
 }
 

@@ -1,2 +1,2 @@
-export { default as useEccoText } from "./useEccoText";
-export { default as EccoText } from "./EccoText";
+export { useEccoText } from "./useEccoText";
+export { EccoText } from "./EccoText";
