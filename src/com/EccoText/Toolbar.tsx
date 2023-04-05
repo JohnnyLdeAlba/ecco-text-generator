@@ -29,7 +29,7 @@ import ContentPasteIcon from '@mui/icons-material/ContentPaste';
 import LibraryAddIcon from '@mui/icons-material/LibraryAdd';
 import SettingsIcon from '@mui/icons-material/Settings';
 
-import { SmallButton, SmallTipButton } from "../Button"; 
+import { SmallButton, SmallTipButton, SmallPopUpButton } from "../Button"; 
 import { CanvasContext } from "./Canvas";
 import { EccoTextContext } from "./useEccoText";
 import { ThemeContext } from "../theme";
@@ -166,9 +166,10 @@ export const Toolbar = ({
             onClick={ () => canvas.setBaseline("top") } />
           </div>
 
-        <SmallTipButton
+        <SmallPopUpButton
           disabled={ disabled }
           tip={ "Copy to Clipboard" }
+          notification="Copyied to the Clipboard"
           icon={ <CopyAllIcon fontSize="small" /> }
           color="light"
           rounded={ "left" }

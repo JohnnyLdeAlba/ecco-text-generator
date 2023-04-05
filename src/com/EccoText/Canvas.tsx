@@ -133,12 +133,19 @@ class t_gif_generator {
 
     const gen = this.gen;
 
-    for (let index = 0; index < 255; index++) {
+    let currentFrame = 0;
+    let previousFrame = 0;
+
+    const totalFrames = this.frameSkip ? 127 : 255;
+
+    for (let index = 0; index < totalFrames; index++) {
 
       if (this.frameSkip && ((index % 2) == 1))
-        continue;
+        currentFrame = previousFrame;
+      else
+        currentFrame = index;
 
-      this.plotBackground(index);
+      this.plotBackground(currentFrame);
       this.plotComposition(this.com);
       this.render();
 
@@ -151,6 +158,8 @@ class t_gif_generator {
         delay: parseInt(1000/60),
         dispose: -2
        });
+
+      previousFrame = index;
     }
 
     gen.render();

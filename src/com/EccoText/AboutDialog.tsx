@@ -1,14 +1,16 @@
 import { Backdrop } from "../../com/Backdrop";
 import { Card } from "../../com/Card";
 
+import { config } from "./config";
+
 export const AboutText = () => {
 
   return (<>
     <div className={`font-medium text-xl text-center`}>
-      Ecco Text Generator, Version 2.02
+      Ecco Text Generator, Version { config.Version }
     </div>
     <div className={`text-center`}>
-      Created By  Johnny L. de Alba, 2023
+      Created By  Johnny L. de Alba, { config.Year }
     </div>
 
     <br />

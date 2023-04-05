@@ -129,7 +129,7 @@ export const DownloadDialog = ({
         flex flex-col`}>
         <Card title={ "Download " + type.toUpperCase() }
           rounded={ true } color="light">
-          <img src={ imageURL } alt='' className={`w-full`}/>
+          <img src={ imageURL } alt='' className={`pixelated w-full`}/>
           <div className={`flex flex-row justify-center px-4 py-2 font-medium`}>
             <span className={`mr-4`}>File Type: { type.toUpperCase() }</span>
             { resolution == '' ? null : <span>Resolution: { resolution }</span> }
