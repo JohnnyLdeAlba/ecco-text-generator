@@ -56,7 +56,7 @@ export const SmallPopUpButton = ({
   const showToolTip = () => {
 
     _showToolTip(true);
-    setTimeout(() => _showToolTip(false), 500);
+    setTimeout(() => _showToolTip(false), 1250);
   }
 
   const _onClick = () => {
