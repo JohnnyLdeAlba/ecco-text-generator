@@ -1,0 +1,29 @@
+[x] Clipboard Copy and Paste
+[x] Mobile Menu
+[x] PNG Snapshot
+[x] Effects
+[x] Theme change filter and adjustment.
+[x] Layout None
+[x] Loaders
+[x] Cleanup Keyboard Menu Items.
+[x] Reset Keyboard on font type change (set font)
+[x] About Page
+[x] Settings
+[x] Keyboard on Keydown
+[x] Clipboard doesn't work in mobile, will need to use hack.
+[-] Need a single update! that all components can syncronize to. (Add to progma)
+[x] Head info for twitter ect...
+[x] Fix header image
+[x] Fix mobile chrome font color.
+[ ] Hide paste feature on mobile.
+[ ] Pop up for mobile that explains how to use menu.
+[x] Copy notification when something is copied.
+[ ] Paste tray for mobile.
+[ ] Undefined showing up in source for classNames
+[x] Low res mode too fast.
+[x] Breakup and refractor Canvas
+[x] Fix wierd bug involving spaces and backspace. (caused by newline)
+[x] Fix trim spaces
+[x] Fixed system fonts.
+[ ] Anti Alias for Downloads bug in Firefox
+[ ] Safari Issues.
