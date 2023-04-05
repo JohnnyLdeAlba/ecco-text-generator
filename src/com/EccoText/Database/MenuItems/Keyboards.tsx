@@ -49,9 +49,9 @@ export const Keyboards = container => {
   node = container.addNode("rusKeyboard",
     MenuItems.RootId);
   node.type = "keyboardLayouts";
-  node.name = "Russian";
+  node.name = "Cyrillic";
   node.icon = "/icons/russian.png";
-  node.orderId = 16;
+  node.orderId = 17;
   node.filters.set("homeBayFont", true);
 
   node = container.addNode("intlKeyboard",
@@ -59,7 +59,7 @@ export const Keyboards = container => {
   node.type = "keyboardLayouts";
   node.name = "International";
   node.icon = "/icons/international.png";
-  node.orderId = 17;
+  node.orderId = 18;
   node.filters.set("homeBayFont", true);
 
   node = container.addNode("hiraKeyboard",
@@ -67,7 +67,7 @@ export const Keyboards = container => {
   node.type = "keyboardLayouts";
   node.name = "Hiragana";
   node.icon = "/icons/japanese.png";
-  node.orderId = 18;
+  node.orderId = 19;
   node.filters.set("homeBayFont", true);
 
   node = container.addNode("kataKeyboard",
@@ -75,7 +75,7 @@ export const Keyboards = container => {
   node.type = "keyboardLayouts";
   node.name = "Katakana";
   node.icon = "/icons/japanese.png";
-  node.orderId = 19;
+  node.orderId = 20;
   node.filters.set("homeBayFont", true);
 
   return container;

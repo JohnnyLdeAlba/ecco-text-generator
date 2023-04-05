@@ -65,6 +65,11 @@ export const darkSeaTheme = {
   tooltip: `darkSea-Tooltip`,
 
   circularProgress: "text-[#2e58a0]",
+  linearProgress: {
+
+    backgroundColor: "#081021",
+    bar: "#2e58a0"
+  },
 
   eccoText: {
     toolbar: `bg-[#0b1c38] sm:bg-transparent`,

@@ -76,20 +76,6 @@
   color: #081021;
 }
 
-
-.darkSea-LinearProgress {
-
-  height: 8px;
-  border-radius: 10px;
-  background-color: #081021;
-}
-
-.darkSea-LinearProgress
-.MuiLinearProgress-bar {
-  background-color: #2e58a0;
-}
-
-
 .darkSea-Slider
 .MuiSlider-thumb {
   background-color: #1d468a;

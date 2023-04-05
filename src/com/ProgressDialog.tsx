@@ -1,9 +1,34 @@
-import LinearProgress from '@mui/material/LinearProgress';
+import { useContext } from "react";
+import { styled } from '@mui/material/styles';
+
+import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgress';
 import SaveIcon from '@mui/icons-material/Save';
 
 import { Backdrop } from "./Backdrop";
 import { Card } from "./Card";
 import { Button, SmallButton } from "./Button";
+
+import { ThemeContext } from "./theme";
+
+export const Linear = ({ value }) => {
+
+  const theme = useContext(ThemeContext);
+
+  const WLinear = styled(LinearProgress)(() => ({
+    height: 8,
+    borderRadius: 10,
+
+    [`&.${linearProgressClasses.colorPrimary}`]: {
+      backgroundColor: theme.linearProgress.backgroundColor
+    },
+
+    [`& .${linearProgressClasses.bar}`]: {
+      backgroundColor: theme.linearProgress.bar
+    }
+  }));
+
+  return <WLinear variant="determinate" value={ value } />;
+}
 
 export const ProgressDialog = ({
   title = '',
@@ -21,10 +46,7 @@ export const ProgressDialog = ({
         <Card title={ title } rounded={ true } color="light">
           <div className={`flex flex-col items-end m-4`}>
             <div className={`w-full mb-2`}>
-              <LinearProgress
-                variant="determinate"
-                value={ progressIndex }
-                classes={{ root: "darkSea-LinearProgress" }} />
+              <Linear value={ progressIndex } />
             </div>
             <div className={`mb-4 font-medium text-lg`}>
               { progressIndex }%

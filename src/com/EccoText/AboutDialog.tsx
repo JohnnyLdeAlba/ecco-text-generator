@@ -5,7 +5,7 @@ export const AboutText = () => {
 
   return (<>
     <div className={`font-medium text-xl text-center`}>
-      Ecco Text Generator, Version 2.0
+      Ecco Text Generator, Version 2.02
     </div>
     <div className={`text-center`}>
       Created By  Johnny L. de Alba, 2023

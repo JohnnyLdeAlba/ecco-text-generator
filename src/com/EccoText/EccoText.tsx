@@ -66,7 +66,7 @@ export const EccoText = ({ loading }) => {
       <meta property="og:site_name" content="Ecco the Dolphin IO" />
       <meta property="og:title" content="Ecco Text Generator" />
       <meta property="og:description" content="An animated Ecco the Dolphin Generator that can produce GIFs and static images." />
-      <meta property="og:image" content="card.jpg" />
+      <meta property="og:image" content="https://eccothedolphin.io/card.jpg" />
       <meta property="og:url" content="https://eccothedolphin.io/ecco-text-generator" />
       <meta property="twitter:card" content="summary_large_image" />
 
