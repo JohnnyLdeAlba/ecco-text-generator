@@ -190,7 +190,7 @@ class t_request_static extends t_hook {
       nodes = this.filterAllNodes(page);
       reqPage++;
     }
-    
+ 
     return nodes;
   }
 
@@ -262,6 +262,12 @@ class t_request_static extends t_hook {
     this.commit();
   }
 
+  onReady() {
+
+    this.pushUpdate();
+    this.update();
+  }
+
   send() {
 
     const nodes = this.getAllNodes();
@@ -276,7 +282,6 @@ class t_request_static extends t_hook {
 
     this.progma = progma;
     this.refresh = refresh;
-
     this.tokens = tokens ? tokens : new Map();
   }
 
@@ -310,7 +315,11 @@ class t_request_static extends t_hook {
         this.setParentHash(parentHash);
         this.setPage(page);
 
-        this.update();
+        this.commit();
+
+        const onSync = this.progma.get("onSync");
+        if (onSync)
+          onSync("requestStatic", () => this.onReady());
 
         break;
       }

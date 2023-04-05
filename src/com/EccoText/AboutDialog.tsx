@@ -34,8 +34,8 @@ export const AboutText = () => {
       effects that could be done with the ripple generator.
     </p>
     <p>
-      Foone Turing ( Twitter: <a href="https://twitter.com/Foone">@foone</a> ) whose
-      <a href="https://deathgenerator.com">Death Generator</a> was the inspiration for this.
+      Foone Turing ( Twitter: <a href="https://twitter.com/Foone">@foone</a> )
+      whose <a href="https://deathgenerator.com">Death Generator</a> was the inspiration for this.
     </p>
   </>)
 }

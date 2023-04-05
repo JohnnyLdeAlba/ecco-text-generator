@@ -8,8 +8,6 @@ import CircularProgress from '@mui/material/CircularProgress';
 
 import GIF from "gif.js";
 
-import { ThemeContext } from "../../com/theme";
-
 import { t_hook } from "../../com/lib/hook";
 import { Button } from "../../com/Button/Button";
 import { Card } from "../../com/Card";
@@ -26,7 +24,9 @@ import { extract_canvas_array } from "../../lib/bluedream-lib/sprite-sheet";
 
 import { t_font, t_composition } from "../../lib/bluedream-lib/composition";
 import { plot_composition } from "../../lib/bluedream-lib/plot-composition";
+
 import Fonts from "./fonts";
+import { ThemeContext } from "../../com/theme";
 
 function copy_canvas(canvas, width = 0, height = 0) {
 
@@ -654,6 +654,7 @@ class t_canvas extends t_hook {
     this.plotter.render();
   }
 
+
   handleInput(key) {
 
     if (this.state != "ready")
@@ -738,6 +739,12 @@ class t_canvas extends t_hook {
     }
   }
 
+  onReady() {
+
+    this.pushUpdate();
+    this.update();
+  }
+
   async initialize(canvas) {
 
     if (!canvas)
@@ -750,7 +757,6 @@ class t_canvas extends t_hook {
     });
 
     this.state = "initPending";
-
 
     this.canvas = canvas;
     this.plotter = new t_plotter();
@@ -854,12 +860,6 @@ class t_canvas extends t_hook {
     this.setResolution("resMedium");
     this.setWaveformIndex(-998, "rippleEffect");
 
-    this.progma.set("backgrounds", galleryItem => this.onBackgroundChange(galleryItem));
-    this.progma.set("effects", galleryItem => this.setWaveformIndex(galleryItem.value, galleryItem.hash));
-    this.progma.set("fonts", galleryItem => this.setFont(galleryItem.hash));
-    this.progma.set("themes", galleryItem => this.onThemeChange(galleryItem));
-    this.progma.set("resolutions", galleryItem => this.setResolution(galleryItem.hash));
-
     this.frameRate.process = () => this.updateViewport();
     this.frameRate.render = () => this.render();
     this.frameRate.updateFrame();
@@ -867,7 +867,11 @@ class t_canvas extends t_hook {
     this.disableLoading();
 
     this.pushUpdate();
-    this.update();
+    this.commit();
+
+    const onSync = this.progma.get("onSync");
+    if (onSync)
+      onSync("canvas", () => this.onReady());
   }
 
   onThemeChange(galleryItem) {
@@ -886,6 +890,12 @@ class t_canvas extends t_hook {
     this.refresh = refresh;
     this.clipboard = clipboard;
     this.onFontChange = onFontChange;
+
+    progma.set("backgrounds", galleryItem => this.onBackgroundChange(galleryItem));
+    progma.set("effects", galleryItem => this.setWaveformIndex(galleryItem.value, galleryItem.hash));
+    progma.set("fonts", galleryItem => this.setFont(galleryItem.hash));
+    progma.set("themes", galleryItem => this.onThemeChange(galleryItem));
+    progma.set("resolutions", galleryItem => this.setResolution(galleryItem.hash));
   }
 
   async process(params) {

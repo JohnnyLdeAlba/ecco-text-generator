@@ -26,7 +26,7 @@ export const DetailItem = ({ galleryItem }) => {
         flex flex-row items-start 
         overflow-hidden p-2
         ${ properties.disabled ? "disabled" : "button" }
-        ${ status.selected ? theme.galleryItemSelected : theme.galleryItem }
+        ${ status.selected ? theme.menu.itemSelected : theme.menu.item }
       `}>
         <img
           src={ galleryItem.icon } alt=''
@@ -90,81 +90,6 @@ export const GalleryHR = ({ galleryItem }) => {
   );
 }
 
-export const GalleryItem = ({ galleryItem }) => {
-
-  galleryItem = galleryItem ? galleryItem : new t_node();
-
-  const properties = galleryItem.properties;
-  const status = galleryItem.status;
-  
-  const theme = useContext(ThemeContext);
-
-  return (
-    <div className={`
-      w-1/2
-      flex flex-col p-4`}>
-      <div className={`
-        flex flex-col
-        rounded-lg
-        ${ status.filteredPriority ? "bg-[#1e3a8a]" : '' }
-        ${ status.filteredAttribute ? "bg-[#a855f7]" : '' }
-        `}
-        onClick={ galleryItem.onClick }>
-      <div className={`
-        text-xs md:text-sm lg:text-xs
-        flex flex-col
-        overflow-hidden
-        font-medium
-        ${ properties.disabled ? "disabled" : "button" }
-        ${ status.selected ? theme.galleryItemSelected : '' }
-      `}>
-        <img
-          src={ galleryItem.icon } alt=''
-          className={`
-            w-full
-            ${ status.filteredPriority || status.filteredAttribute ? '' : "rounded-lg" }
-          `} />
-        <div className={`
-          p-2
-          overflow-hidden whitespace-nowrap
-          text-ellipsis text-center
-        `}>
-          { galleryItem.name }
-        </div>
-      </div>
-      </div>
-    </div>
-  );
-}
-
-export const GalleryGroup = ({
-  galleryItems
-}) => {
-
-  const theme = useContext(ThemeContext);
-
-  return (
-    <div className={`
-      flex-1 flex
-      flex-row flex-wrap
-      items-start content-start
-      overflow-y-auto
-      h-full
-      ${ theme.menu.scrollbars }
-    `}>
-
-      { galleryItems.map(galleryItem => {
-
-          if (galleryItem.placeholder)
-            return <GalleryHR key={ galleryItem.uniqueId } galleryItem={ galleryItem} />;
-          else
-            return <GalleryItem key={ galleryItem.uniqueId } galleryItem={ galleryItem } />;
-      }) }
-
-    </div>
-  );
-}
-
 export const GalleryDisabled = ({
   galleryItems
 }) => {
@@ -190,8 +115,6 @@ export const Menu = ({
   galleryItems = [],
   page = 1,
   disableToolbar = false,
-  disableShowDetails = false,
-  forceDetailsVisible = false,
   toolbarPosition = '',
   onGoBack,
   onUnselect,
@@ -204,7 +127,6 @@ export const Menu = ({
 }) => {
 
   const theme = useContext(ThemeContext);
-  const [ detailsVisible, showDetails ] = useState(false);
 
   galleryItems.forEach(galleryItem => {
 
@@ -230,41 +152,27 @@ export const Menu = ({
   return (
     <div className={`flex-1 flex flex-col h-full`}>
 
-      { toolbarPosition != "top" || disableToolbar ? null :
+      { toolbarPosition != "top" || disableToolbar ? '' :
         <Toolbar
 
           page={ page }
           onPrevPage={ onPrevPage }
           onNextPage={ onNextPage }
-
-          showDetailsClosed={ detailsVisible }
-
           onGoBack={ onGoBack }
-
-          onShowDetails={ !disableShowDetails && !forceDetailsVisible ?
-            () => showDetails(!detailsVisible) : null }
 
           onToggleHidden={ onToggleHidden }        
         /> }
 
-      { galleryItems.length == 0 ? <GalleryDisabled /> : null }
-      { !forceDetailsVisible && !detailsVisible && galleryItems.length > 0 ? <GalleryGroup galleryItems={ galleryItems } /> : null }
-      { (forceDetailsVisible || detailsVisible) && galleryItems.length > 0 ? <DetailGroup galleryItems={ galleryItems } /> : null }
+      { galleryItems.length == 0 ? <GalleryDisabled /> : '' }
+      { galleryItems.length > 0 ? <DetailGroup galleryItems={ galleryItems } /> : '' }
 
-      { toolbarPosition == "top" || disableToolbar ? null :
+      { toolbarPosition == "top" || disableToolbar ? '' :
         <Toolbar
 
           page={ page }
           onPrevPage={ onPrevPage }
           onNextPage={ onNextPage }
-
-          showDetailsClosed={ detailsVisible }
-
           onGoBack={ onGoBack }
-
-          onShowDetails={ !disableShowDetails && !forceDetailsVisible ?
-            () => showDetails(!detailsVisible) : null }
-
           onToggleHidden={ onToggleHidden }        
         /> }
 

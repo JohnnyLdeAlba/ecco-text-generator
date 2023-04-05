@@ -35,7 +35,7 @@ export const CardSubTitle = ({ children }) => {
   );
 }
 
-export const CardMenu = ({ small }) => {
+export const CardMenu = ({ size }) => {
 
   const theme = useContext(ThemeContext);
 
@@ -43,8 +43,8 @@ export const CardMenu = ({ small }) => {
     <div className={`
       button
       cursor-pointer
-      p-1
       rounded-full
+      ${ size == "small" ? "pb-1 px-1" : "p-1" }
       ${ theme.cardHeader }
     `}>
       { small ?
@@ -63,10 +63,12 @@ export const CardClose = ({ size, onClose }) => {
       button
       cursor-pointer
       rounded-full
-      ${ size == "small" ? "p-[2px]" : "p-1" }
+      ${ size == "small" ? "pb-1 px-1" : "p-1" }
       ${ theme.cardHeader }
-      `} onClick={ onClose } >
-      { size == "small" ? <CloseIcon fontSize="small" /> : <CloseIcon /> }
+      `}
+      onClick={ onClose }>
+      { size == "small" ?
+        <CloseIcon fontSize="small" /> : <CloseIcon /> }
     </div>
   );
 }
@@ -87,7 +89,7 @@ export const CardHeader = ({
     <div className={`
       flex flex-row
       justify-center
-      px-4 py-2
+      ${ size ? "px-2 py-1" : "px-4 py-2" }
       ${ rounded ? "rounded-lg" : "rounded-t-none sm:rounded-t-lg" }
       ${ theme.cardHeader }
     `}>
@@ -96,10 +98,10 @@ export const CardHeader = ({
 
       <div className={`flex-1 flex flex-col justify-center`}>
         <CardTitle size={ size }>{ title }</CardTitle>
-        { subTitle ? <CardSubTitle >{ subTitle }</CardSubTitle> : null }
+        { subTitle ? <CardSubTitle size={ size }>{ subTitle }</CardSubTitle> : null }
       </div>
 
-      { menuItems ? <CardMenu /> : null }
+      { menuItems ? <CardMenu size={ size } /> : null }
       { onClose ? <CardClose size={ size } onClose={ onClose } /> : null }
 
     </div>

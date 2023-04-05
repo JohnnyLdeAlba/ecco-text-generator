@@ -45,8 +45,6 @@ export class t_hook {
       this.isLoading(this.loading);     
   }
 
-  send() {}
-
   disableAutoCommit() {
     this.autoCommit = false;
   }
@@ -56,9 +54,12 @@ export class t_hook {
   }
 
   sendRequest() {
+
     this.pushUpdate();
     this.status.set("sendRequest", true);
   }
+
+  send() {}
 
   commit() {
 

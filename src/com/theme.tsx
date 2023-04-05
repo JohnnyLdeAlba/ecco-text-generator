@@ -67,12 +67,15 @@ export const darkSeaTheme = {
   circularProgress: "text-[#2e58a0]",
 
   eccoText: {
-    toolbar: `bg-[#0e1d35] sm:bg-transparent`,
+    toolbar: `bg-[#0b1c38] sm:bg-transparent`,
     keyboard: `bg-[#0b1c38]`,
     keyboardItem: `bg-[#1d468a]`
   },
 
   menu: {
+
+    item: `bg-[#1e355a]`,
+    itemSelected: `bg-[#102549]`,
 
     scrollbars: `
       scrollbar-thin

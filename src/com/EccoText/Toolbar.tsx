@@ -31,7 +31,7 @@ import SettingsIcon from '@mui/icons-material/Settings';
 
 import { SmallButton, SmallTipButton } from "../Button"; 
 import { CanvasContext } from "./Canvas";
-import { EccoTextContext } from "./EccoText";
+import { EccoTextContext } from "./useEccoText";
 import { ThemeContext } from "../theme";
 
 export const Toolbar = ({

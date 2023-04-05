@@ -10,7 +10,7 @@ import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 
 import Tooltip from '@mui/material/Tooltip';
 
-import { MicroButton, MicroTipButton } from "../MicroButton"; 
+import { MicroButton, MicroTipButton } from "../Button"; 
 import { ThemeContext } from "../theme";
 
 export const Toolbar = ({

@@ -23,8 +23,7 @@ export const SettingsLayout = ({ disabled = false }) => {
           alt='' className={`w-[24px]`} /> }
         title="Settings"
         size="small"
-        color="solid"
-        rounded="full">
+        color="solid">
 
         <div className={`flex flex-row items-center px-4 py-2`}>
           <div className={`flex-1 font-medium text-sm`}>Trim Spaces</div> 

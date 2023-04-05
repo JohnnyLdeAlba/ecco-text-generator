@@ -1,116 +1,141 @@
-import { useEffect, createContext, useContext, useState } from "react";
-import { t_hook } from "../lib/hook";
+import { useContext } from "react";
+import Head from 'next/head'
 
-class t_ecco_text extends t_hook {
+import { Layout } from "../Layout/Layout";
+import { Card } from "../Card";
+import { Menu } from "../Menu/Menu";
 
-  font;
-  keyboardLayout;
-  menuVisible;
+import { ProgmaContext, useProgma } from "../Progma";
+import { useRequestStatic } from "../Request/RequestStatic";
 
-  constructor() {
+import { AboutDialog } from "../EccoText/AboutDialog";
+import { DialogMenu } from "../Menu/DialogMenu";
+import { ProgressDialog, DownloadDialog } from "../ProgressDialog";
 
-    super();
+import { useEccoText } from "./useEccoText";
+import { useCanvas, Canvas } from "./Canvas";
 
-    this.state = "init";
+import { Toolbar } from "./Toolbar";
+import { Keyboard } from "./Keyboard/Keyboard";
 
-    this.font = null;
-    this.keyboardLayout = '';
-    this.aboutVisible = false;
-    this.menuVisible = false;
-  }
+import { MenuItems as menuItems } from "./Database/MenuItems";
+import { ThemeContext } from "../theme";
 
-  set(params) {
+export const Container = ({ children }) => {
 
-    const { refresh } = params;
-    this.refresh = refresh;
-  }
-
-  showAbout(visible) {
-
-    this.aboutVisible = visible;
-    this.commit();
-  }
-
-  initialize(params) {
-
-    const { progma } = params;
-
-    progma.set("keyboardLayouts",
-      galleryItem => this.onKBLayoutChange(galleryItem));
-    progma.set("aboutVisible",
-      galleryItem => this.showAbout(true));
-
-    this.progma = progma;
-    this.setKBLayout("engKeyboard");
-
-    this.state = "ready";
-    this.commit();
-  }
-
-  process(params) {
-
-    switch (this.state) {
-
-      case "init": {
-        this.initialize(params);
-        break;
-      }
-    }
-  }
-
-  onFontChange(font) {
-
-    if (font == this.font)
-      return;
-    
-    if (this.font == null || font.type != this.font.type)
-      this.setKBLayout("engKeyboard");
-
-    this.font = font;
-    this.commit();
-  }
-
-  showMenu() {
-
-    this.menuVisible = true;
-    this.commit();
-  }
-
-  onMenuClose() {
-
-    this.menuVisible = false;
-    this.commit();
-  }
-
-  setKBLayout(keyboardLayout) {
-
-    if (this.keyboardLayout == keyboardLayout)
-      return;
-
-    this.progma.removeAllSelectedItems("keyboardLayouts")
-    this.progma.addSelectedItem("keyboardLayouts", keyboardLayout);    
-
-    this.keyboardLayout = keyboardLayout;
-    this.commit();
-  }
-
-  onKBLayoutChange(galleryItem) {
-    this.setKBLayout(galleryItem.hash);
-  }
+  return (
+    <div className={`
+      mx-0 xl:mx-auto 
+      w-full 2xl:w-[900px]
+      px-0 sm:px-4 2xl:px-0
+      py-0 sm:py-4
+      flex-1 flex flex-col
+      overflow-y-auto sm:overflow-y-visible
+    `}>
+      { children }
+    </div>
+  );
 }
 
-export const EccoTextContext = createContext(new t_ecco_text());
+export const EccoText = ({ loading }) => {
 
-export const useEccoText = ({ progma }) => {
+  const theme = useContext(ThemeContext);
 
-  const eccoText = useContext(EccoTextContext);
-  const [ serial, setSerial ] = useState(0);
+  const progma = useProgma();
+  const eccoText = useEccoText({ progma: progma });
+  const canvas = useCanvas({
+    progma: progma,
+    onFontChange: font => eccoText.onFontChange(font) })
 
-  eccoText.set({ refresh: () => setSerial(serial + 1) });
+  loading = loading ? loading : canvas.loading;
 
-  useEffect(() => {
-    eccoText.process({ progma: progma })
+  const request = useRequestStatic({
+    tokens: canvas.tokens,
+    progma: progma,
+    container: menuItems,
+    parentHash: "home" 
   });
 
-  return eccoText;
+  return (<>
+
+    <Head>
+      <title>Ecco Text Generator</title>
+
+      <link rel="icon" href="sigil-purple.svg" />
+      <meta property="og:locale" content="en_US" />
+      <meta property="og:site_name" content="Ecco the Dolphin IO" />
+      <meta property="og:title" content="Ecco Text Generator" />
+      <meta property="og:description" content="An animated Ecco the Dolphin Generator that can produce GIFs and static images." />
+      <meta property="og:image" content="card.jpg" />
+      <meta property="og:url" content="https://eccothedolphin.io/ecco-text-generator" />
+      <meta property="twitter:card" content="summary_large_image" />
+
+    </Head>
+
+    <AboutDialog
+      show={ eccoText.aboutVisible }
+      onClose={ () => eccoText.showAbout(false) } />
+
+    <DialogMenu
+      show={ eccoText.menuVisible }
+      onClose={ () => eccoText.onMenuClose() } />
+
+    <DownloadDialog
+      show={ canvas.downloadVisible }
+      type={ canvas.downloadType }
+      resolution={ canvas.resolution }
+      blob={ canvas.downloadBlob }
+      onClose={ () => canvas.closeDownload() }/>
+
+    <ProgressDialog
+      show={ canvas.progressVisible }
+      title="Generating GIF"
+      progressIndex={ canvas.progressIndex }
+      onAbort={ () => canvas.abort() }/>
+
+    <Layout>
+      <Container>
+
+        <div className={`flex flex-col overflow-y-auto`}>
+          <div className={`flex flex-row overflow-y-auto`}>
+
+            <div className={`flex-1 flex flex-col`}>
+              <Canvas loading={ loading } />
+            </div>
+
+            <div className={`
+              sm:h-[425px] 2xl:h-[500px]
+              hidden md:flex
+              flex-col overflow-y-auto
+              pl-4 w-[240px]`}>
+                <Card
+                  disabled={ loading }
+                  title={ request.parentNode.name }
+                  size="small"
+                  color="solid"
+                  rounded="full"
+                  className={`h-full`}>
+                  <Menu
+                    disabled={ loading }
+                    forceDetailsVisible={ true }
+                    page={ request.page == -1 ? -1 : request.page + 1 }
+
+                    onPrevPage={ request.page > 0 ? () => request.onPrevPage() : null }
+                    onNextPage={ request.nextPage ? () => request.onNextPage() : null }
+
+                    galleryItems={ request.getGalleryItems() }
+                    onGoBack={ request.parentNode.parentId > 0 ? () => request.onGoBack() : null }
+                  />
+               </Card>
+            </div>
+          </div>
+        </div>
+
+        <Toolbar disabled={ loading } />
+        <Keyboard disabled={ loading } layout={ eccoText.keyboardLayout } />
+      </Container>
+    </Layout>
+  </>)
 }
+
+export default EccoText;
