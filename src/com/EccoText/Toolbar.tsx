@@ -91,7 +91,7 @@ export const Toolbar = ({
         <div className={`flex flex-row`}>
           <SmallTipButton
             disabled={ disabled }
-            closed={ canvas.align == "left" }
+            closed={ canvas.com.align == "left" }
             tip={ "Align Left" }
             icon={ <FormatAlignLeftIcon fontSize="small" /> }
             color="light"
@@ -99,14 +99,14 @@ export const Toolbar = ({
             onClick={ () => canvas.setAlign("left") } />
           <SmallTipButton
             disabled={ disabled }
-            closed={ canvas.align == "center" }
+            closed={ canvas.com.align == "center" }
             tip={ "Align Center" }
             color="light"
             icon={ <FormatAlignCenterIcon fontSize="small" /> }
             onClick={ () => canvas.setAlign("center") } />
           <SmallTipButton
             disabled={ disabled }
-            closed={ canvas.align == "right" }
+            closed={ canvas.com.align == "right" }
             tip={ "Align Right" }
             color="light"
             icon={ <FormatAlignRightIcon fontSize="small" /> }
@@ -114,21 +114,21 @@ export const Toolbar = ({
 
           <SmallTipButton
             disabled={ disabled }
-            closed={ canvas.vAlign == "top" }
+            closed={ canvas.com.vAlign == "top" }
             tip={ "Align Top" }
             color="light"
             icon={ <VerticalAlignTopIcon fontSize="small" /> }
             onClick={ () => canvas.setVAlign("top") } />
           <SmallTipButton
             disabled={ disabled }
-            closed={ canvas.vAlign == "middle" }
+            closed={ canvas.com.vAlign == "middle" }
             tip={ "Align Middle" }
             color="light"
             icon={ <VerticalAlignCenterIcon fontSize="small" /> }
             onClick={ () => canvas.setVAlign("middle") } />
           <SmallTipButton
             disabled={ disabled }
-            closed={ canvas.vAlign == "bottom" }
+            closed={ canvas.com.vAlign == "bottom" }
             tip={ "Align Bottom" }
             color="light"
             icon={ <VerticalAlignBottomIcon fontSize="small" /> }
@@ -142,7 +142,7 @@ export const Toolbar = ({
         <div className={`flex-1 flex flex-row`}>
           <SmallTipButton
             disabled={ disabled }
-            closed={ canvas.baseline == "bottom" }
+            closed={ canvas.com.baseline == "bottom" }
             tip={ "Bottom Baseline" }
             icon={ <AlignVerticalBottomIcon fontSize="small" /> }
             color="light"
@@ -150,14 +150,14 @@ export const Toolbar = ({
             onClick={ () => canvas.setBaseline("bottom") } />
           <SmallTipButton
             disabled={ disabled }
-            closed={ canvas.baseline == "middle" }
+            closed={ canvas.com.baseline == "middle" }
             tip={ "Middle Baseline" }
             color="light"
             icon={ <AlignVerticalCenterIcon fontSize="small" /> }
             onClick={ () => canvas.setBaseline("middle") } />
           <SmallTipButton
             disabled={ disabled }
-            closed={ canvas.baseline == "top" }
+            closed={ canvas.com.baseline == "top" }
             tip={ "Top Baseline" }
             icon={ <AlignVerticalTopIcon fontSize="small" /> }
             color="light"

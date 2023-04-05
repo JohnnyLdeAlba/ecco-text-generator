@@ -37,13 +37,6 @@ class t_canvas extends t_hook {
   frameSkip;
 
   text;
-  align;
-  vAlign;
-  baseline;
-  trimSpaces;
-  letterSpacing;
-  lineHeight;
-  selectSpacing;
   cursorPosition;
   waveformIndex;
 
@@ -68,8 +61,12 @@ class t_canvas extends t_hook {
     this.frameRate = new t_frame_rate();
     this.canvas = null;
     this.plotter = null;
-    this.com = null;
     this.tokens = new Map();
+
+    this.com = new t_composition();
+    this.com.align = "center";
+    this.com.vAlign = "middle"
+    this.com.baseline = "bottom";
 
     this.resolution = '';
     this.width = 0;
@@ -77,13 +74,6 @@ class t_canvas extends t_hook {
     this.frameSkip = false;
 
     this.text = '';
-    this.align = '';
-    this.vAlign = '';
-    this.baseline = "bottom";
-    this.trimSpaces = false;
-    this.letterSpacing = 0;
-    this.lineHeight = 0;
-    this.selectSpacing = 0;
     this.cursorPosition = -1;
     this.cursorFilter = null;
     this.waveformIndex = RippleTableId;
@@ -184,28 +174,28 @@ class t_canvas extends t_hook {
 
   setAlign(align) {
     
-    if (align == this.align)
+    if (align == this.com.align)
       return;
 
-    this.align = align;
+    this.com.align = align;
     this.commit();
   }
 
   setVAlign(vAlign) {
     
-    if (vAlign == this.vAlign)
+    if (vAlign == this.com.vAlign)
       return;
 
-    this.vAlign = vAlign;
+    this.com.vAlign = vAlign;
     this.commit();
   }
 
   setBaseline(baseline) {
     
-    if (baseline == this.baseline)
+    if (baseline == this.com.baseline)
       return;
 
-    this.baseline = baseline;
+    this.com.baseline = baseline;
     this.commit();
   }
 
@@ -220,7 +210,7 @@ class t_canvas extends t_hook {
 
   toggleTrimSpaces() {
 
-    this.trimSpaces = !this.trimSpaces;
+    this.com.trimSpaces = !this.com.trimSpaces;
     this.commit();
   }
 
@@ -308,13 +298,10 @@ class t_canvas extends t_hook {
     if (font.type != this.fontType)
       this.text = '';
 
-    this.align = font.align;
-    this.vAlign = font.vAlign;
-    this.baseline = font.baseline;
+    this.com.letterSpacing = font.letterSpacing;
+    this.com.lineHeight = font.lineHeight;
+    this.com.selectSpacing = font.selectSpacing;
 
-    this.letterSpacing = font.letterSpacing;
-    this.lineHeight = font.lineHeight;
-    this.selectSpacing = font.selectSpacing;
     this.cursorFilter = font.cursorFilter;
 
     this.progma.removeAllSelectedItems("fonts");
@@ -410,10 +397,10 @@ class t_canvas extends t_hook {
     const com = new t_composition();
 
     com.setFont(this.font);
-    com.setAlign(this.align);
-    com.setVAlign(this.vAlign);
-    com.setBaseline(this.baseline);
-    com.trimSpaces = disableTrimSpaces ? false : this.trimSpaces;
+    com.setAlign(this.com.align);
+    com.setVAlign(this.com.vAlign);
+    com.setBaseline(this.com.baseline);
+    com.trimSpaces = disableTrimSpaces ? false : this.com.trimSpaces;
     com.cursorPosition = this.cursorPosition;
     
     com.generate(
@@ -457,9 +444,9 @@ class t_canvas extends t_hook {
       0 : this.frameIndex + 1;
   }
 
-  updateViewport() {
+  updateViewport(disableTrimSpaces = true) {
 
-    const com = this.updateComposition(true);
+    const com = this.updateComposition(disableTrimSpaces);
 
     this.plotBackground(this.frameIndex);
     this.plotComposition(com);
@@ -472,6 +459,9 @@ class t_canvas extends t_hook {
   }
 
   generatePNG() {
+
+    this.updateViewport(false);
+    this.render();
 
     this.canvas.toBlob(blob => {
 

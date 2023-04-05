@@ -29,8 +29,8 @@ export const SettingsLayout = ({ disabled = false }) => {
           <div className={`flex-1 font-medium text-sm`}>Trim Spaces</div> 
           <div>
             <Switch color="default"
-              classes={{ root: canvas.trimSpaces ? "darkSea-Switch" : "darkSea-Switch-disabled" }}
-              checked={ canvas.trimSpaces }
+              classes={{ root: canvas.com.trimSpaces ? "darkSea-Switch" : "darkSea-Switch-disabled" }}
+              checked={ canvas.com.trimSpaces }
               onChange={ () => canvas.toggleTrimSpaces() } />
           </div> 
           <div className={`pl-2 w-20 font-medium text-sm text-center`}>
