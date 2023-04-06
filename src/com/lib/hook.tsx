@@ -12,6 +12,8 @@ export class t_hook {
   loadPending;
   isLoading;
 
+  syncEnabled;
+
   constructor() {
 
     this.progma;
@@ -23,6 +25,7 @@ export class t_hook {
     this.loadPending = [];
     this.isLoading = null;
 
+    this.syncEnabled = true;
     this.autoCommit = true;
     this.refresh = () => {}; 
   }

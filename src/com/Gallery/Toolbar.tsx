@@ -36,7 +36,7 @@ export const Toolbar = ({
       <SmallTipButton
         disabled={ onGoBack ? false : true }
         tip={ onGoBack ? "Go Back" : '' }
-        icon={ <div className={`ml-2`}><ArrowBackIcon fontSize="small" /></div> }
+        icon={ <ArrowBackIcon fontSize="small" /> }
         rounded="left"
         onClick={ onGoBack } />
 
@@ -47,7 +47,7 @@ export const Toolbar = ({
         onClick={ onUnselect } /> : null }
 
       { onRemoveSelected ? <SmallTipButton
-        icon={ <div className={`mr-2`}><RemoveCircleIcon fontSize="small" /></div> }
+        icon={ <RemoveCircleIcon fontSize="small" /> }
         title="Remove" tip="Remove Selected Items"
         onClick={ onRemoveSelected } /> : null }
 
@@ -58,7 +58,7 @@ export const Toolbar = ({
         onClick={ onShowDetails } /> : null }
 
       { onToggleHidden ? <SmallTipButton
-        icon={ <div className={`mr-2`}><VisibilityOffIcon fontSize="small" /></div> }
+        icon={ <VisibilityOffIcon fontSize="small" /> }
         rounded="right" tip="Toggle Hidden"
         onClick={ onToggleHidden } /> : null }
 
@@ -68,7 +68,7 @@ export const Toolbar = ({
           <SmallTipButton
             disabled={ onPrevPage ? false : true }
             tip={ onPrevPage ? "Previous Page" : '' }
-            icon={ <div className={`ml-1`}><ArrowLeftIcon fontSize="small" /></div> }
+            icon={ <ArrowLeftIcon fontSize="small" /> }
             rounded="left" 
             onClick={ onPrevPage } /> 
 
@@ -77,7 +77,7 @@ export const Toolbar = ({
           <SmallTipButton
             disabled={ onNextPage ? false : true }
             tip={ onNextPage ? "Next Page" : '' }
-            icon={ <div className={`mr-1`}><ArrowRightIcon fontSize="small" /></div> }
+            icon={ <ArrowRightIcon fontSize="small" /> }
             rounded="right" 
             onClick={ onNextPage } />
 

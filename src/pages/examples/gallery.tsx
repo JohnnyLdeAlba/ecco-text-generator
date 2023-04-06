@@ -4,12 +4,14 @@ import FolderIcon from '@mui/icons-material/Folder';
 
 import { useRequestStatic } from "../../com/Request/RequestStatic";
 
-import { Gallery } from "../../com/Gallery/Gallery";
+import { Gallery } from "../../com/Gallery/Collection";
 import { Card } from "../../com/Card";
 import { Layout } from "../../com/Layout/Layout";
 import { ThemeContext } from "../../com/theme";
 
-import { container } from "../../static-database";
+import { Database }  from "../../com/Database";
+
+console.log(Database);
 
 export const Container = ({ children }) => {
 
@@ -32,7 +34,8 @@ export const Index = () => {
   const theme = useContext(ThemeContext);
 
   const request = useRequestStatic({
-    container: container,
+    container: Database,
+    syncEnabled: false,
     parentHash: "home" 
   });
 

@@ -61,7 +61,7 @@ export const EccoText = ({ loading }) => {
     <Head>
       <title>Ecco Text Generator</title>
 
-      <link rel="icon" href="sigil-purple.svg" />
+      <link rel="icon" href="icon.svg" />
       <meta property="og:locale" content="en_US" />
       <meta property="og:site_name" content="Ecco the Dolphin IO" />
       <meta property="og:title" content="Ecco Text Generator" />

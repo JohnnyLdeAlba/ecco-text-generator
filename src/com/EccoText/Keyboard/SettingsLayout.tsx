@@ -34,7 +34,7 @@ export const SettingsLayout = ({ disabled = false }) => {
               onChange={ () => canvas.toggleTrimSpaces() } />
           </div> 
           <div className={`pl-2 w-20 font-medium text-sm text-center`}>
-            { canvas.trimSpaces ? "Enabled" : "Disabled" }
+            { canvas.com.trimSpaces ? "Enabled" : "Disabled" }
           </div> 
         </div>
 

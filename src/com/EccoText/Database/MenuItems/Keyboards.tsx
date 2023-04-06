@@ -8,14 +8,13 @@ export const Keyboards = container => {
     MenuItems.RootId);
   node.name = "Layouts";
   node.orderId = 11;
-  node.icon = "/icons/wave.png";
   node.properties.placeholder = true;
 
   node = container.addNode("noneKeyboard",
     MenuItems.RootId);
   node.type = "keyboardLayouts";
   node.name = "None";
-  node.icon = "/icons/settings.png";
+  node.icon = "/icons/hide.png";
   node.orderId = 12;
 
   node = container.addNode("aniKeyboard",

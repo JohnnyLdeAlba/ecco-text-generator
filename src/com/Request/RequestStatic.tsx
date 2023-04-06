@@ -278,10 +278,11 @@ class t_request_static extends t_hook {
 
   set(params) {
 
-    const { progma, refresh, tokens } = params;
+    const { progma, refresh, syncEnabled, tokens } = params;
 
     this.progma = progma;
     this.refresh = refresh;
+    this.syncEnabled = syncEnabled;
     this.tokens = tokens ? tokens : new Map();
   }
 
@@ -317,9 +318,18 @@ class t_request_static extends t_hook {
 
         this.commit();
 
-        const onSync = this.progma.get("onSync");
-        if (onSync)
-          onSync("requestStatic", () => this.onReady());
+        // Create sync function.
+        if (this.syncEnabled) {
+
+          const onSync = this.progma.get("onSync");
+          if (onSync)
+            onSync("requestStatic", () => this.onReady());
+        }
+        else {
+
+          this.pushUpdate();
+          this.update();
+        }
 
         break;
       }
@@ -332,6 +342,7 @@ export const RequestStaticContext = createContext(new t_request_static());
 export const useRequestStatic = ({
   container = null,
   tokens = null,
+  syncEnabled = true,
   filterType = '',
   parentId = 0,
   parentHash = '',
@@ -345,6 +356,7 @@ export const useRequestStatic = ({
   requestStatic.set({
     progma: progma,
     refresh: () => setSerial(serial + 1),
+    syncEnabled: syncEnabled,
     tokens: tokens
   });
 
