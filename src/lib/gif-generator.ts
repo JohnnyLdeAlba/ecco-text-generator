@@ -108,20 +108,15 @@ export class t_gif_generator {
   generate() {
 
     const gen = this.gen;
+    const delay = this.frameSkip ?
+      parseInt(1000/30) : parseInt(1000/60);
 
-    let currentFrame = 0;
-    let previousFrame = 0;
-
-    const totalFrames = this.frameSkip ? 127 : 255;
-
-    for (let index = 0; index < totalFrames; index++) {
+    for (let index = 0; index < 255; index++) {
 
       if (this.frameSkip && ((index % 2) == 1))
-        currentFrame = previousFrame;
-      else
-        currentFrame = index;
+        continue;
 
-      this.plotBackground(currentFrame);
+      this.plotBackground(index);
       this.plotComposition(this.com);
       this.render();
 
@@ -131,11 +126,9 @@ export class t_gif_generator {
       );
 
       gen.addFrame(canvas, { 
-        delay: parseInt(1000/60),
+        delay: delay,
         dispose: -2
        });
-
-      previousFrame = index;
     }
 
     gen.render();

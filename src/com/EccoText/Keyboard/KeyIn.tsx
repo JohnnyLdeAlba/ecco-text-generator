@@ -35,8 +35,8 @@ export const KeyIn = ({
   return (
     <div className={`
       disable-select
-      w-[30px] xs:w-[40px] sm:w-[50px]
-      h-[30px] xs:h-[35px] sm:h-[40px]
+      w-[30px] 2xs:w-[35px] xs:w-[40px] sm:w-[50px]
+      h-[30px] 2xs:h-[35px] sm:h-[40px]
       flex flex-row
       items-center justify-center
       mx-[3px]

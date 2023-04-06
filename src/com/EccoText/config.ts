@@ -1,6 +1,6 @@
 export const config = {
 
-  Version: 2.07,
+  Version: 2.08,
   Year: new Date().getFullYear()
 }
 

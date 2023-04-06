@@ -502,10 +502,10 @@ const ControlKey = ({
   if (dimensions == "stretch")
     dimensions = '';
   else if (dimensions == "stretchWidth")
-    dimensions = `h-[30px] xs:h-[35px] sm:h-[40px]`; 
+    dimensions = `h-[30px] 2xs:h-[35px] sm:h-[40px]`; 
   else
-    dimensions = `w-[30px] xs:w-[40px] sm:w-[50px]
-      h-[30px] xs:h-[35px] sm:h-[40px]`; 
+    dimensions = `w-[30px] 2xs:w-[35px] xs:w-[40px] sm:w-[50px]
+      h-[30px] 2xs:h-[35px] sm:h-[40px]`; 
 
   return (
     <div className={`
