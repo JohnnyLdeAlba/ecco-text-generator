@@ -1,0 +1,361 @@
+import { RootDir } from "./Root";
+
+export const Ecco2Backgrounds = container => {
+
+  let node = null;
+
+  return container;
+}
+
+export const Ecco2LevelMaps = container => {
+
+  let node = null
+
+  Ecco2Backgrounds(container); 
+
+  node = container.addNode('',
+    RootDir.Ecco2LevelMapsId, RootDir.Ecco2BackgroundsId);
+  node.name = "Backgrounds";
+  node.orderId = -1;
+  node.icon = "/icons/folder.png";
+
+  node = container.addNode('',
+    RootDir.Ecco2LevelMapsId);
+  node.name = "Attract Mode";
+  node.type = "download";
+  node.icon = "/eccoserv/ecco-2-the-tides-of-time/level-maps/icons/aqua-tubeway.png";
+  node.value = "/eccoserv/ecco-2-the-tides-of-time/level-maps/aqua-tubeway.png";
+
+  node = container.addNode('',
+    RootDir.Ecco2LevelMapsId);
+  node.name = "Celebration";
+  node.type = "download";
+  node.icon = "/eccoserv/ecco-2-the-tides-of-time/level-maps/icons/asterites-cave.png";
+  node.value = "/eccoserv/ecco-2-the-tides-of-time/level-maps/asterites-cave.png";
+
+  node = container.addNode('',
+    RootDir.Ecco2LevelMapsId);
+  node.name = "City of Forever";
+  node.type = "download";
+  node.icon = "/eccoserv/ecco-2-the-tides-of-time/level-maps/icons/atlantis.png";
+  node.value = "/eccoserv/ecco-2-the-tides-of-time/level-maps/atlantis.png";
+
+  node = container.addNode('',
+    RootDir.Ecco2LevelMapsId);
+  node.name = "Cold Water";
+  node.type = "download";
+  node.icon = "/eccoserv/ecco-2-the-tides-of-time/level-maps/icons/big-water.png";
+  node.value = "/eccoserv/ecco-2-the-tides-of-time/level-maps/big-water.png";
+
+  node = container.addNode('', 
+    RootDir.Ecco2LevelMapsId);
+  node.name = "Dark Water";
+  node.type = "download";
+  node.icon = "/eccoserv/ecco-2-the-tides-of-time/level-maps/icons/black-clouds.png";
+  node.value = "/eccoserv/ecco-2-the-tides-of-time/level-maps/black-clouds.png";
+
+  node = container.addNode('',
+    RootDir.Ecco2LevelMapsId);
+  node.name = "Deep City";
+  node.type = "download";
+  node.icon = "/eccoserv/ecco-2-the-tides-of-time/level-maps/icons/city-of-forever.png";
+  node.value = "/eccoserv/ecco-2-the-tides-of-time/level-maps/city-of-forever.png";
+
+  node = container.addNode('',
+    RootDir.Ecco2LevelMapsId);
+  node.name = "Hard Water";
+  node.type = "download";
+  node.icon = "/eccoserv/ecco-2-the-tides-of-time/level-maps/icons/convergence.png";
+  node.value = "/eccoserv/ecco-2-the-tides-of-time/level-maps/convergence.png";
+
+  node = container.addNode('',
+    RootDir.Ecco2LevelMapsId);
+  node.name = "Home Bay";
+  node.type = "download";
+  node.icon = "/eccoserv/ecco-2-the-tides-of-time/level-maps/icons/crystal-springs.png";
+  node.value = "/eccoserv/ecco-2-the-tides-of-time/level-maps/crystal-springs.png";
+
+  node = container.addNode('',
+    RootDir.Ecco2LevelMapsId);
+  node.name = "Ice Zone";
+  node.type = "download";
+  node.icon = "/eccoserv/ecco-2-the-tides-of-time/level-maps/icons/dark-sea.png";
+  node.value = "/eccoserv/ecco-2-the-tides-of-time/level-maps/dark-sea.png";
+
+  node = container.addNode('',
+    RootDir.Ecco2LevelMapsId);
+  node.name = "Island Zone";
+  node.type = "download";
+  node.icon = "/eccoserv/ecco-2-the-tides-of-time/level-maps/icons/deep-ridge.png";
+  node.value = "/eccoserv/ecco-2-the-tides-of-time/level-maps/deep-ridge.png";
+
+  node = container.addNode('',
+    RootDir.Ecco2LevelMapsId);
+  node.name = "Jurassic Beach";
+  node.type = "download";
+  node.icon = "/eccoserv/ecco-2-the-tides-of-time/level-maps/icons/eagles-bay.png";
+  node.value = "/eccoserv/ecco-2-the-tides-of-time/level-maps/eagles-bay.png";
+
+  node = container.addNode('',
+    RootDir.Ecco2LevelMapsId);
+  node.name = "Medusa Bay";
+  node.type = "download";
+  node.icon = "/eccoserv/ecco-2-the-tides-of-time/level-maps/icons/fault-zone.png";
+  node.value = "/eccoserv/ecco-2-the-tides-of-time/level-maps/fault-zone.png";
+
+  node = container.addNode('',
+    RootDir.Ecco2LevelMapsId);
+  node.name = "Open Ocean";
+  node.type = "download";
+  node.icon = "/eccoserv/ecco-2-the-tides-of-time/level-maps/icons/fin-to-feather.png";
+  node.value = "/eccoserv/ecco-2-the-tides-of-time/level-maps/fin-to-feather.png";
+
+  node = container.addNode('',
+    RootDir.Ecco2LevelMapsId);
+  node.name = "Origin Beach";
+  node.type = "download";
+  node.icon = "/eccoserv/ecco-2-the-tides-of-time/level-maps/icons/fish-city.png";
+  node.value = "/eccoserv/ecco-2-the-tides-of-time/level-maps/fish-city.png";
+
+  node = container.addNode('',
+    RootDir.Ecco2LevelMapsId);
+  node.name = "Pteranodon Pond";
+  node.type = "download";
+  node.icon = "/eccoserv/ecco-2-the-tides-of-time/level-maps/icons/four-islands.png";
+  node.value = "/eccoserv/ecco-2-the-tides-of-time/level-maps/four-islands.png";
+
+  node = container.addNode('',
+    RootDir.Ecco2LevelMapsId);
+  node.name = "Return to Earth";
+  node.type = "download";
+  node.icon = "/eccoserv/ecco-2-the-tides-of-time/level-maps/icons/gateway.png";
+  node.value = "/eccoserv/ecco-2-the-tides-of-time/level-maps/gateway.png";
+
+  node = container.addNode('',
+    RootDir.Ecco2LevelMapsId);
+  node.name = "Ridge Water";
+  node.type = "download";
+  node.icon = "/eccoserv/ecco-2-the-tides-of-time/level-maps/icons/globe-holder.png";
+  node.value = "/eccoserv/ecco-2-the-tides-of-time/level-maps/globe-holder.png";
+
+  node = container.addNode('',
+    RootDir.Ecco2LevelMapsId);
+  node.name = "Selection Screen";
+  node.type = "download";
+  node.icon = "/eccoserv/ecco-2-the-tides-of-time/level-maps/icons/gravitor-box.png";
+  node.value = "/eccoserv/ecco-2-the-tides-of-time/level-maps/gravitor-box.png";
+
+  node = container.addNode('',
+    RootDir.Ecco2LevelMapsId);
+  node.name = "The Lagoon";
+  node.type = "download";
+  node.icon = "/eccoserv/ecco-2-the-tides-of-time/level-maps/icons/home-bay.png";
+  node.value = "/eccoserv/ecco-2-the-tides-of-time/level-maps/home-bay.png";
+
+  node = container.addNode('',
+    RootDir.Ecco2LevelMapsId);
+  node.name = "The Last Fight";
+  node.type = "download";
+  node.icon = "/eccoserv/ecco-2-the-tides-of-time/level-maps/icons/innuendo.png";
+  node.value = "/eccoserv/ecco-2-the-tides-of-time/level-maps/innuendo.png";
+
+  node = container.addNode('',
+    RootDir.Ecco2LevelMapsId);
+  node.name = "The Library";
+  node.type = "download";
+  node.icon = "/eccoserv/ecco-2-the-tides-of-time/level-maps/icons/inside.png";
+  node.value = "/eccoserv/ecco-2-the-tides-of-time/level-maps/inside.png";
+
+  node = container.addNode('',
+    RootDir.Ecco2LevelMapsId);
+  node.name = "The Machine";
+  node.type = "download";
+  node.icon = "/eccoserv/ecco-2-the-tides-of-time/level-maps/icons/inter.png";
+  node.value = "/eccoserv/ecco-2-the-tides-of-time/level-maps/inter.png";
+
+  node = container.addNode('',
+    RootDir.Ecco2LevelMapsId);
+  node.name = "The Marble Sea";
+  node.type = "download";
+  node.icon = "/eccoserv/ecco-2-the-tides-of-time/level-maps/icons/lunar-bay.png";
+  node.value = "/eccoserv/ecco-2-the-tides-of-time/level-maps/lunar-bay.png";
+
+  node = container.addNode('',
+    RootDir.Ecco2LevelMapsId);
+  node.name = "The Tube";
+  node.type = "download";
+  node.icon = "/eccoserv/ecco-2-the-tides-of-time/level-maps/icons/maze-of-stone.png";
+  node.value = "/eccoserv/ecco-2-the-tides-of-time/level-maps/maze-of-stone.png";
+
+  node = container.addNode('',
+    RootDir.Ecco2LevelMapsId);
+  node.name = "The Vents";
+  node.type = "download";
+  node.icon = "/eccoserv/ecco-2-the-tides-of-time/level-maps/icons/the-vents.png";
+  node.value = "/eccoserv/ecco-2-the-tides-of-time/level-maps/the-vents.png";
+
+  node = container.addNode('',
+    RootDir.Ecco2LevelMapsId);
+  node.name = "Trilobite Circle";
+  node.type = "download";
+  node.icon = "/eccoserv/ecco-2-the-tides-of-time/level-maps/icons/trilobite-circle.png";
+  node.value = "/eccoserv/ecco-2-the-tides-of-time/level-maps/trilobite-circle.png";
+
+  node = container.addNode('',
+    RootDir.Ecco2LevelMapsId);
+  node.name = "Undercaves";
+  node.type = "download";
+  node.icon = "/eccoserv/ecco-2-the-tides-of-time/level-maps/icons/undercaves.png";
+  node.value = "/eccoserv/ecco-2-the-tides-of-time/level-maps/undercaves.png";
+
+  node = container.addNode('',
+    RootDir.Ecco2LevelMapsId);
+  node.name = "The Library";
+  node.type = "download";
+  node.icon = "/eccoserv/ecco-2-the-tides-of-time/level-maps/icons/the-library.png";
+  node.value = "/eccoserv/ecco-2-the-tides-of-time/level-maps/the-library.png";
+
+  node = container.addNode('',
+    RootDir.Ecco2LevelMapsId);
+  node.name = "The Machine";
+  node.type = "download";
+  node.icon = "/eccoserv/ecco-2-the-tides-of-time/level-maps/icons/the-machine.png";
+  node.value = "/eccoserv/ecco-2-the-tides-of-time/level-maps/the-machine.png";
+
+  node = container.addNode('',
+    RootDir.Ecco2LevelMapsId);
+  node.name = "The Marble Sea";
+  node.type = "download";
+  node.icon = "/eccoserv/ecco-2-the-tides-of-time/level-maps/icons/the-marble-sea.png";
+  node.value = "/eccoserv/ecco-2-the-tides-of-time/level-maps/the-marble-sea.png";
+
+  node = container.addNode('',
+    RootDir.Ecco2LevelMapsId);
+  node.name = "The Tube";
+  node.type = "download";
+  node.icon = "/eccoserv/ecco-2-the-tides-of-time/level-maps/icons/the-tube.png";
+  node.value = "/eccoserv/ecco-2-the-tides-of-time/level-maps/the-tube.png";
+
+  node = container.addNode('',
+    RootDir.Ecco2LevelMapsId);
+  node.name = "The Vents";
+  node.type = "download";
+  node.icon = "/eccoserv/ecco-2-the-tides-of-time/level-maps/icons/the-vents.png";
+  node.value = "/eccoserv/ecco-2-the-tides-of-time/level-maps/the-vents.png";
+
+  node = container.addNode('',
+    RootDir.Ecco2LevelMapsId);
+  node.name = "Trilobite Circle";
+  node.type = "download";
+  node.icon = "/eccoserv/ecco-2-the-tides-of-time/level-maps/icons/trilobite-circle.png";
+  node.value = "/eccoserv/ecco-2-the-tides-of-time/level-maps/trilobite-circle.png";
+
+  node = container.addNode('',
+    RootDir.Ecco2LevelMapsId);
+  node.name = "Undercaves";
+  node.type = "download";
+  node.icon = "/eccoserv/ecco-2-the-tides-of-time/level-maps/icons/undercaves.png";
+  node.value = "/eccoserv/ecco-2-the-tides-of-time/level-maps/undercaves.png";
+
+  node = container.addNode('',
+    RootDir.Ecco2LevelMapsId);
+  node.name = "The Library";
+  node.type = "download";
+  node.icon = "/eccoserv/ecco-2-the-tides-of-time/level-maps/icons/the-library.png";
+  node.value = "/eccoserv/ecco-2-the-tides-of-time/level-maps/the-library.png";
+
+  node = container.addNode('',
+    RootDir.Ecco2LevelMapsId);
+  node.name = "The Machine";
+  node.type = "download";
+  node.icon = "/eccoserv/ecco-2-the-tides-of-time/level-maps/icons/the-machine.png";
+  node.value = "/eccoserv/ecco-2-the-tides-of-time/level-maps/the-machine.png";
+
+  node = container.addNode('',
+    RootDir.Ecco2LevelMapsId);
+  node.name = "The Marble Sea";
+  node.type = "download";
+  node.icon = "/eccoserv/ecco-2-the-tides-of-time/level-maps/icons/the-marble-sea.png";
+  node.value = "/eccoserv/ecco-2-the-tides-of-time/level-maps/the-marble-sea.png";
+
+  node = container.addNode('',
+    RootDir.Ecco2LevelMapsId);
+  node.name = "The Tube";
+  node.type = "download";
+  node.icon = "/eccoserv/ecco-2-the-tides-of-time/level-maps/icons/the-tube.png";
+  node.value = "/eccoserv/ecco-2-the-tides-of-time/level-maps/the-tube.png";
+
+  node = container.addNode('',
+    RootDir.Ecco2LevelMapsId);
+  node.name = "The Vents";
+  node.type = "download";
+  node.icon = "/eccoserv/ecco-2-the-tides-of-time/level-maps/icons/the-vents.png";
+  node.value = "/eccoserv/ecco-2-the-tides-of-time/level-maps/the-vents.png";
+
+  node = container.addNode('',
+    RootDir.Ecco2LevelMapsId);
+  node.name = "Trilobite Circle";
+  node.type = "download";
+  node.icon = "/eccoserv/ecco-2-the-tides-of-time/level-maps/icons/trilobite-circle.png";
+  node.value = "/eccoserv/ecco-2-the-tides-of-time/level-maps/trilobite-circle.png";
+
+  node = container.addNode('',
+    RootDir.Ecco2LevelMapsId);
+  node.name = "Undercaves";
+  node.type = "download";
+  node.icon = "/eccoserv/ecco-2-the-tides-of-time/level-maps/icons/undercaves.png";
+  node.value = "/eccoserv/ecco-2-the-tides-of-time/level-maps/undercaves.png";
+
+  node = container.addNode('',
+    RootDir.Ecco2LevelMapsId);
+  node.name = "The Library";
+  node.type = "download";
+  node.icon = "/eccoserv/ecco-2-the-tides-of-time/level-maps/icons/the-library.png";
+  node.value = "/eccoserv/ecco-2-the-tides-of-time/level-maps/the-library.png";
+
+  node = container.addNode('',
+    RootDir.Ecco2LevelMapsId);
+  node.name = "The Machine";
+  node.type = "download";
+  node.icon = "/eccoserv/ecco-2-the-tides-of-time/level-maps/icons/the-machine.png";
+  node.value = "/eccoserv/ecco-2-the-tides-of-time/level-maps/the-machine.png";
+
+  node = container.addNode('',
+    RootDir.Ecco2LevelMapsId);
+  node.name = "The Marble Sea";
+  node.type = "download";
+  node.icon = "/eccoserv/ecco-2-the-tides-of-time/level-maps/icons/the-marble-sea.png";
+  node.value = "/eccoserv/ecco-2-the-tides-of-time/level-maps/the-marble-sea.png";
+
+  node = container.addNode('',
+    RootDir.Ecco2LevelMapsId);
+  node.name = "The Tube";
+  node.type = "download";
+  node.icon = "/eccoserv/ecco-2-the-tides-of-time/level-maps/icons/the-tube.png";
+  node.value = "/eccoserv/ecco-2-the-tides-of-time/level-maps/the-tube.png";
+
+  node = container.addNode('',
+    RootDir.Ecco2LevelMapsId);
+  node.name = "The Vents";
+  node.type = "download";
+  node.icon = "/eccoserv/ecco-2-the-tides-of-time/level-maps/icons/the-vents.png";
+  node.value = "/eccoserv/ecco-2-the-tides-of-time/level-maps/the-vents.png";
+
+  node = container.addNode('',
+    RootDir.Ecco2LevelMapsId);
+  node.name = "Trilobite Circle";
+  node.type = "download";
+  node.icon = "/eccoserv/ecco-2-the-tides-of-time/level-maps/icons/trilobite-circle.png";
+  node.value = "/eccoserv/ecco-2-the-tides-of-time/level-maps/trilobite-circle.png";
+
+  node = container.addNode('',
+    RootDir.Ecco2LevelMapsId);
+  node.name = "Undercaves";
+  node.type = "download";
+  node.icon = "/eccoserv/ecco-2-the-tides-of-time/level-maps/icons/undercaves.png";
+  node.value = "/eccoserv/ecco-2-the-tides-of-time/level-maps/undercaves.png";
+
+
+
+  return container;
+}

@@ -2,5 +2,6 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/examples/gallery": "pages/examples/gallery.js"
+  "/examples/gallery": "pages/examples/gallery.js",
+  "/ecco-text-generator": "pages/ecco-text-generator.js"
 }

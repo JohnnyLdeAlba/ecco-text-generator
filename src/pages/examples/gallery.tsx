@@ -1,17 +1,20 @@
-import { useContext } from "react";
+import { useEffect, createContext, useContext, useState } from "react";
 
 import FolderIcon from '@mui/icons-material/Folder';
 
 import { useRequestStatic } from "../../com/Request/RequestStatic";
 
-import { Gallery } from "../../com/Gallery/Collection";
+import { ProgmaContext } from "../../com/Progma";
+import { Gallery } from "../../com/Gallery/Gallery";
+
+import { DownloadDialog } from "../../com/Gallery/DownloadDialog";
+
 import { Card } from "../../com/Card";
+import { t_hook } from "../../com/lib/hook";
 import { Layout } from "../../com/Layout/Layout";
 import { ThemeContext } from "../../com/theme";
 
 import { Database }  from "../../com/Database";
-
-console.log(Database);
 
 export const Container = ({ children }) => {
 
@@ -29,17 +32,95 @@ export const Container = ({ children }) => {
   );
 }
 
+class t_gallery extends t_hook {
+
+  downloadVisible;
+
+  constructor() {
+
+    super();
+
+    this.state = "init";
+    this.downloadVisible = false;
+  }
+
+  showDownload(visible) {
+
+    if (!visible)
+      this.downloadURL = '';
+
+    this.downloadVisible = visible;
+    this.commit();
+  }
+
+  set(params) {
+
+    const { progma, refresh } = params;
+
+    this.progma = progma;
+    this.refresh = refresh;
+  }
+
+  process() {
+
+    switch (this.state) {
+
+      case "init": {
+
+        this.progma.set("download", galleryItem => {
+
+          this.downloadURL = galleryItem.value;
+          this.showDownload(true);
+        });
+
+        this.state = "ready";
+        this.commit();
+
+        break;
+      }
+    }
+  }
+}
+
+const GalleryContext = createContext(new t_gallery());
+
+export const useGallery = () => {
+
+  const progma = useContext(ProgmaContext);
+  const gallery = useContext(GalleryContext);
+  const [ serial, setSerial ] = useState(0);
+
+  gallery.set({
+    progma: progma,
+    refresh: () => setSerial(serial + 1)
+  });
+
+  useEffect(() => {
+    gallery.process();
+  });
+
+  return gallery;
+}
+
 export const Index = () => {
 
+  const progma = useContext(ProgmaContext);
   const theme = useContext(ThemeContext);
+  const gallery = useGallery();
 
   const request = useRequestStatic({
     container: Database,
     syncEnabled: false,
-    parentHash: "home" 
+    parentHash: "ecco2LevelMaps" 
   });
 
-  return (
+  return (<>
+
+    <DownloadDialog
+      show={ gallery.downloadVisible }
+      imageURL={ gallery.downloadURL }
+      onClose={ () => gallery.showDownload(false) } />
+
     <Layout>
       <Container>
         <Card 
@@ -60,7 +141,7 @@ export const Index = () => {
         </Card>
       </Container>
     </Layout>
-  )
+  </>)
 }
 
 export default Index;

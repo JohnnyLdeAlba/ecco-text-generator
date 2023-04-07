@@ -113,7 +113,7 @@ export const GalleryItem = ({ galleryItem }) => {
 
   return (
     <div className={`
-      w-1/3 sm:w-1/4 lg:w-1/6
+      w-1/3 md:w-1/4
       flex flex-col p-2 sm:p-3`}>
       <div className={`
         flex flex-col
@@ -123,7 +123,7 @@ export const GalleryItem = ({ galleryItem }) => {
         `}
         onClick={ galleryItem.onClick }>
       <div className={`
-        text-xs md:text-sm lg:text-xs
+        text-xs sm:text-sm 2xl:text-lg
         flex flex-col
         overflow-hidden
         rounded-lg
@@ -136,9 +136,8 @@ export const GalleryItem = ({ galleryItem }) => {
           src={ galleryItem.icon } alt=''
           className={`w-full`} />
         <div className={`
-          p-2
-          overflow-hidden whitespace-nowrap
-          text-ellipsis text-center
+          p-2 h-[4em]
+          text-center
         `}>
           { galleryItem.name }
         </div>

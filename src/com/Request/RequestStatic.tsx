@@ -88,8 +88,10 @@ class t_request_static extends t_hook {
 
     this.parentId = parentId;
     this.parentNode = parentNode;
+    this.page = 0;
 
     this.sendRequest();
+    this.commit();
   }
 
   setParentHash(parentHash) {
@@ -245,9 +247,7 @@ class t_request_static extends t_hook {
   }
 
   onGoBack() {
-
     this.setParentId(this.parentNode.parentId);
-    this.commit();
   }
 
   onPrevPage() {

@@ -4,7 +4,23 @@ export const RootDir = {
 
   RootId: ++id,
   MyCollectionId: ++id,
-  SettingsId: ++id
+  SettingsId: ++id,
+
+  EccoId: ++id,
+  EccoPCId: ++id,
+  Ecco2Id: ++id,
+
+  EccoSpritesId: ++id,
+  EccoLevelMapsId: ++id,
+  EccoBackgroundsId: ++id,
+
+  EccoPCSpritesId: ++id,
+  EccoPCLevelMapsId: ++id,
+  EccoPCBackgroundsId: ++id,
+
+  Ecco2SpritesId: ++id,
+  Ecco2LevelMapsId: ++id,
+  Ecco2BackgroundsId: ++id,
 }
 
 export const Root = container => {
@@ -31,31 +47,84 @@ export const Root = container => {
   node.summary = "Discover new possibilities and expand your horizons with our Explore page your gateway to a vast range of topics.";
   node.icon = "/icons/explore.png";
 
-  node = container.addNode('',
-    RootDir.RootId);
-  node.name = "Ecco the Dolphin";
-  node.orderId = 1;
-  node.properties.placeholder = true;
-
   node = container.addNode("myCollection",
     RootDir.RootId, RootDir.MyCollectionId);
   node.name = "My Collection";
   node.icon = "/icons/folder.png";
 
   node = container.addNode("eccoPC",
-    RootDir.RootId);
-  node.name = "Ecco PC";
+    RootDir.RootId, RootDir.EccoPCId);
+  node.name = "Ecco the Dolphin PC";
   node.orderId = 2;
   node.summary = "Get your game on with Ecco the Dolphin PC! Explore exciting content and resources to enhance your gameplay experience.";
   node.icon = "/icons/folder.png";
 
+  node = container.addNode("ecco",
+    RootDir.RootId, RootDir.EccoId);
+  node.name = "Ecco the Dolphin";
+  node.orderId = 2;
+  node.description = "No fate but what we make for oursleves.";
+  node.summary = "Dive into the depths of the ocean and explore the wonders of the sea with Ecco the Dolphin."
+  node.icon = "/icons/folder.png";
+  node.banner = "/eccoserv/ecco-the-dolphin/banner.jpg";
+
   node = container.addNode("ecco2",
-    RootDir.RootId);
-  node.name = "Ecco 2";
+    RootDir.RootId, RootDir.Ecco2Id);
+  node.name = "Ecco 2: The Tides of Time";
   node.orderId = 2;
   node.summary = "Take your gaming experience to the next level with Ecco 2: The Tides of Time!";
   node.icon = "/icons/folder.png";
   node.banner = "/eccoserv/ecco-2-the-tides-of-time/banner.jpg";
+
+  node = container.addNode("eccoSprites", 
+    RootDir.EccoId, RootDir.EccoSpritesId);
+  node.name = "Sprite Sheets";
+  node.description = "Ecco the Dolphin Sprite Sheets"
+  node.summary = ""
+  node.icon = "/icons/folder.png";
+  node.banner = "/eccoserv/ecco-the-dolphin/banner.jpg";
+
+  node = container.addNode("eccoLevelMaps", 
+    RootDir.EccoId, RootDir.EccoLevelMapsId);
+  node.name = "Level Maps";
+  node.description = "Ecco the Dolphin Level Maps"
+  node.summary = ""
+  node.icon = "/icons/folder.png";
+  node.banner = "/eccoserv/ecco-the-dolphin/banner.jpg";
+
+  node = container.addNode("eccoPCSprites", 
+    RootDir.EccoPCId, RootDir.EccoPCSpritesId);
+  node.name = "Sprite Sheets";
+  node.description = "Ecco PC Sprite Sheets"
+  node.summary = ""
+  node.icon = "/icons/folder.png";
+  node.banner = "/eccoserv/ecco-the-dolphin/banner.jpg";
+
+  node = container.addNode("eccoPCLevelMaps", 
+    RootDir.EccoPCId, RootDir.EccoPCLevelMapsId);
+  node.name = "Level Maps";
+  node.description = "Ecco PC Level Maps"
+  node.summary = ""
+  node.icon = "/icons/folder.png";
+  node.banner = "/eccoserv/ecco-the-dolphin/banner.jpg";
+
+  node = container.addNode("ecco2Sprites", 
+    RootDir.Ecco2Id, RootDir.Ecco2SpritesId);
+  node.name = "Sprite Sheets";
+  node.description = "Ecco 2 Sprite Sheets"
+  node.summary = ""
+  node.icon = "/icons/folder.png";
+  node.banner = "/eccoserv/ecco-2-the-tides-of-time/banner.jpg";
+
+  node = container.addNode("ecco2LevelMaps", 
+    RootDir.Ecco2Id, RootDir.Ecco2LevelMapsId);
+  node.name = "Level Maps";
+  node.description = "Ecco 2 Level Maps"
+  node.summary = ""
+  node.icon = "/icons/folder.png";
+  node.banner = "/eccoserv/ecco-2-the-tides-of-time/banner.jpg";
+
+
 
   node = container.addNode("eccoJr",
     RootDir.RootId);

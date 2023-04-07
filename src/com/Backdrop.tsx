@@ -9,6 +9,7 @@ export const Backdrop = ({
       backdrop
       absolute
       flex flex-col
+      overflow-auto
       w-screen h-screen
       bg-[rgba(0,0,0,0.6)]
 
