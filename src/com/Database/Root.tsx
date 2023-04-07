@@ -13,6 +13,7 @@ export const RootDir = {
   EccoSpritesId: ++id,
   EccoLevelMapsId: ++id,
   EccoBackgroundsId: ++id,
+  EccoSonarMapsId: ++id,
 
   EccoPCSpritesId: ++id,
   EccoPCLevelMapsId: ++id,
@@ -21,6 +22,12 @@ export const RootDir = {
   Ecco2SpritesId: ++id,
   Ecco2LevelMapsId: ++id,
   Ecco2BackgroundsId: ++id,
+  Ecco2ObjectMapsId: ++id,
+  Ecco2SonarMapsId: ++id,
+
+  EccoJr: ++id,
+  EccoJrLevelMapsId: ++id,
+  EccoJrBackgroundsId: ++id,
 }
 
 export const Root = container => {
@@ -79,7 +86,7 @@ export const Root = container => {
   node = container.addNode("eccoSprites", 
     RootDir.EccoId, RootDir.EccoSpritesId);
   node.name = "Sprite Sheets";
-  node.description = "Ecco the Dolphin Sprite Sheets"
+  node.description = "Ecco Sprite Sheets"
   node.summary = ""
   node.icon = "/icons/folder.png";
   node.banner = "/eccoserv/ecco-the-dolphin/banner.jpg";
@@ -87,10 +94,20 @@ export const Root = container => {
   node = container.addNode("eccoLevelMaps", 
     RootDir.EccoId, RootDir.EccoLevelMapsId);
   node.name = "Level Maps";
-  node.description = "Ecco the Dolphin Level Maps"
+  node.description = "Ecco Level Maps"
   node.summary = ""
   node.icon = "/icons/folder.png";
   node.banner = "/eccoserv/ecco-the-dolphin/banner.jpg";
+
+  node = container.addNode("eccoSonarMaps", 
+    RootDir.EccoId, RootDir.EccoSonarMapsId);
+  node.name = "Sonar Maps";
+  node.description = "Ecco Sonar Maps"
+  node.summary = ""
+  node.icon = "/icons/folder.png";
+  node.banner = "/eccoserv/ecco-the-dolphin/banner.jpg";
+
+
 
   node = container.addNode("eccoPCSprites", 
     RootDir.EccoPCId, RootDir.EccoPCSpritesId);
@@ -124,14 +141,40 @@ export const Root = container => {
   node.icon = "/icons/folder.png";
   node.banner = "/eccoserv/ecco-2-the-tides-of-time/banner.jpg";
 
+  node = container.addNode("ecco2ObjectMaps", 
+    RootDir.Ecco2Id, RootDir.Ecco2ObjectMapsId);
+  node.name = "Object Maps";
+  node.description = "Ecco 2 Object Maps"
+  node.summary = ""
+  node.icon = "/icons/folder.png";
+  node.banner = "/eccoserv/ecco-2-the-tides-of-time/banner.jpg";
+
+  node = container.addNode("ecco2SonarMaps", 
+    RootDir.Ecco2Id, RootDir.Ecco2SonarMapsId);
+  node.name = "Sonar Maps";
+  node.description = "Ecco 2 Sonar Maps"
+  node.summary = ""
+  node.icon = "/icons/folder.png";
+  node.banner = "/eccoserv/ecco-2-the-tides-of-time/banner.jpg";
+
 
 
   node = container.addNode("eccoJr",
-    RootDir.RootId);
+    RootDir.RootId, RootDir.EccoJrId);
   node.name = "Ecco Jr.";
   node.orderId = 2;
   node.summary = "Introduce your little ones to the wonders of the ocean with Ecco Jr. a game that offers a fun and educational gaming experience for kids.";
   node.icon = "/icons/folder.png";
+
+  node = container.addNode("eccoJrLevelMaps", 
+    RootDir.EccoJrId, RootDir.EccoJrLevelMapsId);
+  node.name = "Level Maps";
+  node.description = "Ecco Jr Level Maps"
+  node.summary = ""
+  node.icon = "/icons/folder.png";
+  node.banner = "/eccoserv/ecco-the-dolphin/banner.jpg";
+
+
 
   node = container.addNode("settings",
     RootDir.RootId, RootDir.SettingsId);

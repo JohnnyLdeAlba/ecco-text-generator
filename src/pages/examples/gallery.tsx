@@ -111,7 +111,7 @@ export const Index = () => {
   const request = useRequestStatic({
     container: Database,
     syncEnabled: false,
-    parentHash: "ecco2LevelMaps" 
+    parentHash: "eccoJrLevelMaps" 
   });
 
   return (<>
