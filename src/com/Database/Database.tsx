@@ -34,4 +34,6 @@ Ecco2SonarMaps(Database);
 
 EccoJrLevelMaps(Database);
 
+console.log(Database);
+
 export default Database;

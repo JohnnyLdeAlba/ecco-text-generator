@@ -25,7 +25,7 @@ export const RootDir = {
   Ecco2ObjectMapsId: ++id,
   Ecco2SonarMapsId: ++id,
 
-  EccoJr: ++id,
+  EccoJrId: ++id,
   EccoJrLevelMapsId: ++id,
   EccoJrBackgroundsId: ++id,
 }

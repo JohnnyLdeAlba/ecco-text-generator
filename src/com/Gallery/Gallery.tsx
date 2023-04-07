@@ -15,10 +15,9 @@ export const DetailItem = ({ galleryItem }) => {
   const theme = useContext(ThemeContext);
 
   return (
-    <div className={`flex flex-col p-2 sm:p-2.5`}>
+    <div className={`flex flex-col mb-[1px]`}>
       <div className={`
         flex flex-col
-        rounded-lg
         ${ status.filteredPriority ? "bg-[#1e3a8a]" : '' }
         ${ status.filteredAttribute ? "bg-[#a855f7]" : '' }
         `}
@@ -26,9 +25,8 @@ export const DetailItem = ({ galleryItem }) => {
       <div className={`
         text-xs md:text-sm lg:text-xs
         flex flex-row items-start 
-        p-3 sm:p-4
+        p-3
         overflow-hidden
-        rounded-lg
         ${ theme.galleryItem }
         ${ properties.disabled ? "disabled" : "button" }
         ${ status.selected ? theme.galleryItemSelected : '' }
@@ -36,10 +34,10 @@ export const DetailItem = ({ galleryItem }) => {
         <img
           src={ galleryItem.icon }
           alt=''
-          className={`w-[60px] xl:w-[80px] mr-3 sm:mr-4`} />
+          className={`w-[40px] mr-3`} />
         <div className={`flex-1 flex flex-col`}>
           <div className={`
-            text-sm sm:text-base xl:text-xl
+            text-sm sm:text-base
             font-medium
 
             overflow-hidden whitespace-nowrap
@@ -47,7 +45,7 @@ export const DetailItem = ({ galleryItem }) => {
           `}>
             { galleryItem.name }
           </div>
-          <div className={`text-sm sm:text-base xl:text-xl}`}>
+          <div className={`text-sm sm:text-base`}>
             { galleryItem.summary }
           </div>
         </div>
@@ -67,7 +65,6 @@ export const DetailGroup = ({
     <div className={`
       flex flex-col
       overflow-y-auto
-      p-2 sm:p-2.5
       ${ theme.scrollbars }
     `}>
 
@@ -113,8 +110,10 @@ export const GalleryItem = ({ galleryItem }) => {
 
   return (
     <div className={`
-      w-1/3 md:w-1/4
-      flex flex-col p-2 sm:p-3`}>
+      w-1/3 md:w-1/5
+      lg:w-1/3 xl:w-1/5
+      p-2 
+      flex flex-col`}>
       <div className={`
         flex flex-col
         rounded-lg
@@ -123,7 +122,7 @@ export const GalleryItem = ({ galleryItem }) => {
         `}
         onClick={ galleryItem.onClick }>
       <div className={`
-        text-xs sm:text-sm 2xl:text-lg
+        text-xs sm:text-sm
         flex flex-col
         overflow-hidden
         rounded-lg
@@ -136,7 +135,9 @@ export const GalleryItem = ({ galleryItem }) => {
           src={ galleryItem.icon } alt=''
           className={`w-full`} />
         <div className={`
-          p-2 h-[4em]
+          flex flex-col
+          items-center justify-center 
+          p-2 h-[3.5em]
           text-center
         `}>
           { galleryItem.name }

@@ -7,7 +7,7 @@ import { ProgmaContext } from "../Progma";
 
 const config = {
   requestItemsPerPage: 100,
-  itemsPerPage: 24
+  itemsPerPage: 30
 };
 
 class t_request_static extends t_hook {

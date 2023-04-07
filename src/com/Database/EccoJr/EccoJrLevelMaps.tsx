@@ -5,12 +5,6 @@ export const EccoJrBackgrounds = container => {
   let node = null;
 
   node = container.addNode('',
-    RootDir.EccoJrBackgroundsId, RootDir.EccoJrBackgroundsId);
-  node.name = "Backgrounds";
-  node.orderId = -1;
-  node.icon = "/icons/folder.png";
-
-  node = container.addNode('',
     RootDir.EccoJrBackgroundsId);
   node.name = "Aqua Maze";
   node.type = "download";
