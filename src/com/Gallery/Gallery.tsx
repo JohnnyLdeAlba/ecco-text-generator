@@ -45,7 +45,7 @@ export const DetailItem = ({ galleryItem }) => {
           `}>
             { galleryItem.name }
           </div>
-          <div className={`text-sm sm:text-base`}>
+          <div className={`h-10 text-sm sm:text-base`}>
             { galleryItem.summary }
           </div>
         </div>

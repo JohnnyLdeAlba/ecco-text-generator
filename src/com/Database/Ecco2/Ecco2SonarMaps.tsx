@@ -3,6 +3,7 @@ import { RootDir } from "../Root";
 export const Ecco2SonarMaps = container => {
 
   let node = null
+  let index = 0;
 
   node = container.addNode('',
     RootDir.Ecco2SonarMapsId);
