@@ -149,26 +149,12 @@ export const Navigation = ({
         </MenuCategory>
 
         <MenuCategory>
-          Official
+          Resources
         </MenuCategory>
 
-        <MenuLink href="https://mastodon.social/@HectorTelloc">
-          <Icons.MastodonIcon className={`mr-2`}/>
-          <span className={`text-white`}>Mastodon</span>
-        </MenuLink>
-
-        <MenuCategory>
-          Ecco Online
-        </MenuCategory>
-
-        <MenuLink href="https://twitter.com/eccoonline">
-          <Icons.TwitterIcon className={`mr-2`}/>
-          <span className={`text-white`}>Twitter</span>
-        </MenuLink>
-
-        <MenuLink href="">
-          <Icons.DiscordIcon className={`mr-2`}/>
-          <span className={`text-white`}>Discord</span>
+        <MenuLink href="https://github.com/JohnnyLdeAlba/ecco-text-generator">
+          <Icons.GitHubIcon className={`mr-2`}/>
+          <span className={`text-white`}>GitHub</span>
         </MenuLink>
       </div>
     </>
