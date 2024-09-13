@@ -1,6 +1,6 @@
 {
-  "name": "eccothedolphin.io",
-  "version": "0.1.0",
+  "name": "ecco-text-generator",
+  "version": "2.08",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -19,7 +19,7 @@
     "eslint": "8.36.0",
     "eslint-config-next": "13.2.4",
     "gif.js": "^0.2.0",
-    "next": "13.2.4",
+    "next": "^13.2.4",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "typescript": "4.9.5"
