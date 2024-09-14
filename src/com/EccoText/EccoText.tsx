@@ -63,11 +63,11 @@ export const EccoText = ({ loading }) => {
 
       <link rel="icon" href="icon.svg" />
       <meta property="og:locale" content="en_US" />
-      <meta property="og:site_name" content="Ecco the Dolphin IO" />
+      <meta property="og:site_name" content="Ecco Text Generator" />
       <meta property="og:title" content="Ecco Text Generator" />
       <meta property="og:description" content="An animated Ecco the Dolphin Generator that can produce GIFs and static images." />
-      <meta property="og:image" content="https://eccothedolphin.io/card.jpg" />
-      <meta property="og:url" content="https://eccothedolphin.io/ecco-text-generator" />
+      <meta property="og:image" content="http://ecco-text-generator.johnnyldealba.com/card.jpg" />
+      <meta property="og:url" content="http://ecco-text-generator.johnnyldealba.com" />
       <meta property="twitter:card" content="summary_large_image" />
 
     </Head>
