@@ -79,4 +79,3 @@ To view the Ecco Text Generator in the browser type in the following url.
 ```
 http://127.0.0.1:8000
 ```
-0915202401
