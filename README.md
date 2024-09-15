@@ -3,6 +3,8 @@ A text generator that creates animated GIFs in the style of messages found in th
 
 <img style="height: 400px;" src="https://github.com/JohnnyLdeAlba/ecco-text-generator/blob/main/public/card.jpg" /> <img style="height: 400px" src="https://github.com/JohnnyLdeAlba/ecco-text-generator/blob/main/public/sample.gif" />
 
+<img src="https://github.com/JohnnyLdeAlba/ecco-text-generator/blob/main/public/sample-1.png" /> <img src="https://github.com/JohnnyLdeAlba/ecco-text-generator/blob/main/public/sample-2.png" />
+
 # Interesting Facts
 
 The background animation used in this generator incorporates a ripple effect from the original games that was reverse engineered from 68000 assembly to Javascript!
@@ -77,7 +79,3 @@ To view the Ecco Text Generator in the browser type in the following url.
 ```
 http://127.0.0.1:8000
 ```
-
-<img src="https://github.com/JohnnyLdeAlba/ecco-text-generator/blob/main/public/sample-1.png" /> <img src="https://github.com/JohnnyLdeAlba/ecco-text-generator/blob/main/public/sample-2.png" />
-
-<img src="https://github.com/JohnnyLdeAlba/ecco-text-generator/blob/main/public/sample-3.png" /> <img src="https://github.com/JohnnyLdeAlba/ecco-text-generator/blob/main/public/sample-4.png" />
