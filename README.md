@@ -25,7 +25,7 @@ The background animation used in this generator incorporates a ripple effect fro
 - Choose from a variety of themes and ripple effects!
 - Muitple resolution support for generating smaller file sizes.
 
-# [Example]([https://eccothedolphin.online/ecco-text-generator/](http://ecco-text-generator.johnnyldealba.com/))
+# [Example](http://ecco-text-generator.johnnyldealba.com/)
 This is a live version of the repo.
 
 # Installtion
