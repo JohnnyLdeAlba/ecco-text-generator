@@ -5,7 +5,7 @@ A text generator that creates animated GIFs in the style of messages found in th
 
 # Interesting Facts
 
-The background animation used in this generator incorporates a ripple effect from the original games that was ported from 68000 assembly to Javascript!
+The background animation used in this generator incorporates a ripple effect from the original games that was reverse engineered from 68000 assembly to Javascript!
 
 # Credits
 
@@ -18,7 +18,8 @@ The background animation used in this generator incorporates a ripple effect fro
 - gif.js 0.2.0 - https://github.com/jnordberg/gif.js (Included)
 
 # Features
-
+- Features graphics and special effects reverse engineered from Ecco 2: The Tides of Time for Sega Genesis.
+- Custom text rendering software designed to display text and animated fonts.
 - Generates PNGs or animated GIFs in the style of messages found in the video game Ecco the Dolphin.
 - Supports multiple languages including Russian, Katakana and Hirgana support.
 - Animated critters adds a fun layer to the whole generator experience.
@@ -28,6 +29,23 @@ The background animation used in this generator incorporates a ripple effect fro
 # [Example](http://ecco-text-generator.johnnyldealba.com/)
 This is a live version of the repo.
 
-# Installtion
+# Docker Installation
 
-Downloading this repo is all that's required as this should just run out of the box. Once downloaded, click on `index.html` and enjoy!
+If you have Docker installed you can build an image using the following command.
+
+```bash
+sudo docker build -t prg:ecco-text-generator .
+```
+
+To run the Docker image use the following command.
+By dafault the Ecco Text Generator uses port 8000.
+
+```bash
+`docker run -p 127.0.0.1:8000:8000 prg:ecco-text-generator`
+```
+
+To view the Ecco Text Generator in the browser type in the following url.
+
+```
+http://127.0.0.1:8000
+```
