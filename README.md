@@ -78,5 +78,5 @@ To view the Ecco Text Generator in the browser type in the following url.
 http://127.0.0.1:8000
 ```
 
-<img style="height: 400px" src="https://github.com/JohnnyLdeAlba/ecco-text-generator/blob/main/public/sample-1.png" /> <img style="height: 400px" src="https://github.com/JohnnyLdeAlba/ecco-text-generator/blob/main/public/sample-2.png" />
-<img style="height: 400px" src="https://github.com/JohnnyLdeAlba/ecco-text-generator/blob/main/public/sample-3.png" /> <img style="height: 400px" src="https://github.com/JohnnyLdeAlba/ecco-text-generator/blob/main/public/sample-4.png" />
+<img src="https://github.com/JohnnyLdeAlba/ecco-text-generator/blob/main/public/sample-1.png" /> <img src="https://github.com/JohnnyLdeAlba/ecco-text-generator/blob/main/public/sample-2.png" />
+<img src="https://github.com/JohnnyLdeAlba/ecco-text-generator/blob/main/public/sample-3.png" /> <img src="https://github.com/JohnnyLdeAlba/ecco-text-generator/blob/main/public/sample-4.png" />
