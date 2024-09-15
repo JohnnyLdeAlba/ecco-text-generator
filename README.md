@@ -79,4 +79,5 @@ http://127.0.0.1:8000
 ```
 
 <img src="https://github.com/JohnnyLdeAlba/ecco-text-generator/blob/main/public/sample-1.png" /> <img src="https://github.com/JohnnyLdeAlba/ecco-text-generator/blob/main/public/sample-2.png" />
+
 <img src="https://github.com/JohnnyLdeAlba/ecco-text-generator/blob/main/public/sample-3.png" /> <img src="https://github.com/JohnnyLdeAlba/ecco-text-generator/blob/main/public/sample-4.png" />
