@@ -41,7 +41,7 @@ To run the Docker image use the following command.
 By dafault the Ecco Text Generator uses port 8000.
 
 ```bash
-`docker run -p 127.0.0.1:8000:8000 prg:ecco-text-generator`
+docker run -p 127.0.0.1:8000:8000 prg:ecco-text-generator
 ```
 
 To view the Ecco Text Generator in the browser type in the following url.
