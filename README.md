@@ -54,7 +54,7 @@ To view the Ecco Text Generator in the browser type in the following url.
 http://127.0.0.1:8000
 ```
 
-# Installation Without Docker
+# Installation without Docker
 
 To install all the dependancies required run the following command:
 
