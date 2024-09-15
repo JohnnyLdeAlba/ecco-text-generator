@@ -15,7 +15,9 @@ The background animation used in this generator incorporates a ripple effect fro
 
 # Dependancies
 
-- gif.js 0.2.0 - https://github.com/jnordberg/gif.js (Included)
+- NodeJS
+- Next.js
+- Docker (Optional)
 
 # Features
 - Features graphics and special effects reverse engineered from Ecco 2: The Tides of Time for Sega Genesis.
@@ -42,6 +44,32 @@ By dafault the Ecco Text Generator uses port 8000.
 
 ```bash
 docker run -p 127.0.0.1:8000:8000 prg:ecco-text-generator
+```
+
+To view the Ecco Text Generator in the browser type in the following url.
+
+```
+http://127.0.0.1:8000
+```
+
+# Installation Without Docker
+
+To install all the dependancies required run the following command:
+
+```bash
+npm install
+```
+
+Next build the distro using the following command:
+
+```bash
+npm run build
+```
+
+Finally to run the Ecco Text Generator service:
+
+```bash
+npm start
 ```
 
 To view the Ecco Text Generator in the browser type in the following url.
